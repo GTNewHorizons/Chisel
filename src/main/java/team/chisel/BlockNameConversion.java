@@ -5,9 +5,9 @@ import java.util.HashMap;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-import team.chisel.utils.General;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameRegistry;
+import team.chisel.utils.General;
 
 public class BlockNameConversion {
 
@@ -30,7 +30,8 @@ public class BlockNameConversion {
                     return newname;
                 case 2: // rename "marbleSlab" -> "marble_slab", "redstone" ->
                         // "redstone_block"
-                    newname = oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2").toLowerCase();
+                    newname = oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2")
+                        .toLowerCase();
 
                     if (newname.startsWith("block_")) {
                         newname = newname.replaceFirst("block_([a-z_]+)", "$1_block");
@@ -39,7 +40,9 @@ public class BlockNameConversion {
                     }
                     return newname;
                 case 3: // rename "wood-dark-oak" -> "dark_oak_planks"
-                    newname = oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2").toLowerCase().replace('-', '_');
+                    newname = oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2")
+                        .toLowerCase()
+                        .replace('-', '_');
                     if (newname.contains("wood_")) {
                         newname = newname.replaceFirst("wood_([a-z_]+)", "$1_planks");
                     }
@@ -48,7 +51,9 @@ public class BlockNameConversion {
                                 // "dirt" -> "dirt").
                     // This can be dangerous in cases like "carpet" (a block) ->
                     // "carpet" (NO block)
-                    return oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2").toLowerCase().replaceFirst("block_", "");
+                    return oldname.replaceAll("([a-z]+)([A-Z])", "$1_$2")
+                        .toLowerCase()
+                        .replaceFirst("block_", "");
                 default:
                     throw new IndexOutOfBoundsException("conversion got invalid parameter step=" + step);
             }
@@ -86,11 +91,12 @@ public class BlockNameConversion {
     }
 
     public static Item findItem(String oldname) {
-        FMLLog.getLogger().trace("[Chisel 2] findItem() START " + oldname);
+        FMLLog.getLogger()
+            .trace("[Chisel 2] findItem() START " + oldname);
         Item item = null;
         for (int i = 0; i < NameConversions.MAX && item == null; i++) {
             FMLLog.getLogger()
-                    .trace("[Chisel 2] findItem()       Checking for " + NameConversions.conversion(oldname, i));
+                .trace("[Chisel 2] findItem()       Checking for " + NameConversions.conversion(oldname, i));
             item = GameRegistry.findItem(Chisel.MOD_ID, NameConversions.conversion(oldname, i));
         }
 
@@ -98,11 +104,12 @@ public class BlockNameConversion {
     }
 
     public static Block findBlock(String oldname) {
-        FMLLog.getLogger().trace("[Chisel 2] findBlock() START: " + oldname);
+        FMLLog.getLogger()
+            .trace("[Chisel 2] findBlock() START: " + oldname);
         Block block = null;
         for (int i = 0; i < NameConversions.MAX && block == null; i++) {
             FMLLog.getLogger()
-                    .trace("[Chisel 2] findBlock()       Checking for " + NameConversions.conversion(oldname, i));
+                .trace("[Chisel 2] findBlock()       Checking for " + NameConversions.conversion(oldname, i));
             block = GameRegistry.findBlock(Chisel.MOD_ID, NameConversions.conversion(oldname, i));
         }
 

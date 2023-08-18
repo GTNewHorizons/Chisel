@@ -7,11 +7,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
+
 import team.chisel.carving.Carving;
 import team.chisel.item.chisel.ItemChisel;
 import team.chisel.utils.General;
-
-import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
 
 public class ContainerChisel extends Container {
 
@@ -33,13 +33,7 @@ public class ContainerChisel extends Container {
         // selection slots
         for (int i = 0; i < InventoryChiselSelection.normalSlots; i++) {
             addSlotToContainer(
-                    new SlotChiselSelection(
-                            this,
-                            inventory,
-                            inventory,
-                            i,
-                            left + ((i % 10) * 18),
-                            top + ((i / 10) * 18)));
+                new SlotChiselSelection(this, inventory, inventory, i, left + ((i % 10) * 18), top + ((i / 10) * 18)));
         }
 
         // main slot
@@ -103,10 +97,10 @@ public class ContainerChisel extends Container {
 
             if (slotIdx > InventoryChiselSelection.normalSlots) {
                 if (!this.mergeItemStack(
-                        itemstack1,
-                        InventoryChiselSelection.normalSlots,
-                        InventoryChiselSelection.normalSlots + 1,
-                        false)) {
+                    itemstack1,
+                    InventoryChiselSelection.normalSlots,
+                    InventoryChiselSelection.normalSlots + 1,
+                    false)) {
                     return null;
                 }
             } else {
@@ -116,10 +110,10 @@ public class ContainerChisel extends Container {
                 entity.inventory.setItemStack(null);
 
                 if (!this.mergeItemStack(
-                        itemstack1,
-                        InventoryChiselSelection.normalSlots + 1,
-                        InventoryChiselSelection.normalSlots + 1 + 36,
-                        false)) {
+                    itemstack1,
+                    InventoryChiselSelection.normalSlots + 1,
+                    InventoryChiselSelection.normalSlots + 1 + 36,
+                    false)) {
                     entity.inventory.setItemStack(itemstack1);
                     return null;
                 }
@@ -154,7 +148,7 @@ public class ContainerChisel extends Container {
     @Override
     protected boolean mergeItemStack(ItemStack par1ItemStack, int fromIndex, int toIndex, boolean reversOrder) {
         return ((Slot) this.inventorySlots.get(reversOrder ? toIndex - 1 : fromIndex)).isItemValid(par1ItemStack)
-                && super.mergeItemStack(par1ItemStack, fromIndex, toIndex, reversOrder);
+            && super.mergeItemStack(par1ItemStack, fromIndex, toIndex, reversOrder);
     }
 
     public void onChiselSlotChanged() {

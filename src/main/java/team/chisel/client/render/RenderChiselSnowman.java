@@ -54,9 +54,11 @@ public class RenderChiselSnowman extends RenderLiving {
 
             IItemRenderer customRenderer = MinecraftForgeClient.getItemRenderer(itemStack, EQUIPPED);
             boolean is3D = (customRenderer != null
-                    && customRenderer.shouldUseRenderHelper(EQUIPPED, itemStack, BLOCK_3D));
+                && customRenderer.shouldUseRenderHelper(EQUIPPED, itemStack, BLOCK_3D));
 
-            if (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemStack.getItem()).getRenderType())) {
+            if (is3D || RenderBlocks.renderItemIn3d(
+                Block.getBlockFromItem(itemStack.getItem())
+                    .getRenderType())) {
                 float f1 = 0.625F;
                 GL11.glTranslatef(0.0F, -0.34375F, 0.0F);
                 GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);

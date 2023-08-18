@@ -11,16 +11,16 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.carving.Carving;
-import team.chisel.client.gui.GuiChisel;
+import com.cricketcraft.chisel.api.carving.CarvingUtils;
+import com.cricketcraft.chisel.api.carving.ICarvingGroup;
+import com.cricketcraft.chisel.api.carving.ICarvingVariation;
+
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-
-import com.cricketcraft.chisel.api.carving.CarvingUtils;
-import com.cricketcraft.chisel.api.carving.ICarvingGroup;
-import com.cricketcraft.chisel.api.carving.ICarvingVariation;
+import team.chisel.carving.Carving;
+import team.chisel.client.gui.GuiChisel;
 
 public class RecipeHandlerChisel extends TemplateRecipeHandler {
 
@@ -109,10 +109,10 @@ public class RecipeHandlerChisel extends TemplateRecipeHandler {
     @Override
     public void loadTransferRects() {
         this.transferRects.add(
-                new TemplateRecipeHandler.RecipeTransferRect(
-                        new Rectangle(75, 22, 15, 13),
-                        "chisel2.chisel",
-                        new Object[0]));
+            new TemplateRecipeHandler.RecipeTransferRect(
+                new Rectangle(75, 22, 15, 13),
+                "chisel2.chisel",
+                new Object[0]));
     }
 
     @Override
@@ -120,7 +120,8 @@ public class RecipeHandlerChisel extends TemplateRecipeHandler {
         if (outputId.equals("chisel2.chisel")) {
             for (String name : Carving.chisel.getSortedGroupNames()) {
                 ICarvingGroup g = Carving.chisel.getGroup(name);
-                if (!g.getVariations().isEmpty()) {
+                if (!g.getVariations()
+                    .isEmpty()) {
                     addCached(getVariationStacks(g));
                 }
             }

@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
 import team.chisel.block.BlockRoadLine;
 import team.chisel.ctmlib.Drawing;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class RendererRoadLine implements ISimpleBlockRenderingHandler {
 
@@ -36,7 +36,7 @@ public class RendererRoadLine implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         int meta = world.getBlockMetadata(x, y, z);
         BlockRoadLine block = (BlockRoadLine) b;
         Tessellator tessellator = Tessellator.instance;
@@ -59,10 +59,14 @@ public class RendererRoadLine implements ISimpleBlockRenderingHandler {
         }
         tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
 
-        boolean N = world.getBlock(x, y, z - 1).equals(block) && world.getBlockMetadata(x, y, z - 1) == meta;
-        boolean S = world.getBlock(x, y, z + 1).equals(block) && world.getBlockMetadata(x, y, z + 1) == meta;
-        boolean W = world.getBlock(x - 1, y, z).equals(block) && world.getBlockMetadata(x - 1, y, z) == meta;
-        boolean E = world.getBlock(x + 1, y, z).equals(block) && world.getBlockMetadata(x + 1, y, z) == meta;
+        boolean N = world.getBlock(x, y, z - 1)
+            .equals(block) && world.getBlockMetadata(x, y, z - 1) == meta;
+        boolean S = world.getBlock(x, y, z + 1)
+            .equals(block) && world.getBlockMetadata(x, y, z + 1) == meta;
+        boolean W = world.getBlock(x - 1, y, z)
+            .equals(block) && world.getBlockMetadata(x - 1, y, z) == meta;
+        boolean E = world.getBlock(x + 1, y, z)
+            .equals(block) && world.getBlockMetadata(x + 1, y, z) == meta;
 
         if (!N && !S && !W && !E) {
             renderer.renderStandardBlock(block, x, y, z);

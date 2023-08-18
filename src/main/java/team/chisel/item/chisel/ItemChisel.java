@@ -16,15 +16,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import team.chisel.Chisel;
-import team.chisel.carving.Carving;
-import team.chisel.config.Configurations;
-
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+
+import team.chisel.Chisel;
+import team.chisel.carving.Carving;
+import team.chisel.config.Configurations;
 
 public class ItemChisel extends Item implements IChiselItem {
 
@@ -52,11 +52,21 @@ public class ItemChisel extends Item implements IChiselItem {
         super();
         this.type = type;
         setMaxStackSize(1);
-        setTextureName(Chisel.MOD_ID + ":chisel_" + type.name().toLowerCase(Locale.ENGLISH));
+        setTextureName(
+            Chisel.MOD_ID + ":chisel_"
+                + type.name()
+                    .toLowerCase(Locale.ENGLISH));
         if (type == ChiselType.NETHERSTAR && Chisel.gtnhLoaded) {
-            setUnlocalizedName(Chisel.MOD_ID + ".chisel_" + type.name().toLowerCase() + ".gtnh");
+            setUnlocalizedName(
+                Chisel.MOD_ID + ".chisel_"
+                    + type.name()
+                        .toLowerCase()
+                    + ".gtnh");
         } else {
-            setUnlocalizedName(Chisel.MOD_ID + ".chisel_" + type.name().toLowerCase());
+            setUnlocalizedName(
+                Chisel.MOD_ID + ".chisel_"
+                    + type.name()
+                        .toLowerCase());
         }
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -76,13 +86,17 @@ public class ItemChisel extends Item implements IChiselItem {
     public boolean getIsRepairable(ItemStack damagedItem, ItemStack repairMaterial) {
         switch (type) {
             case DIAMOND:
-                return repairMaterial.getItem().equals(Items.diamond);
+                return repairMaterial.getItem()
+                    .equals(Items.diamond);
             case IRON:
-                return repairMaterial.getItem().equals(Items.iron_ingot);
+                return repairMaterial.getItem()
+                    .equals(Items.iron_ingot);
             case OBSIDIAN:
-                return repairMaterial.getItem().equals(Item.getItemFromBlock(Blocks.obsidian));
+                return repairMaterial.getItem()
+                    .equals(Item.getItemFromBlock(Blocks.obsidian));
             case NETHERSTAR:
-                return repairMaterial.getItem().equals(Items.nether_star);
+                return repairMaterial.getItem()
+                    .equals(Items.nether_star);
         }
         return false;
     }
@@ -97,14 +111,14 @@ public class ItemChisel extends Item implements IChiselItem {
         String modes = I18n.format(base + "modes");
         list.add(gui);
         if (type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN
-                || type == ChiselType.NETHERSTAR
-                || Configurations.ironChiselCanLeftClick) {
+            || type == ChiselType.NETHERSTAR
+            || Configurations.ironChiselCanLeftClick) {
             list.add(lc1);
             list.add(lc2);
         }
         if (type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN
-                || type == ChiselType.NETHERSTAR
-                || Configurations.ironChiselHasModes) {
+            || type == ChiselType.NETHERSTAR
+            || Configurations.ironChiselHasModes) {
             list.add("");
             list.add(modes);
         }
@@ -120,8 +134,8 @@ public class ItemChisel extends Item implements IChiselItem {
     public Multimap getAttributeModifiers(ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
         multimap.put(
-                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-                new AttributeModifier(field_111210_e, "Chisel Damage", type.attackDamage, 0));
+            SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+            new AttributeModifier(field_111210_e, "Chisel Damage", type.attackDamage, 0));
         return multimap;
     }
 
@@ -149,15 +163,15 @@ public class ItemChisel extends Item implements IChiselItem {
     @Override
     public boolean canChiselBlock(World world, EntityPlayer player, int x, int y, int z, Block block, int metadata) {
         return type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN
-                || type == ChiselType.NETHERSTAR
-                || Configurations.ironChiselCanLeftClick;
+            || type == ChiselType.NETHERSTAR
+            || Configurations.ironChiselCanLeftClick;
     }
 
     @Override
     public boolean hasModes(ItemStack chisel) {
         return type == ChiselType.DIAMOND || type == ChiselType.OBSIDIAN
-                || type == ChiselType.NETHERSTAR
-                || Configurations.ironChiselHasModes;
+            || type == ChiselType.NETHERSTAR
+            || Configurations.ironChiselHasModes;
     }
 
     @Override

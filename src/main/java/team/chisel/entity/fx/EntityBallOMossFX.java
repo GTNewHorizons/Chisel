@@ -7,11 +7,11 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.block.BlockSnakestoneObsidian;
 import team.chisel.init.ChiselItems;
 import team.chisel.utils.General;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityBallOMossFX extends EntityFX {
 
@@ -114,7 +114,7 @@ public class EntityBallOMossFX extends EntityFX {
 
     @Override
     public void renderParticle(Tessellator tessellator, float partialTick, float rotX, float rotXZ, float rotZ,
-            float rotYZ, float rotXY) {
+        float rotYZ, float rotXY) {
         GL11.glDepthMask(false);
         GL11.glEnable(3042);
         GL11.glBlendFunc(770, 771);

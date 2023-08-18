@@ -2,9 +2,6 @@ package team.chisel.network.message;
 
 import net.minecraft.item.ItemStack;
 
-import team.chisel.item.chisel.ChiselMode;
-import team.chisel.utils.General;
-
 import com.cricketcraft.chisel.api.IAdvancedChisel;
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.IChiselMode;
@@ -14,6 +11,8 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import team.chisel.item.chisel.ChiselMode;
+import team.chisel.utils.General;
 
 public class MessageChiselMode implements IMessage {
 

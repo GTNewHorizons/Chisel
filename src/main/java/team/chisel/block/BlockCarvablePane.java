@@ -10,8 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-import team.chisel.client.render.RendererCTMPane;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
@@ -19,6 +17,7 @@ import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.client.render.RendererCTMPane;
 
 public class BlockCarvablePane extends BlockPane implements ICarvable {
 

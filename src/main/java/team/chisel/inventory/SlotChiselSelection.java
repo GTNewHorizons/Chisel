@@ -6,12 +6,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
+import com.cricketcraft.chisel.api.IChiselItem;
+import com.cricketcraft.chisel.api.Statistics;
+
 import team.chisel.carving.Carving;
 import team.chisel.utils.General;
 import team.chisel.utils.GeneralClient;
-
-import com.cricketcraft.chisel.api.IChiselItem;
-import com.cricketcraft.chisel.api.Statistics;
 
 public class SlotChiselSelection extends Slot {
 
@@ -19,7 +19,7 @@ public class SlotChiselSelection extends Slot {
     private final InventoryChiselSelection selInventory;
 
     public SlotChiselSelection(ContainerChisel container, InventoryChiselSelection inv, IInventory iinventory, int i,
-            int j, int k) {
+        int j, int k) {
         super(iinventory, i, j, k);
 
         this.container = container;
@@ -53,17 +53,17 @@ public class SlotChiselSelection extends Slot {
             if (selInventory.inventory[InventoryChiselSelection.normalSlots] == null) return;
 
             player.inventory.setItemStack(
-                    new ItemStack(
-                            itemstack.getItem(),
-                            selInventory.inventory[InventoryChiselSelection.normalSlots].stackSize,
-                            itemstack.getItemDamage()));
+                new ItemStack(
+                    itemstack.getItem(),
+                    selInventory.inventory[InventoryChiselSelection.normalSlots].stackSize,
+                    itemstack.getItemDamage()));
             selInventory.setInventorySlotContents(InventoryChiselSelection.normalSlots, null);
         }
 
         selInventory.updateItems();
 
         if (((IChiselItem) container.chisel.getItem())
-                .onChisel(player.worldObj, container.chisel, General.getVariation(crafted))) {
+            .onChisel(player.worldObj, container.chisel, General.getVariation(crafted))) {
             container.chisel.damageItem(1, player);
             if (container.chisel.stackSize <= 0) {
                 player.inventory.mainInventory[player.inventory.currentItem] = null;
@@ -73,11 +73,11 @@ public class SlotChiselSelection extends Slot {
         if (player.worldObj.isRemote) {
             String sound = Carving.chisel.getVariationSound(crafted.getItem(), crafted.getItemDamage());
             GeneralClient.playChiselSound(
-                    player.worldObj,
-                    MathHelper.floor_double(player.posX),
-                    MathHelper.floor_double(player.posY),
-                    MathHelper.floor_double(player.posZ),
-                    sound);
+                player.worldObj,
+                MathHelper.floor_double(player.posX),
+                MathHelper.floor_double(player.posY),
+                MathHelper.floor_double(player.posZ),
+                sound);
         } else {
             container.playerInventory.player.addStat(Statistics.blocksChiseled, crafted.stackSize);
         }

@@ -13,13 +13,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.block.tileentity.TileEntityCarvableBeacon;
-import team.chisel.init.ChiselBlocks;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
+
+import team.chisel.block.tileentity.TileEntityCarvableBeacon;
+import team.chisel.init.ChiselBlocks;
 
 public class BlockCarvableBeacon extends BlockBeacon implements ICarvable {
 
@@ -42,7 +42,7 @@ public class BlockCarvableBeacon extends BlockBeacon implements ICarvable {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par5, float hitX,
-            float hitY, float hitZ) {
+        float hitY, float hitZ) {
         if (world.isRemote) {
             return true;
         } else {

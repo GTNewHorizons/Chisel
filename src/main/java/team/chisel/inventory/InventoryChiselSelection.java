@@ -9,10 +9,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 
+import com.cricketcraft.chisel.api.IChiselItem;
+
 import team.chisel.item.chisel.ItemChisel;
 import team.chisel.utils.General;
-
-import com.cricketcraft.chisel.api.IChiselItem;
 
 public class InventoryChiselSelection implements IInventory {
 
@@ -135,15 +135,17 @@ public class InventoryChiselSelection implements IInventory {
         if (Block.getBlockFromItem(item) == null) return;
 
         if (!((IChiselItem) chisel.getItem())
-                .canChisel(container.playerInventory.player.worldObj, chisel, General.getVariation(chiseledItem)))
-            return;
+            .canChisel(container.playerInventory.player.worldObj, chisel, General.getVariation(chiseledItem))) return;
 
         List<ItemStack> list = container.carving.getItemsForChiseling(chiseledItem);
         maxScroll = list.size();
         int activeVariations = 0;
         while (activeVariations < normalSlots && activeVariations + currentScroll < list.size()) {
             if (Block.blockRegistry.getNameForObject(
-                    Block.getBlockFromItem(list.get(activeVariations + currentScroll).getItem())) != null) {
+                Block.getBlockFromItem(
+                    list.get(activeVariations + currentScroll)
+                        .getItem()))
+                != null) {
                 inventory[activeVariations] = list.get(activeVariations + currentScroll);
                 activeVariations++;
             }

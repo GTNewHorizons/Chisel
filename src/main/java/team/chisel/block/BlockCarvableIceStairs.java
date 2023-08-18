@@ -6,9 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import team.chisel.init.ChiselBlocks;
-
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
+
+import team.chisel.init.ChiselBlocks;
 
 public class BlockCarvableIceStairs extends BlockCarvableStairs {
 

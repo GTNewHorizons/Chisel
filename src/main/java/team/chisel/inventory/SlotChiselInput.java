@@ -14,8 +14,8 @@ public class SlotChiselInput extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack itemstack) {
-        return !container.finished && !container.carving.getItemsForChiseling(itemstack).isEmpty()
-                && super.isItemValid(itemstack);
+        return !container.finished && !container.carving.getItemsForChiseling(itemstack)
+            .isEmpty() && super.isItemValid(itemstack);
     }
 
     @Override

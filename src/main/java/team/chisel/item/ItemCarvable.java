@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
-import team.chisel.config.Configurations;
-import team.chisel.utils.General;
-
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
+
+import team.chisel.config.Configurations;
+import team.chisel.utils.General;
 
 public class ItemCarvable extends ItemBlock {
 
@@ -31,7 +31,8 @@ public class ItemCarvable extends ItemBlock {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        return Block.getBlockFromItem(this).getIcon(2, damage);
+        return Block.getBlockFromItem(this)
+            .getIcon(2, damage);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

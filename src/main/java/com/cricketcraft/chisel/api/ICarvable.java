@@ -2,11 +2,11 @@ package com.cricketcraft.chisel.api;
 
 import net.minecraft.world.IBlockAccess;
 
-import team.chisel.ctmlib.ICTMBlock;
-import team.chisel.ctmlib.ISubmapManager;
-
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
+
+import team.chisel.ctmlib.ICTMBlock;
+import team.chisel.ctmlib.ISubmapManager;
 
 /**
  * To be implemented on blocks that can be chiseled and need advanced metadata to variation mapping. Currently not very

@@ -1,5 +1,7 @@
 package team.chisel.network;
 
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 import team.chisel.Chisel;
 import team.chisel.network.message.MessageAutoChisel;
 import team.chisel.network.message.MessageChiselMode;
@@ -7,8 +9,6 @@ import team.chisel.network.message.MessageChiselSound;
 import team.chisel.network.message.MessagePresentConnect;
 import team.chisel.network.message.MessageScrollUpdate;
 import team.chisel.network.message.MessageSlotUpdate;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
 
 public class PacketHandler {
 

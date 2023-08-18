@@ -30,7 +30,7 @@ public class GroupList implements Set<ICarvingGroup> {
             if (obj instanceof ICarvingVariation) {
                 ICarvingVariation v2 = (ICarvingVariation) obj;
                 return v.getBlock() == v2.getBlock()
-                        && (v.getBlockMeta() == v2.getBlockMeta() || v.getItemMeta() == v2.getItemMeta());
+                    && (v.getBlockMeta() == v2.getBlockMeta() || v.getItemMeta() == v2.getItemMeta());
             } else if (obj instanceof VariationWrapper) {
                 return equals(((VariationWrapper) obj).v);
             }
@@ -39,7 +39,8 @@ public class GroupList implements Set<ICarvingGroup> {
 
         @Override
         public int hashCode() {
-            return v.getBlock().hashCode();
+            return v.getBlock()
+                .hashCode();
         }
     }
 
@@ -100,17 +101,20 @@ public class GroupList implements Set<ICarvingGroup> {
 
     @Override
     public Iterator<ICarvingGroup> iterator() {
-        return groups.values().iterator();
+        return groups.values()
+            .iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return groups.values().toArray();
+        return groups.values()
+            .toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] arr) {
-        return groups.values().toArray(arr);
+        return groups.values()
+            .toArray(arr);
     }
 
     @Override
@@ -134,7 +138,9 @@ public class GroupList implements Set<ICarvingGroup> {
         if (o instanceof ICarvingGroup) {
             List<VariationWrapper> toRemove = Lists.newArrayList();
             for (VariationWrapper v : lookup.keySet()) {
-                if (lookup.get(v).getName().equals(((ICarvingGroup) o).getName())) {
+                if (lookup.get(v)
+                    .getName()
+                    .equals(((ICarvingGroup) o).getName())) {
                     toRemove.add(v);
                 }
             }
@@ -228,9 +234,11 @@ public class GroupList implements Set<ICarvingGroup> {
         }
         List<VariationWrapper> toRemove = Lists.newArrayList();
         for (VariationWrapper v : lookup.keySet()) {
-            if ((g == null || lookup.get(v).getName().equals(g.getName()))
-                    && v.equals(new VariationWrapper(new VariationKey(block, metadata)))) {
-                lookup.get(v).removeVariation(v.v);
+            if ((g == null || lookup.get(v)
+                .getName()
+                .equals(g.getName())) && v.equals(new VariationWrapper(new VariationKey(block, metadata)))) {
+                lookup.get(v)
+                    .removeVariation(v.v);
                 toRemove.add(v);
             }
         }

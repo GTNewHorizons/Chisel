@@ -1,12 +1,12 @@
 package team.chisel.init;
 
+import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import team.chisel.Chisel;
 import team.chisel.item.ItemBallOMoss;
 import team.chisel.item.ItemCloudInABottle;
 import team.chisel.item.ItemSmashingRock;
 import team.chisel.item.ItemUpgrade;
 import team.chisel.item.chisel.ItemChisel;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 
 @ObjectHolder(Chisel.MOD_ID)
 public final class ChiselItems {

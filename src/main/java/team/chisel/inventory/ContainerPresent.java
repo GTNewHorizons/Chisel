@@ -78,7 +78,8 @@ public class ContainerPresent extends Container {
     public void detectAndSendChanges() {
         TileEntityPresent te = (TileEntityPresent) lower;
         if (te != null && te.hasWorldObj() && !te.getWorldObj().isRemote) {
-            if (te.getWorldObj().getTileEntity(te.xCoord, te.yCoord, te.zCoord) != te) isContainerValid = false;
+            if (te.getWorldObj()
+                .getTileEntity(te.xCoord, te.yCoord, te.zCoord) != te) isContainerValid = false;
         }
         super.detectAndSendChanges();
     }

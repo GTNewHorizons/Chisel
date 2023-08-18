@@ -8,13 +8,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import team.chisel.network.PacketHandler;
-import team.chisel.network.message.MessageChiselSound;
-
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.Statistics;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.cricketcraft.chisel.api.carving.IChiselMode;
+
+import team.chisel.network.PacketHandler;
+import team.chisel.network.message.MessageChiselSound;
 
 public enum ChiselMode implements IChiselMode {
 
@@ -22,7 +22,7 @@ public enum ChiselMode implements IChiselMode {
 
         @Override
         public void chiselAll(EntityPlayer player, World world, int x, int y, int z, ForgeDirection side,
-                ICarvingVariation variation) {
+            ICarvingVariation variation) {
             setVariation(player, world, x, y, z, world.getBlock(x, y, z), world.getBlockMetadata(x, y, z), variation);
         }
     },
@@ -30,7 +30,7 @@ public enum ChiselMode implements IChiselMode {
 
         @Override
         public void chiselAll(EntityPlayer player, World world, int x, int y, int z, ForgeDirection side,
-                ICarvingVariation variation) {
+            ICarvingVariation variation) {
             Block block = world.getBlock(x, y, z);
             int meta = world.getBlockMetadata(x, y, z);
             for (int dx = -1; dx <= 1; dx++) {
@@ -50,7 +50,7 @@ public enum ChiselMode implements IChiselMode {
 
         @Override
         public void chiselAll(EntityPlayer player, World world, int x, int y, int z, ForgeDirection side,
-                ICarvingVariation variation) {
+            ICarvingVariation variation) {
             Block block = world.getBlock(x, y, z);
             int meta = world.getBlockMetadata(x, y, z);
             int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
@@ -71,7 +71,7 @@ public enum ChiselMode implements IChiselMode {
 
         @Override
         public void chiselAll(EntityPlayer player, World world, int x, int y, int z, ForgeDirection side,
-                ICarvingVariation variation) {
+            ICarvingVariation variation) {
             Block block = world.getBlock(x, y, z);
             int meta = world.getBlockMetadata(x, y, z);
             int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
@@ -97,7 +97,7 @@ public enum ChiselMode implements IChiselMode {
      * Assumes that the player is holding a chisel
      */
     private static void setVariation(EntityPlayer player, World world, int x, int y, int z, Block origBlock,
-            int origMeta, ICarvingVariation v) {
+        int origMeta, ICarvingVariation v) {
         Block block = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         ItemStack held = player.getCurrentEquippedItem();
@@ -116,9 +116,10 @@ public enum ChiselMode implements IChiselMode {
             }
             player.addStat(Statistics.blocksChiseled, 1);
             boolean breakChisel = false;
-            if (((IChiselItem) player.getCurrentEquippedItem().getItem())
-                    .onChisel(world, player.getCurrentEquippedItem(), v)) {
-                player.getCurrentEquippedItem().damageItem(1, player);
+            if (((IChiselItem) player.getCurrentEquippedItem()
+                .getItem()).onChisel(world, player.getCurrentEquippedItem(), v)) {
+                player.getCurrentEquippedItem()
+                    .damageItem(1, player);
                 if (player.getCurrentEquippedItem().stackSize <= 0) {
                     player.inventory.mainInventory[player.inventory.currentItem] = null;
                     breakChisel = true;

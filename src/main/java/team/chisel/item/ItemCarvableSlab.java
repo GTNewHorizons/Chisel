@@ -21,7 +21,7 @@ public class ItemCarvableSlab extends ItemCarvable {
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hx,
-            float hy, float hz) {
+        float hy, float hz) {
         BlockCarvableSlab block = (BlockCarvableSlab) Block.getBlockFromItem(this);
         int meta = stack.getItemDamage();
 
@@ -38,8 +38,8 @@ public class ItemCarvableSlab extends ItemCarvable {
         boolean metaEquals = world.getBlockMetadata(x2, y2, z2) == meta;
         // if the metadata at the place target matches, and the block there matches either the top of bottom slab, try
         // to fill in the rest of the block
-        if (metaEquals && ((at == block.top && (hy <= 0.5D || hy == 1.0D))
-                || (at == block.bottom && (hy > 0.5D || hy == 0)))) {
+        if (metaEquals
+            && ((at == block.top && (hy <= 0.5D || hy == 1.0D)) || (at == block.bottom && (hy > 0.5D || hy == 0)))) {
             place(stack, world, x2, y2, z2, block.master, meta);
             return true;
         }
@@ -47,7 +47,7 @@ public class ItemCarvableSlab extends ItemCarvable {
         // else if the block clicked on is a top or bottom slab of this type, try to fill in that block if possible
         boolean clickedMetaEquals = world.getBlockMetadata(x, y, z) == meta;
         if (clickedMetaEquals && ((clicked == block.bottom && dir == ForgeDirection.UP)
-                || (clicked == block.top && dir == ForgeDirection.DOWN))) {
+            || (clicked == block.top && dir == ForgeDirection.DOWN))) {
             place(stack, world, x, y, z, block.master, meta);
             return true;
         }
@@ -71,11 +71,11 @@ public class ItemCarvableSlab extends ItemCarvable {
         world.setBlock(x, y, z, toPlace, metadata, 2);
         stack.stackSize -= 1;
         world.playSoundEffect(
-                x + 0.5f,
-                y + 0.5f,
-                z + 0.5f,
-                this.field_150939_a.stepSound.func_150496_b(),
-                (this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
-                this.field_150939_a.stepSound.getPitch() * 0.8F);
+            x + 0.5f,
+            y + 0.5f,
+            z + 0.5f,
+            this.field_150939_a.stepSound.func_150496_b(),
+            (this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F,
+            this.field_150939_a.stepSound.getPitch() * 0.8F);
     }
 }

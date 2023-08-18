@@ -10,15 +10,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.Chisel;
-import team.chisel.entity.EntityChiselSnowman;
-
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
+import team.chisel.entity.EntityChiselSnowman;
 
 public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
 
@@ -58,20 +57,20 @@ public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
             // Spawn some lovely particles
             for (int c = 0; c < 120; ++c) {
                 world.spawnParticle(
-                        "snowshovel",
-                        x + world.rand.nextDouble(),
-                        y - 2 + world.rand.nextDouble() * 2.5D,
-                        z + world.rand.nextDouble(),
-                        0.0D,
-                        0.0D,
-                        0.0D);
+                    "snowshovel",
+                    x + world.rand.nextDouble(),
+                    y - 2 + world.rand.nextDouble() * 2.5D,
+                    z + world.rand.nextDouble(),
+                    0.0D,
+                    0.0D,
+                    0.0D);
             }
         } else
             if (world.getBlock(x, y - 1, z) == Blocks.iron_block || world.getBlock(x, y - 2, z) == Blocks.iron_block) {
                 boolean flag = world.getBlock(x - 1, y - 1, z) == Blocks.iron_block
-                        && world.getBlock(x + 1, y - 1, z) == Blocks.iron_block;
+                    && world.getBlock(x + 1, y - 1, z) == Blocks.iron_block;
                 boolean flag1 = world.getBlock(x, y - 1, z - 1) == Blocks.iron_block
-                        && world.getBlock(x, y - 1, z + 1) == Blocks.iron_block;
+                    && world.getBlock(x, y - 1, z + 1) == Blocks.iron_block;
 
                 if (flag || flag1) {
                     world.setBlock(x, y, z, Blocks.air, 0, 2);
@@ -110,11 +109,10 @@ public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return side == 1 ? top
-                : (side == 0 ? top
-                        : (meta == 2 && side == 2 ? face
-                                : (meta == 3 && side == 5 ? face
-                                        : (meta == 0 && side == 3 ? face
-                                                : (meta == 1 && side == 4 ? face : this.blockIcon)))));
+            : (side == 0 ? top
+                : (meta == 2 && side == 2 ? face
+                    : (meta == 3 && side == 5 ? face
+                        : (meta == 0 && side == 3 ? face : (meta == 1 && side == 4 ? face : this.blockIcon)))));
     }
 
     @Override

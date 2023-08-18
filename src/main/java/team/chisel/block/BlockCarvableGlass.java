@@ -12,8 +12,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import team.chisel.ctmlib.CTM;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
@@ -22,6 +20,7 @@ import com.cricketcraft.chisel.api.rendering.ClientUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.ctmlib.CTM;
 
 public class BlockCarvableGlass extends BlockGlass implements ICarvable {
 
@@ -63,7 +62,8 @@ public class BlockCarvableGlass extends BlockGlass implements ICarvable {
 
     @Override
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
-        ForgeDirection face = ForgeDirection.getOrientation(side).getOpposite();
+        ForgeDirection face = ForgeDirection.getOrientation(side)
+            .getOpposite();
         int meX = x + face.offsetX;
         int meY = y + face.offsetY;
         int meZ = z + face.offsetZ;

@@ -6,10 +6,10 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.Chisel;
-import team.chisel.ctmlib.Drawing;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.Chisel;
+import team.chisel.ctmlib.Drawing;
 
 public class RendererEldritch implements ISimpleBlockRenderingHandler {
 
@@ -28,7 +28,7 @@ public class RendererEldritch implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-            RenderBlocks rendererOld) {
+        RenderBlocks rendererOld) {
 
         // tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x,
         // y, z));

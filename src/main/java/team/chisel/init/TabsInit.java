@@ -4,9 +4,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import team.chisel.Features;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
+
+import team.chisel.Features;
 
 public class TabsInit {
 

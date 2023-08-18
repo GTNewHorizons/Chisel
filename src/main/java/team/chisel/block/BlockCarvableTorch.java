@@ -7,8 +7,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.Chisel;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
@@ -16,6 +14,7 @@ import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
 
 public class BlockCarvableTorch extends BlockTorch implements ICarvable {
 
@@ -57,7 +56,7 @@ public class BlockCarvableTorch extends BlockTorch implements ICarvable {
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_,
-            Random p_149734_5_) {
+        Random p_149734_5_) {
         if (emitsParticles) {
             int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
             double d0 = p_149734_2_ + 0.5F;

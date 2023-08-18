@@ -15,6 +15,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
+import com.cricketcraft.chisel.api.IChiselItem;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.Features;
 import team.chisel.carving.Carving;
 import team.chisel.client.GeneralChiselClient;
@@ -23,11 +27,6 @@ import team.chisel.network.PacketHandler;
 import team.chisel.network.message.MessageAutoChisel;
 import team.chisel.network.message.MessageSlotUpdate;
 import team.chisel.utils.General;
-
-import com.cricketcraft.chisel.api.IChiselItem;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAutoChisel extends TileEntity implements ISidedInventory {
 
@@ -40,15 +39,19 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
         public String getUnlocalizedName() {
             if (Features.AUTO_CHISEL_UPGRADES.enabled()) {
-                return "item.upgrade_" + this.name().toLowerCase();
+                return "item.upgrade_" + this.name()
+                    .toLowerCase();
             }
             return "chisel.autochisel.upgrade.disabled";
         }
 
         public String getLocalizedName() {
-            String ret = StatCollector.translateToLocal("autochisel.slot." + this.name().toLowerCase() + ".tooltip");
+            String ret = StatCollector.translateToLocal(
+                "autochisel.slot." + this.name()
+                    .toLowerCase() + ".tooltip");
             if (!Features.AUTO_CHISEL_UPGRADES.enabled()) {
-                ret = EnumChatFormatting.RED.toString().concat(ret);
+                ret = EnumChatFormatting.RED.toString()
+                    .concat(ret);
             }
             return ret;
         }
@@ -227,12 +230,12 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         }
 
         return ((IChiselItem) inventory[CHISEL].getItem())
-                .canChisel(worldObj, inventory[CHISEL], General.getVariation(getTarget()));
+            .canChisel(worldObj, inventory[CHISEL], General.getVariation(getTarget()));
     }
 
     private boolean hasChisel() {
         return inventory[CHISEL] != null && inventory[CHISEL].getItem() instanceof IChiselItem
-                && inventory[CHISEL].stackSize >= 1;
+            && inventory[CHISEL].stackSize >= 1;
     }
 
     /** Calls IChiselItem#onChisel() and sends the chisel packet for sound/animation */
@@ -240,7 +243,7 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         if (!worldObj.isRemote) {
             boolean breakChisel = false;
             if (((IChiselItem) inventory[CHISEL].getItem())
-                    .onChisel(worldObj, inventory[CHISEL], General.getVariation(target))) {
+                .onChisel(worldObj, inventory[CHISEL], General.getVariation(target))) {
                 inventory[CHISEL].setItemDamage(inventory[CHISEL].getItemDamage() + 1);
                 if (inventory[CHISEL].getItemDamage() >= inventory[CHISEL].getMaxDamage()) {
                     setInventorySlotContents(CHISEL, null);
@@ -248,18 +251,18 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
                 }
             }
             PacketHandler.INSTANCE.sendToDimension(
-                    new MessageAutoChisel(this, chiseled, true, breakChisel),
-                    worldObj.provider.dimensionId);
+                new MessageAutoChisel(this, chiseled, true, breakChisel),
+                worldObj.provider.dimensionId);
         } else {
             if (breakChisel) {
                 worldObj.playSound(
-                        xCoord + 0.5,
-                        yCoord + 0.5,
-                        zCoord + 0.5,
-                        "random.break",
-                        0.8F,
-                        0.8F + worldObj.rand.nextFloat() * 0.4F,
-                        false);
+                    xCoord + 0.5,
+                    yCoord + 0.5,
+                    zCoord + 0.5,
+                    "random.break",
+                    0.8F,
+                    0.8F + worldObj.rand.nextFloat() * 0.4F,
+                    false);
             }
             GeneralChiselClient.spawnAutoChiselFX(this, lastBase != null ? lastBase : inventory[BASE]);
             chiseling = false;
@@ -331,7 +334,7 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
     private void slotChanged(int slot) {
         PacketHandler.INSTANCE
-                .sendToDimension(new MessageSlotUpdate(this, slot, inventory[slot]), worldObj.provider.dimensionId);
+            .sendToDimension(new MessageSlotUpdate(this, slot, inventory[slot]), worldObj.provider.dimensionId);
         markDirty();
     }
 
@@ -369,14 +372,15 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         switch (slot) {
             case BASE:
             case TARGET:
-                return !Carving.chisel.getItemsForChiseling(itemStack).isEmpty();
+                return !Carving.chisel.getItemsForChiseling(itemStack)
+                    .isEmpty();
             case OUTPUT:
                 return false;
             case CHISEL:
                 return itemStack.getItem() instanceof IChiselItem;
             default:
                 return Features.AUTO_CHISEL_UPGRADES.enabled() && itemStack.getItem() == ChiselItems.upgrade
-                        && Upgrade.values()[slot - MIN_UPGRADE].ordinal() == itemStack.getItemDamage();
+                    && Upgrade.values()[slot - MIN_UPGRADE].ordinal() == itemStack.getItemDamage();
         }
     }
 

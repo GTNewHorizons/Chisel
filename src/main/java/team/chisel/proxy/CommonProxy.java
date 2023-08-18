@@ -3,10 +3,10 @@ package team.chisel.proxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import team.chisel.block.tileentity.TileEntityAutoChisel;
 import team.chisel.block.tileentity.TileEntityCarvableBeacon;
 import team.chisel.block.tileentity.TileEntityPresent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 

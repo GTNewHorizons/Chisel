@@ -10,23 +10,6 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import team.chisel.block.BlockCarvable;
-import team.chisel.carving.Carving;
-import team.chisel.compat.Compatibility;
-import team.chisel.compat.IMCHandler;
-import team.chisel.compat.fmp.FMPCompat;
-import team.chisel.config.Configurations;
-import team.chisel.entity.EntityChiselSnowman;
-import team.chisel.init.ChiselBlocks;
-import team.chisel.init.TabsInit;
-import team.chisel.item.ItemCarvable;
-import team.chisel.item.chisel.ChiselController;
-import team.chisel.network.ChiselGuiHandler;
-import team.chisel.network.PacketHandler;
-import team.chisel.proxy.CommonProxy;
-import team.chisel.utils.General;
-import team.chisel.world.GeneratorChisel;
-
 import com.cricketcraft.chisel.api.ChiselAPIProps;
 import com.cricketcraft.chisel.api.Statistics;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
@@ -52,27 +35,43 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
+import team.chisel.block.BlockCarvable;
+import team.chisel.carving.Carving;
+import team.chisel.compat.Compatibility;
+import team.chisel.compat.IMCHandler;
+import team.chisel.compat.fmp.FMPCompat;
+import team.chisel.config.Configurations;
+import team.chisel.entity.EntityChiselSnowman;
+import team.chisel.init.ChiselBlocks;
+import team.chisel.init.TabsInit;
+import team.chisel.item.ItemCarvable;
+import team.chisel.item.chisel.ChiselController;
+import team.chisel.network.ChiselGuiHandler;
+import team.chisel.network.PacketHandler;
+import team.chisel.proxy.CommonProxy;
+import team.chisel.utils.General;
+import team.chisel.world.GeneratorChisel;
 
 @Mod(
-        modid = Chisel.MOD_ID,
-        name = Chisel.MOD_NAME,
-        version = Chisel.VERSION,
-        guiFactory = "team.chisel.client.gui.GuiFactory",
-        dependencies = "after:EE3;after:ForgeMultipart;after:Thaumcraft;after:appliedenergistics2;after:Railcraft;after:AWWayofTime;after:TwilightForest")
+    modid = Chisel.MOD_ID,
+    name = Chisel.MOD_NAME,
+    version = Chisel.VERSION,
+    guiFactory = "team.chisel.client.gui.GuiFactory",
+    dependencies = "after:EE3;after:ForgeMultipart;after:Thaumcraft;after:appliedenergistics2;after:Railcraft;after:AWWayofTime;after:TwilightForest")
 public class Chisel {
 
     public static final String MOD_ID = "chisel";
     public static final BlockCarvable.SoundType soundTempleFootstep = new BlockCarvable.SoundType(
-            "dig.stone",
-            MOD_ID + ":step.templeblock",
-            1.0f,
-            1.0f);
+        "dig.stone",
+        MOD_ID + ":step.templeblock",
+        1.0f,
+        1.0f);
     public static final String MOD_NAME = "Chisel";
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final BlockCarvable.SoundType soundHolystoneFootstep = new BlockCarvable.SoundType(
-            "holystone",
-            1.0f,
-            1.0f);
+        "holystone",
+        1.0f,
+        1.0f);
     public static final BlockCarvable.SoundType soundMetalFootstep = new BlockCarvable.SoundType("metal", 1.0f, 1.0f);
     public static boolean multipartLoaded = false;
     public static boolean gtnhLoaded = false;
@@ -117,23 +116,28 @@ public class Chisel {
 
                 if (block != null) {
                     m.remap(block);
-                    FMLLog.getLogger().info("Remapping block " + m.name + " to " + General.getName(block));
-                } else FMLLog.getLogger().warn("Block " + m.name + " could not get remapped.");
+                    FMLLog.getLogger()
+                        .info("Remapping block " + m.name + " to " + General.getName(block));
+                } else FMLLog.getLogger()
+                    .warn("Block " + m.name + " could not get remapped.");
             } else if (m.type == Type.ITEM) {
                 final Item item = BlockNameConversion.findItem(m.name);
 
                 if (item != null) {
                     m.remap(item);
-                    FMLLog.getLogger().info("Remapping item " + m.name + " to " + General.getName(item));
+                    FMLLog.getLogger()
+                        .info("Remapping item " + m.name + " to " + General.getName(item));
 
-                } else FMLLog.getLogger().warn("Item " + m.name + " could not get remapped.");
+                } else FMLLog.getLogger()
+                    .warn("Item " + m.name + " could not get remapped.");
             }
         }
     }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        FMLCommonHandler.instance().registerCrashCallable(new ChiselCrashCallable());
+        FMLCommonHandler.instance()
+            .registerCrashCallable(new ChiselCrashCallable());
 
         File configFile = event.getSuggestedConfigurationFile();
         Configurations.configExists = configFile.exists();
@@ -172,7 +176,9 @@ public class Chisel {
 
         proxy.init();
         MinecraftForge.EVENT_BUS.register(this);
-        FMLCommonHandler.instance().bus().register(instance);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(instance);
 
         FMLInterModComms.sendMessage("Waila", "register", "team.chisel.compat.WailaCompat.register");
     }

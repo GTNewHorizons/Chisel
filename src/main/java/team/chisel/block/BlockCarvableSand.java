@@ -10,8 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-import team.chisel.Chisel;
-
 import com.cricketcraft.chisel.api.ChiselTabs;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
@@ -20,6 +18,7 @@ import com.cricketcraft.chisel.api.rendering.ClientUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
 
 public class BlockCarvableSand extends BlockSand implements ICarvable {
 
@@ -133,7 +132,7 @@ public class BlockCarvableSand extends BlockSand implements ICarvable {
          * @param frequency      default 1.0f
          */
         public SoundType(String soundNameBreak, String soundNameStep, String soundNamePlace, float volume,
-                float frequency) {
+            float frequency) {
             super(soundNameStep, volume, frequency);
             this.soundNameStep = soundNameStep;
             this.soundNameBreak = soundNameBreak;

@@ -30,19 +30,18 @@ public class GeneralChiselClient {
 
     public static void spawnLavastoneFX(World world, BlockLavastone block, int x, int y, int z) {
         if (Configurations.particlesTickrate != 0 && tick++ % Configurations.particlesTickrate != 0
-                || Minecraft.getMinecraft().gameSettings.particleSetting != 0)
-            return;
+            || Minecraft.getMinecraft().gameSettings.particleSetting != 0) return;
 
         float f = 0.15F;
         double x1 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinX();
+            + f
+            + block.getBlockBoundsMinX();
         double y1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinY();
+            + f
+            + block.getBlockBoundsMinY();
         double z1 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinZ();
+            + f
+            + block.getBlockBoundsMinZ();
 
         switch (rand.nextInt(6)) {
             case 0:
@@ -71,7 +70,8 @@ public class GeneralChiselClient {
                 break;
         }
 
-        if (world.getBlock(x, y, z).isOpaqueCube()) return;
+        if (world.getBlock(x, y, z)
+            .isOpaqueCube()) return;
 
         EntityLavaFX res = new EntityLavaFX(world, x1, y1, z1);
         double multiplier = 0.45;
@@ -84,19 +84,18 @@ public class GeneralChiselClient {
 
     public static void spawnHolystoneFX(World world, BlockHolystone block, int x, int y, int z) {
         if (Configurations.particlesTickrate != 0 && tick++ % Configurations.particlesTickrate != 0
-                || Minecraft.getMinecraft().gameSettings.particleSetting != 0)
-            return;
+            || Minecraft.getMinecraft().gameSettings.particleSetting != 0) return;
 
         float f = 0.15F;
         double x1 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinX();
+            + f
+            + block.getBlockBoundsMinX();
         double y1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinY();
+            + f
+            + block.getBlockBoundsMinY();
         double z1 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinZ();
+            + f
+            + block.getBlockBoundsMinZ();
 
         switch (rand.nextInt(6)) {
             case 0:
@@ -125,7 +124,8 @@ public class GeneralChiselClient {
                 break;
         }
 
-        if (world.getBlock(x, y, z).isOpaqueCube()) return;
+        if (world.getBlock(x, y, z)
+            .isOpaqueCube()) return;
 
         EntityHolystoneFX res = new EntityHolystoneFX(world, block, x1, y1, z1);
         Minecraft.getMinecraft().effectRenderer.addEffect(res);
@@ -136,14 +136,14 @@ public class GeneralChiselClient {
 
         float f = 0.15F;
         double x1 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinX();
+            + f
+            + block.getBlockBoundsMinX();
         double y1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinY();
+            + f
+            + block.getBlockBoundsMinY();
         double z1 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinZ();
+            + f
+            + block.getBlockBoundsMinZ();
 
         switch (rand.nextInt(6)) {
             case 0:
@@ -172,7 +172,8 @@ public class GeneralChiselClient {
                 break;
         }
 
-        if (world.getBlock(x, y, z).isOpaqueCube()) return;
+        if (world.getBlock(x, y, z)
+            .isOpaqueCube()) return;
 
         EntityGrimstoneFX res = new EntityGrimstoneFX(world, block, x1, y1, z1);
         Minecraft.getMinecraft().effectRenderer.addEffect(res);
@@ -180,7 +181,7 @@ public class GeneralChiselClient {
 
     public static void spawnSnakestoneObsidianFX(World world, BlockSnakestoneObsidian block, int x, int y, int z) {
         if (Configurations.particlesTickrate != 0 || tick++ % Configurations.particlesTickrate != 0
-                || Minecraft.getMinecraft().gameSettings.particleSetting != 0) {
+            || Minecraft.getMinecraft().gameSettings.particleSetting != 0) {
             EntitySnakestoneObsidianFX res = new EntitySnakestoneObsidianFX(world, block, x, y, z);
             Minecraft.getMinecraft().effectRenderer.addEffect(res);
         }
@@ -188,7 +189,7 @@ public class GeneralChiselClient {
 
     public static void spawnBallOMossFX(World world, double x, double y, double z) {
         if (Configurations.particlesTickrate == 0 || tick++ % Configurations.particlesTickrate == 0
-                || Minecraft.getMinecraft().gameSettings.particleSetting != 0) {
+            || Minecraft.getMinecraft().gameSettings.particleSetting != 0) {
             EntityBallOMossFX res = new EntityBallOMossFX(world, x, y, z);
             Minecraft.getMinecraft().effectRenderer.addEffect(res);
         }
@@ -202,14 +203,14 @@ public class GeneralChiselClient {
 
         float f = 0.1F;
         double d0 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinX();
+            + f
+            + block.getBlockBoundsMinX();
         double d1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinY();
+            + f
+            + block.getBlockBoundsMinY();
         double d2 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F)
-                + f
-                + block.getBlockBoundsMinZ();
+            + f
+            + block.getBlockBoundsMinZ();
 
         switch (side) {
             case 0:
@@ -233,16 +234,16 @@ public class GeneralChiselClient {
         }
 
         EntityDiggingFX res = new EntityDiggingFX(
-                world,
-                d0,
-                d1,
-                d2,
-                0.0D,
-                0.0D,
-                0.0D,
-                block,
-                world.getBlockMetadata(x, y, z),
-                side);
+            world,
+            d0,
+            d1,
+            d2,
+            0.0D,
+            0.0D,
+            0.0D,
+            block,
+            world.getBlockMetadata(x, y, z),
+            side);
         res.motionX = d0 - (x + 0.5);
         res.motionY = d1 - (y + 0.5);
         res.motionZ = d2 - (z + 0.5);
@@ -271,19 +272,19 @@ public class GeneralChiselClient {
         if (base != null && Minecraft.getMinecraft().gameSettings.particleSetting == 0) {
             for (int i = 0; i < 10; i++) {
                 EntityDiggingFX particle = new EntityDiggingFX(
-                        te.getWorldObj(),
-                        te.xCoord + 0.5,
-                        te.yCoord + 0.95,
-                        te.zCoord + 0.5,
-                        0,
-                        0,
-                        0,
-                        Block.getBlockFromItem(base.getItem()),
-                        base.getItemDamage());
+                    te.getWorldObj(),
+                    te.xCoord + 0.5,
+                    te.yCoord + 0.95,
+                    te.zCoord + 0.5,
+                    0,
+                    0,
+                    0,
+                    Block.getBlockFromItem(base.getItem()),
+                    base.getItemDamage());
                 particle.setVelocity(
-                        (te.getWorldObj().rand.nextDouble() / 4) - 0.125,
-                        te.getWorldObj().rand.nextDouble() / 8,
-                        (te.getWorldObj().rand.nextDouble() / 4) - 0.125);
+                    (te.getWorldObj().rand.nextDouble() / 4) - 0.125,
+                    te.getWorldObj().rand.nextDouble() / 8,
+                    (te.getWorldObj().rand.nextDouble() / 4) - 0.125);
                 Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             }
             String sound = Carving.chisel.getVariationSound(base.getItem(), base.getItemDamage());

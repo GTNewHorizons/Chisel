@@ -33,7 +33,10 @@ public class ItemUpgrade extends BaseItem {
     public void registerIcons(IIconRegister reg) {
         Upgrade[] upgrades = Upgrade.values();
         for (int i = 0; i < upgrades.length; i++) {
-            this.icons[i] = reg.registerIcon(Chisel.MOD_ID + ":upgrade_" + upgrades[i].name().toLowerCase());
+            this.icons[i] = reg.registerIcon(
+                Chisel.MOD_ID + ":upgrade_"
+                    + upgrades[i].name()
+                        .toLowerCase());
         }
     }
 

@@ -61,7 +61,7 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
         noClip = true;
 
         setParticleIcon(
-                BlockSnakestoneObsidian.particles[General.rand.nextInt(BlockSnakestoneObsidian.particles.length)]);
+            BlockSnakestoneObsidian.particles[General.rand.nextInt(BlockSnakestoneObsidian.particles.length)]);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 
     @Override
     public void renderParticle(Tessellator tessellator, float partialTick, float rotX, float rotXZ, float rotZ,
-            float rotYZ, float rotXY) {
+        float rotYZ, float rotXY) {
         GL11.glDepthMask(false);
         GL11.glEnable(3042);
         GL11.glBlendFunc(770, 771);

@@ -2,9 +2,9 @@ package team.chisel.init;
 
 import net.minecraft.block.Block;
 
+import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 import team.chisel.Chisel;
 import team.chisel.block.*;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 
 @ObjectHolder(Chisel.MOD_ID)
 public final class ChiselBlocks {

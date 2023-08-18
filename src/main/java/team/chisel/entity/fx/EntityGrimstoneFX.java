@@ -38,7 +38,7 @@ public class EntityGrimstoneFX extends EntityFX {
 
     @Override
     public void renderParticle(Tessellator tessellator, float partialTick, float rotX, float rotXZ, float rotZ,
-            float rotYZ, float rotXY) {
+        float rotYZ, float rotXY) {
         particleScale = 0.25f + initialScale * (float) Math.sin((particleAge + angleOffset) / 180.f);
 
         if (particleAge < fadetime) particleAlpha = particleAge / fadetime;

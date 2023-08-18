@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.block.tileentity.TileEntityCarvableBeacon;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.block.tileentity.TileEntityCarvableBeacon;
 
 public class RenderCarvableBeacon extends TileEntityBeaconRenderer implements ISimpleBlockRenderingHandler {
 
@@ -151,7 +151,7 @@ public class RenderCarvableBeacon extends TileEntityBeaconRenderer implements IS
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         float f = 0.1875F;
         boolean breaking = renderer.hasOverrideBlockTexture();
         if (!breaking) {

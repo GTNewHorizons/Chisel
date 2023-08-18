@@ -10,9 +10,9 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.ctmlib.Drawing;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.ctmlib.Drawing;
 
 public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
@@ -200,7 +200,7 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         BlockPane block = (BlockPane) b;
         Tessellator tessellator = Tessellator.instance;
 
@@ -230,12 +230,12 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
         if (renderer.hasOverrideBlockTexture()) {
             paneRenderer.set(
-                    x,
-                    y,
-                    z,
-                    renderer.overrideBlockTexture,
-                    renderer.overrideBlockTexture,
-                    renderer.overrideBlockTexture);
+                x,
+                y,
+                z,
+                renderer.overrideBlockTexture,
+                renderer.overrideBlockTexture,
+                renderer.overrideBlockTexture);
         } else {
             paneRenderer.set(x, y, z, iconPane, iconTop, iconSide);
         }
@@ -259,8 +259,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
         boolean isolatedTop = !connectsTopNorth && !connectsTopSouth && !connectsTopWest && !connectsTopEast;
         boolean isolatedBottom = !connectsBottomNorth && !connectsBottomSouth
-                && !connectsBottomWest
-                && !connectsBottomEast;
+            && !connectsBottomWest
+            && !connectsBottomEast;
 
         if (!connectsNorth && !connectsSouth && !connectsWest && !connectsEast) {
             connectsNorth = connectsSouth = connectsWest = connectsEast = true;

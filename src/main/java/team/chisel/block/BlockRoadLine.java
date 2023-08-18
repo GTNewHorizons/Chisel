@@ -9,10 +9,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.Chisel;
-import team.chisel.config.Configurations;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
+import team.chisel.config.Configurations;
 
 public class BlockRoadLine extends BlockCarvable {
 
@@ -53,7 +53,8 @@ public class BlockRoadLine extends BlockCarvable {
     @Override
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
         return World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)
-                || par1World.getBlock(par2, par3 - 1, par4).equals(Blocks.glowstone);
+            || par1World.getBlock(par2, par3 - 1, par4)
+                .equals(Blocks.glowstone);
     }
 
     @Override

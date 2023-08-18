@@ -2,8 +2,6 @@ package team.chisel.utils;
 
 import java.util.Random;
 
-import joptsimple.internal.Strings;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,13 +14,14 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import team.chisel.carving.Carving;
-import team.chisel.item.chisel.ChiselMode;
-
 import com.cricketcraft.chisel.api.IAdvancedChisel;
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.cricketcraft.chisel.api.carving.IChiselMode;
+
+import joptsimple.internal.Strings;
+import team.chisel.carving.Carving;
+import team.chisel.item.chisel.ChiselMode;
 
 public class General {
 
@@ -71,20 +70,22 @@ public class General {
     }
 
     public static String cleanTags(String tag) {
-        return tag.replaceAll("[Cc]hisel\\p{Punct}", "").replaceFirst("^tile\\.", "").replaceFirst("^item\\.", "");
+        return tag.replaceAll("[Cc]hisel\\p{Punct}", "")
+            .replaceFirst("^tile\\.", "")
+            .replaceFirst("^item\\.", "");
     }
 
     public static MovingObjectPosition getMovingObjectPositionFromPlayer(World par1World, EntityPlayer par2EntityPlayer,
-            boolean par3) {
+        boolean par3) {
         float var4 = 1.0F;
         float var5 = par2EntityPlayer.prevRotationPitch
-                + (par2EntityPlayer.rotationPitch - par2EntityPlayer.prevRotationPitch) * var4;
+            + (par2EntityPlayer.rotationPitch - par2EntityPlayer.prevRotationPitch) * var4;
         float var6 = par2EntityPlayer.prevRotationYaw
-                + (par2EntityPlayer.rotationYaw - par2EntityPlayer.prevRotationYaw) * var4;
+            + (par2EntityPlayer.rotationYaw - par2EntityPlayer.prevRotationYaw) * var4;
         double var7 = par2EntityPlayer.prevPosX + (par2EntityPlayer.posX - par2EntityPlayer.prevPosX) * var4;
         double var9 = par2EntityPlayer.prevPosY + (par2EntityPlayer.posY - par2EntityPlayer.prevPosY) * var4
-                + 1.62D
-                - par2EntityPlayer.yOffset;
+            + 1.62D
+            - par2EntityPlayer.yOffset;
         double var11 = par2EntityPlayer.prevPosZ + (par2EntityPlayer.posZ - par2EntityPlayer.prevPosZ) * var4;
         // TODO- 1.7.10 fix?
         Vec3 var13 = Vec3.createVectorHelper(var7, var9, var11);
@@ -106,15 +107,15 @@ public class General {
 
     public static ItemStack getChiselTarget(ItemStack chisel) {
         return chisel.hasTagCompound()
-                ? ItemStack.loadItemStackFromNBT(chisel.stackTagCompound.getCompoundTag("chiselTarget"))
-                : null;
+            ? ItemStack.loadItemStackFromNBT(chisel.stackTagCompound.getCompoundTag("chiselTarget"))
+            : null;
     }
 
     public static final String[] sGNames = new String[] { "White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime",
-            "Pink", "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
+        "Pink", "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
 
     public static final String[] featureColors = new String[] { "white", "orange", "magenta", "lightblue", "yellow",
-            "lime", "pink", "darkgray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
+        "lime", "pink", "darkgray", "lightgray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
 
     public static void setChiselTarget(ItemStack chisel, ItemStack target) {
         initTag(chisel);
@@ -122,7 +123,8 @@ public class General {
         if (target != null) {
             target.writeToNBT(targetTag);
         }
-        chisel.getTagCompound().setTag("chiselTarget", targetTag);
+        chisel.getTagCompound()
+            .setTag("chiselTarget", targetTag);
     }
 
     private static void initTag(ItemStack stack) {
@@ -158,10 +160,9 @@ public class General {
 
     public static ICarvingVariation getVariation(ItemStack stack) {
         ICarvingVariation v = Carving.chisel
-                .getVariation(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage());
+            .getVariation(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage());
         return v == null
-                ? CarvingUtils
-                        .getDefaultVariationFor(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage(), 99)
-                : v;
+            ? CarvingUtils.getDefaultVariationFor(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage(), 99)
+            : v;
     }
 }

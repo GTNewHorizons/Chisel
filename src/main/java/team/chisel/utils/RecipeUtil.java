@@ -14,7 +14,8 @@ public class RecipeUtil {
 
     @SuppressWarnings("unchecked")
     public static boolean isCraftable(ItemStack stack) {
-        for (IRecipe recipe : (List<IRecipe>) CraftingManager.getInstance().getRecipeList()) {
+        for (IRecipe recipe : (List<IRecipe>) CraftingManager.getInstance()
+            .getRecipeList()) {
             if (recipe.getRecipeOutput() == null) {
                 continue;
             }
@@ -26,7 +27,9 @@ public class RecipeUtil {
     }
 
     public static boolean isSmeltable(ItemStack stack) {
-        return FurnaceRecipes.smelting().getSmeltingList().containsKey(stack);
+        return FurnaceRecipes.smelting()
+            .getSmeltingList()
+            .containsKey(stack);
     }
 
     public static boolean isCreatable(ItemStack stack) {

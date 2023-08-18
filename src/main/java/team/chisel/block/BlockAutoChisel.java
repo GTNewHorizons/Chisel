@@ -36,7 +36,7 @@ public class BlockAutoChisel extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float x1,
-            float y1, float z1) {
+        float y1, float z1) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (world.isRemote) return true;
 

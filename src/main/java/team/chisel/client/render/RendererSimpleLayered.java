@@ -6,11 +6,11 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
 import team.chisel.block.BlockCarvableLayered;
 import team.chisel.ctmlib.Drawing;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class RendererSimpleLayered implements ISimpleBlockRenderingHandler {
 
@@ -30,7 +30,7 @@ public class RendererSimpleLayered implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         renderer.setOverrideBlockTexture(((BlockCarvableLayered) block).getBaseTex());
         renderer.renderStandardBlock(block, x, y, z);
         renderer.clearOverrideBlockTexture();

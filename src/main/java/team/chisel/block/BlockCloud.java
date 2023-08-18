@@ -10,9 +10,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.config.Configurations;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.config.Configurations;
 
 public class BlockCloud extends BlockCarvable {
 

@@ -10,15 +10,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-import team.chisel.ctmlib.RenderBlocksCTM;
-import team.chisel.ctmlib.TextureSubmap;
-
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.rendering.TextureType;
 import com.cricketcraft.chisel.api.rendering.TextureType.AbstractSubmapManager;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.ctmlib.RenderBlocksCTM;
+import team.chisel.ctmlib.TextureSubmap;
 
 public class SubmapManagerCombinedCTM extends SubmapManagerBase {
 
@@ -67,14 +66,14 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
             int iz = MathHelper.floor_double(z);
             if (type == TextureType.V4 || type == TextureType.V9) {
                 submap = (TextureSubmap) TextureType
-                        .getVIcon(rType, SubmapManagerCombinedCTM.this.submap, ix, iy, iz, side.ordinal());
+                    .getVIcon(rType, SubmapManagerCombinedCTM.this.submap, ix, iy, iz, side.ordinal());
                 submapSmall = (TextureSubmap) TextureType
-                        .getVIcon(rType, SubmapManagerCombinedCTM.this.smallSubmap, ix, iy, iz, side.ordinal());
+                    .getVIcon(rType, SubmapManagerCombinedCTM.this.smallSubmap, ix, iy, iz, side.ordinal());
             } else {
                 submap = (TextureSubmap) TextureType
-                        .getRIcon(rType, SubmapManagerCombinedCTM.this.submap, ix, iy, iz, side.ordinal());
+                    .getRIcon(rType, SubmapManagerCombinedCTM.this.submap, ix, iy, iz, side.ordinal());
                 submapSmall = (TextureSubmap) TextureType
-                        .getRIcon(rType, SubmapManagerCombinedCTM.this.smallSubmap, ix, iy, iz, side.ordinal());
+                    .getRIcon(rType, SubmapManagerCombinedCTM.this.smallSubmap, ix, iy, iz, side.ordinal());
             }
         }
     }
@@ -111,13 +110,18 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
 
     public SubmapManagerCombinedCTM(int meta, String texturePath, TextureType rType) {
         assert rType == TextureType.R16 || rType == TextureType.R9
-                || rType == TextureType.R4
-                || rType == TextureType.V4
-                || rType == TextureType.V9 : "Not a valid random type!";
+            || rType == TextureType.R4
+            || rType == TextureType.V4
+            || rType == TextureType.V9 : "Not a valid random type!";
 
         this.meta = meta;
         this.texturePath = texturePath;
-        this.size = Integer.parseInt(rType.name().substring(1, rType.name().length())); // >.>
+        this.size = Integer.parseInt(
+            rType.name()
+                .substring(
+                    1,
+                    rType.name()
+                        .length())); // >.>
         this.rType = rType;
     }
 
@@ -146,14 +150,15 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
         TextureSubmap[][] submapsSmall = new TextureSubmap[wh][wh];
         for (int i = 0; i < size; i++) {
             AbstractSubmapManager manager = (AbstractSubmapManager) TextureType.CTMX
-                    .createManagerFor(CarvingUtils.getDefaultVariationFor(block, meta, 0), texturePath + "-" + i);
+                .createManagerFor(CarvingUtils.getDefaultVariationFor(block, meta, 0), texturePath + "-" + i);
             manager.registerIcons(modName, block, register);
             Object cached = manager.getCachedObject();
             Triple<IIcon, TextureSubmap, TextureSubmap> triple = (Triple<IIcon, TextureSubmap, TextureSubmap>) cached;
             submaps[i % wh][i / wh] = triple.getMiddle();
             submapsSmall[i % wh][i / wh] = triple.getRight();
             if (i == 0) {
-                defaultIcon = triple.getRight().getBaseIcon();
+                defaultIcon = triple.getRight()
+                    .getBaseIcon();
             }
         }
         submap = new Submap(base, wh, submaps);

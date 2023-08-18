@@ -14,12 +14,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.google.common.collect.Maps;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import team.chisel.Chisel;
 import team.chisel.block.tileentity.TileEntityPresent;
 import team.chisel.init.ChiselBlocks;
-
-import com.google.common.collect.Maps;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderPresent extends TileEntitySpecialRenderer implements IItemRenderer {
 
@@ -77,8 +77,8 @@ public class RenderPresent extends TileEntitySpecialRenderer implements IItemRen
     }
 
     private void bindTexture(TileEntityPresent present) {
-        int idx = present.getWorldObj().getBlockMetadata(present.xCoord, present.yCoord, present.zCoord)
-                + (present.isConnected() ? 0 : 16);
+        int idx = present.getWorldObj()
+            .getBlockMetadata(present.xCoord, present.yCoord, present.zCoord) + (present.isConnected() ? 0 : 16);
         ResourceLocation rl = textureCache.get(idx);
         if (rl == null) {
             String res = ChiselBlocks.present.getModelTexture(idx % 16);
@@ -106,10 +106,11 @@ public class RenderPresent extends TileEntitySpecialRenderer implements IItemRen
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(
+        FMLClientHandler.instance()
+            .getClient().renderEngine.bindTexture(
                 new ResourceLocation(
-                        Chisel.MOD_ID,
-                        ChiselBlocks.present.getModelTexture(item.getItemDamage()) + ".png"));
+                    Chisel.MOD_ID,
+                    ChiselBlocks.present.getModelTexture(item.getItemDamage()) + ".png"));
         switch (type) {
             case ENTITY:
                 renderBlock(0.0F, 1.0F, 0.0F);

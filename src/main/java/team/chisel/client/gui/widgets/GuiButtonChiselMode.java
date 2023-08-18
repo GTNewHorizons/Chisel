@@ -7,10 +7,10 @@ import net.minecraft.client.gui.GuiButton;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.client.gui.GuiChisel;
-import team.chisel.item.chisel.ChiselMode;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.client.gui.GuiChisel;
+import team.chisel.item.chisel.ChiselMode;
 
 @SideOnly(Side.CLIENT)
 public class GuiButtonChiselMode extends GuiButton {
@@ -42,12 +42,13 @@ public class GuiButtonChiselMode extends GuiButton {
     @Override
     public void drawButton(final Minecraft mc, final int mouseX, final int mouseY) {
         if (this.visible) {
-            mc.getTextureManager().bindTexture(TEXTURE_RESOURCE_LOCATION);
+            mc.getTextureManager()
+                .bindTexture(TEXTURE_RESOURCE_LOCATION);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             // Mouse Hover State
             this.field_146123_n = mouseX >= this.xPosition && mouseY >= this.yPosition
-                    && mouseX < this.xPosition + this.width
-                    && mouseY < this.yPosition + this.height;
+                && mouseX < this.xPosition + this.width
+                && mouseY < this.yPosition + this.height;
             drawButtonBackgroundLayer();
             drawButtonForegroundLayer();
         }
@@ -57,14 +58,14 @@ public class GuiButtonChiselMode extends GuiButton {
         final float u = BUTTON_BACKGROUND_U + (this.field_146123_n ? BUTTON_WIDTH : 0);
         // drawModalRectWithCustomSizedTexture: x, y, u, v, width, height, textureWidth, textureHeight
         func_146110_a(
-                this.xPosition,
-                this.yPosition,
-                u,
-                BUTTON_BACKGROUND_V,
-                this.width,
-                this.height,
-                TEXTURE_WIDTH,
-                TEXTURE_HEIGHT);
+            this.xPosition,
+            this.yPosition,
+            u,
+            BUTTON_BACKGROUND_V,
+            this.width,
+            this.height,
+            TEXTURE_WIDTH,
+            TEXTURE_HEIGHT);
     }
 
     private void drawButtonForegroundLayer() {

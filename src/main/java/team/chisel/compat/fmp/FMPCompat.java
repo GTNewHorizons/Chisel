@@ -3,14 +3,14 @@ package team.chisel.compat.fmp;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
-import team.chisel.init.ChiselBlocks;
+import com.google.common.collect.Lists;
+
 import codechicken.lib.vec.BlockCoord;
 import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.MultiPartRegistry.IPartConverter;
 import codechicken.multipart.MultiPartRegistry.IPartFactory;
 import codechicken.multipart.TMultiPart;
-
-import com.google.common.collect.Lists;
+import team.chisel.init.ChiselBlocks;
 
 public class FMPCompat implements IPartFactory, IPartConverter {
 

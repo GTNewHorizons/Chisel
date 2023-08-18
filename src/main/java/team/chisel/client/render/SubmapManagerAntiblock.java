@@ -10,12 +10,12 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.Drawing;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.TextureSubmap;
 import team.chisel.init.ChiselBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class SubmapManagerAntiblock extends SubmapManagerBase {
 
@@ -36,9 +36,9 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
         public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
             GL11.glDisable(GL11.GL_LIGHTING);
             Drawing.drawBlock(
-                    ChiselBlocks.antiBlock,
-                    ChiselBlocks.antiBlock.getIcon(0, item.getItemDamage()),
-                    (RenderBlocks) data[0]);
+                ChiselBlocks.antiBlock,
+                ChiselBlocks.antiBlock.getIcon(0, item.getItemDamage()),
+                (RenderBlocks) data[0]);
             GL11.glEnable(GL11.GL_LIGHTING);
         }
     }

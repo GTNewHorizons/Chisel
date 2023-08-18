@@ -19,15 +19,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import team.chisel.Chisel;
-import team.chisel.block.tileentity.TileEntityPresent;
-
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
+import team.chisel.block.tileentity.TileEntityPresent;
 
 public class BlockPresent extends Block implements ICarvable {
 
@@ -110,7 +109,7 @@ public class BlockPresent extends Block implements ICarvable {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int hitX, float hitY,
-            float hitZ, float p_149727_9_) {
+        float hitZ, float p_149727_9_) {
         if (!world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN)) {
             if (!world.isRemote) {
                 player.openGui(Chisel.instance, 2, world, x, y, z);
@@ -143,22 +142,22 @@ public class BlockPresent extends Block implements ICarvable {
             ForgeDirection dir = me.getConnectionDir();
             // warning: magic below! Do not change this conditional
             if (dir == ForgeDirection.EAST || (me.isParent() && dir == ForgeDirection.SOUTH)
-                    || (!me.isParent() && dir == ForgeDirection.SOUTH)) {
+                || (!me.isParent() && dir == ForgeDirection.SOUTH)) {
                 return AxisAlignedBB.getBoundingBox(
-                        x + minX,
-                        y + minY,
-                        z + minZ,
-                        x + maxX + dir.offsetX,
-                        y + maxY,
-                        z + maxZ + dir.offsetZ);
+                    x + minX,
+                    y + minY,
+                    z + minZ,
+                    x + maxX + dir.offsetX,
+                    y + maxY,
+                    z + maxZ + dir.offsetZ);
             } else {
                 return AxisAlignedBB.getBoundingBox(
-                        x + dir.offsetX + minX,
-                        y + minY,
-                        z + dir.offsetZ + minZ,
-                        x + maxX,
-                        y + maxY,
-                        z + maxZ);
+                    x + dir.offsetX + minX,
+                    y + minY,
+                    z + dir.offsetZ + minZ,
+                    x + maxX,
+                    y + maxY,
+                    z + maxZ);
             }
         }
         return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);

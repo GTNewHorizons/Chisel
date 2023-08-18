@@ -15,8 +15,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.oredict.OreDictionary;
 
-import team.chisel.ctmlib.ISubmapManager;
-
 import com.cricketcraft.chisel.api.ChiselAPIProps;
 import com.cricketcraft.chisel.api.FMPIMC;
 import com.cricketcraft.chisel.api.rendering.TextureType;
@@ -25,6 +23,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.ctmlib.ISubmapManager;
 
 public class CarvableHelper {
 
@@ -73,7 +72,7 @@ public class CarvableHelper {
     }
 
     public void addVariation(String description, int metadata, Block bb, int blockMeta, Material material,
-            String modid) {
+        String modid) {
         addVariation(description, metadata, null, bb, blockMeta, modid);
     }
 
@@ -82,7 +81,7 @@ public class CarvableHelper {
     }
 
     public void addVariation(String description, int metadata, String texture, Block block, int blockMeta,
-            String modid) {
+        String modid) {
         addVariation(description, metadata, texture, block, blockMeta, modid, null, metadata);
     }
 
@@ -91,12 +90,13 @@ public class CarvableHelper {
     }
 
     public void addVariation(String description, int metadata, String texture, Block block, int blockMeta, String modid,
-            ISubmapManager customManager, int order) {
+        ISubmapManager customManager, int order) {
 
         if (infoList.size() >= 16) return;
 
-        IVariationInfo info = FMLCommonHandler.instance().getSide().isClient()
-                ? getClientInfo(modid, texture, description, metadata, block, blockMeta, customManager, order)
+        IVariationInfo info = FMLCommonHandler.instance()
+            .getSide()
+            .isClient() ? getClientInfo(modid, texture, description, metadata, block, blockMeta, customManager, order)
                 : getServerInfo(modid, texture, description, metadata, block, blockMeta, customManager, order);
 
         infoList.add(info);
@@ -104,12 +104,12 @@ public class CarvableHelper {
     }
 
     private IVariationInfo getClientInfo(String modid, String texture, String description, int metadata, Block block,
-            int blockMeta, ISubmapManager customManager, int order) {
+        int blockMeta, ISubmapManager customManager, int order) {
         ICarvingVariation var = CarvingUtils.getDefaultVariationFor(getBlock(), metadata, order);
         TextureType type = TextureType.getTypeFor(this, modid, texture);
         if (type == TextureType.CUSTOM && customManager == null && block == null) {
             throw new IllegalArgumentException(
-                    String.format("Could not find texture %s, and no custom texture manager was provided.", texture));
+                String.format("Could not find texture %s, and no custom texture manager was provided.", texture));
         }
 
         ISubmapManager manager;
@@ -124,7 +124,7 @@ public class CarvableHelper {
     }
 
     private IVariationInfo getServerInfo(String modid, String texture, String description, int metadata, Block block,
-            int blockMeta, ISubmapManager customManager, int order) {
+        int blockMeta, ISubmapManager customManager, int order) {
         ICarvingVariation var = CarvingUtils.getDefaultVariationFor(getBlock(), metadata, order);
         return new VariationInfoBase(var, description, null);
     }
@@ -184,15 +184,20 @@ public class CarvableHelper {
 
     public void registerVariation(String name, IVariationInfo info) {
 
-        Block block = info.getVariation().getBlock();
+        Block block = info.getVariation()
+            .getBlock();
 
         if (block.renderAsNormalBlock() || block.isOpaqueCube() || block.isNormalCube()) {
-            FMPIMC.registerFMP(block, info.getVariation().getBlockMeta());
+            FMPIMC.registerFMP(
+                block,
+                info.getVariation()
+                    .getBlockMeta());
         }
 
         if (forbidChiseling) return;
 
-        CarvingUtils.getChiselRegistry().addVariation(name, info.getVariation());
+        CarvingUtils.getChiselRegistry()
+            .addVariation(name, info.getVariation());
     }
 
     @SideOnly(Side.CLIENT)
@@ -204,7 +209,12 @@ public class CarvableHelper {
 
     public void registerSubBlocks(Block block, CreativeTabs tabs, List<ItemStack> list) {
         for (IVariationInfo info : infoList) {
-            list.add(new ItemStack(block, 1, info.getVariation().getItemMeta()));
+            list.add(
+                new ItemStack(
+                    block,
+                    1,
+                    info.getVariation()
+                        .getItemMeta()));
         }
     }
 
@@ -214,8 +224,9 @@ public class CarvableHelper {
 
     @SideOnly(Side.CLIENT)
     public IIcon getMissingIcon() {
-        return ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture))
-                .getAtlasSprite("missingno");
+        return ((TextureMap) Minecraft.getMinecraft()
+            .getTextureManager()
+            .getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
     }
 
     public Block getBlock() {

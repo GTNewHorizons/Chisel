@@ -8,15 +8,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import team.chisel.ctmlib.ISubmapManager;
-import team.chisel.ctmlib.RenderBlocksCTM;
-import team.chisel.ctmlib.TextureSubmap;
-
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.rendering.TextureType;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.ctmlib.ISubmapManager;
+import team.chisel.ctmlib.RenderBlocksCTM;
+import team.chisel.ctmlib.TextureSubmap;
 
 public class SubmapManagerVoidstone extends SubmapManagerBase {
 
@@ -87,12 +86,12 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
 
     private IIcon getBase(double x, double y, double z, int side) {
         return TextureType.getVIcon(
-                TextureType.V4,
-                base,
-                MathHelper.floor_double(x),
-                MathHelper.floor_double(y),
-                MathHelper.floor_double(z),
-                side);
+            TextureType.V4,
+            base,
+            MathHelper.floor_double(x),
+            MathHelper.floor_double(y),
+            MathHelper.floor_double(z),
+            side);
     }
 
     private String texture;
@@ -116,7 +115,7 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
     @Override
     public void registerIcons(String modName, Block block, IIconRegister register) {
         overlay = TextureType.getTypeFor(null, modName, texture)
-                .createManagerFor(CarvingUtils.getDefaultVariationFor(block, meta, 0), texture);
+            .createManagerFor(CarvingUtils.getDefaultVariationFor(block, meta, 0), texture);
         overlay.registerIcons(modName, block, register);
         base = new TextureSubmap(register.registerIcon(modName + ":" + "animations/hadesX32"), 2, 2);
     }

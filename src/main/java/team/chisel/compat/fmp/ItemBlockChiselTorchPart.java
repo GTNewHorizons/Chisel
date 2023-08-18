@@ -6,13 +6,13 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import team.chisel.block.BlockCarvableTorch;
 import codechicken.lib.vec.BlockCoord;
 import codechicken.multipart.TMultiPart;
 import codechicken.multipart.TileMultipart;
 import codechicken.multipart.minecraft.TorchPart;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.block.BlockCarvableTorch;
 
 public class ItemBlockChiselTorchPart extends ItemBlock {
 
@@ -28,7 +28,7 @@ public class ItemBlockChiselTorchPart extends ItemBlock {
     @SideOnly(Side.CLIENT)
     public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack stack) {
         return (placePart(world, new BlockCoord(x, y, z).offset(side), stack, side, false))
-                || (super.func_150936_a(world, x, y, z, side, player, stack));
+            || (super.func_150936_a(world, x, y, z, side, player, stack));
     }
 
     public TMultiPart createMultiPart(World world, BlockCoord pos, ItemStack item, int side) {
@@ -55,7 +55,7 @@ public class ItemBlockChiselTorchPart extends ItemBlock {
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
-            float hitX, float hitY, float hitZ) {
+        float hitX, float hitY, float hitZ) {
         Block block = world.getBlock(x, y, z);
         BlockCoord pos = new BlockCoord(x, y, z);
         if (!block.isReplaceable(world, x, y, z)) {
@@ -63,12 +63,12 @@ public class ItemBlockChiselTorchPart extends ItemBlock {
         }
         if (placePart(world, pos, stack, side, !world.isRemote)) {
             world.playSoundEffect(
-                    pos.x + 0.5F,
-                    pos.y + 0.5F,
-                    pos.z + 0.5F,
-                    field_150939_a.stepSound.func_150496_b(),
-                    (block.stepSound.getVolume() + 1.0F) / 2.0F,
-                    block.stepSound.getPitch() * 0.8F);
+                pos.x + 0.5F,
+                pos.y + 0.5F,
+                pos.z + 0.5F,
+                field_150939_a.stepSound.func_150496_b(),
+                (block.stepSound.getVolume() + 1.0F) / 2.0F,
+                block.stepSound.getPitch() * 0.8F);
             stack.stackSize -= 1;
             return true;
         }

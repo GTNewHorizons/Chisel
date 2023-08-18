@@ -4,10 +4,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-import team.chisel.Chisel;
-import team.chisel.client.render.SubmapManagerBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
+import team.chisel.client.render.SubmapManagerBase;
 
 public class BlockCarvableGlow extends BlockCarvableColor {
 

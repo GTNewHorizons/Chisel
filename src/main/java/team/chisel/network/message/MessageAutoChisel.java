@@ -3,13 +3,13 @@ package team.chisel.network.message;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import team.chisel.block.tileentity.TileEntityAutoChisel;
-import team.chisel.network.message.base.MessageCoords;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import team.chisel.block.tileentity.TileEntityAutoChisel;
+import team.chisel.network.message.base.MessageCoords;
 
 public class MessageAutoChisel extends MessageCoords {
 
@@ -56,7 +56,7 @@ public class MessageAutoChisel extends MessageCoords {
             TileEntity te = message.getTileEntity(ctx);
             if (te instanceof TileEntityAutoChisel) {
                 ((TileEntityAutoChisel) te)
-                        .doChiselAnim(message.base, message.chiseled, message.playSound, message.breakChisel);
+                    .doChiselAnim(message.base, message.chiseled, message.playSound, message.breakChisel);
             }
             return null;
         }

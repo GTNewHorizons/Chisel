@@ -2,12 +2,12 @@ package team.chisel.compat;
 
 import net.minecraft.block.Block;
 
-import team.chisel.Chisel;
-import team.chisel.carving.Carving;
-
 import com.cricketcraft.chisel.api.IMC;
 import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
+
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
+import team.chisel.Chisel;
+import team.chisel.carving.Carving;
 
 public class IMCHandler {
 
@@ -48,11 +48,11 @@ public class IMCHandler {
             }
         } catch (Exception e) {
             Chisel.logger.error(
-                    "Could not handle data {} for IMC type {}. This was sent from mod {}.\n"
-                            + "!! This is a bug in that mod !!\nSwallowing error and continuing...",
-                    value,
-                    type.name(),
-                    message.getSender());
+                "Could not handle data {} for IMC type {}. This was sent from mod {}.\n"
+                    + "!! This is a bug in that mod !!\nSwallowing error and continuing...",
+                value,
+                type.name(),
+                message.getSender());
             e.printStackTrace();
         }
     }

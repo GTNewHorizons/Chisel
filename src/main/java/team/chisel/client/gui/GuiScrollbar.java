@@ -11,8 +11,8 @@ import team.chisel.network.message.MessageScrollUpdate;
 public class GuiScrollbar {
 
     public static final ResourceLocation TEXTURE_RESOURCE_LOCATION = new ResourceLocation(
-            "minecraft",
-            "textures/gui/container/creative_inventory/tabs.png");
+        "minecraft",
+        "textures/gui/container/creative_inventory/tabs.png");
 
     private int displayX = 0;
     private int displayY = 0;
@@ -28,7 +28,8 @@ public class GuiScrollbar {
     public void draw(GuiChisel g) {
         // chisel2GuiScroll scroll button texture coordinates work strange (maybe because of alignment) so taking
         // vanilla one
-        g.mc.getTextureManager().bindTexture(TEXTURE_RESOURCE_LOCATION);
+        g.mc.getTextureManager()
+            .bindTexture(TEXTURE_RESOURCE_LOCATION);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
         if (getMaxScroll() == 0) {

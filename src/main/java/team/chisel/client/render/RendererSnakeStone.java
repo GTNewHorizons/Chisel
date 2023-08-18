@@ -6,10 +6,10 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.block.BlockSnakestone;
-import team.chisel.ctmlib.Drawing;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.block.BlockSnakestone;
+import team.chisel.ctmlib.Drawing;
 
 public class RendererSnakeStone implements ISimpleBlockRenderingHandler {
 
@@ -30,7 +30,7 @@ public class RendererSnakeStone implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         int meta = world.getBlockMetadata(x, y, z);
 
         setRenderRotate(renderer, (BlockSnakestone) block, meta);

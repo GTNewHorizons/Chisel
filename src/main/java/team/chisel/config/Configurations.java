@@ -73,217 +73,241 @@ public class Configurations {
         /* general */
         category = "general";
         concreteVelocityMult = config
-                .get(
-                        category,
-                        "concreteVelocityMult",
-                        1.35,
-                        "The factor that concrete increases your velocity. Default is 1.35, set to 1 for no change.")
-                .getDouble();
-        fullBlockConcrete = config.get(
+            .get(
+                category,
+                "concreteVelocityMult",
+                1.35,
+                "The factor that concrete increases your velocity. Default is 1.35, set to 1 for no change.")
+            .getDouble();
+        fullBlockConcrete = config
+            .get(
                 category,
                 "fullBlockConcrete",
                 false,
                 "Should concrete be a full block. This will also unavoidably disable speed increase if set to true.")
-                .getBoolean(false);
-        ghostCloud = config.get(category, "doesCloudRenderLikeGhost", true).getBoolean(true);
-        factoryBlockAmount = config.get(category, "amountYouGetFromFactoryBlockCrafting", 32).getInt(32);
-        allowMossy = config.get(
+            .getBoolean(false);
+        ghostCloud = config.get(category, "doesCloudRenderLikeGhost", true)
+            .getBoolean(true);
+        factoryBlockAmount = config.get(category, "amountYouGetFromFactoryBlockCrafting", 32)
+            .getInt(32);
+        allowMossy = config
+            .get(
                 category,
                 "allowBrickToMossyInChisel",
                 true,
-                "If true, you can chisel stone brick to mossy stone brick.").getBoolean(true);
-        allowSmoothStone = config.get(category, "allowSmoothStoneToStoneBricksAndBack", true).getBoolean(true);
+                "If true, you can chisel stone brick to mossy stone brick.")
+            .getBoolean(true);
+        allowSmoothStone = config.get(category, "allowSmoothStoneToStoneBricksAndBack", true)
+            .getBoolean(true);
         chiselRecipe = config
-                .get(category, "chiselAlternateRecipe", false, "Use alternative crafting recipe for the chisel")
-                .getBoolean(false);
-        enableFMP = config.get(category, "enableFMP", true, "Do you want to enable FMP").getBoolean(true);
-        chiselStoneToCobbleBricks = config.get(
+            .get(category, "chiselAlternateRecipe", false, "Use alternative crafting recipe for the chisel")
+            .getBoolean(false);
+        enableFMP = config.get(category, "enableFMP", true, "Do you want to enable FMP")
+            .getBoolean(true);
+        chiselStoneToCobbleBricks = config
+            .get(
                 category,
                 "chiselStoneToCobbleBricks",
                 true,
-                "Chisel stone to cobblestone and bricks by left clicking.").getBoolean(false);
+                "Chisel stone to cobblestone and bricks by left clicking.")
+            .getBoolean(false);
         chiselBackToVanillaLeaves = config.get(
-                category,
-                "chiselBackToVanillaLeaves",
-                false,
-                "If this is true, you can chisel from the chisel leaves back to vanilla ones. If it is false, you cannot.")
-                .getBoolean(false);
+            category,
+            "chiselBackToVanillaLeaves",
+            false,
+            "If this is true, you can chisel from the chisel leaves back to vanilla ones. If it is false, you cannot.")
+            .getBoolean(false);
         canMobsSpawnOnTheChiselBlocks = config
-                .get(category, "canMobsSpawnOnTheChiselBlocks", false, "Can mobs Spawn on the Chisel Blocks")
-                .getBoolean();
+            .get(category, "canMobsSpawnOnTheChiselBlocks", false, "Can mobs Spawn on the Chisel Blocks")
+            .getBoolean();
 
         /* worldgen */
         category = "worldgen";
         marbleAmount = config
-                .get(category, "marbleAmount", 7, "Amount of marble to generate in the world; use 0 for none")
-                .getInt(7);
+            .get(category, "marbleAmount", 7, "Amount of marble to generate in the world; use 0 for none")
+            .getInt(7);
         limestoneAmount = config
-                .get(category, "limestoneAmount", 8, "Amount of limestone to generate in the world; use 0 for none")
-                .getInt(8);
+            .get(category, "limestoneAmount", 8, "Amount of limestone to generate in the world; use 0 for none")
+            .getInt(8);
         graniteAmount = config
-                .get(category, "graniteAmount", 8, "Amount of granite to generate in the world; use 0 for none.")
-                .getInt(8);
+            .get(category, "graniteAmount", 8, "Amount of granite to generate in the world; use 0 for none.")
+            .getInt(8);
         dioriteAmount = config
-                .get(category, "dioriteAmount", 8, "Amount of diorite to generate in the world; use 0 for none.")
-                .getInt(8);
+            .get(category, "dioriteAmount", 8, "Amount of diorite to generate in the world; use 0 for none.")
+            .getInt(8);
         andesiteAmount = config
-                .get(category, "andesiteAmount", 8, "Amount of andesite to generate in the world; use 0 for none.")
-                .getInt(8);
+            .get(category, "andesiteAmount", 8, "Amount of andesite to generate in the world; use 0 for none.")
+            .getInt(8);
 
         /* client */
         category = "client";
         particlesTickrate = config
-                .get(category, "particleTickrate", 1, "Particle tick rate. Greater value = less particles.").getInt(1);
-        oldPillars = config.get(category, "pillarOldGraphics", false, "Use old pillar textures").getBoolean(false);
-        disableCTM = !config.get(category, "connectedTextures", true, "Enable connected textures").getBoolean(true);
+            .get(category, "particleTickrate", 1, "Particle tick rate. Greater value = less particles.")
+            .getInt(1);
+        oldPillars = config.get(category, "pillarOldGraphics", false, "Use old pillar textures")
+            .getBoolean(false);
+        disableCTM = !config.get(category, "connectedTextures", true, "Enable connected textures")
+            .getBoolean(true);
         CTM.disableObscuredFaceCheckConfig = connectInsideCTM = config
-                .get(
-                        category,
-                        "connectInsideCTM",
-                        false,
-                        "Choose whether the inside corner is disconnected on a CTM block - http://imgur.com/eUywLZ4")
-                .getBoolean(false);
-        blockDescriptions = config.get(
+            .get(
+                category,
+                "connectInsideCTM",
+                false,
+                "Choose whether the inside corner is disconnected on a CTM block - http://imgur.com/eUywLZ4")
+            .getBoolean(false);
+        blockDescriptions = config
+            .get(
                 category,
                 "tooltipsUseBlockDescriptions",
                 true,
                 "Make variations of blocks have the same name, and use the description in tooltip to distinguish them.")
-                .getBoolean(true);
-        imTooGoodForDescriptions = config.get(
+            .getBoolean(true);
+        imTooGoodForDescriptions = config
+            .get(
                 category,
                 "imTooGoodForBlockDescriptions",
                 false,
-                "For those people who just hate block descriptions on the world gen!").getBoolean();
+                "For those people who just hate block descriptions on the world gen!")
+            .getBoolean();
 
         /* chisel */
         category = "chisel";
-        allowChiselDamage = config.get(
+        allowChiselDamage = config
+            .get(
                 category,
                 "allowChiselDamage",
                 true,
-                "Should the chisel be damageable and take damage when it chisels something.").getBoolean();
+                "Should the chisel be damageable and take damage when it chisels something.")
+            .getBoolean();
         ironChiselMaxDamage = config.getInt(
-                "ironChiselMaxDamage",
-                category,
-                500,
-                1,
-                Short.MAX_VALUE,
-                "The max damage of the standard iron chisel.");
+            "ironChiselMaxDamage",
+            category,
+            500,
+            1,
+            Short.MAX_VALUE,
+            "The max damage of the standard iron chisel.");
         diamondChiselMaxDamage = config.getInt(
-                "diamondChiselMaxDamage",
-                category,
-                5000,
-                1,
-                Short.MAX_VALUE,
-                "The max damage of the diamond chisel.");
+            "diamondChiselMaxDamage",
+            category,
+            5000,
+            1,
+            Short.MAX_VALUE,
+            "The max damage of the diamond chisel.");
         obsidianChiselMaxDamage = config.getInt(
-                "obsidianChiselMaxDamage",
-                category,
-                2500,
-                1,
-                Short.MAX_VALUE,
-                "The max damage of the obsidian chisel.");
+            "obsidianChiselMaxDamage",
+            category,
+            2500,
+            1,
+            Short.MAX_VALUE,
+            "The max damage of the obsidian chisel.");
         netherStarChiselMaxDamage = config.getInt(
-                "netherStarChiselMaxDamage",
-                category,
-                32767,
-                1,
-                Short.MAX_VALUE,
-                "The max damage of the nether star chisel.");
+            "netherStarChiselMaxDamage",
+            category,
+            32767,
+            1,
+            Short.MAX_VALUE,
+            "The max damage of the nether star chisel.");
         ironChiselCanLeftClick = config
-                .get(
-                        category,
-                        "ironChiselCanLeftClick",
-                        true,
-                        "If this is true, the iron chisel can left click chisel blocks. If false, it cannot.")
-                .getBoolean();
+            .get(
+                category,
+                "ironChiselCanLeftClick",
+                true,
+                "If this is true, the iron chisel can left click chisel blocks. If false, it cannot.")
+            .getBoolean();
         ironChiselHasModes = config
-                .get(
-                        category,
-                        "ironChiselHasModes",
-                        false,
-                        "If this is true, the iron chisel can change its chisel mode just as the diamond chisel can.")
-                .getBoolean();
-        allowChiselCrossColors = config.get(
+            .get(
+                category,
+                "ironChiselHasModes",
+                false,
+                "If this is true, the iron chisel can change its chisel mode just as the diamond chisel can.")
+            .getBoolean();
+        allowChiselCrossColors = config
+            .get(
                 category,
                 "allowChiselCrossColors",
                 true,
-                "Should someone be able to chisel something into a different color.").getBoolean();
+                "Should someone be able to chisel something into a different color.")
+            .getBoolean();
 
         ironChiselAttackDamage = config.get(
-                category,
-                "ironChiselAttackDamage",
-                2,
-                "The extra attack damage points (in half hearts) that the iron chisel inflicts when it is used to attack an entity.")
-                .getInt();
+            category,
+            "ironChiselAttackDamage",
+            2,
+            "The extra attack damage points (in half hearts) that the iron chisel inflicts when it is used to attack an entity.")
+            .getInt();
         diamondChiselAttackDamage = config.get(
-                category,
-                "diamondChiselAttackDamage",
-                2,
-                "The extra attack damage points (in half hearts) that the diamond chisel inflicts when it is used to attack an entity.")
-                .getInt();
+            category,
+            "diamondChiselAttackDamage",
+            2,
+            "The extra attack damage points (in half hearts) that the diamond chisel inflicts when it is used to attack an entity.")
+            .getInt();
         obsidianChiselAttackDamage = config.get(
-                category,
-                "obsidianChiselAttackDamage",
-                4,
-                "The extra attack damage points (in half hearts) that the obsidian chisel inflicts when it is used to attack an entity.")
-                .getInt();
+            category,
+            "obsidianChiselAttackDamage",
+            4,
+            "The extra attack damage points (in half hearts) that the obsidian chisel inflicts when it is used to attack an entity.")
+            .getInt();
         netherStarChiselAttackDamage = config.get(
-                category,
-                "netherStarChiselAttackDamage",
-                6,
-                "The extra attack damage points (in half hearts) that the nether star chisel inflicts when it is used to attack an entity.")
-                .getInt();
+            category,
+            "netherStarChiselAttackDamage",
+            6,
+            "The extra attack damage points (in half hearts) that the nether star chisel inflicts when it is used to attack an entity.")
+            .getInt();
 
         /* block */
         category = "block";
-        useRoadLineTool = config.get(
+        useRoadLineTool = config
+            .get(
                 category,
                 "useRoadLineTool",
                 false,
                 "Should the road line require a tool to break (If false, road lines can be broken in Adventure)")
-                .getBoolean();
+            .getBoolean();
         getRoadLineTool = config
-                .get(
-                        category,
-                        "getRoadLineTool",
-                        "pickaxe",
-                        "The tool that is able to break roadLines (requires useRoadLineTool to be true to take effect)")
-                .getString();
-        roadLineToolLevel = config.get(
+            .get(
                 category,
-                "roadLineToolLevel",
-                0,
-                "The lowest harvest level of the tool able to break the road lines (requires useRoadLineTool to be true to take effect) (0 = Wood/Gold, 1 = Stone, 2 = Iron, 3 = Diamond) Default: 0")
-                .getInt();
+                "getRoadLineTool",
+                "pickaxe",
+                "The tool that is able to break roadLines (requires useRoadLineTool to be true to take effect)")
+            .getString();
+        roadLineToolLevel = config.get(
+            category,
+            "roadLineToolLevel",
+            0,
+            "The lowest harvest level of the tool able to break the road lines (requires useRoadLineTool to be true to take effect) (0 = Wood/Gold, 1 = Stone, 2 = Iron, 3 = Diamond) Default: 0")
+            .getInt();
 
         /* hexColors */
         category = "hexColors";
 
         for (int i = 0; i < ItemDye.field_150923_a.length; i++) {
             // tterrag... don't kill me over this formatting.
-            String temp = config.get(
+            String temp = config
+                .get(
                     category,
                     "hex" + ItemDye.field_150923_a[i],
                     "#" + Integer.toHexString(ItemDye.field_150922_c[i]),
                     Character.toUpperCase(ItemDye.field_150923_a[i].charAt(0)) + ItemDye.field_150923_a[i].substring(1)
-                            + " color for hex block overlay #RRGGBB")
-                    .getString();
+                        + " color for hex block overlay #RRGGBB")
+                .getString();
             // Or this
             try {
                 configColors[i] = Integer.decode(temp);
             } catch (NumberFormatException e) {
                 Chisel.logger.warn(
-                        "Configuration error, " + temp
-                                + " was not recognized as a color.  Using default: #"
-                                + Integer.toHexString(ItemDye.field_150922_c[i]));
+                    "Configuration error, " + temp
+                        + " was not recognized as a color.  Using default: #"
+                        + Integer.toHexString(ItemDye.field_150922_c[i]));
                 configColors[i] = ItemDye.field_150922_c[i];
             }
         }
 
         /* features */
         for (Features feature : Features.values()) {
-            features.put(featureName(feature), config.get("features", featureName(feature), true).getBoolean(true));
+            features.put(
+                featureName(feature),
+                config.get("features", featureName(feature), true)
+                    .getBoolean(true));
         }
 
         if (config.hasChanged()) {
@@ -300,7 +324,9 @@ public class Configurations {
      * Makes the old camelCase names from the new CONSTANT_CASE names
      */
     public static String featureName(Features feature) {
-        String[] words = feature.name().toLowerCase(Locale.ENGLISH).split("_");
+        String[] words = feature.name()
+            .toLowerCase(Locale.ENGLISH)
+            .split("_");
         if (words.length == 1) {
             return words[0];
         }

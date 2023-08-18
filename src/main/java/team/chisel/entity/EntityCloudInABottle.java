@@ -56,12 +56,8 @@ public class EntityCloudInABottle extends EntityThrowable {
 
         generate(worldObj, rand, x, y, z, 40);
 
-        worldObj.playAuxSFX(
-                2002,
-                (int) Math.round(this.posX),
-                (int) Math.round(this.posY),
-                (int) Math.round(this.posZ),
-                2);
+        worldObj
+            .playAuxSFX(2002, (int) Math.round(this.posX), (int) Math.round(this.posY), (int) Math.round(this.posZ), 2);
         setDead();
     }
 
@@ -96,9 +92,9 @@ public class EntityCloudInABottle extends EntityThrowable {
                 for (int j2 = x; j2 < x + random.nextInt(4) + 1; j2++) {
                     for (int k2 = y; k2 < y + random.nextInt(1) + 2; k2++) {
                         for (int l2 = z; l2 < z + random.nextInt(4) + 1; l2++) {
-                            if (world.getBlock(j2, k2, l2).isAir(world, j2, k2, l2)
-                                    && Math.abs(j2 - x) + Math.abs(k2 - y) + Math.abs(l2 - z)
-                                            < 4 * 1 + random.nextInt(2)) {
+                            if (world.getBlock(j2, k2, l2)
+                                .isAir(world, j2, k2, l2)
+                                && Math.abs(j2 - x) + Math.abs(k2 - y) + Math.abs(l2 - z) < 4 * 1 + random.nextInt(2)) {
                                 world.setBlock(j2, k2, l2, ChiselBlocks.cloud);
                                 count++;
                             }

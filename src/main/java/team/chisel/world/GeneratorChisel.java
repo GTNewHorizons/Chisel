@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import com.google.common.collect.Maps;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class GeneratorChisel implements IWorldGenerator {
@@ -56,7 +57,7 @@ public class GeneratorChisel implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator,
-            IChunkProvider chunkProvider) {
+        IChunkProvider chunkProvider) {
         for (WorldGenMinable gen : map.keySet()) {
             genStandardOre(gen, map.get(gen), world, random, chunkX * 16, chunkZ * 16);
         }

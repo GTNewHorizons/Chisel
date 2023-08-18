@@ -47,8 +47,8 @@ public class TileEntityPresent extends TileEntity implements IInventory, IDouble
 
     private boolean connectTo(TileEntityPresent present, ForgeDirection dir) {
         if (present.getBlockMetadata() == getBlockMetadata() && !present.isConnected()
-                && (present.cachedDir == null || present.cachedDir == dir.getOpposite())
-                && Math.abs(present.xCoord - xCoord + present.yCoord - yCoord + present.zCoord - zCoord) == 1) {
+            && (present.cachedDir == null || present.cachedDir == dir.getOpposite())
+            && Math.abs(present.xCoord - xCoord + present.yCoord - yCoord + present.zCoord - zCoord) == 1) {
             connection = present;
             connection.connection = this;
             connection.cachedDir = dir.getOpposite();
@@ -57,7 +57,7 @@ public class TileEntityPresent extends TileEntity implements IInventory, IDouble
             isParent = !present.isParent;
             markDirty();
             PacketHandler.INSTANCE
-                    .sendToDimension(new MessagePresentConnect(this, dir, true), worldObj.provider.dimensionId);
+                .sendToDimension(new MessagePresentConnect(this, dir, true), worldObj.provider.dimensionId);
             return true;
         }
         return false;
@@ -87,8 +87,8 @@ public class TileEntityPresent extends TileEntity implements IInventory, IDouble
             this.connection = null;
             this.markDirty();
             PacketHandler.INSTANCE.sendToDimension(
-                    new MessagePresentConnect(this, ForgeDirection.UNKNOWN, false, preserveDir),
-                    worldObj.provider.dimensionId);
+                new MessagePresentConnect(this, ForgeDirection.UNKNOWN, false, preserveDir),
+                worldObj.provider.dimensionId);
         }
     }
 
@@ -197,7 +197,7 @@ public class TileEntityPresent extends TileEntity implements IInventory, IDouble
 
     @Override
     public boolean shouldRefresh(Block oldBlock, Block newBlock, int oldMeta, int newMeta, World world, int x, int y,
-            int z) {
+        int z) {
         // prevent losing TE data when in-world chiseling
         return oldBlock != newBlock;
     }

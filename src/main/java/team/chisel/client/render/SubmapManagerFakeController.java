@@ -7,15 +7,14 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-import team.chisel.Chisel;
-import team.chisel.ctmlib.CTM;
-import team.chisel.ctmlib.TextureSubmap;
-import team.chisel.init.ChiselBlocks;
-
 import com.google.common.base.Optional;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import team.chisel.Chisel;
+import team.chisel.ctmlib.CTM;
+import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.init.ChiselBlocks;
 
 public class SubmapManagerFakeController extends SubmapManagerBase {
 
@@ -63,8 +62,8 @@ public class SubmapManagerFakeController extends SubmapManagerBase {
             map = new TextureSubmap(register.registerIcon(modName + ":" + texturePath), 2, 2);
         } else {
             Chisel.logger.info(
-                    "SubmapManagerFakeController was called on block " + block.getUnlocalizedName()
-                            + " without declaring texture, using a default texture instead.");
+                "SubmapManagerFakeController was called on block " + block.getUnlocalizedName()
+                    + " without declaring texture, using a default texture instead.");
             map = new TextureSubmap(register.registerIcon(modName + ":futura/WIP/controller"), 2, 2);
         }
     }

@@ -8,20 +8,19 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-import team.chisel.carving.Carving;
-import team.chisel.client.gui.GuiChisel;
-import team.chisel.utils.RecipeUtil;
-import codechicken.nei.api.GuiInfo;
-
 import com.cricketcraft.chisel.api.carving.ICarvingGroup;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.google.common.collect.Maps;
 import com.pahimar.ee3.api.exchange.RecipeRegistryProxy;
 
+import codechicken.nei.api.GuiInfo;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import team.chisel.carving.Carving;
+import team.chisel.client.gui.GuiChisel;
+import team.chisel.utils.RecipeUtil;
 
 public class Compatibility {
 

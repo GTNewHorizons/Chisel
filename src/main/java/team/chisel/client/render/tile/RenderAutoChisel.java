@@ -25,18 +25,18 @@ import net.minecraftforge.client.model.obj.TextureCoordinate;
 import net.minecraftforge.client.model.obj.Vertex;
 import net.minecraftforge.client.model.obj.WavefrontObject;
 
-import team.chisel.Chisel;
-import team.chisel.block.tileentity.TileEntityAutoChisel;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.Chisel;
+import team.chisel.block.tileentity.TileEntityAutoChisel;
 
 public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler, IItemRenderer {
 
     private static final WavefrontObject model = new WavefrontObject(
-            new ResourceLocation(Chisel.MOD_ID, "models/autoChisel/autoChisel.obj"));
+        new ResourceLocation(Chisel.MOD_ID, "models/autoChisel/autoChisel.obj"));
     private static final ResourceLocation texture = new ResourceLocation(
-            Chisel.MOD_ID,
-            "textures/blocks/autoChisel/autoChisel.png");
+        Chisel.MOD_ID,
+        "textures/blocks/autoChisel/autoChisel.png");
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -46,7 +46,7 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
         return helper == ItemRendererHelper.INVENTORY_BLOCK || helper == ItemRendererHelper.ENTITY_BOBBING
-                || helper == ItemRendererHelper.ENTITY_ROTATION;
+            || helper == ItemRendererHelper.ENTITY_ROTATION;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         Tessellator tes = Tessellator.instance;
         IIcon icon = renderer.hasOverrideBlockTexture() ? renderer.overrideBlockTexture : block.getIcon(0, 0);
         tes.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
@@ -100,18 +100,18 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
                     TextureCoordinate t = f.textureCoordinates[i];
                     if (!renderer.hasOverrideBlockTexture()) {
                         tes.addVertexWithUV(
-                                vert.x,
-                                vert.y,
-                                vert.z,
-                                icon.getInterpolatedU(t.u * 16),
-                                icon.getInterpolatedV(t.v * 16));
+                            vert.x,
+                            vert.y,
+                            vert.z,
+                            icon.getInterpolatedU(t.u * 16),
+                            icon.getInterpolatedV(t.v * 16));
                     } else {
                         tes.addVertexWithUV(
-                                vert.x,
-                                vert.y,
-                                vert.z,
-                                icon.getInterpolatedU((t.u * 64) % 16),
-                                icon.getInterpolatedV((t.v * 64) % 16));
+                            vert.x,
+                            vert.y,
+                            vert.z,
+                            icon.getInterpolatedU((t.u * 64) % 16),
+                            icon.getInterpolatedV((t.v * 64) % 16));
                     }
                 }
             }
@@ -159,7 +159,8 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
 
         float max = 0.35f;
 
-        if (!Minecraft.getMinecraft().isGamePaused()) {
+        if (!Minecraft.getMinecraft()
+            .isGamePaused()) {
             autoChisel.xRot += (rand.nextFloat() * max) - (max / 2);
             autoChisel.yRot += (rand.nextFloat() * max) - (max / 2);
             autoChisel.zRot += (rand.nextFloat() * max) - (max / 2);
@@ -195,8 +196,8 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
             glPushMatrix();
             glTranslated(x + 0.7, y + 1.01, z + 0.5);
             float rot = autoChisel.chiselRot == 0 ? 0
-                    : autoChisel.chiseling ? autoChisel.chiselRot + (TileEntityAutoChisel.rotAmnt * scale)
-                            : autoChisel.chiselRot - (TileEntityAutoChisel.rotAmnt * scale);
+                : autoChisel.chiseling ? autoChisel.chiselRot + (TileEntityAutoChisel.rotAmnt * scale)
+                    : autoChisel.chiselRot - (TileEntityAutoChisel.rotAmnt * scale);
             glRotatef(rot, 0, 0, 1);
             glTranslated(-0.12, 0, 0);
             glScalef(0.9f, 0.9f, 0.9f);

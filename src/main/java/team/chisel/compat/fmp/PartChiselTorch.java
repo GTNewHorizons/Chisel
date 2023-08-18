@@ -3,10 +3,10 @@ package team.chisel.compat.fmp;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 
-import team.chisel.init.ChiselBlocks;
 import codechicken.lib.data.MCDataInput;
 import codechicken.lib.data.MCDataOutput;
 import codechicken.multipart.minecraft.TorchPart;
+import team.chisel.init.ChiselBlocks;
 
 public class PartChiselTorch extends TorchPart {
 

@@ -103,12 +103,12 @@ public class ContainerAutoChisel extends Container {
             ItemStack ret = super.slotClick(slotId, p_75144_2_, p_75144_3_, player);
 
             if (!player.worldObj.isRemote && slot.slotNumber == TileEntityAutoChisel.BASE
-                    && !ItemStack.areItemStacksEqual(stack, slot.getStack())) {
+                && !ItemStack.areItemStacksEqual(stack, slot.getStack())) {
                 int chiseled = stack == null ? 0
-                        : slot.getStack() == null ? stack.stackSize : stack.stackSize - slot.getStack().stackSize;
+                    : slot.getStack() == null ? stack.stackSize : stack.stackSize - slot.getStack().stackSize;
                 PacketHandler.INSTANCE.sendToDimension(
-                        new MessageAutoChisel(autoChisel, chiseled, false, false),
-                        player.worldObj.provider.dimensionId);
+                    new MessageAutoChisel(autoChisel, chiseled, false, false),
+                    player.worldObj.provider.dimensionId);
             }
 
             return ret;
@@ -137,15 +137,14 @@ public class ContainerAutoChisel extends Container {
         if (par1ItemStack.isStackable()) {
 
             while (par1ItemStack.stackSize > 0
-                    && (!reversOrder && checkIndex < toIndex || reversOrder && checkIndex >= fromIndex)) {
+                && (!reversOrder && checkIndex < toIndex || reversOrder && checkIndex >= fromIndex)) {
                 slot = (Slot) this.inventorySlots.get(checkIndex);
                 itemstack1 = slot.getStack();
 
                 if (itemstack1 != null && itemstack1.getItem() == par1ItemStack.getItem()
-                        && (!par1ItemStack.getHasSubtypes()
-                                || par1ItemStack.getItemDamage() == itemstack1.getItemDamage())
-                        && ItemStack.areItemStackTagsEqual(par1ItemStack, itemstack1)
-                        && slot.isItemValid(par1ItemStack)) {
+                    && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == itemstack1.getItemDamage())
+                    && ItemStack.areItemStackTagsEqual(par1ItemStack, itemstack1)
+                    && slot.isItemValid(par1ItemStack)) {
 
                     int mergedSize = itemstack1.stackSize + par1ItemStack.stackSize;
                     int maxStackSize = Math.min(par1ItemStack.getMaxStackSize(), slot.getSlotStackLimit());

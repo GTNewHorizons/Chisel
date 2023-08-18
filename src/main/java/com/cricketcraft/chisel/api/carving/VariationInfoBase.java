@@ -8,9 +8,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import team.chisel.ctmlib.ISubmapManager;
-
 import com.cricketcraft.chisel.api.rendering.TextureType;
+
+import team.chisel.ctmlib.ISubmapManager;
 
 public class VariationInfoBase implements IVariationInfo {
 

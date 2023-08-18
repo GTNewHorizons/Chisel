@@ -3,17 +3,16 @@ package team.chisel.network.message;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 
-import team.chisel.Chisel;
-import team.chisel.client.GeneralChiselClient;
-import team.chisel.item.chisel.ItemChisel;
-import team.chisel.network.message.base.MessageCoords;
-
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import team.chisel.Chisel;
+import team.chisel.client.GeneralChiselClient;
+import team.chisel.item.chisel.ItemChisel;
+import team.chisel.network.message.base.MessageCoords;
 
 public class MessageChiselSound extends MessageCoords {
 

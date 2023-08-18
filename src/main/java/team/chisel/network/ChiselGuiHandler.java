@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import team.chisel.block.tileentity.TileEntityAutoChisel;
 import team.chisel.block.tileentity.TileEntityPresent;
 import team.chisel.client.gui.GuiAutoChisel;
@@ -13,7 +14,6 @@ import team.chisel.inventory.ContainerAutoChisel;
 import team.chisel.inventory.ContainerChisel;
 import team.chisel.inventory.ContainerPresent;
 import team.chisel.inventory.InventoryChiselSelection;
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class ChiselGuiHandler implements IGuiHandler {
 
@@ -22,8 +22,8 @@ public class ChiselGuiHandler implements IGuiHandler {
         switch (ID) {
             case 0:
                 return new ContainerChisel(
-                        player.inventory,
-                        new InventoryChiselSelection(player.getCurrentEquippedItem()));
+                    player.inventory,
+                    new InventoryChiselSelection(player.getCurrentEquippedItem()));
             case 1:
                 TileEntity tileentity = world.getTileEntity(x, y, z);
                 if (tileentity instanceof TileEntityAutoChisel)

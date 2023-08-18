@@ -15,13 +15,13 @@ public class GeneralClient {
 
     public static void playChiselSound(World world, int x, int y, int z, String sound) {
         Minecraft.getMinecraft().theWorld.playSound(
-                x + 0.5,
-                y + 0.5,
-                z + 0.5,
-                sound,
-                0.3f + 0.7f * rand.nextFloat(),
-                0.6f + 0.4f * rand.nextFloat(),
-                true);
+            x + 0.5,
+            y + 0.5,
+            z + 0.5,
+            sound,
+            0.3f + 0.7f * rand.nextFloat(),
+            0.6f + 0.4f * rand.nextFloat(),
+            true);
     }
 
     static HashMap<String, ResourceLocation> resources = new HashMap<String, ResourceLocation>();
@@ -34,7 +34,9 @@ public class GeneralClient {
             resources.put(textureName, res);
         }
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+        Minecraft.getMinecraft()
+            .getTextureManager()
+            .bindTexture(res);
     }
 
     public static void setGLColorFromInt(int color) {

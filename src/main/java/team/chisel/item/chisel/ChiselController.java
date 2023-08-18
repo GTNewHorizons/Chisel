@@ -13,10 +13,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
-import team.chisel.Chisel;
-import team.chisel.carving.Carving;
-import team.chisel.utils.General;
-
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.ICarvingGroup;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
@@ -27,6 +23,9 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
+import team.chisel.Chisel;
+import team.chisel.carving.Carving;
+import team.chisel.utils.General;
 
 public final class ChiselController {
 
@@ -60,7 +59,9 @@ public final class ChiselController {
 
     public void preInit() {
         MinecraftForge.EVENT_BUS.register(this);
-        FMLCommonHandler.instance().bus().register(this);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(this);
     }
 
     @SubscribeEvent
@@ -98,8 +99,7 @@ public final class ChiselController {
 
             List<ICarvingVariation> list = group.getVariations();
 
-            main:
-            for (ItemStack stack : OreDictionary.getOres(group.getOreName())) {
+            main: for (ItemStack stack : OreDictionary.getOres(group.getOreName())) {
                 ICarvingVariation v = General.getVariation(stack);
                 for (ICarvingVariation check : list) {
                     if (check.getBlock() == v.getBlock() && check.getBlockMeta() == v.getBlockMeta()) {
@@ -144,7 +144,8 @@ public final class ChiselController {
     // This still shows the block being broken, but it's better than nothing
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        ItemStack stack = event.getPlayer().getCurrentEquippedItem();
+        ItemStack stack = event.getPlayer()
+            .getCurrentEquippedItem();
         if (event.getPlayer().capabilities.isCreativeMode && stack != null && stack.getItem() instanceof IChiselItem) {
             event.setCanceled(true);
         }

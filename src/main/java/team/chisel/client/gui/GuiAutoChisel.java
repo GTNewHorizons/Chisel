@@ -10,11 +10,11 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import team.chisel.block.tileentity.TileEntityAutoChisel;
-import team.chisel.inventory.ContainerAutoChisel;
-
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+
+import team.chisel.block.tileentity.TileEntityAutoChisel;
+import team.chisel.inventory.ContainerAutoChisel;
 
 public class GuiAutoChisel extends GuiContainer {
 
@@ -55,8 +55,8 @@ public class GuiAutoChisel extends GuiContainer {
 
     private boolean mouseInside(Slot slot, int x, int y) {
         return x >= slot.xDisplayPosition && x <= slot.xDisplayPosition + 16
-                && y >= slot.yDisplayPosition
-                && y <= slot.yDisplayPosition + 16;
+            && y >= slot.yDisplayPosition
+            && y <= slot.yDisplayPosition + 16;
     }
 
     @Override
@@ -81,11 +81,11 @@ public class GuiAutoChisel extends GuiContainer {
     public static void drawSlotOverlay(GuiContainer gui, int x, int y, Slot slot, int u, int v, int padding) {
         padding /= 2;
         gui.drawTexturedModalRect(
-                x + (slot.xDisplayPosition - padding),
-                y + (slot.yDisplayPosition - padding),
-                u,
-                v,
-                18 + padding,
-                18 + padding);
+            x + (slot.xDisplayPosition - padding),
+            y + (slot.yDisplayPosition - padding),
+            u,
+            v,
+            18 + padding,
+            18 + padding);
     }
 }

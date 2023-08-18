@@ -14,11 +14,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import team.chisel.client.render.RendererStairs;
-
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
+
+import team.chisel.client.render.RendererStairs;
 
 public class BlockCarvableStairs extends BlockStairs implements ICarvable {
 
@@ -62,7 +62,7 @@ public class BlockCarvableStairs extends BlockStairs implements ICarvable {
 
     @Override
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving,
-            ItemStack par6ItemStack) {
+        ItemStack par6ItemStack) {
         int meta = MathHelper.floor_double((par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         // 0->2 2->3 3->0 1->1

@@ -134,7 +134,8 @@ public class BlockSnakestone extends Block {
                     break;
             }
 
-            if (!world.getBlock(x, y, z).equals(this)) continue;
+            if (!world.getBlock(x, y, z)
+                .equals(this)) continue;
             boolean match = false;
 
             int px1 = x, px2 = x;
@@ -250,17 +251,23 @@ public class BlockSnakestone extends Block {
     public boolean connectedTo(World par1World, int x, int y, int z, int direction) {
         switch (direction) {
             case 0:
-                return par1World.getBlock(x, y, z - 1).equals(this);
+                return par1World.getBlock(x, y, z - 1)
+                    .equals(this);
             case 1:
-                return par1World.getBlock(x, y, z + 1).equals(this);
+                return par1World.getBlock(x, y, z + 1)
+                    .equals(this);
             case 2:
-                return par1World.getBlock(x - 1, y, z).equals(this);
+                return par1World.getBlock(x - 1, y, z)
+                    .equals(this);
             case 3:
-                return par1World.getBlock(x + 1, y, z).equals(this);
+                return par1World.getBlock(x + 1, y, z)
+                    .equals(this);
             case 4:
-                return par1World.getBlock(x, y - 1, z).equals(this);
+                return par1World.getBlock(x, y - 1, z)
+                    .equals(this);
             case 5:
-                return par1World.getBlock(x, y + 1, z).equals(this);
+                return par1World.getBlock(x, y + 1, z)
+                    .equals(this);
         }
 
         return false;

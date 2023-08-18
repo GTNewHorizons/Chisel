@@ -2,11 +2,11 @@ package team.chisel.compat.nei;
 
 import net.minecraft.item.ItemStack;
 
-import team.chisel.Chisel;
-import team.chisel.client.gui.GuiChisel;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import cpw.mods.fml.common.registry.GameRegistry;
+import team.chisel.Chisel;
+import team.chisel.client.gui.GuiChisel;
 
 public class NEIChiselConfig implements IConfigureNEI {
 

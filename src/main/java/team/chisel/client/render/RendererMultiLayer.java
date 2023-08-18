@@ -8,10 +8,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-import team.chisel.block.BlockMultiLayerBase;
-import team.chisel.ctmlib.Drawing;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import team.chisel.block.BlockMultiLayerBase;
+import team.chisel.ctmlib.Drawing;
 
 public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
 
@@ -48,7 +48,7 @@ public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block blck, int modelId,
-            RenderBlocks renderer) {
+        RenderBlocks renderer) {
         if (blck == null || !(blck instanceof BlockMultiLayerBase)) return false;
         BlockMultiLayerBase block = (BlockMultiLayerBase) blck;
 

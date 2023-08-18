@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Features;
 import team.chisel.block.BlockCarvableBeacon;
 import team.chisel.block.tileentity.TileEntityAutoChisel;
@@ -32,8 +34,6 @@ import team.chisel.entity.EntityCloudInABottle;
 import team.chisel.entity.EntitySmashingRock;
 import team.chisel.init.ChiselBlocks;
 import team.chisel.init.ChiselItems;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -76,17 +76,16 @@ public class ClientProxy extends CommonProxy {
 
         if (Features.CLOUD.enabled()) {
             RenderingRegistry.registerEntityRenderingHandler(
-                    EntityCloudInABottle.class,
-                    new RenderSnowball(ChiselItems.cloudinabottle));
+                EntityCloudInABottle.class,
+                new RenderSnowball(ChiselItems.cloudinabottle));
         }
         if (Features.BALL_OF_MOSS.enabled()) {
             RenderingRegistry
-                    .registerEntityRenderingHandler(EntityBallOMoss.class, new RenderSnowball(ChiselItems.ballomoss));
+                .registerEntityRenderingHandler(EntityBallOMoss.class, new RenderSnowball(ChiselItems.ballomoss));
         }
         if (Features.SMASHING_ROCK.enabled()) {
-            RenderingRegistry.registerEntityRenderingHandler(
-                    EntitySmashingRock.class,
-                    new RenderSnowball(ChiselItems.smashingrock));
+            RenderingRegistry
+                .registerEntityRenderingHandler(EntitySmashingRock.class, new RenderSnowball(ChiselItems.smashingrock));
         }
         if (Features.PUMPKIN.enabled()) {
             RenderingRegistry.registerEntityRenderingHandler(EntityChiselSnowman.class, new RenderChiselSnowman());
