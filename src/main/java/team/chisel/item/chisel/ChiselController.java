@@ -11,6 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.cricketcraft.chisel.api.IChiselItem;
@@ -25,6 +26,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import team.chisel.Chisel;
 import team.chisel.carving.Carving;
+import team.chisel.client.render.SubmapManagerSpecialMaterial;
 import team.chisel.utils.General;
 
 public final class ChiselController {
@@ -160,4 +162,12 @@ public final class ChiselController {
             }
         }
     }
+
+    @SubscribeEvent
+    public void onWorldUnload(WorldEvent.Unload event) {
+        if (event.world.isRemote) {
+            SubmapManagerSpecialMaterial.clearRenderBlocksInstance();
+        }
+    }
+
 }

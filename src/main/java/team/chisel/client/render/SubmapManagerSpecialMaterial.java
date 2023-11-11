@@ -84,4 +84,9 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
         renderBlocksFullbright.submapSmall = submapSmall;
         return renderBlocksFullbright;
     }
+
+    public static void clearRenderBlocksInstance() {
+        renderBlocksFullbright = null;
+    }
+
 }
