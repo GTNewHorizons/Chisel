@@ -163,11 +163,4 @@ public final class ChiselController {
         }
     }
 
-    @SubscribeEvent
-    public void onWorldUnload(WorldEvent.Unload event) {
-        if (event.world.isRemote) {
-            SubmapManagerSpecialMaterial.clearRenderBlocksInstance();
-        }
-    }
-
 }

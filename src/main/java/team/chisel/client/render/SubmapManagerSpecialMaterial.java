@@ -48,7 +48,7 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
         }
     };
 
-    private static RenderBlocksCTMFullbright renderBlocksFullbright;
+    private RenderBlocksCTMFullbright renderBlocksFullbright;
 
     private String color;
     private MaterialType materialType;
@@ -83,10 +83,6 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
         renderBlocksFullbright.submap = submap;
         renderBlocksFullbright.submapSmall = submapSmall;
         return renderBlocksFullbright;
-    }
-
-    public static void clearRenderBlocksInstance() {
-        renderBlocksFullbright = null;
     }
 
 }

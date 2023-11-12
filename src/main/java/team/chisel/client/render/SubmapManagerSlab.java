@@ -16,7 +16,7 @@ import team.chisel.ctmlib.TextureSubmap;
 public class SubmapManagerSlab implements ISubmapManager {
 
     @SideOnly(Side.CLIENT)
-    private static RenderBlocksCTM rb;
+    private RenderBlocksCTM rb;
 
     private TextureSubmap submap;
     private TextureSubmap submapSmall;

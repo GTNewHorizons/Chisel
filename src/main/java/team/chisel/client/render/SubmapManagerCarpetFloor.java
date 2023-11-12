@@ -14,7 +14,7 @@ import team.chisel.ctmlib.TextureSubmap;
 public class SubmapManagerCarpetFloor extends SubmapManagerBase {
 
     @SideOnly(Side.CLIENT)
-    private static RenderBlocksCTM rb;
+    private RenderBlocksCTM rb;
 
     private TextureSubmap submap;
     private TextureSubmap submapSmall;

@@ -75,7 +75,7 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
     };
 
     @SideOnly(Side.CLIENT)
-    private static RenderBlocksCTMFullbright rb;
+    private RenderBlocksCTMFullbright rb;
 
     private String color;
     private TextureSubmap submap, submapSmall;
