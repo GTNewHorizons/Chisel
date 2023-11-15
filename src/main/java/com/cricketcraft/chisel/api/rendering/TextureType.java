@@ -345,7 +345,12 @@ public enum TextureType {
 		}
 	}
 
-	public ISubmapManager createManagerFor(ICarvingVariation variation, String texturePath) {
+    public static void clearStatics() {
+        theRenderBlocksCTM = null;
+        theRenderBlocksColumn = null;
+    }
+
+    public ISubmapManager createManagerFor(ICarvingVariation variation, String texturePath) {
 		return new SubmapManagerDefault(this, variation, texturePath);
 	}
 

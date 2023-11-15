@@ -18,6 +18,7 @@ import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.ICarvingGroup;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.cricketcraft.chisel.api.carving.IChiselMode;
+import com.cricketcraft.chisel.api.rendering.TextureType;
 import com.google.common.collect.Queues;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -26,7 +27,6 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import team.chisel.Chisel;
 import team.chisel.carving.Carving;
-import team.chisel.client.render.SubmapManagerSpecialMaterial;
 import team.chisel.utils.General;
 
 public final class ChiselController {
@@ -160,6 +160,13 @@ public final class ChiselController {
             if (open != null) {
                 open.run();
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onWorldUnload(WorldEvent.Unload event) {
+        if (event.world.isRemote) {
+            TextureType.clearStatics();
         }
     }
 
