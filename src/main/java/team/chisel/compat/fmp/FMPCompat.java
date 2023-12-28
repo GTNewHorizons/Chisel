@@ -3,13 +3,16 @@ package team.chisel.compat.fmp;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
+import com.cricketcraft.chisel.api.carving.IVariationInfo;
 import com.google.common.collect.Lists;
 
 import codechicken.lib.vec.BlockCoord;
+import codechicken.microblock.MicroMaterialRegistry;
 import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.MultiPartRegistry.IPartConverter;
 import codechicken.multipart.MultiPartRegistry.IPartFactory;
 import codechicken.multipart.TMultiPart;
+import team.chisel.client.render.FullBrightMicroMaterial;
 import team.chisel.init.ChiselBlocks;
 
 public class FMPCompat implements IPartFactory, IPartConverter {
@@ -41,5 +44,14 @@ public class FMPCompat implements IPartFactory, IPartConverter {
             return new PartChiselTorch();
         }
         return null;
+    }
+
+    public static void registerGlowieVariation(IVariationInfo info, Block block) {
+        int meta = info.getVariation()
+            .getBlockMeta();
+
+        MicroMaterialRegistry.registerMaterial(
+            new FullBrightMicroMaterial(block, meta),
+            block.getUnlocalizedName() + ((meta > 0) ? ("_" + meta) : ""));
     }
 }
