@@ -160,7 +160,6 @@ public class Carving implements ICarvingRegistry {
             throw new NullPointerException("Cannot add variation in group " + groupName + " for null variation.");
         }
 
-
         ICarvingGroup group = groups.getGroupByName(groupName);
 
         if (group == null) {
