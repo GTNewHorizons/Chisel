@@ -4,7 +4,7 @@ dependencies {
     implementation("com.github.GTNewHorizons:CodeChickenCore:1.1.11:dev")
     implementation("com.github.GTNewHorizons:CodeChickenLib:1.1.8:dev")
     implementation("com.github.GTNewHorizons:NotEnoughItems:2.4.13-GTNH:dev")
-	implementation("com.github.GTNewHorizons:ForgeMultipart:1.4.1:dev")
+	implementation("com.github.GTNewHorizons:ForgeMultipart:1.4.3:dev")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
