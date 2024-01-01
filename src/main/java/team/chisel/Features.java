@@ -3520,6 +3520,11 @@ public enum Features {
                     .setHardness(50.0F)
                     .setResistance(2000.0F);
             GameRegistry.registerBlock(obsidian_snakestone, ItemCarvable.class, "obsidian_snakestone");
+            if (Chisel.iguanaTweaksLoaded) {
+                obsidian_snakestone.setHarvestLevel("pickaxe", 5);
+            } else {
+                obsidian_snakestone.setHarvestLevel("pickaxe", 3);
+            }
             Carving.chisel.addVariation("obsidian", obsidian_snakestone, 1, 100);
             Carving.chisel.addVariation("obsidian", obsidian_snakestone, 13, 101);
             // Carving.chisel.registerOre("obsidianSnakestone",
