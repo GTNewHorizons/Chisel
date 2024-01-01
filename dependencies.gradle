@@ -11,9 +11,10 @@ dependencies {
 
     shadowImplementation("com.github.GTNewHorizons:CTMLib:1.4.4:dev")
 
-    compileOnly("com.github.GTNewHorizons:waila:1.6.5:dev") {
+    devOnlyNonPublishable("com.github.GTNewHorizons:waila:1.6.5:dev") {
         transitive = false
     }
+    devOnlyNonPublishable("com.github.GTNewHorizons:WailaHarvestability:1.1.10-GTNH:dev")
 
     compileOnly("curse.maven:ee3-65509:2305023") {  // https://www.curseforge.com/minecraft/mc-mods/ee3/files/2305023
         transitive = false
