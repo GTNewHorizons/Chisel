@@ -75,6 +75,7 @@ public class Chisel {
     public static final BlockCarvable.SoundType soundMetalFootstep = new BlockCarvable.SoundType("metal", 1.0f, 1.0f);
     public static boolean multipartLoaded = false;
     public static boolean gtnhLoaded = false;
+    public static boolean iguanaTweaksLoaded = false;
     public static int renderEldritchId;
     public static int renderAutoChiselId;
     public static int renderGlowId;
@@ -147,6 +148,9 @@ public class Chisel {
 
         if (Loader.isModLoaded("dreamcraft")) {
             gtnhLoaded = true;
+        }
+        if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
+            iguanaTweaksLoaded = true;
         }
         TabsInit.preInit();
         Features.preInit();

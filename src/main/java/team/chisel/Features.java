@@ -940,7 +940,11 @@ public enum Features {
                 .setResistance(10F)
                 .setStepSound(Block.soundTypeMetal);
 
-            diamond_block.setHarvestLevel("pickaxe", 2);
+            if (Chisel.iguanaTweaksLoaded) {
+                diamond_block.setHarvestLevel("pickaxe", 4);
+            } else {
+                diamond_block.setHarvestLevel("pickaxe", 2);
+            }
 
             Carving.chisel.addVariation("diamond_block", Blocks.diamond_block, 0, 0);
             diamond_block.carverHelper.addVariation("tile.diamond.1.desc", 1, "diamond/terrain-diamond-embossed");
@@ -1035,7 +1039,11 @@ public enum Features {
                 .setResistance(10.0F)
                 .setStepSound(Block.soundTypeMetal);
 
-            emerald_block.setHarvestLevel("pickaxe", 2);
+            if (Chisel.iguanaTweaksLoaded) {
+                emerald_block.setHarvestLevel("pickaxe", 4);
+            } else {
+                emerald_block.setHarvestLevel("pickaxe", 2);
+            }
 
             Carving.chisel.addVariation("emerald_block", Blocks.emerald_block, 0, 0);
             emerald_block.carverHelper.addVariation("tile.emerald.1.desc", 1, "emerald/panel");
@@ -1519,7 +1527,11 @@ public enum Features {
                 .setResistance(10F)
                 .setStepSound(Block.soundTypeMetal);
 
-            gold_block.setHarvestLevel("pickaxe", 2);
+            if (Chisel.iguanaTweaksLoaded) {
+                gold_block.setHarvestLevel("pickaxe", 3);
+            } else {
+                gold_block.setHarvestLevel("pickaxe", 2);
+            }
 
             Carving.chisel.addVariation("gold_block", Blocks.gold_block, 0, 0);
             gold_block.carverHelper.addVariation("tile.gold.1.desc", 1, "gold/terrain-gold-largeingot");
@@ -1930,7 +1942,11 @@ public enum Features {
                 .setResistance(10F)
                 .setStepSound(Block.soundTypeMetal);
 
-            iron_block.setHarvestLevel("pickaxe", 1);
+            if (Chisel.iguanaTweaksLoaded) {
+                iron_block.setHarvestLevel("pickaxe", 2);
+            } else {
+                iron_block.setHarvestLevel("pickaxe", 1);
+            }
 
             Carving.chisel.addVariation("iron_block", Blocks.iron_block, 0, 0);
             iron_block.carverHelper.addVariation("tile.iron.1.desc", 1, "iron/terrain-iron-largeingot");
@@ -2044,7 +2060,11 @@ public enum Features {
                 .setResistance(5F)
                 .setStepSound(Block.soundTypeStone);
 
-            lapis_block.setHarvestLevel("pickaxe", 1);
+            if (Chisel.iguanaTweaksLoaded) {
+                lapis_block.setHarvestLevel("pickaxe", 2);
+            } else {
+                lapis_block.setHarvestLevel("pickaxe", 1);
+            }
 
             Carving.chisel.addVariation("lapis_block", Blocks.lapis_block, 0, 0);
             lapis_block.carverHelper.addVariation("tile.lapis.1.desc", 1, "lapis/terrain-lapisblock-chunky");
@@ -2804,7 +2824,11 @@ public enum Features {
                 .setResistance(2000.0F)
                 .setStepSound(Block.soundTypeStone);
 
-            obsidian.setHarvestLevel("pickaxe", 3);
+            if (Chisel.iguanaTweaksLoaded) {
+                obsidian.setHarvestLevel("pickaxe", 5);
+            } else {
+                obsidian.setHarvestLevel("pickaxe", 3);
+            }
 
             Carving.chisel.addVariation("obsidian", Blocks.obsidian, 0, 0);
             obsidian.carverHelper.addVariation("tile.obsidian.1.desc", 1, "obsidian/pillar");
