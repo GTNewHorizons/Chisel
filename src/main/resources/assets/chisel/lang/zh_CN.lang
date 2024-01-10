@@ -89,6 +89,26 @@ tile.antiBlock.white.desc=白纯色方块
 tile.antiBlock.yellow.desc=黄纯色方块
 tile.antiBlock.gray.desc=灰纯色方块
 
+
+#AntiBlocksFrameless
+tile.chisel.antiBlockFrameless.name=纯色方块(无框)
+tile.antiBlockFrameless.black.desc=黑纯色方块(无框)
+tile.antiBlockFrameless.blue.desc=蓝纯色方块(无框)
+tile.antiBlockFrameless.brown.desc=棕纯色方块(无框)
+tile.antiBlockFrameless.cyan.desc=青纯色方块(无框)
+tile.antiBlockFrameless.green.desc=绿纯色方块(无框)
+tile.antiBlockFrameless.light_blue.desc=淡蓝纯色方块(无框)
+tile.antiBlockFrameless.silver.desc=淡灰纯色方块(无框)
+tile.antiBlockFrameless.lime.desc=黄绿纯色方块(无框)
+tile.antiBlockFrameless.magenta.desc=品红纯色方块(无框)
+tile.antiBlockFrameless.orange.desc=橙纯色方块(无框)
+tile.antiBlockFrameless.pink.desc=粉纯色方块(无框)
+tile.antiBlockFrameless.purple.desc=紫纯色方块(无框)
+tile.antiBlockFrameless.red.desc=红纯色方块(无框)
+tile.antiBlockFrameless.white.desc=白纯色方块(无框)
+tile.antiBlockFrameless.yellow.desc=黄纯色方块(无框)
+tile.antiBlockFrameless.gray.desc=灰纯色方块(无框)
+
 #Diorite
 tile.chisel.diorite.name=闪长岩
 tile.diorite.0.desc=会生成在世界中

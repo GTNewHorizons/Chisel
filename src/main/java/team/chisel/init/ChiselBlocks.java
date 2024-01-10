@@ -38,6 +38,7 @@ public final class ChiselBlocks {
 
     public static final Block autoChisel = null;
     public static final BlockCarvable antiBlock = null;
+    public static final BlockCarvable antiBlockFrameless = null;
     public static final BlockCarvableBeacon beacon = null;
     public static final BlockCarvable marble = null;
     public static final BlockCarvable marble_pillar = null;

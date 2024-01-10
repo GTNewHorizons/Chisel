@@ -81,14 +81,7 @@ import team.chisel.block.BlockWaterstone;
 import team.chisel.block.CarvableStairsMaker;
 import team.chisel.block.IStairsCreator;
 import team.chisel.carving.Carving;
-import team.chisel.client.render.SubmapManagerAntiblock;
-import team.chisel.client.render.SubmapManagerCarpetFloor;
-import team.chisel.client.render.SubmapManagerCombinedCTM;
-import team.chisel.client.render.SubmapManagerFakeController;
-import team.chisel.client.render.SubmapManagerLeaves;
-import team.chisel.client.render.SubmapManagerSlab;
-import team.chisel.client.render.SubmapManagerSpecialMaterial;
-import team.chisel.client.render.SubmapManagerVoidstone;
+import team.chisel.client.render.*;
 import team.chisel.compat.fmp.ItemBlockChiselTorchPart;
 import team.chisel.config.Configurations;
 import team.chisel.entity.EntityBallOMoss;
@@ -278,6 +271,59 @@ public enum Features {
                     dyeOres[meta],
                     'B',
                     new ItemStack(ChiselBlocks.antiBlock, 1, OreDictionary.WILDCARD_VALUE)));
+        }
+
+        @Override
+        boolean needsMetaRecipes() {
+            return true;
+        }
+    },
+    ANTIBLOCKFRAMELESS {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable antiBlockFrameless = (BlockCarvable) new BlockCarvableGlowie(Material.rock)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks);
+
+            if (!Configurations.allowChiselCrossColors) {
+                antiBlockFrameless.carverHelper.forbidChiseling = true;
+            }
+
+            for (int i = 0; i < 16; i++) {
+                antiBlockFrameless.carverHelper.addVariation(
+                    "tile.antiBlockFrameLess." + ItemDye.field_150921_b[i] + ".desc",
+                    i,
+                    new SubmapManagerAntiblockFrameless(ItemDye.field_150921_b[i]));
+            }
+
+            antiBlockFrameless.carverHelper.registerAll(antiBlockFrameless, "antiBlockFrameless");
+            OreDictionary.registerOre("antiBlockFrameless", antiBlockFrameless);
+        }
+
+        @Override
+        void addRecipes() {
+            if (meta == 0) {
+                GameRegistry.addRecipe(
+                    new ShapedOreRecipe(
+                        new ItemStack(ChiselBlocks.antiBlockFrameless, 8, 15),
+                        "SSS",
+                        "SGS",
+                        "SSS",
+                        'S',
+                        ChiselBlocks.antiBlock,
+                        'G',
+                        "dustGlowstone"));
+            }
+            GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                    new ItemStack(ChiselBlocks.antiBlockFrameless, 8, meta),
+                    "BBB",
+                    "BdB",
+                    "BBB",
+                    'd',
+                    dyeOres[meta],
+                    'B',
+                    new ItemStack(ChiselBlocks.antiBlockFrameless, 1, OreDictionary.WILDCARD_VALUE)));
         }
 
         @Override

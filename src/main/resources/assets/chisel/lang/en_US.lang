@@ -91,6 +91,25 @@ tile.antiBlock.white.desc=White Anti Block
 tile.antiBlock.yellow.desc=Yellow Anti Block
 tile.antiBlock.gray.desc=Gray Anti Block
 
+#AntiBlocksFrameless
+tile.chisel.antiBlockFrameless.name=Anti Block(Frameless)
+tile.antiBlockFrameless.black.desc=Black Anti Block(Frameless)
+tile.antiBlockFrameless.blue.desc=Blue Anti Block(Frameless)
+tile.antiBlockFrameless.brown.desc=Brown Anti Block(Frameless)
+tile.antiBlockFrameless.cyan.desc=Cyan Anti Block(Frameless)
+tile.antiBlockFrameless.green.desc=Green Anti Block(Frameless)
+tile.antiBlockFrameless.light_blue.desc=Light Blue Anti Block(Frameless)
+tile.antiBlockFrameless.silver.desc=Light Gray Anti Block(Frameless)
+tile.antiBlockFrameless.lime.desc=Lime Anti Block(Frameless)
+tile.antiBlockFrameless.magenta.desc=Magenta Anti Block(Frameless)
+tile.antiBlockFrameless.orange.desc=Orange Anti Block(Frameless)
+tile.antiBlockFrameless.pink.desc=Pink Anti Block(Frameless)
+tile.antiBlockFrameless.purple.desc=Purple Anti Block(Frameless)
+tile.antiBlockFrameless.red.desc=Red Anti Block(Frameless)
+tile.antiBlockFrameless.white.desc=White Anti Block(Frameless)
+tile.antiBlockFrameless.yellow.desc=Yellow Anti Block(Frameless)
+tile.antiBlockFrameless.gray.desc=Gray Anti Block(Frameless)
+
 #Diorite
 tile.chisel.diorite.name=Diorite
 tile.diorite.0.desc=Generates in your world
