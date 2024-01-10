@@ -3,8 +3,8 @@
 dependencies {
     implementation("com.github.GTNewHorizons:CodeChickenCore:1.2.0:dev")
     implementation("com.github.GTNewHorizons:CodeChickenLib:1.2.0:dev")
-    implementation("com.github.GTNewHorizons:NotEnoughItems:2.4.13-GTNH:dev")
-	implementation("com.github.GTNewHorizons:ForgeMultipart:1.4.3:dev")
+    implementation("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
+	implementation("com.github.GTNewHorizons:ForgeMultipart:1.4.7:dev")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
@@ -14,7 +14,7 @@ dependencies {
     devOnlyNonPublishable("com.github.GTNewHorizons:waila:1.6.5:dev") {
         transitive = false
     }
-    devOnlyNonPublishable("com.github.GTNewHorizons:WailaHarvestability:1.1.10-GTNH:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:WailaHarvestability:1.2.0-GTNH:dev")
 
     compileOnly("curse.maven:ee3-65509:2305023") {  // https://www.curseforge.com/minecraft/mc-mods/ee3/files/2305023
         transitive = false
