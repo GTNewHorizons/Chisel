@@ -10,6 +10,7 @@ import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
@@ -21,9 +22,11 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.block.BlockMultiLayerBase;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
 
-    float bot = -0.001f, top = 1.0f - bot;
+    final static float bot = -0.001f;
+    final static float top = 1.0f - bot;
     public static int id;
 
     public RendererMultiLayer() {

@@ -1,5 +1,6 @@
 package team.chisel.client.render;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -13,6 +14,7 @@ import team.chisel.Chisel;
 import team.chisel.block.BlockRoadLine;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererRoadLine implements ISimpleBlockRenderingHandler {
 
     public RendererRoadLine() {

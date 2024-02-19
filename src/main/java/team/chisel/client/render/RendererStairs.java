@@ -1,5 +1,6 @@
 package team.chisel.client.render;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
@@ -11,6 +12,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.block.BlockCarvableStairs;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererStairs implements ISimpleBlockRenderingHandler {
 
     public static int id;

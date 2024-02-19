@@ -1,5 +1,6 @@
 package team.chisel.client.render;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
@@ -12,6 +13,7 @@ import team.chisel.Chisel;
 import team.chisel.block.BlockCarvableLayered;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererSimpleLayered implements ISimpleBlockRenderingHandler {
 
     public RendererSimpleLayered() {

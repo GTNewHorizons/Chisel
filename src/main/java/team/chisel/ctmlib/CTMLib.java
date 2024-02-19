@@ -1,10 +1,11 @@
 package team.chisel.ctmlib;
 
 import cpw.mods.fml.common.ModAPIManager;
+import team.chisel.Tags;
 
 public class CTMLib {
 
-    public static final String VERSION = "GRADLETOKEN_VERSION";
+    public static final String VERSION = Tags.VERSION;
 
     private static boolean chiselPresent, chiselInitialized;
 
