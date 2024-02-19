@@ -9,8 +9,6 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 
-    shadowImplementation("com.github.GTNewHorizons:CTMLib:1.4.4:dev")
-
     devOnlyNonPublishable("com.github.GTNewHorizons:waila:1.6.5:dev") {
         transitive = false
     }
