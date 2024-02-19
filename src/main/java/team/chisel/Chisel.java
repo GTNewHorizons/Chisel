@@ -67,7 +67,7 @@ public class Chisel {
         1.0f,
         1.0f);
     public static final String MOD_NAME = "Chisel";
-    public static final String VERSION = "GRADLETOKEN_VERSION";
+    public static final String VERSION = Tags.VERSION;
     public static final BlockCarvable.SoundType soundHolystoneFootstep = new BlockCarvable.SoundType(
         "holystone",
         1.0f,
