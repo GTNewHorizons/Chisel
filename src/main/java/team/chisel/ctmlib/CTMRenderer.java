@@ -18,7 +18,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class CTMRenderer implements ISimpleBlockRenderingHandler {
 
-    private int renderId;
+    private final int renderId;
 
     public CTMRenderer(int renderId) {
         this.renderId = renderId;

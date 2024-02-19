@@ -6,12 +6,15 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
 import team.chisel.block.BlockCarvableLayered;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererSimpleLayered implements ISimpleBlockRenderingHandler {
 
     public RendererSimpleLayered() {

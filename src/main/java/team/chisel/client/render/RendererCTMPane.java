@@ -10,10 +10,13 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
     public static int id;
@@ -31,8 +34,6 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
     }
 
     class PaneRenderer {
-
-        Tessellator tessellator;
 
         double i0u0;
         double i0uh;
@@ -69,8 +70,6 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         double y1;
 
         void set(double x, double y, double z, IIcon icon, IIcon icon1, IIcon icon2) {
-            tessellator = Tessellator.instance;
-
             i0u0 = icon.getMinU();
             i0uh = icon.getInterpolatedU(8.0D);
             i0u1 = icon.getMaxU();
@@ -107,6 +106,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderNorthPane() {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(xh, y1, z0, i0uh, i0v0);
             tessellator.addVertexWithUV(xh, y0, z0, i0uh, i0v1);
             tessellator.addVertexWithUV(xh, y0, zh, i0u0, i0v1);
@@ -118,6 +119,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderSouthPane() {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(xh, y1, zh, i0u1, i0v0);
             tessellator.addVertexWithUV(xh, y0, zh, i0u1, i0v1);
             tessellator.addVertexWithUV(xh, y0, z1, i0uh, i0v1);
@@ -129,6 +132,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderWestPane() {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(x0, y1, zh, i0uh, i0v0);
             tessellator.addVertexWithUV(x0, y0, zh, i0uh, i0v1);
             tessellator.addVertexWithUV(xh, y0, zh, i0u0, i0v1);
@@ -140,6 +145,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderEastPane() {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(xh, y1, zh, i0u1, i0v0);
             tessellator.addVertexWithUV(xh, y0, zh, i0u1, i0v1);
             tessellator.addVertexWithUV(x1, y0, zh, i0uh, i0v1);
@@ -151,6 +158,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderVerticalNS(double y, double zoff0, double zoff1, double v0, double v1) {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(xp0, y0 + y, z0 + zoff0, i1u0, i1v0 + i1v * v0);
             tessellator.addVertexWithUV(xp0, y0 + y, z0 + zoff1, i1u0, i1v0 + i1v * v1);
             tessellator.addVertexWithUV(xp1, y0 + y, z0 + zoff1, i1u1, i1v0 + i1v * v1);
@@ -162,6 +171,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderVerticalWE(double y, double xoff0, double xoff1, double v0, double v1) {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(x0 + xoff0, y0 + y, zp1, i1u1, i1v0 + i1v * v0);
             tessellator.addVertexWithUV(x0 + xoff1, y0 + y, zp1, i1u1, i1v0 + i1v * v1);
             tessellator.addVertexWithUV(x0 + xoff1, y0 + y, zp0, i1u0, i1v0 + i1v * v1);
@@ -173,6 +184,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderHorizontalNS(double zoff, double v0, double v1) {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(xp0, y1, z0 + zoff, i2u0, i2v0 + i2v * v1);
             tessellator.addVertexWithUV(xp0, y0, z0 + zoff, i2u0, i2v0 + i2v * v0);
             tessellator.addVertexWithUV(xp1, y0, z0 + zoff, i2u1, i2v0 + i2v * v0);
@@ -185,6 +198,8 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
 
         public void renderHorizontalWE(double xoff, double v0, double v1) {
+            Tessellator tessellator = Tessellator.instance;
+
             tessellator.addVertexWithUV(x0 + xoff, y1, zp0, i2u0, i2v0 + i2v * v1);
             tessellator.addVertexWithUV(x0 + xoff, y0, zp0, i2u0, i2v0 + i2v * v0);
             tessellator.addVertexWithUV(x0 + xoff, y0, zp1, i2u1, i2v0 + i2v * v0);
@@ -196,13 +211,14 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         }
     }
 
-    PaneRenderer paneRenderer = new PaneRenderer();
+    final ThreadLocal<PaneRenderer> paneRendererThreadLocal = ThreadLocal.withInitial(PaneRenderer::new);
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block b, int modelId,
         RenderBlocks renderer) {
         BlockPane block = (BlockPane) b;
-        Tessellator tessellator = Tessellator.instance;
+        final Tessellator tessellator = Tessellator.instance;
+        final PaneRenderer paneRenderer = paneRendererThreadLocal.get();
 
         tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
 

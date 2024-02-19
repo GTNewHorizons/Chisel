@@ -83,7 +83,7 @@ public class CTM {
 
     public Optional<Boolean> disableObscuredFaceCheck = Optional.absent();
 
-    protected TIntObjectMap<Dir[]> submapMap = new TIntObjectHashMap<Dir[]>();
+    protected TIntObjectMap<Dir[]> submapMap = new TIntObjectHashMap<>();
     protected EnumMap<Dir, Boolean> connectionMap = Maps.newEnumMap(Dir.class);
 
     protected CTM() {

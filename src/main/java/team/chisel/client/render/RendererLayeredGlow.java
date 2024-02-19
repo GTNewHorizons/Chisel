@@ -7,6 +7,8 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
@@ -15,6 +17,7 @@ import team.chisel.config.Configurations;
 import team.chisel.ctmlib.Drawing;
 import team.chisel.utils.GeneralClient;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererLayeredGlow implements ISimpleBlockRenderingHandler {
 
     public RendererLayeredGlow() {
@@ -36,8 +39,9 @@ public class RendererLayeredGlow implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
-        Tessellator.instance.setColorOpaque_I(Configurations.configColors[world.getBlockMetadata(x, y, z)]);
-        Tessellator.instance.setBrightness(0xF000F0);
+        final Tessellator tessellator = Tessellator.instance;
+        tessellator.setColorOpaque_I(Configurations.configColors[world.getBlockMetadata(x, y, z)]);
+        tessellator.setBrightness(0xF000F0);
         Drawing.renderAllFaces(renderer, block, x, y, z, ((BlockCarvableGlow) block).getGlowTexture());
         renderer.renderStandardBlock(block, x, y, z);
         return true;

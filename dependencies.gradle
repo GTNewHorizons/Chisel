@@ -17,6 +17,7 @@ dependencies {
     compileOnly("curse.maven:ee3-65509:2305023") {  // https://www.curseforge.com/minecraft/mc-mods/ee3/files/2305023
         transitive = false
     }
+
     compileOnly("com.github.GTNewHorizons:Angelica:1.0.0-alpha28:api") {
         transitive = false
     }

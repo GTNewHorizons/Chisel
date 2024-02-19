@@ -113,10 +113,11 @@ public class RenderBlocksCTM extends RenderBlocks {
         private static double u, v, xDiff, yDiff, zDiff, uDiff, vDiff;
 
         void render(RenderBlocksCTM inst, ForgeDirection normal, int cacheID) {
+            final Tessellator tessellator = Tessellator.instance;
+
             if (inst.enableAO) {
-                Tessellator.instance
-                    .setColorOpaque_F(inst.redCache[cacheID], inst.grnCache[cacheID], inst.bluCache[cacheID]);
-                Tessellator.instance.setBrightness(inst.lightingCache[cacheID]);
+                tessellator.setColorOpaque_F(inst.redCache[cacheID], inst.grnCache[cacheID], inst.bluCache[cacheID]);
+                tessellator.setBrightness(inst.lightingCache[cacheID]);
             }
 
             u = cacheID == 1 || cacheID == 2 ? inst.maxU : inst.minU;
@@ -151,7 +152,7 @@ public class RenderBlocksCTM extends RenderBlocks {
                 xDiff = yDiff = zDiff = 1;
             }
 
-            Tessellator.instance.addVertexWithUV(
+            tessellator.addVertexWithUV(
                 inst.renderMinX + (x * xDiff),
                 inst.renderMinY + (y * yDiff),
                 inst.renderMinZ + (z * zDiff),
@@ -225,7 +226,6 @@ public class RenderBlocksCTM extends RenderBlocks {
         renderMaxX = renderMaxY = renderMaxZ = 1;
     }
 
-    protected Tessellator tessellator = Tessellator.instance;
     protected double minU, maxU;
     protected double minV, maxV;
     protected int[] lightingCache = new int[4];
@@ -253,16 +253,17 @@ public class RenderBlocksCTM extends RenderBlocks {
         by = y;
         bz = z;
         meta = Minecraft.getMinecraft().theWorld.getBlockMetadata(x, y, z);
+        final Tessellator tessellator = Tessellator.instance;
 
-        Tessellator.instance.setColorOpaque_F(1.0F, 1.0F, 1.0F);
-        Tessellator.instance.addTranslation(x, y, z);
+        tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
+        tessellator.addTranslation(x, y, z);
         if (rendererOld != null && rendererOld.hasOverrideBlockTexture()) {
             setOverrideBlockTexture(rendererOld.overrideBlockTexture);
         }
         inWorld = true;
         boolean res = super.renderStandardBlock(block, x, y, z);
         inWorld = false;
-        Tessellator.instance.addTranslation(-x, -y, -z);
+        tessellator.addTranslation(-x, -y, -z);
 
         return res;
     }

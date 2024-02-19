@@ -7,12 +7,15 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
 import team.chisel.block.BlockRoadLine;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererRoadLine implements ISimpleBlockRenderingHandler {
 
     public RendererRoadLine() {

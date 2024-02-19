@@ -17,7 +17,8 @@ import lombok.Getter;
 public class SubmapManagerCTM implements ISubmapManager {
 
     @SideOnly(Side.CLIENT)
-    private static RenderBlocksCTM rb;
+    private static final ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal = ThreadLocal
+        .withInitial(RenderBlocksCTM::new);
 
     @Getter
     private TextureSubmap submap, submapSmall;
@@ -54,9 +55,7 @@ public class SubmapManagerCTM implements ISubmapManager {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        if (rb == null) {
-            rb = new RenderBlocksCTM();
-        }
+        RenderBlocksCTM rb = renderBlocksThreadLocal.get();
         rb.setRenderBoundsFromBlock(block);
         rb.submap = submap;
         rb.submapSmall = submapSmall;

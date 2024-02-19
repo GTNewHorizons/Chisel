@@ -16,14 +16,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.block.BlockMultiLayerBase;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
 
-    float bot = -0.001f, top = 1.0f - bot;
+    final static float bot = -0.001f;
+    final static float top = 1.0f - bot;
     public static int id;
 
     public RendererMultiLayer() {

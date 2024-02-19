@@ -6,11 +6,14 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import team.chisel.Chisel;
 import team.chisel.ctmlib.Drawing;
 
+@ThreadSafeISBRH(perThread = false)
 public class RendererEldritch implements ISimpleBlockRenderingHandler {
 
     public RendererEldritch() {
@@ -24,11 +27,13 @@ public class RendererEldritch implements ISimpleBlockRenderingHandler {
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
-    RenderBlocksEldritch renderer = new RenderBlocksEldritch();
+    ThreadLocal<RenderBlocksEldritch> rendererThreadLocal = ThreadLocal.withInitial(RenderBlocksEldritch::new);
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks rendererOld) {
+
+        final RenderBlocksEldritch renderer = rendererThreadLocal.get();
 
         // tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x,
         // y, z));
