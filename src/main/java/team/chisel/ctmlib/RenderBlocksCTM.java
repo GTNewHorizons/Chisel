@@ -115,7 +115,6 @@ public class RenderBlocksCTM extends RenderBlocks {
         void render(RenderBlocksCTM inst, ForgeDirection normal, int cacheID) {
             final Tessellator tessellator = Tessellator.instance;
 
-
             if (inst.enableAO) {
                 tessellator.setColorOpaque_F(inst.redCache[cacheID], inst.grnCache[cacheID], inst.bluCache[cacheID]);
                 tessellator.setBrightness(inst.lightingCache[cacheID]);
@@ -255,7 +254,6 @@ public class RenderBlocksCTM extends RenderBlocks {
         bz = z;
         meta = Minecraft.getMinecraft().theWorld.getBlockMetadata(x, y, z);
         final Tessellator tessellator = Tessellator.instance;
-
 
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tessellator.addTranslation(x, y, z);
