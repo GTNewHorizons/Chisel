@@ -348,8 +348,8 @@ public enum TextureType {
 
     @SideOnly(Side.CLIENT)
     public static void clearStatics() {
-        theRenderBlocksCTM.remove();
-        theRenderBlocksColumn.remove();
+        if(theRenderBlocksCTM != null) theRenderBlocksCTM.remove();
+        if(theRenderBlocksColumn != null) theRenderBlocksColumn.remove();
     }
 
     public ISubmapManager createManagerFor(ICarvingVariation variation, String texturePath) {
