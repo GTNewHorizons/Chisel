@@ -206,6 +206,7 @@ public enum TextureType {
 		@Override
 		@SideOnly(Side.CLIENT)
 		protected RenderBlocks createRenderContext(RenderBlocks rendererOld, IBlockAccess world, Object cachedObject) {
+            TextureType.initStatics();
 			RenderBlocksCTM ret = theRenderBlocksCTM.get();
 			Triple<?, TextureSubmap, TextureSubmap> data = (Triple<?, TextureSubmap, TextureSubmap>) cachedObject;
 			ret.blockAccess = world;
