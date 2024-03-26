@@ -4302,7 +4302,38 @@ public enum Features {
         boolean needsMetaRecipes() {
             return true;
         }
+    },
+
+    FROGLIGHT {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable froglight = (BlockCarvable) new BlockCarvable()
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setLightLevel(1.0F)
+                .setStepSound(Block.soundTypeStone);
+
+            for (int i = 0; i < 9; i++) {
+                froglight.carverHelper.addVariation("tile.froglight." + i + ".desc", i, "froglight/" + i);
+            }
+
+            froglight.carverHelper.registerAll(froglight, "froglight");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(ChiselBlocks.froglight, 8, 0),
+                "SGS",
+                "BSB",
+                "SGS",
+                'S', new ItemStack(Blocks.stone, 1, 0),
+                'G', new ItemStack(Items.glowstone_dust, 1),
+                'B', new ItemStack(Items.slime_ball, 1));
+        }
     };
+
 
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
         "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta",
