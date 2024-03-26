@@ -1878,3 +1878,15 @@ tile.glotek.12.desc=Cranberry
 tile.glotek.13.desc=Brink Pink
 tile.glotek.14.desc=Dark Salmon
 tile.glotek.15.desc=Harvest Gold
+
+#Froglight
+tile.chisel.froglight.name=Froglight
+tile.froglight.0.desc=Pearlescent
+tile.froglight.1.desc=Ochre
+tile.froglight.2.desc=Verdant
+tile.froglight.3.desc=Osmium
+tile.froglight.4.desc=Wolframsteel
+tile.froglight.5.desc=Ferric
+tile.froglight.6.desc=Titanic
+tile.froglight.7.desc=Alumium
+tile.froglight.8.desc=Girisite

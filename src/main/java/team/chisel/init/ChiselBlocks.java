@@ -167,5 +167,7 @@ public final class ChiselBlocks {
     // 1.9... drull pls
     public static final BlockCarvable purpur = null;
 
+    // 1.19, skipped 10 versions but thats fine
+    public static final BlockCarvable froglight = null;
     private ChiselBlocks() {}
 }
