@@ -4314,7 +4314,7 @@ public enum Features {
                 .setLightLevel(1.0F)
                 .setStepSound(Block.soundTypeStone);
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 10; i++) {
                 froglight.carverHelper.addVariation("tile.froglight." + i + ".desc", i, "froglight/" + i);
             }
 
