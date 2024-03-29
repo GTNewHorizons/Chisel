@@ -4328,12 +4328,14 @@ public enum Features {
                 "SGS",
                 "BSB",
                 "SGS",
-                'S', new ItemStack(Blocks.stone, 1, 0),
-                'G', new ItemStack(Items.glowstone_dust, 1),
-                'B', new ItemStack(Items.slime_ball, 1));
+                'S',
+                new ItemStack(Blocks.stone, 1, 0),
+                'G',
+                new ItemStack(Items.glowstone_dust, 1),
+                'B',
+                new ItemStack(Items.slime_ball, 1));
         }
     };
-
 
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
         "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta",
