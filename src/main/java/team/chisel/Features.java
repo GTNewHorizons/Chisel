@@ -1455,10 +1455,6 @@ public enum Features {
             BlockCarvable glotek = (BlockCarvable) new BlockCarvableGlowie(Material.rock)
                 .setCreativeTab(ChiselTabs.tabOtherChiselBlocks);
 
-            if (!Configurations.allowChiselCrossColors) {
-                glotek.carverHelper.forbidChiseling = true;
-            }
-
             for (int i = 0; i < 16; i++) {
                 glotek.carverHelper.addVariation(
                     "tile.glotek." + i + ".desc",
@@ -2657,10 +2653,6 @@ public enum Features {
         void addBlocks() {
             BlockCarvable neonite = (BlockCarvable) new BlockCarvableGlowie(Material.rock)
                 .setCreativeTab(ChiselTabs.tabOtherChiselBlocks);
-
-            if (!Configurations.allowChiselCrossColors) {
-                neonite.carverHelper.forbidChiseling = true;
-            }
 
             for (int i = 0; i < 16; i++) {
                 neonite.carverHelper.addVariation(
