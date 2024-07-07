@@ -1,6 +1,8 @@
 package team.chisel.block;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
@@ -104,5 +106,10 @@ public class BlockCarvableGlass extends BlockGlass implements ICarvable {
     @SideOnly(Side.CLIENT)
     public int getRenderBlockPass() {
         return isAlpha ? 1 : 0;
+    }
+
+    @Override
+    public int quantityDropped(Random random) {
+        return Objects.equals(this.getUnlocalizedName(), "tile.chisel.technical2") ? 1 : 0;
     }
 }
