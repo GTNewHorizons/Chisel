@@ -66,7 +66,7 @@ public class SlotChiselSelection extends Slot {
             .onChisel(player.worldObj, container.chisel, General.getVariation(crafted))) {
             container.chisel.damageItem(1, player);
             if (container.chisel.stackSize <= 0) {
-                player.inventory.mainInventory[player.inventory.currentItem] = null;
+                player.setCurrentItemOrArmor(0, null);
             }
         }
 

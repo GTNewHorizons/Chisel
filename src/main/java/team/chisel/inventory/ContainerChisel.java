@@ -152,13 +152,13 @@ public class ContainerChisel extends Container {
     }
 
     public void onChiselSlotChanged() {
-        ItemStack stack = playerInventory.mainInventory[chiselSlot];
+        ItemStack stack = playerInventory.getStackInSlot(chiselSlot);
         if (stack == null || !stack.isItemEqual(chisel)) finished = true;
 
         if (finished) return;
 
         General.setChiselTarget(chisel, inventory.getStackInSpecialSlot());
 
-        playerInventory.mainInventory[chiselSlot] = chisel;
+        playerInventory.setInventorySlotContents(chiselSlot, chisel);
     }
 }

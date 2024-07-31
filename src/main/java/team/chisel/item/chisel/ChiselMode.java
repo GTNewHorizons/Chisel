@@ -121,7 +121,7 @@ public enum ChiselMode implements IChiselMode {
                 player.getCurrentEquippedItem()
                     .damageItem(1, player);
                 if (player.getCurrentEquippedItem().stackSize <= 0) {
-                    player.inventory.mainInventory[player.inventory.currentItem] = null;
+                    player.setCurrentItemOrArmor(0, null);
                     breakChisel = true;
                 }
             }
