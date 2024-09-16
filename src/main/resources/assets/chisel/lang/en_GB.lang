@@ -238,7 +238,7 @@ tile.arcane.10.desc=Fine Thaumaturge's Emblem
 tile.arcane.11.desc=Cracked Rock leaking Eldritch Glow
 
 # Thaumium
-tile.chisel.thaumium.name=Thaumium Block
+tile.chisel.thaumium.name=Block of Thaumium
 tile.thaumium.0.desc=Ornate Pattern
 tile.thaumium.1.desc=Totem Faces
 tile.thaumium.2.desc=Bricks
@@ -692,7 +692,7 @@ tile.factory2.2.desc=Metallic Blue Circuit Plating
 tile.factory2.3.desc=Blue Wireframing
 
 # Diamond blocks
-tile.chisel.diamond_block.name=Diamond Block
+tile.chisel.diamond_block.name=Block of Diamond
 tile.diamond.1.desc=Embossed Diamond Block
 tile.diamond.2.desc=Diamond Block with Panel
 tile.diamond.3.desc=Diamond Cells
@@ -783,7 +783,7 @@ tile.roadLine.3.desc=Double Yellow
 tile.roadLine.4.desc=Hazard Tape
 
 # Iron Blocks
-tile.chisel.iron_block.name=Iron Block
+tile.chisel.iron_block.name=Block of Iron
 tile.iron.1.desc=Large Iron Ingots
 tile.iron.2.desc=Small Iron Ingots
 tile.iron.3.desc=Iron Gears
@@ -801,7 +801,7 @@ tile.iron.14.desc=Iron Vents
 tile.iron.15.desc=Simple Iron Block
 
 # Gold Blocks
-tile.chisel.gold_block.name=Gold Block
+tile.chisel.gold_block.name=Block of Gold
 tile.gold.1.desc=Large Golden Ingots
 tile.gold.2.desc=Small Golden Ingots
 tile.gold.3.desc=Golden Bricks
@@ -836,7 +836,7 @@ tile.lightstone.14.desc=Glowstone Bismuth
 tile.lightstone.15.desc=Glowstone Bismuth Panel
 
 # Lapis blocks
-tile.chisel.lapis_block.name=Lapis Block
+tile.chisel.lapis_block.name=Lapis Lazuli Block
 tile.lapis.1.desc=Chunky Lapis Block
 tile.lapis.2.desc=Dark Lapis Block
 tile.lapis.3.desc=Zelda Lapis Block
@@ -847,7 +847,7 @@ tile.lapis.7.desc=Smooth Lapis
 tile.lapis.8.desc=Lapis with Ornate Layer
 
 # Emerald Blocks
-tile.chisel.emerald_block.name=Emerald Block
+tile.chisel.emerald_block.name=Block of Emerald
 tile.emerald.1.desc=Emerald Panel
 tile.emerald.2.desc=Classic emerald Panel
 tile.emerald.3.desc=Smooth Emerald
@@ -1108,7 +1108,7 @@ tile.glass_pane.14.desc=Japanese Glass Pane
 tile.glass_pane.15.desc=Ornate Japanese Glass Pane
 
 # Redstone block
-tile.chisel.redstone_block.name=Redstone Block
+tile.chisel.redstone_block.name=Block of Redstone
 tile.redstone_block.1.desc=Smooth Redstone
 tile.redstone_block.2.desc=Large Redstone Block
 tile.redstone_block.3.desc=Small Redstone Block
