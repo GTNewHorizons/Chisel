@@ -4,43 +4,27 @@ import java.util.Random;
 
 import net.minecraft.block.BlockTorch;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.cricketcraft.chisel.api.ChiselTabs;
-import com.cricketcraft.chisel.api.ICarvable;
-import com.cricketcraft.chisel.api.carving.CarvableHelper;
-import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.Chisel;
 
-public class BlockCarvableTorch extends BlockTorch implements ICarvable {
+public class BlockCarvableTorch extends BlockTorch {
 
-    public CarvableHelper carverHelper;
     private String texLocation;
     protected boolean emitsParticles = true;
     public int idx;
 
     public BlockCarvableTorch(int idx, String tex) {
         super();
-        carverHelper = new CarvableHelper(this);
         setCreativeTab(ChiselTabs.tabOtherChiselBlocks);
         setLightLevel(0.9375F);
         setBlockName("torch");
         this.idx = idx;
         this.texLocation = tex;
-    }
-
-    @Override
-    public IVariationInfo getManager(IBlockAccess world, int x, int y, int z, int metadata) {
-        return carverHelper.getVariation(metadata);
-    }
-
-    @Override
-    public IVariationInfo getManager(int meta) {
-        return carverHelper.getVariation(meta);
     }
 
     @Override

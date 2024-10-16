@@ -7,21 +7,14 @@ import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.cricketcraft.chisel.api.ICarvable;
-import com.cricketcraft.chisel.api.carving.CarvableHelper;
-import com.cricketcraft.chisel.api.carving.IVariationInfo;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.Chisel;
 import team.chisel.entity.EntityChiselSnowman;
 
-public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
-
-    public CarvableHelper carverHelper;
+public class BlockCarvablePumpkin extends BlockPumpkin {
 
     @SideOnly(Side.CLIENT)
     private IIcon top, face;
@@ -32,7 +25,6 @@ public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
         super(isOn);
         this.setStepSound(Block.soundTypeWood);
         if (isOn) setLightLevel(10.0F);
-        carverHelper = new CarvableHelper(this);
     }
 
     @Override
@@ -120,16 +112,6 @@ public class BlockCarvablePumpkin extends BlockPumpkin implements ICarvable {
         top = icon.registerIcon(Chisel.MOD_ID + ":pumpkin/pumpkin_top");
         face = icon.registerIcon(Chisel.MOD_ID + ":" + faceLocation);
         this.blockIcon = icon.registerIcon(Chisel.MOD_ID + ":pumpkin/pumpkin_side");
-    }
-
-    @Override
-    public IVariationInfo getManager(IBlockAccess world, int x, int y, int z, int metadata) {
-        return carverHelper.getVariation(metadata);
-    }
-
-    @Override
-    public IVariationInfo getManager(int meta) {
-        return carverHelper.getVariation(meta);
     }
 
     public void setInformation(String textureLocation) {
