@@ -2614,22 +2614,22 @@ public enum Features {
                 .setCreativeTab(ChiselTabs.tabMetalChiselBlocks)
                 .setHardness(2.0F)
                 .setResistance(10F);
-            imperial.carverHelper.addVariation("tile.imperial.0.desc", 0, "military/imperialCamo");
-            imperial.carverHelper.addVariation("tile.imperial.1.desc", 1, "military/imperialCamoSecluded");
-            imperial.carverHelper.addVariation("tile.imperial.2.desc", 2, "military/imperialPlate");
-            imperial.carverHelper.addVariation("tile.imperial.3.desc", 3, "military/imperialCautionWhite");
-            imperial.carverHelper.addVariation("tile.imperial.4.desc", 4, "military/imperialCautionOrange");
+            imperial.carverHelper.addVariation("tile.nation.0.desc", 0, "military/imperialCamo");
+            imperial.carverHelper.addVariation("tile.nation.1.desc", 1, "military/imperialCamoSecluded");
+            imperial.carverHelper.addVariation("tile.nation.2.desc", 2, "military/imperialPlate");
+            imperial.carverHelper.addVariation("tile.nation.3.desc", 3, "military/imperialCautionWhite");
+            imperial.carverHelper.addVariation("tile.nation.4.desc", 4, "military/imperialCautionOrange");
             imperial.carverHelper.registerBlock(imperial, "nation");
 
             BlockCarvable rebel = (BlockCarvable) new BlockCarvable(Material.rock)
                 .setCreativeTab(ChiselTabs.tabMetalChiselBlocks)
                 .setHardness(2.0F)
                 .setResistance(10F);
-            rebel.carverHelper.addVariation("tile.rebel.0.desc", 0, "military/rebelCamo", 20);
-            rebel.carverHelper.addVariation("tile.rebel.1.desc", 1, "military/rebelCamoSecluded", 21);
-            rebel.carverHelper.addVariation("tile.rebel.2.desc", 2, "military/rebelPlate", 22);
-            rebel.carverHelper.addVariation("tile.rebel.3.desc", 3, "military/rebelCautionWhite", 23);
-            rebel.carverHelper.addVariation("tile.rebel.4.desc", 4, "military/rebelCautionRed", 24);
+            rebel.carverHelper.addVariation("tile.nation.0.desc", 0, "military/rebelCamo", 20);
+            rebel.carverHelper.addVariation("tile.nation.1.desc", 1, "military/rebelCamoSecluded", 21);
+            rebel.carverHelper.addVariation("tile.nation.2.desc", 2, "military/rebelPlate", 22);
+            rebel.carverHelper.addVariation("tile.nation.3.desc", 3, "military/rebelCautionWhite", 23);
+            rebel.carverHelper.addVariation("tile.nation.4.desc", 4, "military/rebelCautionRed", 24);
             rebel.carverHelper.registerBlock(rebel, "rebel");
 
             imperial.carverHelper.registerVariations("military");
