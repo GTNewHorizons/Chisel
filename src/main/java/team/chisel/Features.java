@@ -1086,7 +1086,9 @@ public enum Features {
             end_Stone.carverHelper.addVariation("tile.end_Stone.13.desc", 13, "endstone/endStoneLargeTile");
             end_Stone.carverHelper.registerBlock(end_Stone, "end_Stone");
             end_Stone.carverHelper.registerVariations("end_stone");
-            end_Stone.carverHelper.registerOre("blockEndstone");
+            if (!Loader.isModLoaded("dreamcraft")) {
+                end_Stone.carverHelper.registerOre("blockEndstone");
+            }
             Carving.chisel.registerOre("end_stone", "blockEndstone");
         }
     },
