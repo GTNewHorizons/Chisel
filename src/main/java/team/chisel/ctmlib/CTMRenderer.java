@@ -49,8 +49,10 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
                 world,
                 ((ICTMBlock<?>) block).getManager(world, x, y, z, meta),
                 meta);
+            rb.renderAllFaces = rendererOld.renderAllFaces;
             boolean ret = rb.renderStandardBlock(block, x, y, z);
             rb.unlockBlockBounds();
+            rb.renderAllFaces = false;
             return ret;
         } catch (Throwable t) {
             CrashReport crashreport = CrashReport.makeCrashReport(t, "Rendering CTM Block");
