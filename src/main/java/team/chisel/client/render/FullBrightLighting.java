@@ -13,8 +13,8 @@ public class FullBrightLighting implements CCRenderState.IVertexOperation {
         if (!state.computeLighting) {
             return false;
         }
-        state.pipeline.addDependency(CCRenderState.colourAttrib);
-        state.pipeline.addDependency(CCRenderState.lightCoordAttrib);
+        state.pipeline.addDependency(CCRenderState.instance().colourAttrib);
+        state.pipeline.addDependency(CCRenderState.instance().lightCoordAttrib);
         return true;
     }
 
