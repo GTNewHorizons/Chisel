@@ -8,6 +8,8 @@ import static team.chisel.init.ChiselBlocks.jackolantern;
 import static team.chisel.init.ChiselBlocks.neonite;
 import static team.chisel.init.ChiselBlocks.nucrete;
 import static team.chisel.init.ChiselBlocks.planks;
+import static team.chisel.init.ChiselBlocks.planks_bop;
+import static team.chisel.init.ChiselBlocks.planks_tc;
 import static team.chisel.init.ChiselBlocks.pumpkin;
 import static team.chisel.init.ChiselBlocks.stainedGlass;
 import static team.chisel.init.ChiselBlocks.stainedGlassForestry;
@@ -4255,6 +4257,106 @@ public enum Features {
                 Carving.chisel.registerOre(name, "wood");
                 Carving.chisel.setVariationSound(name, Chisel.MOD_ID + ":chisel.wood");
                 Blocks.fire.setFireInfo(planks[i], 5, 20);
+            }
+        }
+    },
+
+    WOOD_BOP("BiomesOPlenty") {
+
+        @Override
+        void addBlocks() {
+            String[] plank_names = { "sacredoak", "cherry", "dark", "fir", "ethereal", "magic", "mangrove", "palm",
+                "redwood", "willow", "pine", "hellbark", "jacaranda", "mahogany" };
+            for (int i = 0; i < plank_names.length; i++) {
+                String n = plank_names[i];
+                final String name = n.replace('-', '_') + "_planks";
+
+                planks_bop[i] = (BlockCarvable) (new BlockCarvable(Material.wood))
+                    .setCreativeTab(ChiselTabs.tabWoodChiselBlocks)
+                    .setHardness(2.0F)
+                    .setResistance(5.0F)
+                    .setStepSound(Block.soundTypeWood);
+
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.1.desc", 1, "planks-" + n + "/clean");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.2.desc", 2, "planks-" + n + "/short");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.6.desc", 6, "planks-" + n + "/fancy");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.8.desc", 8, "planks-" + n + "/panel-nails");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.9.desc", 9, "planks-" + n + "/double");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.10.desc", 10, "planks-" + n + "/crate");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.11.desc", 11, "planks-" + n + "/crate-fancy");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.13.desc", 13, "planks-" + n + "/large");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.3.desc", 3, "planks-" + n + "/vertical");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.4.desc", 4, "planks-" + n + "/vertical-uneven");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.5.desc", 5, "planks-" + n + "/parquet");
+                planks_bop[i].carverHelper.addVariation("tile." + n + ".planks.7.desc", 7, "planks-" + n + "/blinds");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.12.desc", 12, "planks-" + n + "/crateex");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.14.desc", 14, "planks-" + n + "/chaotic-hor");
+                planks_bop[i].carverHelper
+                    .addVariation("tile." + n + ".planks.15.desc", 15, "planks-" + n + "/chaotic");
+                planks_bop[i].carverHelper.registerAll(planks_bop[i], name);
+                int i2 = i;
+                if (i > 9) {
+                    i2 = i + 1;
+                }
+                Carving.chisel.addVariation(name, GameRegistry.findBlock("BiomesOPlenty", "planks"), i2, 0);
+                planks_bop[i].setHarvestLevel("axe", 0);
+                Carving.chisel.registerOre(name, "wood");
+                Carving.chisel.setVariationSound(name, Chisel.MOD_ID + ":chisel.wood");
+                Blocks.fire.setFireInfo(planks_bop[i], 5, 20);
+            }
+        }
+    },
+
+    WOOD_THAUMCRAFT("Thaumcraft") {
+
+        @Override
+        void addBlocks() {
+            String[] plank_names = { "greatwood", "silverwood" };
+            for (int i = 0; i < plank_names.length; i++) {
+                String n = plank_names[i];
+                final String name = n.replace('-', '_') + "_planks";
+
+                planks_tc[i] = (BlockCarvable) (new BlockCarvable(Material.wood))
+                    .setCreativeTab(ChiselTabs.tabWoodChiselBlocks)
+                    .setHardness(2.0F)
+                    .setResistance(5.0F)
+                    .setStepSound(Block.soundTypeWood);
+
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.1.desc", 1, "planks-" + n + "/clean");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.2.desc", 2, "planks-" + n + "/short");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.6.desc", 6, "planks-" + n + "/fancy");
+                planks_tc[i].carverHelper
+                    .addVariation("tile." + n + ".planks.8.desc", 8, "planks-" + n + "/panel-nails");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.9.desc", 9, "planks-" + n + "/double");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.10.desc", 10, "planks-" + n + "/crate");
+                planks_tc[i].carverHelper
+                    .addVariation("tile." + n + ".planks.11.desc", 11, "planks-" + n + "/crate-fancy");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.13.desc", 13, "planks-" + n + "/large");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.3.desc", 3, "planks-" + n + "/vertical");
+                planks_tc[i].carverHelper
+                    .addVariation("tile." + n + ".planks.4.desc", 4, "planks-" + n + "/vertical-uneven");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.5.desc", 5, "planks-" + n + "/parquet");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.7.desc", 7, "planks-" + n + "/blinds");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.12.desc", 12, "planks-" + n + "/crateex");
+                planks_tc[i].carverHelper
+                    .addVariation("tile." + n + ".planks.14.desc", 14, "planks-" + n + "/chaotic-hor");
+                planks_tc[i].carverHelper.addVariation("tile." + n + ".planks.15.desc", 15, "planks-" + n + "/chaotic");
+                planks_tc[i].carverHelper.registerAll(planks_tc[i], name);
+                if (GameRegistry.findBlock("salisarcana", "blockCustomPlank") != null) {
+                    Carving.chisel.addVariation(name, GameRegistry.findBlock("salisarcana", "blockCustomPlank"), i, 0);
+                } else {
+                    Carving.chisel
+                        .addVariation(name, GameRegistry.findBlock("Thaumcraft", "blockWoodenDevice"), i + 6, 0);
+                }
+                planks_tc[i].setHarvestLevel("axe", 0);
+                Carving.chisel.registerOre(name, "wood");
+                Carving.chisel.setVariationSound(name, Chisel.MOD_ID + ":chisel.wood");
+                Blocks.fire.setFireInfo(planks_tc[i], 5, 20);
             }
         }
     },
