@@ -68,7 +68,6 @@ public class ItemChisel extends Item implements IChiselItem {
                     + type.name()
                         .toLowerCase());
         }
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
