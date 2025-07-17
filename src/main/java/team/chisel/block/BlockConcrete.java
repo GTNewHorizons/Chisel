@@ -21,31 +21,33 @@ public class BlockConcrete extends BlockCarvable {
         super();
         FMLCommonHandler.instance()
             .bus()
-            .register(this);
+            .register(new EventHandler());
     }
 
     @SideOnly(Side.CLIENT)
     private static MovementInput manualInputCheck;
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void speedupPlayer(PlayerTickEvent event) {
-        if (event.phase == Phase.START && event.side.isClient()
-            && event.player.onGround
-            && event.player instanceof EntityPlayerSP) {
-            if (manualInputCheck == null) {
-                manualInputCheck = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
-            }
-            EntityPlayerSP player = (EntityPlayerSP) event.player;
-            Block below = player.worldObj.getBlock(
-                MathHelper.floor_double(player.posX),
-                MathHelper.floor_double(player.posY) - 2,
-                MathHelper.floor_double(player.posZ));
-            if (below == this) {
-                manualInputCheck.updatePlayerMoveState();
-                if (manualInputCheck.moveForward != 0 || manualInputCheck.moveStrafe != 0) {
-                    player.motionX *= Configurations.concreteVelocityMult + 0.05;
-                    player.motionZ *= Configurations.concreteVelocityMult + 0.05;
+    public class EventHandler{
+        @SubscribeEvent
+        @SideOnly(Side.CLIENT)
+        public void speedupPlayer(PlayerTickEvent event) {
+            if (event.phase == Phase.START && event.side.isClient()
+                && event.player.onGround
+                && event.player instanceof EntityPlayerSP) {
+                if (manualInputCheck == null) {
+                    manualInputCheck = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
+                }
+                EntityPlayerSP player = (EntityPlayerSP) event.player;
+                Block below = player.worldObj.getBlock(
+                    MathHelper.floor_double(player.posX),
+                    MathHelper.floor_double(player.posY) - 2,
+                    MathHelper.floor_double(player.posZ));
+                if (below == BlockConcrete.this) {
+                    manualInputCheck.updatePlayerMoveState();
+                    if (manualInputCheck.moveForward != 0 || manualInputCheck.moveStrafe != 0) {
+                        player.motionX *= Configurations.concreteVelocityMult + 0.05;
+                        player.motionZ *= Configurations.concreteVelocityMult + 0.05;
+                    }
                 }
             }
         }
