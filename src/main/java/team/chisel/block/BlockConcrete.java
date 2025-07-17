@@ -27,7 +27,8 @@ public class BlockConcrete extends BlockCarvable {
     @SideOnly(Side.CLIENT)
     private static MovementInput manualInputCheck;
 
-    public class EventHandler{
+    public class EventHandler {
+
         @SubscribeEvent
         @SideOnly(Side.CLIENT)
         public void speedupPlayer(PlayerTickEvent event) {
