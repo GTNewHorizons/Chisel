@@ -14,7 +14,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
@@ -68,7 +67,6 @@ public class ItemChisel extends Item implements IChiselItem {
                     + type.name()
                         .toLowerCase());
         }
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
