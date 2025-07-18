@@ -17,7 +17,7 @@ dependencies {
         transitive = false
     }
 
-    compileOnly("com.github.GTNewHorizons:Angelica:1.0.0-beta50:api") {
+    compileOnly("com.github.GTNewHorizons:Angelica:1.0.0-beta51:api") {
         transitive = false
     }
 }
