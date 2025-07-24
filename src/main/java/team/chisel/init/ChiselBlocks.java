@@ -150,6 +150,8 @@ public final class ChiselBlocks {
     public static Block[] torches = new BlockCarvableTorch[16];
 
     public static BlockCarvable[] planks = new BlockCarvable[6];
+    public static BlockCarvable[] planks_bop = new BlockCarvable[14];
+    public static BlockCarvable[] planks_tc = new BlockCarvable[2];
 
     public static BlockCarvablePumpkin[] pumpkin = new BlockCarvablePumpkin[16];
     public static BlockCarvablePumpkin[] jackolantern = new BlockCarvablePumpkin[16];
