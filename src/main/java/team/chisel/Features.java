@@ -3500,8 +3500,6 @@ public enum Features {
             // LanguageRegistry.addName(new ItemStack(snakestone, 1, 13),
             // "Stone snake block body");
 
-            // https://github.com/GTNewHorizons/GT-New-Horizons-Modpack/issues/12982
-            // Fix: Snakestone blocks moved into the "Smooth Stone" chisel group
             Carving.chisel.addVariation("stonebricksmooth", stone_snakestone, 1, 20);
             Carving.chisel.addVariation("stonebricksmooth", stone_snakestone, 13, 21);
 
