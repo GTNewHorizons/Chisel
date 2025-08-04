@@ -57,7 +57,7 @@ import team.chisel.world.GeneratorChisel;
     name = Chisel.MOD_NAME,
     version = Chisel.VERSION,
     guiFactory = "team.chisel.client.gui.GuiFactory",
-    dependencies = "after:EE3;after:ForgeMultipart;after:Thaumcraft;after:appliedenergistics2;after:Railcraft;after:AWWayofTime;after:TwilightForest")
+    dependencies = "after:EE3;after:ForgeMultipart;after:Thaumcraft;after:appliedenergistics2;after:Railcraft;after:AWWayofTime;after:TwilightForest;after:BiomesOPlenty")
 public class Chisel {
 
     public static final String MOD_ID = "chisel";
