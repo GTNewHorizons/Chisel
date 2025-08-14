@@ -75,7 +75,13 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
     };
 
     @SideOnly(Side.CLIENT)
-    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal;
+
+    private static void initStatics() {
+        if (renderBlocksThreadLocal == null) {
+            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksCTMFullbright::new);
+        }
+    }
 
     private String color;
     private TextureSubmap submap, submapSmall;
@@ -99,11 +105,8 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
+        initStatics();
         RenderBlocksCTMFullbright rb = renderBlocksThreadLocal.get();
-        if (rb == null) {
-            rb = new RenderBlocksCTMFullbright();
-            renderBlocksThreadLocal.set(rb);
-        }
         rb.setRenderBoundsFromBlock(block);
         rb.submap = submap;
         rb.submapSmall = submapSmall;
