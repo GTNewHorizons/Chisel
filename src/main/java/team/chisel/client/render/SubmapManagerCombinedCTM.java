@@ -99,7 +99,7 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
     }
 
     @SideOnly(Side.CLIENT)
-    private RenderBlocksCTM rb;
+    private static final ThreadLocal<RenderBlocksCombinedCTM> renderBlocksThreadLocal = new ThreadLocal<>();
 
     private TextureSubmap submap, smallSubmap;
     private int size;
@@ -133,8 +133,10 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
+        RenderBlocksCombinedCTM rb = renderBlocksThreadLocal.get();
         if (rb == null) {
             rb = new RenderBlocksCombinedCTM();
+            renderBlocksThreadLocal.set(rb);
         }
         rb.setRenderBoundsFromBlock(block);
         return rb;

@@ -79,7 +79,7 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
     }
 
     @SideOnly(Side.CLIENT)
-    private RenderBlocksVoidstone rb;
+    private static final ThreadLocal<RenderBlocksVoidstone> renderBlocksThreadLocal = new ThreadLocal<>();
 
     private ISubmapManager overlay;
     private TextureSubmap base;
@@ -123,8 +123,10 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
+        RenderBlocksVoidstone rb = renderBlocksThreadLocal.get();
         if (rb == null) {
             rb = new RenderBlocksVoidstone();
+            renderBlocksThreadLocal.set(rb);
         }
         RenderBlocks ctx = overlay.createRenderContext(rendererOld, block, world);
         rb.setRenderBoundsFromBlock(block);
