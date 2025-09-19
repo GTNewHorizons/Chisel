@@ -3501,8 +3501,10 @@ public enum Features {
             // "Stone snake block head");
             // LanguageRegistry.addName(new ItemStack(snakestone, 1, 13),
             // "Stone snake block body");
-            Carving.chisel.addVariation("stonebrick", stone_snakestone, 1, 100);
-            Carving.chisel.addVariation("stonebrick", stone_snakestone, 13, 101);
+
+            Carving.chisel.addVariation("stonebricksmooth", stone_snakestone, 1, 20);
+            Carving.chisel.addVariation("stonebricksmooth", stone_snakestone, 13, 21);
+
             // Carving.chisel.registerOre("snakestoneStone", "snakestoneStone");
         }
     },
