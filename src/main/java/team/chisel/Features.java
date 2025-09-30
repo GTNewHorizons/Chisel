@@ -4064,23 +4064,25 @@ public enum Features {
                 .setHardness(5.0F)
                 .setResistance(10.0F);
             voidstone2.carverHelper
-                .addVariation("tile.voidstone.0.desc", 0, new SubmapManagerVoidstone("voidstone/animated/raw", 0));
-            voidstone2.carverHelper
-                .addVariation("tile.voidstone.1.desc", 1, new SubmapManagerVoidstone("voidstone/animated/quarters", 1));
-            voidstone2.carverHelper
-                .addVariation("tile.voidstone.2.desc", 2, new SubmapManagerVoidstone("voidstone/animated/smooth", 2));
-            voidstone2.carverHelper
-                .addVariation("tile.voidstone.3.desc", 3, new SubmapManagerVoidstone("voidstone/animated/skulls", 3));
-            voidstone2.carverHelper
-                .addVariation("tile.voidstone.4.desc", 4, new SubmapManagerVoidstone("voidstone/animated/rune", 4));
+                .addVariation("tile.voidstone2.0.desc", 0, new SubmapManagerVoidstone("voidstone/animated/raw", 0));
             voidstone2.carverHelper.addVariation(
-                "tile.voidstone.5.desc",
+                "tile.voidstone2.1.desc",
+                1,
+                new SubmapManagerVoidstone("voidstone/animated/quarters", 1));
+            voidstone2.carverHelper
+                .addVariation("tile.voidstone2.2.desc", 2, new SubmapManagerVoidstone("voidstone/animated/smooth", 2));
+            voidstone2.carverHelper
+                .addVariation("tile.voidstone2.3.desc", 3, new SubmapManagerVoidstone("voidstone/animated/skulls", 3));
+            voidstone2.carverHelper
+                .addVariation("tile.voidstone2.4.desc", 4, new SubmapManagerVoidstone("voidstone/animated/rune", 4));
+            voidstone2.carverHelper.addVariation(
+                "tile.voidstone2.5.desc",
                 5,
                 new SubmapManagerVoidstone("voidstone/animated/metalborder", 5));
             voidstone2.carverHelper
-                .addVariation("tile.voidstone.6.desc", 6, new SubmapManagerVoidstone("voidstone/animated/eye", 6));
+                .addVariation("tile.voidstone2.6.desc", 6, new SubmapManagerVoidstone("voidstone/animated/eye", 6));
             voidstone2.carverHelper
-                .addVariation("tile.voidstone.7.desc", 7, new SubmapManagerVoidstone("voidstone/animated/bevel", 7));
+                .addVariation("tile.voidstone2.7.desc", 7, new SubmapManagerVoidstone("voidstone/animated/bevel", 7));
 
             voidstone2.carverHelper.registerAll(voidstone2, "voidstone2");
             Carving.chisel.registerOre("voidstone2", "voidstone2");
