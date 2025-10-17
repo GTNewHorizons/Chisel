@@ -1,21 +1,6 @@
 package team.chisel;
 
-import static team.chisel.init.ChiselBlocks.andesite;
-import static team.chisel.init.ChiselBlocks.cubit;
-import static team.chisel.init.ChiselBlocks.diorite;
-import static team.chisel.init.ChiselBlocks.granite;
-import static team.chisel.init.ChiselBlocks.jackolantern;
-import static team.chisel.init.ChiselBlocks.neonite;
-import static team.chisel.init.ChiselBlocks.nucrete;
-import static team.chisel.init.ChiselBlocks.planks;
-import static team.chisel.init.ChiselBlocks.planks_bop;
-import static team.chisel.init.ChiselBlocks.planks_tc;
-import static team.chisel.init.ChiselBlocks.pumpkin;
-import static team.chisel.init.ChiselBlocks.stainedGlass;
-import static team.chisel.init.ChiselBlocks.stainedGlassForestry;
-import static team.chisel.init.ChiselBlocks.stainedGlassPane;
-import static team.chisel.init.ChiselBlocks.sveltstone;
-import static team.chisel.init.ChiselBlocks.torches;
+import static team.chisel.init.ChiselBlocks.*;
 import static team.chisel.utils.General.featureColors;
 import static team.chisel.utils.General.sGNames;
 
@@ -1636,6 +1621,53 @@ public enum Features {
                 new ItemStack(Blocks.stone, 1),
                 'X',
                 new ItemStack(Items.coal, 1));
+        }
+    },
+    HARDENED_CLAY {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable hardenedClay = (BlockCarvable) new BlockCarvable(Material.rock)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
+                .setStepSound(Block.soundTypeStone)
+                .setHardness(1.5F);
+            Carving.chisel.addVariation("hardenedClay", Blocks.hardened_clay, 0, -1);
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.0.desc", 0, "hardenedclay/braid");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.1.desc", 1, "hardenedclay/bricks-cracked");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.2.desc", 2, "hardenedclay/bricks-encased");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.3.desc", 3, "hardenedclay/bricks-small");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.4.desc", 4, "hardenedclay/bricks-soft");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.5.desc", 5, "hardenedclay/bricks-solid");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.6.desc", 6, "hardenedclay/bricks-triple");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.7.desc", 7, "hardenedclay/chaotic-medium");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.8.desc", 8, "hardenedclay/chaotic-small");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.9.desc", 9, "hardenedclay/circular");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.10.desc", 10, "hardenedclay/cracked");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.11.desc", 11, "hardenedclay/dent");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.12.desc", 12, "hardenedclay/french-1");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.13.desc", 13, "hardenedclay/french-2");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.14.desc", 14, "hardenedclay/layers");
+            hardenedClay.carverHelper.addVariation("tile.hardened_clay.15.desc", 15, "hardenedclay/mosaic");
+            hardenedClay.carverHelper.registerAll(hardenedClay, "hardenedClay");
+
+            BlockCarvable hardenedClay2 = (BlockCarvable) new BlockCarvable(Material.rock)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
+                .setStepSound(Block.soundTypeStone)
+                .setHardness(1.5F);
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.16.desc", 0, "hardenedclay/ornate");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.17.desc", 1, "hardenedclay/panel");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.18.desc", 2, "hardenedclay/pillar");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.19.desc", 3, "hardenedclay/prism");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.20.desc", 4, "hardenedclay/road");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.21.desc", 5, "hardenedclay/tiles-large");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.22.desc", 6, "hardenedclay/tiles-medium");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.23.desc", 7, "hardenedclay/tiles-small");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.24.desc", 8, "hardenedclay/twisted");
+            hardenedClay2.carverHelper.addVariation("tile.hardened_clay.25.desc", 9, "hardenedclay/weaver");
+            hardenedClay2.carverHelper.registerBlock(hardenedClay2, "hardenedClay2");
+            hardenedClay2.carverHelper.registerVariations("hardenedClay");
+
+            Carving.chisel.registerOre("hardenedClay", "hardenedClay");
         }
     },
 
