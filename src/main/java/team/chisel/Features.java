@@ -21,17 +21,6 @@ import static team.chisel.utils.General.sGNames;
 
 import java.util.List;
 
-import com.cricketcraft.chisel.api.ChiselTabs;
-import com.cricketcraft.chisel.api.carving.CarvableHelper;
-import com.cricketcraft.chisel.api.carving.CarvingUtils.SimpleCarvingGroup;
-import com.cricketcraft.chisel.api.carving.ICarvingVariation;
-import com.cricketcraft.chisel.api.carving.IVariationInfo;
-import com.cricketcraft.chisel.api.rendering.TextureType;
-import com.google.common.collect.Lists;
-
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -45,6 +34,18 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import com.cricketcraft.chisel.api.ChiselTabs;
+import com.cricketcraft.chisel.api.carving.CarvableHelper;
+import com.cricketcraft.chisel.api.carving.CarvingUtils.SimpleCarvingGroup;
+import com.cricketcraft.chisel.api.carving.ICarvingVariation;
+import com.cricketcraft.chisel.api.carving.IVariationInfo;
+import com.cricketcraft.chisel.api.rendering.TextureType;
+import com.google.common.collect.Lists;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import team.chisel.block.BlockAutoChisel;
 import team.chisel.block.BlockBeaconBase;
 import team.chisel.block.BlockCarvable;
@@ -1685,6 +1686,7 @@ public enum Features {
     },
 
     HARDENED_CLAY_STAINED {
+
         @Override
         void addBlocks() {
             for (int i = 0; i < 16; i++) {
@@ -1692,7 +1694,8 @@ public enum Features {
                     .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
                     .setStepSound(Block.soundTypeStone)
                     .setHardness(1.5F);
-                final String groupName = "hardenedClay" + sGNames[i].replaceAll(" ", "").toLowerCase();
+                final String groupName = "hardenedClay" + sGNames[i].replaceAll(" ", "")
+                    .toLowerCase();
                 final String blockName = "hardened_clay_" + sGNames[i].replaceAll(" ", "")
                     .toLowerCase();
                 String oreName = "hardenedClay" + sGNames[i].replaceAll(" ", "");
