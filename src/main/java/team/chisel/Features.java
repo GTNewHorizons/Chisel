@@ -1,11 +1,37 @@
 package team.chisel;
 
-import static team.chisel.init.ChiselBlocks.*;
+import static team.chisel.init.ChiselBlocks.andesite;
+import static team.chisel.init.ChiselBlocks.cubit;
+import static team.chisel.init.ChiselBlocks.diorite;
+import static team.chisel.init.ChiselBlocks.granite;
+import static team.chisel.init.ChiselBlocks.jackolantern;
+import static team.chisel.init.ChiselBlocks.neonite;
+import static team.chisel.init.ChiselBlocks.nucrete;
+import static team.chisel.init.ChiselBlocks.planks;
+import static team.chisel.init.ChiselBlocks.planks_bop;
+import static team.chisel.init.ChiselBlocks.planks_tc;
+import static team.chisel.init.ChiselBlocks.pumpkin;
+import static team.chisel.init.ChiselBlocks.stainedGlass;
+import static team.chisel.init.ChiselBlocks.stainedGlassForestry;
+import static team.chisel.init.ChiselBlocks.stainedGlassPane;
+import static team.chisel.init.ChiselBlocks.sveltstone;
+import static team.chisel.init.ChiselBlocks.torches;
 import static team.chisel.utils.General.featureColors;
 import static team.chisel.utils.General.sGNames;
 
 import java.util.List;
 
+import com.cricketcraft.chisel.api.ChiselTabs;
+import com.cricketcraft.chisel.api.carving.CarvableHelper;
+import com.cricketcraft.chisel.api.carving.CarvingUtils.SimpleCarvingGroup;
+import com.cricketcraft.chisel.api.carving.ICarvingVariation;
+import com.cricketcraft.chisel.api.carving.IVariationInfo;
+import com.cricketcraft.chisel.api.rendering.TextureType;
+import com.google.common.collect.Lists;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -19,18 +45,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import com.cricketcraft.chisel.api.ChiselTabs;
-import com.cricketcraft.chisel.api.carving.CarvableHelper;
-import com.cricketcraft.chisel.api.carving.CarvingUtils.SimpleCarvingGroup;
-import com.cricketcraft.chisel.api.carving.ICarvingVariation;
-import com.cricketcraft.chisel.api.carving.IVariationInfo;
-import com.cricketcraft.chisel.api.rendering.TextureType;
-import com.google.common.collect.Lists;
-
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import team.chisel.block.BlockAutoChisel;
 import team.chisel.block.BlockBeaconBase;
 import team.chisel.block.BlockCarvable;
