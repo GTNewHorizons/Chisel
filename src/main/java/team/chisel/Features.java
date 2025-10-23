@@ -1664,7 +1664,7 @@ public enum Features {
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.13.desc", 13, "hardenedclay/french-2");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.14.desc", 14, "hardenedclay/layers");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.15.desc", 15, "hardenedclay/mosaic");
-            hardenedClay.carverHelper.registerAll(hardenedClay, "hardenedClay");
+            hardenedClay.carverHelper.registerAll(hardenedClay, "hardened_clay");
 
             BlockCarvable hardenedClay2 = (BlockCarvable) new BlockCarvable(Material.rock)
                 .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
@@ -1680,7 +1680,7 @@ public enum Features {
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.23.desc", 7, "hardenedclay/tiles-small");
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.24.desc", 8, "hardenedclay/twisted");
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.25.desc", 9, "hardenedclay/weaver");
-            hardenedClay2.carverHelper.registerBlock(hardenedClay2, "hardenedClay2");
+            hardenedClay2.carverHelper.registerBlock(hardenedClay2, "hardened_clay2");
             hardenedClay2.carverHelper.registerVariations("hardenedClay");
         }
     },
@@ -1718,7 +1718,7 @@ public enum Features {
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".13.desc", 13, texName + "french-2");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".14.desc", 14, texName + "layers");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".15.desc", 15, texName + "mosaic");
-                hardenedClay.carverHelper.registerAll(hardenedClay, groupName);
+                hardenedClay.carverHelper.registerAll(hardenedClay, blockName);
 
                 BlockCarvable hardenedClay2 = (BlockCarvable) new BlockCarvable(Material.rock)
                     .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
@@ -1734,7 +1734,7 @@ public enum Features {
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".23.desc", 7, texName + "tiles-small");
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".24.desc", 8, texName + "twisted");
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".25.desc", 9, texName + "weaver");
-                hardenedClay2.carverHelper.registerBlock(hardenedClay2, groupName + "2");
+                hardenedClay2.carverHelper.registerBlock(hardenedClay2, blockName + "2");
                 hardenedClay2.carverHelper.registerVariations(groupName);
             }
         }

@@ -341,8 +341,8 @@ tile.grimstone.13.desc=Grimstone Plate
 tile.grimstone.14.desc=Flaky Grimstone
 
 #Hardened Clay (Terracotta)
-tile.chisel.hardenedClay.name=Terracotta
-tile.chisel.hardenedClay2.name=Terracotta
+tile.chisel.hardened_clay.name=Terracotta
+tile.chisel.hardened_clay2.name=Terracotta
 tile.hardened_clay.0.desc=Braid Terracotta Bricks
 tile.hardened_clay.1.desc=Cracked Terracotta Bricks
 tile.hardened_clay.2.desc=Small Terracotta Brick Tiles
@@ -371,8 +371,8 @@ tile.hardened_clay.24.desc=Radial Carved Terracotta
 tile.hardened_clay.25.desc=Engraved Terracotta Block
 
 #Hardened Clay (Black Terracotta)
-tile.chisel.hardenedClayblack.name=Black Terracotta
-tile.chisel.hardenedClayblack2.name=Black Terracotta
+tile.chisel.hardened_clay_black.name=Black Terracotta
+tile.chisel.hardened_clay_black2.name=Black Terracotta
 tile.hardened_clay_black.0.desc=Braid Black Terracotta Bricks
 tile.hardened_clay_black.1.desc=Cracked Black Terracotta Bricks
 tile.hardened_clay_black.2.desc=Small Black Terracotta Brick Tiles
@@ -401,8 +401,8 @@ tile.hardened_clay_black.24.desc=Radial Carved Black Terracotta
 tile.hardened_clay_black.25.desc=Engraved Black Terracotta Block
 
 #Hardened Clay (Blue Terracotta)
-tile.chisel.hardenedClayblue.name=Blue Terracotta
-tile.chisel.hardenedClayblue2.name=Blue Terracotta
+tile.chisel.hardened_clay_blue.name=Blue Terracotta
+tile.chisel.hardened_clay_blue2.name=Blue Terracotta
 tile.hardened_clay_blue.0.desc=Braid Blue Terracotta Bricks
 tile.hardened_clay_blue.1.desc=Cracked Blue Terracotta Bricks
 tile.hardened_clay_blue.2.desc=Small Blue Terracotta Brick Tiles
@@ -431,8 +431,8 @@ tile.hardened_clay_blue.24.desc=Radial Carved Blue Terracotta
 tile.hardened_clay_blue.25.desc=Engraved Blue Terracotta Block
 
 #Hardened Clay (Brown Terracotta)
-tile.chisel.hardenedClaybrown.name=Brown Terracotta
-tile.chisel.hardenedClaybrown2.name=Brown Terracotta
+tile.chisel.hardened_clay_brown.name=Brown Terracotta
+tile.chisel.hardened_clay_brown2.name=Brown Terracotta
 tile.hardened_clay_brown.0.desc=Braid Brown Terracotta Bricks
 tile.hardened_clay_brown.1.desc=Cracked Brown Terracotta Bricks
 tile.hardened_clay_brown.2.desc=Small Brown Terracotta Brick Tiles
@@ -461,8 +461,8 @@ tile.hardened_clay_brown.24.desc=Radial Carved Brown Terracotta
 tile.hardened_clay_brown.25.desc=Engraved Brown Terracotta Block
 
 #Hardened Clay (Cyan Terracotta)
-tile.chisel.hardenedClaycyan.name=Cyan Terracotta
-tile.chisel.hardenedClaycyan2.name=Cyan Terracotta
+tile.chisel.hardened_clay_cyan.name=Cyan Terracotta
+tile.chisel.hardened_clay_cyan2.name=Cyan Terracotta
 tile.hardened_clay_cyan.0.desc=Braid Cyan Terracotta Bricks
 tile.hardened_clay_cyan.1.desc=Cracked Cyan Terracotta Bricks
 tile.hardened_clay_cyan.2.desc=Small Cyan Terracotta Brick Tiles
@@ -491,8 +491,8 @@ tile.hardened_clay_cyan.24.desc=Radial Carved Cyan Terracotta
 tile.hardened_clay_cyan.25.desc=Engraved Cyan Terracotta Block
 
 #Hardened Clay (Gray Terracotta)
-tile.chisel.hardenedClaygray.name=Gray Terracotta
-tile.chisel.hardenedClaygray2.name=Gray Terracotta
+tile.chisel.hardened_clay_gray.name=Gray Terracotta
+tile.chisel.hardened_clay_gray2.name=Gray Terracotta
 tile.hardened_clay_gray.0.desc=Braid Gray Terracotta Bricks
 tile.hardened_clay_gray.1.desc=Cracked Gray Terracotta Bricks
 tile.hardened_clay_gray.2.desc=Small Gray Terracotta Brick Tiles
@@ -521,8 +521,8 @@ tile.hardened_clay_gray.24.desc=Radial Carved Gray Terracotta
 tile.hardened_clay_gray.25.desc=Engraved Gray Terracotta Block
 
 #Hardened Clay (Green Terracotta)
-tile.chisel.hardenedClaygreen.name=Green Terracotta
-tile.chisel.hardenedClaygreen2.name=Green Terracotta
+tile.chisel.hardened_clay_green.name=Green Terracotta
+tile.chisel.hardened_clay_green2.name=Green Terracotta
 tile.hardened_clay_green.0.desc=Braid Green Terracotta Bricks
 tile.hardened_clay_green.1.desc=Cracked Green Terracotta Bricks
 tile.hardened_clay_green.2.desc=Small Green Terracotta Brick Tiles
@@ -551,38 +551,38 @@ tile.hardened_clay_green.24.desc=Radial Carved Green Terracotta
 tile.hardened_clay_green.25.desc=Engraved Green Terracotta Block
 
 #Hardened Clay (Light Blue Terracotta)
-tile.chisel.hardenedClaylightblue.name=Light Blue Terracotta
-tile.chisel.hardenedClaylightblue2.name=Light Blue Terracotta
-tile.hardened_clay_lighblue.0.desc=Braid Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.1.desc=Cracked Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.2.desc=Small Light Blue Terracotta Brick Tiles
-tile.hardened_clay_lighblue.3.desc=Small Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.4.desc=Aligned Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.5.desc=Detailed Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.6.desc=Wide Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.7.desc=Chaotic Small Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.8.desc=Small Disordered Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.9.desc=Ornate Light Blue Terracotta
-tile.hardened_clay_lighblue.10.desc=Cracked Light Blue Terracotta
-tile.hardened_clay_lighblue.11.desc=Sunken Light Blue Terracotta Panel
-tile.hardened_clay_lighblue.12.desc=Fancy Light Blue Terracotta Bricks
-tile.hardened_clay_lighblue.13.desc=Fancy Light Blue Terracotta Tiles
-tile.hardened_clay_lighblue.14.desc=Light Blue Terracotta Layers
-tile.hardened_clay_lighblue.15.desc=Light Blue Terracotta Mosaic
-tile.hardened_clay_lighblue.16.desc=Small Ornate Light Blue Terracotta
-tile.hardened_clay_lighblue.17.desc=Light Blue Terracotta Large Tile
-tile.hardened_clay_lighblue.18.desc=Light Blue Terracotta Pillar
-tile.hardened_clay_lighblue.19.desc=Prismatic Light Blue Terracotta
-tile.hardened_clay_lighblue.20.desc=Light Blue Terracotta Bricks in a Fancy Arrangement
-tile.hardened_clay_lighblue.21.desc=Light Blue Terracotta Panel
-tile.hardened_clay_lighblue.22.desc=Small Light Blue Terracotta Blocks
-tile.hardened_clay_lighblue.23.desc=Small Light Blue Terracotta Tiles
-tile.hardened_clay_lighblue.24.desc=Radial Carved Light Blue Terracotta
-tile.hardened_clay_lighblue.25.desc=Engraved Light Blue Terracotta Block
+tile.chisel.hardened_clay_lightblue.name=Light Blue Terracotta
+tile.chisel.hardened_clay_lightblue2.name=Light Blue Terracotta
+tile.hardened_clay_lightblue.0.desc=Braid Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.1.desc=Cracked Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.2.desc=Small Light Blue Terracotta Brick Tiles
+tile.hardened_clay_lightblue.3.desc=Small Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.4.desc=Aligned Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.5.desc=Detailed Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.6.desc=Wide Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.7.desc=Chaotic Small Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.8.desc=Small Disordered Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.9.desc=Ornate Light Blue Terracotta
+tile.hardened_clay_lightblue.10.desc=Cracked Light Blue Terracotta
+tile.hardened_clay_lightblue.11.desc=Sunken Light Blue Terracotta Panel
+tile.hardened_clay_lightblue.12.desc=Fancy Light Blue Terracotta Bricks
+tile.hardened_clay_lightblue.13.desc=Fancy Light Blue Terracotta Tiles
+tile.hardened_clay_lightblue.14.desc=Light Blue Terracotta Layers
+tile.hardened_clay_lightblue.15.desc=Light Blue Terracotta Mosaic
+tile.hardened_clay_lightblue.16.desc=Small Ornate Light Blue Terracotta
+tile.hardened_clay_lightblue.17.desc=Light Blue Terracotta Large Tile
+tile.hardened_clay_lightblue.18.desc=Light Blue Terracotta Pillar
+tile.hardened_clay_lightblue.19.desc=Prismatic Light Blue Terracotta
+tile.hardened_clay_lightblue.20.desc=Light Blue Terracotta Bricks in a Fancy Arrangement
+tile.hardened_clay_lightblue.21.desc=Light Blue Terracotta Panel
+tile.hardened_clay_lightblue.22.desc=Small Light Blue Terracotta Blocks
+tile.hardened_clay_lightblue.23.desc=Small Light Blue Terracotta Tiles
+tile.hardened_clay_lightblue.24.desc=Radial Carved Light Blue Terracotta
+tile.hardened_clay_lightblue.25.desc=Engraved Light Blue Terracotta Block
 
 #Hardened Clay (Light Gray Terracotta)
-tile.chisel.hardenedClaylightgray.name=Light Gray Terracotta
-tile.chisel.hardenedClaylightgray2.name=Light Gray Terracotta
+tile.chisel.hardened_clay_lightgray.name=Light Gray Terracotta
+tile.chisel.hardened_clay_lightgray2.name=Light Gray Terracotta
 tile.hardened_clay_lightgray.0.desc=Braid Light Gray Terracotta Bricks
 tile.hardened_clay_lightgray.1.desc=Cracked Light Gray Terracotta Bricks
 tile.hardened_clay_lightgray.2.desc=Small Light Gray Terracotta Brick Tiles
@@ -611,8 +611,8 @@ tile.hardened_clay_lightgray.24.desc=Radial Carved Light Gray Terracotta
 tile.hardened_clay_lightgray.25.desc=Engraved Light Gray Terracotta Block
 
 #Hardened Clay (Lime Terracotta)
-tile.chisel.hardenedClaylime.name=Lime Terracotta
-tile.chisel.hardenedClaylime2.name=Lime Terracotta
+tile.chisel.hardened_clay_lime.name=Lime Terracotta
+tile.chisel.hardened_clay_lime2.name=Lime Terracotta
 tile.hardened_clay_lime.0.desc=Braid Lime Terracotta Bricks
 tile.hardened_clay_lime.1.desc=Cracked Lime Terracotta Bricks
 tile.hardened_clay_lime.2.desc=Small Lime Terracotta Brick Tiles
@@ -641,8 +641,8 @@ tile.hardened_clay_lime.24.desc=Radial Carved Lime Terracotta
 tile.hardened_clay_lime.25.desc=Engraved Lime Terracotta Block
 
 #Hardened Clay (Magenta Terracotta)
-tile.chisel.hardenedClaymagenta.name=Magenta Terracotta
-tile.chisel.hardenedClaymagenta2.name=Magenta Terracotta
+tile.chisel.hardened_clay_magenta.name=Magenta Terracotta
+tile.chisel.hardened_clay_magenta2.name=Magenta Terracotta
 tile.hardened_clay_magenta.0.desc=Braid Magenta Terracotta Bricks
 tile.hardened_clay_magenta.1.desc=Cracked Magenta Terracotta Bricks
 tile.hardened_clay_magenta.2.desc=Small Magenta Terracotta Brick Tiles
@@ -671,8 +671,8 @@ tile.hardened_clay_magenta.24.desc=Radial Carved Magenta Terracotta
 tile.hardened_clay_magenta.25.desc=Engraved Magenta Terracotta Block
 
 #Hardened Clay (Orange Terracotta)
-tile.chisel.hardenedClayorange.name=Orange Terracotta
-tile.chisel.hardenedClayorange2.name=Orange Terracotta
+tile.chisel.hardened_clay_orange.name=Orange Terracotta
+tile.chisel.hardened_clay_orange2.name=Orange Terracotta
 tile.hardened_clay_orange.0.desc=Braid Orange Terracotta Bricks
 tile.hardened_clay_orange.1.desc=Cracked Orange Terracotta Bricks
 tile.hardened_clay_orange.2.desc=Small Orange Terracotta Brick Tiles
@@ -701,8 +701,8 @@ tile.hardened_clay_orange.24.desc=Radial Carved Orange Terracotta
 tile.hardened_clay_orange.25.desc=Engraved Orange Terracotta Block
 
 #Hardened Clay (Pink Terracotta)
-tile.chisel.hardenedClaypink.name=Pink Terracotta
-tile.chisel.hardenedClaypink2.name=Pink Terracotta
+tile.chisel.hardened_clay_pink.name=Pink Terracotta
+tile.chisel.hardened_clay_pink2.name=Pink Terracotta
 tile.hardened_clay_pink.0.desc=Braid Pink Terracotta Bricks
 tile.hardened_clay_pink.1.desc=Cracked Pink Terracotta Bricks
 tile.hardened_clay_pink.2.desc=Small Pink Terracotta Brick Tiles
@@ -731,8 +731,8 @@ tile.hardened_clay_pink.24.desc=Radial Carved Pink Terracotta
 tile.hardened_clay_pink.25.desc=Engraved Pink Terracotta Block
 
 #Hardened Clay (Purple Terracotta)
-tile.chisel.hardenedClaypurple.name=Purple Terracotta
-tile.chisel.hardenedClaypurple2.name=Purple Terracotta
+tile.chisel.hardened_clay_purple.name=Purple Terracotta
+tile.chisel.hardened_clay_purple2.name=Purple Terracotta
 tile.hardened_clay_purple.0.desc=Braid Purple Terracotta Bricks
 tile.hardened_clay_purple.1.desc=Cracked Purple Terracotta Bricks
 tile.hardened_clay_purple.2.desc=Small Purple Terracotta Brick Tiles
@@ -761,8 +761,8 @@ tile.hardened_clay_purple.24.desc=Radial Carved Purple Terracotta
 tile.hardened_clay_purple.25.desc=Engraved Purple Terracotta Block
 
 #Hardened Clay (Red Terracotta)
-tile.chisel.hardenedClayred.name=Red Terracotta
-tile.chisel.hardenedClayred2.name=Red Terracotta
+tile.chisel.hardened_clay_red.name=Red Terracotta
+tile.chisel.hardened_clay_red2.name=Red Terracotta
 tile.hardened_clay_red.0.desc=Braid Red Terracotta Bricks
 tile.hardened_clay_red.1.desc=Cracked Red Terracotta Bricks
 tile.hardened_clay_red.2.desc=Small Red Terracotta Brick Tiles
@@ -791,8 +791,8 @@ tile.hardened_clay_red.24.desc=Radial Carved Red Terracotta
 tile.hardened_clay_red.25.desc=Engraved Red Terracotta Block
 
 #Hardened Clay (White Terracotta)
-tile.chisel.hardenedClaywhite.name=White Terracotta
-tile.chisel.hardenedClaywhite2.name=White Terracotta
+tile.chisel.hardened_clay_white.name=White Terracotta
+tile.chisel.hardened_clay_white2.name=White Terracotta
 tile.hardened_clay_white.0.desc=Braid White Terracotta Bricks
 tile.hardened_clay_white.1.desc=Cracked White Terracotta Bricks
 tile.hardened_clay_white.2.desc=Small White Terracotta Brick Tiles
@@ -821,8 +821,8 @@ tile.hardened_clay_white.24.desc=Radial Carved White Terracotta
 tile.hardened_clay_white.25.desc=Engraved White Terracotta Block
 
 #Hardened Clay (Yellow Terracotta)
-tile.chisel.hardenedClayyellow.name=Yellow Terracotta
-tile.chisel.hardenedClayyellow2.name=Yellow Terracotta
+tile.chisel.hardened_clay_yellow.name=Yellow Terracotta
+tile.chisel.hardened_clay_yellow2.name=Yellow Terracotta
 tile.hardened_clay_yellow.0.desc=Braid Yellow Terracotta Bricks
 tile.hardened_clay_yellow.1.desc=Cracked Yellow Terracotta Bricks
 tile.hardened_clay_yellow.2.desc=Small Yellow Terracotta Brick Tiles
