@@ -65,6 +65,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable netherrack = null;
     public static final BlockCarvable mossy_cobblestone = null;
     public static final BlockCarvable stonebricksmooth = null;
+    public static final BlockCarvable hardenedClay = null;
     public static final BlockCarvablePane iron_bars = null;
     public static final BlockCarvableIce ice = null;
     public static final BlockCarvableIce ice_pillar = null;
