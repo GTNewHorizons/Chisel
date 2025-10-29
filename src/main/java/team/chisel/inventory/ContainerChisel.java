@@ -119,6 +119,10 @@ public class ContainerChisel extends Container {
                     InventoryChiselSelection.normalSlots + 1 + 36,
                     false)) {
                     entity.inventory.setItemStack(itemstack1);
+                    if (slotIdx == InventoryChiselSelection.normalSlots) {
+                        slot.onPickupFromSlot(entity, itemstack1);
+                        slot.putStack(null);
+                    }
                     return null;
                 }
             }
