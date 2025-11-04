@@ -1647,7 +1647,7 @@ public enum Features {
                 .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
                 .setStepSound(Block.soundTypeStone)
                 .setHardness(1.5F);
-            Carving.chisel.addVariation("hardenedClay", Blocks.hardened_clay, 0, 0);
+            Carving.chisel.addVariation("hardened_clay", Blocks.hardened_clay, 0, 0);
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.0.desc", 0, "hardenedclay/braid");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.1.desc", 1, "hardenedclay/bricks-cracked");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.2.desc", 2, "hardenedclay/bricks-encased");
@@ -1681,7 +1681,7 @@ public enum Features {
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.24.desc", 8, "hardenedclay/twisted");
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.25.desc", 9, "hardenedclay/weaver");
             hardenedClay2.carverHelper.registerBlock(hardenedClay2, "hardened_clay2");
-            hardenedClay2.carverHelper.registerVariations("hardenedClay");
+            hardenedClay2.carverHelper.registerVariations("hardened_clay");
         }
     },
 
@@ -1701,7 +1701,7 @@ public enum Features {
                 String oreName = "hardenedClay" + sGNames[i].replaceAll(" ", "");
                 String texName = "hardenedclay/" + sGNames[i].toLowerCase()
                     .replaceAll(" ", "") + "/";
-                Carving.chisel.addVariation(groupName, Blocks.stained_hardened_clay, i, 0);
+                Carving.chisel.addVariation(blockName, Blocks.stained_hardened_clay, i, 0);
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".0.desc", 0, texName + "braid");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".1.desc", 1, texName + "bricks-cracked");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".2.desc", 2, texName + "bricks-encased");
@@ -1735,7 +1735,7 @@ public enum Features {
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".24.desc", 8, texName + "twisted");
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".25.desc", 9, texName + "weaver");
                 hardenedClay2.carverHelper.registerBlock(hardenedClay2, blockName + "2");
-                hardenedClay2.carverHelper.registerVariations(groupName);
+                hardenedClay2.carverHelper.registerVariations(blockName);
             }
         }
     },
