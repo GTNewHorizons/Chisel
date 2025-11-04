@@ -2,7 +2,7 @@
 
 dependencies {
     implementation("com.github.GTNewHorizons:CodeChickenCore:1.4.7:dev")
-    implementation("com.github.GTNewHorizons:NotEnoughItems:2.8.21-GTNH:dev")
+    implementation("com.github.GTNewHorizons:NotEnoughItems:2.8.25-GTNH:dev")
     implementation("com.github.GTNewHorizons:ForgeMultipart:1.7.0:dev")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
