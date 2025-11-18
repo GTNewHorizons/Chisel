@@ -173,7 +173,7 @@ public final class ChiselBlocks {
     // 1.19, skipped 10 versions but thats fine
     public static final BlockCarvable froglight = null;
 
-    // Backports from Dustrial Deco. Original artists are WDSPC and Evo_94!
+    // Backports from Dustrial Decor. Original artists are WDSPC and Evo_94!
     public static final BlockCarvable lantern = null;
     public static final BlockCarvable sheetmetal = null;
 
