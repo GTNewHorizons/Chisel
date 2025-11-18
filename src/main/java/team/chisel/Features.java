@@ -2050,6 +2050,7 @@ public enum Features {
             }
 
             Carving.chisel.addVariation("iron_block", Blocks.iron_block, 0, 0);
+            iron_block.carverHelper.addVariation("tile.iron.0.desc", 0, "iron/terrain-iron-rusted");
             iron_block.carverHelper.addVariation("tile.iron.1.desc", 1, "iron/terrain-iron-largeingot");
             iron_block.carverHelper.addVariation("tile.iron.2.desc", 2, "iron/terrain-iron-smallingot");
             iron_block.carverHelper.addVariation("tile.iron.3.desc", 3, "iron/terrain-iron-gears");
@@ -4556,6 +4557,41 @@ public enum Features {
             lantern.carverHelper.addVariation("tile.lantern.5.desc", 5, "lantern/endlantern");
 
             lantern.carverHelper.registerAll(lantern, "lantern");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(ChiselBlocks.sheetmetal, 1, 0),
+                "iii",
+                "   ",
+                "iii",
+                'i',
+                new ItemStack(Items.iron_ingot, 1, 0));
+        }
+    },
+
+    SHEETMETAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable sheetmetal = (BlockCarvable) new BlockCarvable()
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setStepSound(Block.soundTypeMetal);
+
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.0.desc", 0, "sheetmetal/walling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.1.desc", 1, "sheetmetal/siding");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.2.desc", 2, "sheetmetal/paneling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.3.desc", 3, "sheetmetal/plating");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.4.desc", 4, "sheetmetal/treading");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.5.desc", 5, "sheetmetal/rustywalling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.6.desc", 6, "sheetmetal/rustysiding");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.7.desc", 7, "sheetmetal/rustypaneling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.8.desc", 8, "sheetmetal/rustyplating");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.9.desc", 9, "sheetmetal/rustytreading");
+
+            sheetmetal.carverHelper.registerAll(sheetmetal, "sheetmetal");
         }
 
         @Override
