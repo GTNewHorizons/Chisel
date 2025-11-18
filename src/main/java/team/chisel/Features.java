@@ -4549,8 +4549,7 @@ public enum Features {
 
         @Override
         void addBlocks() {
-            BlockCarvable lantern = (BlockCarvable) new BlockCarvable()
-                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+            BlockCarvable lantern = (BlockCarvable) new BlockCarvable().setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
                 .setHardness(1F)
                 .setLightLevel(1.0F)
                 .setStepSound(Block.soundTypeGlass);
