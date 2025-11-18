@@ -4536,6 +4536,42 @@ public enum Features {
                 'B',
                 new ItemStack(Items.slime_ball, 1));
         }
+    },
+
+    LANTERN {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable lantern = (BlockCarvable) new BlockCarvable()
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setLightLevel(1.0F)
+                .setStepSound(Block.soundTypeGlass);
+
+            lantern.carverHelper.addVariation("tile.lantern.0.desc", 0, "lantern/lantern");
+            lantern.carverHelper.addVariation("tile.lantern.1.desc", 1, "lantern/glowlantern");
+            lantern.carverHelper.addVariation("tile.lantern.2.desc", 2, "lantern/redlantern");
+            lantern.carverHelper.addVariation("tile.lantern.3.desc", 3, "lantern/soullantern");
+            lantern.carverHelper.addVariation("tile.lantern.4.desc", 4, "lantern/cursedlantern");
+            lantern.carverHelper.addVariation("tile.lantern.5.desc", 5, "lantern/endlantern");
+
+            lantern.carverHelper.registerAll(lantern, "lantern");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(ChiselBlocks.lantern, 1, 0),
+                "gig",
+                "iGi",
+                "gig",
+                'i',
+                new ItemStack(Items.iron_ingot, 1, 0),
+                'G',
+                new ItemStack(Blocks.glowstone, 1),
+                'g',
+                new ItemStack(Items.glowstone_dust, 1));
+        }
     };
 
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",

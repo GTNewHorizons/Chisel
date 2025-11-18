@@ -173,5 +173,8 @@ public final class ChiselBlocks {
     // 1.19, skipped 10 versions but thats fine
     public static final BlockCarvable froglight = null;
 
+    // Backports from Dustrial Deco
+    public static final BlockCarvable lantern = null;
+
     private ChiselBlocks() {}
 }

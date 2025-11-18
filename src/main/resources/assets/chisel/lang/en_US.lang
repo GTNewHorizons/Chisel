@@ -2698,5 +2698,14 @@ tile.froglight.7.desc=Orundum
 tile.froglight.8.desc=Blood-Stained
 tile.froglight.9.desc=Ichor
 
+#Lanterns
+tile.chisel.lantern.name=Lantern
+tile.lantern.0.desc=Simple
+tile.lantern.1.desc=Glow
+tile.lantern.2.desc=Redstone
+tile.lantern.3.desc=Soul
+tile.lantern.4.desc=Cursed
+tile.lantern.5.desc=Ender
+
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick
