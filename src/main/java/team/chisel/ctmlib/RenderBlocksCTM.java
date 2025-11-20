@@ -361,6 +361,61 @@ public class RenderBlocksCTM extends RenderBlocks {
 
     protected void side(Block block, SubSide side, int iconIndex) {
 
+        // If we have an overridden texture when we're supposed to render a CTM texture,
+        // we'll treat it as a normal block texture but still render it the CTM way: quarter of a texture at a time.
+        // This way has one benefit: if an overridden texture is a base block texture and a CTM texture (that is being
+        // rendered next) is an overlay texture above the base, we're avoiding any z-fighting issues because we
+        // create identical vertices and now only order of rendering dictates which texture will be rendered above
+        if (hasOverrideBlockTexture()) {
+            IIcon icon = overrideBlockTexture;
+
+            double u0 = icon.getMinU();
+            double u1 = icon.getMaxU();
+            double v0 = icon.getMinV();
+            double v1 = icon.getMaxV();
+
+            double uMid = (u0 + u1) / 2;
+            double vMid = (v0 + v1) / 2;
+
+            // Map all LB-style subsides to bottom-left quarter, RB to bottom-right, RT to top-right, LT to top-left
+            switch (side) {
+                // bottom-left quarter
+                case XNEG_LB, XPOS_LB, YNEG_LB, YPOS_LB, ZNEG_LB, ZPOS_LB -> {
+                    minU = u0;
+                    maxU = uMid;
+                    minV = vMid;
+                    maxV = v1;
+                }
+
+                // bottom-right quarter
+                case XNEG_RB, XPOS_RB, YNEG_RB, YPOS_RB, ZNEG_RB, ZPOS_RB -> {
+                    minU = uMid;
+                    maxU = u1;
+                    minV = vMid;
+                    maxV = v1;
+                }
+
+                // top-right quarter
+                case XNEG_RT, XPOS_RT, YNEG_RT, YPOS_RT, ZNEG_RT, ZPOS_RT -> {
+                    minU = uMid;
+                    maxU = u1;
+                    minV = v0;
+                    maxV = vMid;
+                }
+
+                // top-left quarter
+                case XNEG_LT, XPOS_LT, YNEG_LT, YPOS_LT, ZNEG_LT, ZPOS_LT -> {
+                    minU = u0;
+                    maxU = uMid;
+                    minV = v0;
+                    maxV = vMid;
+                }
+            }
+
+            side.render(this);
+            return;
+        }
+
         IIcon icon;
         TextureSubmap map;
         if (iconIndex >= 16) {
@@ -378,25 +433,10 @@ public class RenderBlocksCTM extends RenderBlocks {
             icon = map.getSubIcon(x, y);
         }
 
-        double umax = icon.getMaxU();
-        double umin = icon.getMinU();
-        double vmax = icon.getMaxV();
-        double vmin = icon.getMinV();
-
-        minU = umin;
-        maxU = umax;
-        minV = vmin;
-        maxV = vmax;
-
-        // uCache[0] = umin;
-        // uCache[1] = umax;
-        // uCache[2] = umax;
-        // uCache[3] = umin;
-        //
-        // vCache[0] = vmax;
-        // vCache[1] = vmax;
-        // vCache[2] = vmin;
-        // vCache[3] = vmin;
+        minU = icon.getMinU();
+        maxU = icon.getMaxU();
+        minV = icon.getMinV();
+        maxV = icon.getMaxV();
 
         side.render(this);
     }
@@ -404,7 +444,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceXNeg(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.WEST);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceXNeg(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 4);
@@ -429,7 +469,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceXPos(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.EAST);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceXPos(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 5);
@@ -454,7 +494,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceZNeg(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.NORTH);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceZNeg(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 2);
@@ -479,7 +519,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceZPos(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.SOUTH);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceZPos(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 3);
@@ -504,7 +544,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceYNeg(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.DOWN);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceYNeg(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 0);
@@ -529,7 +569,7 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Override
     public void renderFaceYPos(Block block, double x, double y, double z, IIcon icon) {
         pre(ForgeDirection.UP);
-        if (!inWorld || hasOverrideBlockTexture() || submap == null) {
+        if (!inWorld || submap == null) {
             super.renderFaceYPos(block, 0, 0, 0, icon);
         } else {
             int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 1);
