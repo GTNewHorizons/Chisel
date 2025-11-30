@@ -21,91 +21,81 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
 
     // TODO there must be a better more generic way to do this...
     @SideOnly(Side.CLIENT)
-    private class RenderBlocksVoidstone extends RenderBlocksCTM {
+    private static class RenderBlocksVoidstone extends RenderBlocksCTM {
 
         @Override
         public void renderFaceXNeg(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceXNeg(block, x, y, z, icon);
-            renderMinX += 0.005;
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.WEST.ordinal()));
             super.renderFaceXNeg(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceXNeg(block, x, y, z, icon);
         }
 
         @Override
         public void renderFaceXPos(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceXPos(block, x, y, z, icon);
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.EAST.ordinal()));
-            renderMaxX -= 0.005;
             super.renderFaceXPos(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceXPos(block, x, y, z, icon);
         }
 
         @Override
         public void renderFaceYNeg(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceYNeg(block, x, y, z, icon);
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.DOWN.ordinal()));
-            renderMinY += 0.005;
             super.renderFaceYNeg(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceYNeg(block, x, y, z, icon);
         }
 
         @Override
         public void renderFaceYPos(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceYPos(block, x, y, z, icon);
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.UP.ordinal()));
-            renderMaxY -= 0.005;
             super.renderFaceYPos(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceYPos(block, x, y, z, icon);
         }
 
         @Override
         public void renderFaceZNeg(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceZNeg(block, x, y, z, icon);
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.NORTH.ordinal()));
-            renderMinZ += 0.005;
             super.renderFaceZNeg(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceZNeg(block, x, y, z, icon);
         }
 
         @Override
         public void renderFaceZPos(Block block, double x, double y, double z, IIcon icon) {
-            super.renderFaceZPos(block, x, y, z, icon);
             setOverrideBlockTexture(getBase(x, y, z, ForgeDirection.SOUTH.ordinal()));
-            renderMaxZ -= 0.005;
             super.renderFaceZPos(block, x, y, z, null);
             clearOverrideBlockTexture();
+
+            super.renderFaceZPos(block, x, y, z, icon);
         }
 
-        public void reset() {
-            this.submap = null;
+        private IIcon getBase(double x, double y, double z, int side) {
+            return TextureType.getVIcon(
+                TextureType.V4,
+                base,
+                MathHelper.floor_double(x),
+                MathHelper.floor_double(y),
+                MathHelper.floor_double(z),
+                side);
         }
     }
 
     @SideOnly(Side.CLIENT)
     private static ThreadLocal<RenderBlocksVoidstone> renderBlocksThreadLocal;
 
-    private static void initStatics() {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = new ThreadLocal<>();
-        }
-    }
-
     private ISubmapManager overlay;
-    private TextureSubmap base;
+    private static TextureSubmap base;
 
-    private IIcon getBase(double x, double y, double z, int side) {
-        return TextureType.getVIcon(
-            TextureType.V4,
-            base,
-            MathHelper.floor_double(x),
-            MathHelper.floor_double(y),
-            MathHelper.floor_double(z),
-            side);
-    }
-
-    private String texture;
-    private int meta;
+    private final String texture;
+    private final int meta;
 
     public SubmapManagerVoidstone(String texture, int meta) {
         this.texture = texture;
@@ -133,18 +123,22 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        initStatics();
+        if (renderBlocksThreadLocal == null) {
+            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksVoidstone::new);
+        }
+
         RenderBlocksVoidstone rb = renderBlocksThreadLocal.get();
-        if (rb == null) {
-            rb = new RenderBlocksVoidstone();
-            renderBlocksThreadLocal.set(rb);
-        } else rb.reset();
         RenderBlocks ctx = overlay.createRenderContext(rendererOld, block, world);
         rb.setRenderBoundsFromBlock(block);
+
         if (ctx instanceof RenderBlocksCTM) {
             rb.submap = ((RenderBlocksCTM) ctx).submap;
             rb.submapSmall = ((RenderBlocksCTM) ctx).submapSmall;
+        } else {
+            rb.submap = null;
+            rb.submapSmall = null;
         }
+
         return rb;
     }
 }
