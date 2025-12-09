@@ -1647,7 +1647,7 @@ public enum Features {
                 .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
                 .setStepSound(Block.soundTypeStone)
                 .setHardness(1.5F);
-            Carving.chisel.addVariation("hardenedClay", Blocks.hardened_clay, 0, 0);
+            Carving.chisel.addVariation("hardened_clay", Blocks.hardened_clay, 0, 0);
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.0.desc", 0, "hardenedclay/braid");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.1.desc", 1, "hardenedclay/bricks-cracked");
             hardenedClay.carverHelper.addVariation("tile.hardened_clay.2.desc", 2, "hardenedclay/bricks-encased");
@@ -1681,7 +1681,7 @@ public enum Features {
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.24.desc", 8, "hardenedclay/twisted");
             hardenedClay2.carverHelper.addVariation("tile.hardened_clay.25.desc", 9, "hardenedclay/weaver");
             hardenedClay2.carverHelper.registerBlock(hardenedClay2, "hardened_clay2");
-            hardenedClay2.carverHelper.registerVariations("hardenedClay");
+            hardenedClay2.carverHelper.registerVariations("hardened_clay");
         }
     },
 
@@ -1701,7 +1701,7 @@ public enum Features {
                 String oreName = "hardenedClay" + sGNames[i].replaceAll(" ", "");
                 String texName = "hardenedclay/" + sGNames[i].toLowerCase()
                     .replaceAll(" ", "") + "/";
-                Carving.chisel.addVariation(groupName, Blocks.stained_hardened_clay, i, 0);
+                Carving.chisel.addVariation(blockName, Blocks.stained_hardened_clay, i, 0);
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".0.desc", 0, texName + "braid");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".1.desc", 1, texName + "bricks-cracked");
                 hardenedClay.carverHelper.addVariation("tile." + blockName + ".2.desc", 2, texName + "bricks-encased");
@@ -1735,7 +1735,7 @@ public enum Features {
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".24.desc", 8, texName + "twisted");
                 hardenedClay2.carverHelper.addVariation("tile." + blockName + ".25.desc", 9, texName + "weaver");
                 hardenedClay2.carverHelper.registerBlock(hardenedClay2, blockName + "2");
-                hardenedClay2.carverHelper.registerVariations(groupName);
+                hardenedClay2.carverHelper.registerVariations(blockName);
             }
         }
     },
@@ -2050,6 +2050,7 @@ public enum Features {
             }
 
             Carving.chisel.addVariation("iron_block", Blocks.iron_block, 0, 0);
+            iron_block.carverHelper.addVariation("tile.iron.0.desc", 0, "iron/terrain-iron-rusted");
             iron_block.carverHelper.addVariation("tile.iron.1.desc", 1, "iron/terrain-iron-largeingot");
             iron_block.carverHelper.addVariation("tile.iron.2.desc", 2, "iron/terrain-iron-smallingot");
             iron_block.carverHelper.addVariation("tile.iron.3.desc", 3, "iron/terrain-iron-gears");
@@ -3810,6 +3811,12 @@ public enum Features {
                 7,
                 "technical/new/concrete/concreteBlocks",
                 new SubmapManagerCombinedCTM(9, "technical/new/concrete/concreteBlocks", TextureType.R9));
+            technical4.carverHelper.addVariation("tile.technical4.8.desc", 8, "technical/new/cinderblock", 42);
+            technical4.carverHelper.addVariation("tile.technical4.9.desc", 9, "technical/new/polishedcinderblock", 43);
+            technical4.carverHelper.addVariation("tile.technical4.10.desc", 10, "technical/new/cinderbrick", 44);
+            technical4.carverHelper.addVariation("tile.technical4.11.desc", 11, "technical/new/cardboardbox", 45);
+            technical4.carverHelper.addVariation("tile.technical4.12.desc", 12, "technical/new/foldedcardboard", 46);
+            technical4.carverHelper.addVariation("tile.technical4.13.desc", 13, "technical/new/cardboardscrap", 47);
             // The animation is malfunctioning. :(
             // technical4.carverHelper.addVariation("tile.technical4.7.desc", 7, "technical/new/TapeDrive");
             technical4.carverHelper.registerBlock(technical4, "technical4");
@@ -4535,6 +4542,76 @@ public enum Features {
                 new ItemStack(Items.glowstone_dust, 1),
                 'B',
                 new ItemStack(Items.slime_ball, 1));
+        }
+    },
+
+    LANTERN {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable lantern = (BlockCarvable) new BlockCarvable().setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setLightLevel(1.0F)
+                .setStepSound(Block.soundTypeGlass);
+
+            lantern.carverHelper.addVariation("tile.lantern.0.desc", 0, "lantern/lantern");
+            lantern.carverHelper.addVariation("tile.lantern.1.desc", 1, "lantern/glowlantern");
+            lantern.carverHelper.addVariation("tile.lantern.2.desc", 2, "lantern/redlantern");
+            lantern.carverHelper.addVariation("tile.lantern.3.desc", 3, "lantern/soullantern");
+            lantern.carverHelper.addVariation("tile.lantern.4.desc", 4, "lantern/cursedlantern");
+            lantern.carverHelper.addVariation("tile.lantern.5.desc", 5, "lantern/endlantern");
+
+            lantern.carverHelper.registerAll(lantern, "lantern");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(ChiselBlocks.lantern, 1, 0),
+                "gig",
+                "iGi",
+                "gig",
+                'i',
+                new ItemStack(Items.iron_ingot, 1, 0),
+                'G',
+                new ItemStack(Blocks.glowstone, 1),
+                'g',
+                new ItemStack(Items.glowstone_dust, 1));
+        }
+    },
+
+    SHEETMETAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable sheetmetal = (BlockCarvable) new BlockCarvable()
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setStepSound(Block.soundTypeMetal);
+
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.0.desc", 0, "sheetmetal/walling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.1.desc", 1, "sheetmetal/siding");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.2.desc", 2, "sheetmetal/paneling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.3.desc", 3, "sheetmetal/plating");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.4.desc", 4, "sheetmetal/treading");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.5.desc", 5, "sheetmetal/rustywalling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.6.desc", 6, "sheetmetal/rustysiding");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.7.desc", 7, "sheetmetal/rustypaneling");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.8.desc", 8, "sheetmetal/rustyplating");
+            sheetmetal.carverHelper.addVariation("tile.sheetmetal.9.desc", 9, "sheetmetal/rustytreading");
+
+            sheetmetal.carverHelper.registerAll(sheetmetal, "sheetmetal");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(ChiselBlocks.sheetmetal, 32, 0),
+                "iii",
+                "   ",
+                "iii",
+                'i',
+                new ItemStack(Items.iron_ingot, 1, 0));
         }
     };
 
