@@ -62,7 +62,7 @@ public class BlockRoadLine extends BlockCarvable {
         if (par1World.isRemote) return;
 
         if (!this.canPlaceBlockAt(par1World, par2, par3, par4)) {
-            this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
+            this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
             par1World.setBlockToAir(par2, par3, par4);
         }
 
