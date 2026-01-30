@@ -101,6 +101,8 @@ tile.diorite.3.desc=Diorite Bricks
 tile.diorite.4.desc=Ornate Diorite
 tile.diorite.5.desc=Prismatic Diorite
 tile.diorite.6.desc=Diorite Small Tiles
+tile.diorite.7.desc=Cobbled Diorite
+tile.diorite.8.desc=Mossy Diorite
 
 #Andesite
 tile.chisel.andesite.name=Andesite
@@ -111,6 +113,8 @@ tile.andesite.3.desc=Andesite Bricks
 tile.andesite.4.desc=Ornate Andesite
 tile.andesite.5.desc=Prismatic Andesite
 tile.andesite.6.desc=Andesite Small Tiles
+tile.andesite.7.desc=Cobbled Andesite
+tile.andesite.8.desc=Mossy Andesite
 
 #Granite
 tile.chisel.granite.name=Granite
@@ -121,6 +125,8 @@ tile.granite.3.desc=Granite Bricks
 tile.granite.4.desc=Ornate Granite
 tile.granite.5.desc=Prismatic Granite
 tile.granite.6.desc=Granite Small Tiles
+tile.granite.7.desc=Cobbled Granite
+tile.granite.8.desc=Mossy Granite
 
 #Auto Chisel
 tile.chisel.autoChisel.name=Auto Chisel
@@ -2762,6 +2768,25 @@ tile.numetalOre.4.desc=Machinery
 tile.numetalOre.5.desc=Scaffolding
 tile.numetalOre.6.desc=Thermal
 
+tile.chisel.basaltblock.name=Basalt
+tile.chisel.tuffblock.name=Tuff
+tile.chisel.purpuriteblock.name=Purpurite
+tile.chisel.prismarineblock.name=Prismarine
+tile.chisel.darkprismarineblock.name=Dark Prismarine
+tile.chisel.dripstoneblock.name=Dripstone
+tile.chisel.coralstoneblock.name=Coralstone
+tile.chisel.amethystblock.name=Amethyst
+tile.chisel.blackstoneblock.name=Blackstone
+
+tile.stones.0.desc=Raw
+tile.stones.1.desc=Bricks
+tile.stones.2.desc=Cobblestone
+tile.stones.3.desc=Mossy
+tile.stones.4.desc=Ornate
+tile.stones.5.desc=Pillar
+tile.stones.6.desc=Polished
+tile.stones.7.desc=Prismatic
+tile.stones.8.desc=Tiles
 
 tile.newmetalOre.0.desc=Machinery
 tile.newmetalOre.1.desc=Egregiously Modern
@@ -2772,6 +2797,49 @@ tile.newetalOre.5.desc=Egregious
 tile.newetalOre.6.desc=Scaffolding
 tile.newetalOre.7.desc=Thermal
 
+tile.chisel.spinel.name=Block of Spinel
+tile.chisel.ruby.name=Block of Ruby
+tile.chisel.amber.name=Block of Amber
+tile.chisel.jade.name=Block of Jade
+tile.chisel.fluorite.name=Block of Fluorite
+tile.chisel.opal.name=Block of Opal
+tile.chisel.charoite.name=Block of Charoite
+tile.chisel.spinel.name=Block of Spinel
+tile.chisel.rhodochrosite.name=Block of Rhodochrosite
+tile.chisel.netherquartz.name=Block of Nether Quartz
+tile.chisel.labradorite.name=Block of Labradorite
+tile.chisel.onyx.name=Block of Onyx
+tile.chisel.plasticblock.name=Plastic
+tile.chisel.apatite.name=Topaz
+
+tile.gemstones.0.desc=Bismuth
+tile.gemstones.1.desc=Bordered
+tile.gemstones.2.desc=Encased
+tile.gemstones.3.desc=Faceted
+tile.gemstones.4.desc=Ornate Tiles
+tile.gemstones.5.desc=Panel
+tile.gemstones.6.desc=Polished
+tile.gemstones.7.desc=Raw Mineral
+tile.gemstones.8.desc=Smooth
+tile.gemstones.9.desc=Hopper Crystal
+tile.gemstones.10.desc=Simple Tiles
+
+tile.plastic.0.desc=Polyethylene Sheets
+tile.plastic.1.desc=Polyvinyl Chloride Pipes
+tile.plastic.2.desc=Polytetrafluoroethylene Bricks
+tile.plastic.3.desc=Polybenzimidazole Grates
+tile.plastic.4.desc=Kevlar Netting
+tile.plastic.5.desc=Epoxy Resin Bubbles
+tile.plastic.6.desc=Radox Polymer Casings
+tile.plastic.7.desc=Red Nondescript Plastic Brick
+tile.plastic.8.desc=Orange Nondescript Plastic Brick
+tile.plastic.9.desc=Yellow Nondescript Plastic Brick
+tile.plastic.10.desc=Green Nondescript Plastic Brick
+tile.plastic.11.desc=Blue Nondescript Plastic Brick
+tile.plastic.12.desc=Purple Nondescript Plastic Brick
+tile.plastic.13.desc=Gray Nondescript Plastic Brick
+tile.plastic.14.desc=Black Nondescript Plastic Brick
+tile.plastic.15.desc=White Nondescript Plastic Brick
 
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick
