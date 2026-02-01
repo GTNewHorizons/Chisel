@@ -5120,8 +5120,8 @@ public enum Features {
             amber2.carverHelper.addVariation("tile.gemstones.8.desc", 8, "amber/amberSmooth");
             amber2.carverHelper.addVariation("tile.gemstones.9.desc", 9, "amber/amberSpiral");
             amber2.carverHelper.addVariation("tile.gemstones.10.desc", 10, "amber/amberTiles");
-            amber2.carverHelper.registerAll(amber2, "amber");
-            Carving.chisel.registerOre("amber", "amberBlock");
+            amber2.carverHelper.registerAll(amber2, "amber2");
+            Carving.chisel.registerOre("amber2", "amberBlock");
         }
     },
     JADE {
@@ -5314,6 +5314,30 @@ public enum Features {
             onyx.carverHelper.addVariation("tile.gemstones.10.desc", 10, "onyx/onyxTiles");
             onyx.carverHelper.registerAll(onyx, "onyx");
             Carving.chisel.registerOre("onyx", "onyxBlock");
+        }
+    },
+    APATITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable apatite = (BlockBeaconBase) new BlockBeaconBase()
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(5.0F)
+                .setResistance(10.0F)
+                .setStepSound(Block.soundTypeMetal);
+            apatite.carverHelper.addVariation("tile.gemstones.0.desc", 0, "apatite/apatiteBismuth");
+            apatite.carverHelper.addVariation("tile.gemstones.1.desc", 1, "apatite/apatiteBordered");
+            apatite.carverHelper.addVariation("tile.gemstones.2.desc", 2, "apatite/apatiteCell");
+            apatite.carverHelper.addVariation("tile.gemstones.3.desc", 3, "apatite/apatiteFacet");
+            apatite.carverHelper.addVariation("tile.gemstones.4.desc", 4, "apatite/apatiteOrnate");
+            apatite.carverHelper.addVariation("tile.gemstones.5.desc", 5, "apatite/apatitePanel");
+            apatite.carverHelper.addVariation("tile.gemstones.6.desc", 6, "apatite/apatitePolished");
+            apatite.carverHelper.addVariation("tile.gemstones.7.desc", 7, "apatite/apatiteRaw");
+            apatite.carverHelper.addVariation("tile.gemstones.8.desc", 8, "apatite/apatiteSmooth");
+            apatite.carverHelper.addVariation("tile.gemstones.9.desc", 9, "apatite/apatiteSpiral");
+            apatite.carverHelper.addVariation("tile.gemstones.10.desc", 10, "apatite/apatiteTiles");
+            apatite.carverHelper.registerAll(apatite, "apatite");
+            Carving.chisel.registerOre("apatite", "apatiteBlock");
         }
     },
     PLASTICBLOCK {

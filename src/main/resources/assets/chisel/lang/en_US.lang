@@ -2810,6 +2810,7 @@ tile.chisel.netherquartz.name=Block of Nether Quartz
 tile.chisel.labradorite.name=Block of Labradorite
 tile.chisel.onyx.name=Block of Onyx
 tile.chisel.plasticblock.name=Plastic
+tile.chisel.apatite.name=Topaz
 
 tile.gemstones.0.desc=Bismuth
 tile.gemstones.1.desc=Bordered
