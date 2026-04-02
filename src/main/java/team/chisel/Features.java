@@ -4601,6 +4601,49 @@ public enum Features {
                 new ItemStack(Blocks.dirt, 1));
         }
     },
+    MOSS_CARPET {
+
+        @Override
+        void addBlocks() {
+            BlockCarvableCarpet moss_carpet = (BlockCarvableCarpet) new BlockCarvableCarpet(Material.grass)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1.0F)
+                .setResistance(1.0F);
+
+            moss_carpet.carverHelper.addVariation("tile.moss.0.desc", 0, "moss/moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.1.desc", 1, "moss/pale_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.2.desc", 2, "moss/dark_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.3.desc", 3, "moss/dry_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.4.desc", 4, "moss/golden_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.5.desc", 5, "moss/infused_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.6.desc", 6, "moss/mutated_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.7.desc", 7, "moss/scorched_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.8.desc", 8, "moss/vivid_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.9.desc", 9, "moss/peat_moss");
+            moss_carpet.carverHelper.addVariation("tile.moss.10.desc", 10, "moss/pink_sphagnum_moss");
+            if (!Configurations.allowChiselCrossColors) {
+                moss_carpet.carverHelper.forbidChiseling = true;
+            }
+            moss_carpet.carverHelper.registerAll(moss_carpet, "moss_carpet");
+            OreDictionary.registerOre("blockMossCarpet", moss_carpet);
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(moss_carpet, 8, meta),
+                "YY ",
+                "   ",
+                "   ",
+                'Y',
+                new ItemStack(ChiselBlocks.moss, 1, meta));
+        }
+
+        @Override
+        boolean needsMetaRecipes() {
+            return true;
+        }
+    },
     ELECTRUM {
 
         @Override

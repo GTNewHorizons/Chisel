@@ -2729,6 +2729,7 @@ tile.sheetmetal.9.desc=Treading (Rusty)
 
 #Moss
 tile.chisel.moss.name=Moss
+tile.chisel.moss_carpet.name=Moss Carpet
 tile.moss.0.desc=Lush
 tile.moss.1.desc=Pale
 tile.moss.2.desc=Dark
