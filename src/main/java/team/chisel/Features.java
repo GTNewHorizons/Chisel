@@ -456,10 +456,19 @@ public enum Features {
             brickCustom.carverHelper.addVariation("tile.brickCustom.1.desc", 1, "brickCustom/large");
             brickCustom.carverHelper.addVariation("tile.brickCustom.2.desc", 2, "brickCustom/mortarless");
             brickCustom.carverHelper.addVariation("tile.brickCustom.3.desc", 3, "brickCustom/varied");
-            // brickCustom.carverHelper.addVariation("tile.brickCustom.4.desc",
-            // 4, "brickCustom/cracked");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.4.desc", 4, "brickCustom/mortar");
             brickCustom.carverHelper.addVariation("tile.brickCustom.5.desc", 5, "brickCustom/aged");
             brickCustom.carverHelper.addVariation("tile.brickCustom.6.desc", 6, "brickCustom/yellow");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.7.desc", 7, "brickCustom/brick_tile");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.8.desc", 8, "brickCustom/brick_panel");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.9.desc", 9, "brickCustom/brown_bricks");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.10.desc", 10, "brickCustom/modern");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.11.desc", 11, "brickCustom/white_bricks");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.12.desc", 12, "brickCustom/black_bricks");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.13.desc", 13, "brickCustom/sooty");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.14.desc", 14, "brickCustom/mossy");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.15.desc", 15, "brickCustom/neutral");
+
             brickCustom.carverHelper.registerAll(brickCustom, "brickCustom");
             Carving.chisel.registerOre("brickCustom", "brickCustom");
         }
@@ -5031,15 +5040,12 @@ public enum Features {
     }
 
     void addBlocks() {
-        ;
     }
 
     void addItems() {
-        ;
     }
 
     void addRecipes() {
-        ;
     }
 
     public boolean enabled() {

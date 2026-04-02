@@ -952,8 +952,18 @@ tile.chisel.brickCustom.name=Brick Block
 tile.brickCustom.1.desc=Large Bricks
 tile.brickCustom.2.desc=Mortarless Bricks
 tile.brickCustom.3.desc=Varied Bricks
+tile.brickCustom.4.desc=Block of Mortar
 tile.brickCustom.5.desc=Aged Bricks
 tile.brickCustom.6.desc=Yellow Bricks
+tile.brickCustom.7.desc=Brick Tile
+tile.brickCustom.8.desc=Brick Panel
+tile.brickCustom.9.desc=Brown Bricks
+tile.brickCustom.10.desc=Modern Bricks
+tile.brickCustom.11.desc=White Bricks
+tile.brickCustom.12.desc=Black Bricks
+tile.brickCustom.13.desc=Sooty Bricks
+tile.brickCustom.14.desc=Mossy Bricks
+tile.brickCustom.15.desc=Neutral Bricks
 
 #Chisel 1
 
