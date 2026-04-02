@@ -2783,6 +2783,32 @@ tile.newetalOre.5.desc=Egregious
 tile.newetalOre.6.desc=Scaffolding
 tile.newetalOre.7.desc=Thermal
 
+tile.chisel.coral.name=Coral
+tile.coral.0.desc=Brain Coral
+tile.coral.1.desc=Bubble Coral
+tile.coral.2.desc=Fire Coral
+tile.coral.3.desc=Horn Coral
+tile.coral.4.desc=Tube Coral
+tile.coral.5.desc=Dead Brain Coral
+tile.coral.6.desc=Dead Bubble Coral
+tile.coral.7.desc=Dead Fire Coral
+tile.coral.8.desc=Dead Horn Coral
+tile.coral.9.desc=Dead Tube Coral
+tile.coral.10.desc=Brain Coral Bricks
+tile.coral.11.desc=Bubble Coral Bricks
+tile.coral.12.desc=Fire Coral Bricks
+tile.coral.13.desc=Horn Coral Bricks
+tile.coral.14.desc=Tube Coral Bricks
+tile.coral.15.desc=Dead Coral Bricks
+
+tile.chisel.mud.name=Mud
+tile.mud.0.desc=Black Mud
+tile.mud.1.desc=Loamy Mud
+tile.mud.2.desc=Carbonate Mud (Marl)
+tile.mud.3.desc=Brown Mud
+tile.mud.4.desc=Packed Mud
+tile.mud.5.desc=Rooted Mud
+tile.mud.6.desc=Mud Bricks
 
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick

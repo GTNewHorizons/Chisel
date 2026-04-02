@@ -4919,6 +4919,82 @@ public enum Features {
             cobalt.carverHelper.registerAll(cobalt, "cobaltblock");
             Carving.chisel.registerOre("cobaltblock", "blockCobalt");
         }
+    },
+
+    CORAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable coral = (BlockCarvable) new BlockCarvable(Material.ground).setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
+                .setHardness(2F)
+                .setResistance(4F);
+            coral.carverHelper.addVariation("tile.coral.0.desc", 0, "coral/brain_coral", 0);
+            coral.carverHelper.addVariation("tile.coral.1.desc", 1, "coral/bubble_coral", 1);
+            coral.carverHelper.addVariation("tile.coral.2.desc", 2, "coral/fire_coral", 2);
+            coral.carverHelper.addVariation("tile.coral.3.desc", 3, "coral/horn_coral", 3);
+            coral.carverHelper.addVariation("tile.coral.4.desc", 4, "coral/tube_coral", 4);
+            coral.carverHelper.addVariation("tile.coral.5.desc", 5, "coral/dead_brain_coral", 5);
+            coral.carverHelper.addVariation("tile.coral.6.desc", 6, "coral/dead_bubble_coral", 6);
+            coral.carverHelper.addVariation("tile.coral.7.desc", 7, "coral/dead_fire_coral", 7);
+            coral.carverHelper.addVariation("tile.coral.8.desc", 8, "coral/dead_horn_coral", 8);
+            coral.carverHelper.addVariation("tile.coral.9.desc", 9, "coral/dead_tube_coral", 9);
+            coral.carverHelper.addVariation("tile.coral.10.desc", 10, "coral/brain_coral_bricks", 10);
+            coral.carverHelper.addVariation("tile.coral.11.desc", 11, "coral/bubble_coral_bricks", 11);
+            coral.carverHelper.addVariation("tile.coral.12.desc", 12, "coral/fire_coral_bricks", 12);
+            coral.carverHelper.addVariation("tile.coral.13.desc", 13, "coral/horn_coral_bricks", 13);
+            coral.carverHelper.addVariation("tile.coral.14.desc", 14, "coral/tube_coral_bricks", 14);
+            coral.carverHelper.addVariation("tile.coral.15.desc", 15, "coral/dead_coral_bricks", 15);
+            coral.carverHelper.registerAll(coral, "coral");
+            Carving.chisel.registerOre("coral", "blockCoral");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(coral, 8, 0),
+                "ggg",
+                "gMg",
+                "ggg",
+                'M',
+                new ItemStack(Items.water_bucket, 1),
+                'g',
+                new ItemStack(Items.bone, 1));
+        }
+    },
+
+    MUD {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable mud = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeGrass)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            mud.carverHelper.addVariation("tile.mud.0.desc", 0, "mud/mud");
+            mud.carverHelper.addVariation("tile.mud.1.desc", 1, "mud/loamy_mud");
+            mud.carverHelper.addVariation("tile.mud.2.desc", 2, "mud/marl");
+            mud.carverHelper.addVariation("tile.mud.3.desc", 3, "mud/brown_mud");
+            mud.carverHelper.addVariation("tile.mud.4.desc", 4, "mud/packed_mud");
+            mud.carverHelper.addVariation("tile.mud.5.desc", 5, "mud/rooted_mud");
+            mud.carverHelper.addVariation("tile.mud.6.desc", 6, "mud/mud_bricks");
+
+            mud.carverHelper.registerAll(mud, "mud");
+        }
+
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(mud, 8, 0),
+                "iii",
+                "ixi",
+                "iii",
+                'x',
+                new ItemStack(Items.water_bucket, 1),
+                'i',
+                new ItemStack(Blocks.dirt, 1));
+        }
     };
 
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
@@ -5039,14 +5115,11 @@ public enum Features {
         this.parent = parent;
     }
 
-    void addBlocks() {
-    }
+    void addBlocks() {}
 
-    void addItems() {
-    }
+    void addItems() {}
 
-    void addRecipes() {
-    }
+    void addRecipes() {}
 
     public boolean enabled() {
         return Configurations.featureEnabled(this) && hasRequiredMod() && hasParentFeature();
