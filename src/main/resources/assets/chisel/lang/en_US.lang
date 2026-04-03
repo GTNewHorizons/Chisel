@@ -101,6 +101,12 @@ tile.diorite.3.desc=Diorite Bricks
 tile.diorite.4.desc=Ornate Diorite
 tile.diorite.5.desc=Prismatic Diorite
 tile.diorite.6.desc=Diorite Small Tiles
+tile.diorite.7.desc=Cobbled Diorite
+tile.diorite.8.desc=Mossy Diorite
+tile.diorite.9.desc=Modern Diorite
+tile.diorite.10.desc=Modern Polished Diorite
+tile.diorite.11.desc=Biotite-Rich Diorite
+tile.diorite.12.desc=Hornblende-Rich Diorite
 
 #Andesite
 tile.chisel.andesite.name=Andesite
@@ -111,6 +117,11 @@ tile.andesite.3.desc=Andesite Bricks
 tile.andesite.4.desc=Ornate Andesite
 tile.andesite.5.desc=Prismatic Andesite
 tile.andesite.6.desc=Andesite Small Tiles
+tile.andesite.7.desc=Cobbled Andesite
+tile.andesite.8.desc=Mossy Andesite
+tile.andesite.9.desc=Modern Andesite
+tile.andesite.10.desc=Modern Polished Andesite
+tile.andesite.11.desc=Weathered Andesite
 
 #Granite
 tile.chisel.granite.name=Granite
@@ -121,6 +132,11 @@ tile.granite.3.desc=Granite Bricks
 tile.granite.4.desc=Ornate Granite
 tile.granite.5.desc=Prismatic Granite
 tile.granite.6.desc=Granite Small Tiles
+tile.granite.7.desc=Cobbled Granite
+tile.granite.8.desc=Mossy Granite
+tile.granite.9.desc=Modern Granite
+tile.granite.10.desc=Modern Polished Granite
+tile.granite.11.desc=Granitic Mineral Sand
 
 #Auto Chisel
 tile.chisel.autoChisel.name=Auto Chisel
@@ -952,7 +968,7 @@ tile.chisel.brickCustom.name=Brick Block
 tile.brickCustom.1.desc=Large Bricks
 tile.brickCustom.2.desc=Mortarless Bricks
 tile.brickCustom.3.desc=Varied Bricks
-tile.brickCustom.4.desc=Block of Mortar
+tile.brickCustom.4.desc=Oops! All Mortar!
 tile.brickCustom.5.desc=Aged Bricks
 tile.brickCustom.6.desc=Yellow Bricks
 tile.brickCustom.7.desc=Brick Tile
@@ -1260,6 +1276,8 @@ tile.glass.15.desc=Modern Iron Fence
 
 tile.chisel.glass2.name=Glass
 tile.glass2.0.desc=Asymmetrical Leaded Glass
+tile.glass2.1.desc=Modern Glass
+tile.glass2.2.desc=Glass (CTM)
 
 #Sandstone
 tile.chisel.sandstone.name=Sandstone

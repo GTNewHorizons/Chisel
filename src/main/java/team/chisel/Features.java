@@ -206,6 +206,11 @@ public enum Features {
             andesite.carverHelper.addVariation("tile.andesite.4.desc", 4, "andesite/andesiteOrnate");
             andesite.carverHelper.addVariation("tile.andesite.5.desc", 5, "andesite/andesitePrism");
             andesite.carverHelper.addVariation("tile.andesite.6.desc", 6, "andesite/andesiteTiles");
+            andesite.carverHelper.addVariation("tile.andesite.7.desc", 7, "andesite/andesiteCobblestone");
+            andesite.carverHelper.addVariation("tile.andesite.8.desc", 8, "andesite/andesiteMossy");
+            andesite.carverHelper.addVariation("tile.andesite.9.desc", 9, "andesite/andesiteModern");
+            andesite.carverHelper.addVariation("tile.andesite.10.desc", 10, "andesite/polished_andesite");
+            andesite.carverHelper.addVariation("tile.andesite.11.desc", 11, "andesite/andesite_weathered");
             andesite.carverHelper.registerAll(andesite, "andesite");
             andesite.carverHelper.registerOre("blockAndesite");
             andesite.carverHelper.registerOre("stoneAndesite");
@@ -974,6 +979,12 @@ public enum Features {
             diorite.carverHelper.addVariation("tile.diorite.4.desc", 4, "diorite/dioriteOrnate");
             diorite.carverHelper.addVariation("tile.diorite.5.desc", 5, "diorite/dioritePrism");
             diorite.carverHelper.addVariation("tile.diorite.6.desc", 6, "diorite/dioriteTiles");
+            diorite.carverHelper.addVariation("tile.diorite.7.desc", 7, "diorite/dioriteCobblestone");
+            diorite.carverHelper.addVariation("tile.diorite.8.desc", 8, "diorite/dioriteMossy");
+            diorite.carverHelper.addVariation("tile.diorite.9.desc", 9, "diorite/dioriteModern");
+            diorite.carverHelper.addVariation("tile.diorite.10.desc", 10, "diorite/polished_diorite");
+            diorite.carverHelper.addVariation("tile.diorite.11.desc", 11, "diorite/diorite_black");
+            diorite.carverHelper.addVariation("tile.diorite.12.desc", 12, "diorite/diorite_hornblende");
             diorite.carverHelper.registerAll(diorite, "diorite");
             diorite.carverHelper.registerOre("blockDiorite");
             diorite.carverHelper.registerOre("stoneDiorite");
@@ -1307,6 +1318,8 @@ public enum Features {
                 .setHardness(0.3F)
                 .setStepSound(Block.soundTypeGlass);
             glass2.carverHelper.addVariation("tile.glass2.0.desc", 0, "glass/chrono", 20);
+            glass2.carverHelper.addVariation("tile.glass2.1.desc", 1, "glass/modern_glass", 1);
+            glass2.carverHelper.addVariation("tile.glass2.2.desc", 2, "glass/connected_glass", 1);
             glass2.carverHelper.registerBlock(glass2, "glass2");
             glass2.carverHelper.registerVariations("glass");
         }
@@ -1494,8 +1507,7 @@ public enum Features {
             glowstone.carverHelper.addVariation("tile.lightstone.6.desc", 6, "lightstone/terrain-sulphur-rocky");
             glowstone.carverHelper.addVariation("tile.lightstone.7.desc", 7, "lightstone/terrain-sulphur-shale");
             glowstone.carverHelper.addVariation("tile.lightstone.8.desc", 8, "lightstone/terrain-sulphur-tile");
-            glowstone.carverHelper
-                .addVariation("tile.lightstone.9.desc", 9, "lightstone/terrain-sulphur-weavelanternlight");
+            glowstone.carverHelper.addVariation("tile.lightstone.9.desc", 9, "lightstone/terrain-sulphur-weavelanternlight");
             glowstone.carverHelper.addVariation("tile.lightstone.10.desc", 10, "lightstone/a1-glowstone-cobble");
             glowstone.carverHelper.addVariation("tile.lightstone.11.desc", 11, "lightstone/a1-glowstone-growth");
             glowstone.carverHelper.addVariation("tile.lightstone.12.desc", 12, "lightstone/a1-glowstone-layers");
@@ -1575,6 +1587,11 @@ public enum Features {
             granite.carverHelper.addVariation("tile.granite.4.desc", 4, "granite/graniteOrnate");
             granite.carverHelper.addVariation("tile.granite.5.desc", 5, "granite/granitePrism");
             granite.carverHelper.addVariation("tile.granite.6.desc", 6, "granite/graniteTiles");
+            granite.carverHelper.addVariation("tile.granite.7.desc", 7, "granite/graniteCobblestone");
+            granite.carverHelper.addVariation("tile.granite.8.desc", 8, "granite/graniteMossy");
+            granite.carverHelper.addVariation("tile.granite.9.desc", 9, "granite/graniteModern");
+            granite.carverHelper.addVariation("tile.granite.10.desc", 10, "granite/graniteModernPolished");
+            granite.carverHelper.addVariation("tile.granite.11.desc", 11, "granite/graniteMineralSand");
             granite.carverHelper.registerAll(granite, "granite");
             granite.carverHelper.registerOre("blockGranite");
             granite.carverHelper.registerOre("stoneGranite");
