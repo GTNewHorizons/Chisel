@@ -1507,7 +1507,8 @@ public enum Features {
             glowstone.carverHelper.addVariation("tile.lightstone.6.desc", 6, "lightstone/terrain-sulphur-rocky");
             glowstone.carverHelper.addVariation("tile.lightstone.7.desc", 7, "lightstone/terrain-sulphur-shale");
             glowstone.carverHelper.addVariation("tile.lightstone.8.desc", 8, "lightstone/terrain-sulphur-tile");
-            glowstone.carverHelper.addVariation("tile.lightstone.9.desc", 9, "lightstone/terrain-sulphur-weavelanternlight");
+            glowstone.carverHelper
+                .addVariation("tile.lightstone.9.desc", 9, "lightstone/terrain-sulphur-weavelanternlight");
             glowstone.carverHelper.addVariation("tile.lightstone.10.desc", 10, "lightstone/a1-glowstone-cobble");
             glowstone.carverHelper.addVariation("tile.lightstone.11.desc", 11, "lightstone/a1-glowstone-growth");
             glowstone.carverHelper.addVariation("tile.lightstone.12.desc", 12, "lightstone/a1-glowstone-layers");
