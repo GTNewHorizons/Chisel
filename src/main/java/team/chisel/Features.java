@@ -1319,7 +1319,6 @@ public enum Features {
                 .setStepSound(Block.soundTypeGlass);
             glass2.carverHelper.addVariation("tile.glass2.0.desc", 0, "glass/chrono", 20);
             glass2.carverHelper.addVariation("tile.glass2.1.desc", 1, "glass/modern_glass", 1);
-            glass2.carverHelper.addVariation("tile.glass2.2.desc", 2, "glass/connected_glass", 1);
             glass2.carverHelper.registerBlock(glass2, "glass2");
             glass2.carverHelper.registerVariations("glass");
         }
