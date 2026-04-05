@@ -101,6 +101,12 @@ tile.diorite.3.desc=Diorite Bricks
 tile.diorite.4.desc=Ornate Diorite
 tile.diorite.5.desc=Prismatic Diorite
 tile.diorite.6.desc=Diorite Small Tiles
+tile.diorite.7.desc=Cobbled Diorite
+tile.diorite.8.desc=Mossy Diorite
+tile.diorite.9.desc=Modern Diorite
+tile.diorite.10.desc=Modern Polished Diorite
+tile.diorite.11.desc=Biotite-Rich Diorite
+tile.diorite.12.desc=Hornblende-Rich Diorite
 
 #Andesite
 tile.chisel.andesite.name=Andesite
@@ -111,6 +117,11 @@ tile.andesite.3.desc=Andesite Bricks
 tile.andesite.4.desc=Ornate Andesite
 tile.andesite.5.desc=Prismatic Andesite
 tile.andesite.6.desc=Andesite Small Tiles
+tile.andesite.7.desc=Cobbled Andesite
+tile.andesite.8.desc=Mossy Andesite
+tile.andesite.9.desc=Modern Andesite
+tile.andesite.10.desc=Modern Polished Andesite
+tile.andesite.11.desc=Weathered Andesite
 
 #Granite
 tile.chisel.granite.name=Granite
@@ -121,6 +132,11 @@ tile.granite.3.desc=Granite Bricks
 tile.granite.4.desc=Ornate Granite
 tile.granite.5.desc=Prismatic Granite
 tile.granite.6.desc=Granite Small Tiles
+tile.granite.7.desc=Cobbled Granite
+tile.granite.8.desc=Mossy Granite
+tile.granite.9.desc=Modern Granite
+tile.granite.10.desc=Modern Polished Granite
+tile.granite.11.desc=Granitic Mineral Sand
 
 #Auto Chisel
 tile.chisel.autoChisel.name=Auto Chisel
@@ -952,8 +968,18 @@ tile.chisel.brickCustom.name=Brick Block
 tile.brickCustom.1.desc=Large Bricks
 tile.brickCustom.2.desc=Mortarless Bricks
 tile.brickCustom.3.desc=Varied Bricks
+tile.brickCustom.4.desc=Oops! All Mortar!
 tile.brickCustom.5.desc=Aged Bricks
 tile.brickCustom.6.desc=Yellow Bricks
+tile.brickCustom.7.desc=Brick Tile
+tile.brickCustom.8.desc=Brick Panel
+tile.brickCustom.9.desc=Brown Bricks
+tile.brickCustom.10.desc=Modern Bricks
+tile.brickCustom.11.desc=White Bricks
+tile.brickCustom.12.desc=Black Bricks
+tile.brickCustom.13.desc=Sooty Bricks
+tile.brickCustom.14.desc=Mossy Bricks
+tile.brickCustom.15.desc=Neutral Bricks
 
 #Chisel 1
 
@@ -1250,6 +1276,8 @@ tile.glass.15.desc=Modern Iron Fence
 
 tile.chisel.glass2.name=Glass
 tile.glass2.0.desc=Asymmetrical Leaded Glass
+tile.glass2.1.desc=Modern Glass
+tile.glass2.2.desc=Glass (CTM)
 
 #Sandstone
 tile.chisel.sandstone.name=Sandstone
@@ -2729,6 +2757,7 @@ tile.sheetmetal.9.desc=Treading (Rusty)
 
 #Moss
 tile.chisel.moss.name=Moss
+tile.chisel.moss_carpet.name=Moss Carpet
 tile.moss.0.desc=Lush
 tile.moss.1.desc=Pale
 tile.moss.2.desc=Dark
@@ -2772,6 +2801,32 @@ tile.newetalOre.5.desc=Egregious
 tile.newetalOre.6.desc=Scaffolding
 tile.newetalOre.7.desc=Thermal
 
+tile.chisel.coral.name=Coral
+tile.coral.0.desc=Brain Coral
+tile.coral.1.desc=Bubble Coral
+tile.coral.2.desc=Fire Coral
+tile.coral.3.desc=Horn Coral
+tile.coral.4.desc=Tube Coral
+tile.coral.5.desc=Dead Brain Coral
+tile.coral.6.desc=Dead Bubble Coral
+tile.coral.7.desc=Dead Fire Coral
+tile.coral.8.desc=Dead Horn Coral
+tile.coral.9.desc=Dead Tube Coral
+tile.coral.10.desc=Brain Coral Bricks
+tile.coral.11.desc=Bubble Coral Bricks
+tile.coral.12.desc=Fire Coral Bricks
+tile.coral.13.desc=Horn Coral Bricks
+tile.coral.14.desc=Tube Coral Bricks
+tile.coral.15.desc=Dead Coral Bricks
+
+tile.chisel.mud.name=Mud
+tile.mud.0.desc=Black Mud
+tile.mud.1.desc=Loamy Mud
+tile.mud.2.desc=Carbonate Mud (Marl)
+tile.mud.3.desc=Brown Mud
+tile.mud.4.desc=Packed Mud
+tile.mud.5.desc=Rooted Mud
+tile.mud.6.desc=Mud Bricks
 
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick
