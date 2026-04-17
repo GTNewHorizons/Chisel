@@ -474,6 +474,12 @@ public enum Features {
             brickCustom.carverHelper.addVariation("tile.brickCustom.14.desc", 14, "brickCustom/mossy");
             brickCustom.carverHelper.addVariation("tile.brickCustom.15.desc", 15, "brickCustom/neutral");
 
+            BlockCarvable brickCustom2 = (BlockCarvable) new BlockCarvable(Material.rock)
+                .setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks);
+            brickCustom.carverHelper.addVariation("tile.brickCustom.16.desc", 1, "brickCustom/left_bricks");
+            brickCustom.carverHelper.addVariation("tile.brickCustom.17.desc", 2, "brickCustom/right_bricks");
+
             brickCustom.carverHelper.registerAll(brickCustom, "brickCustom");
             Carving.chisel.registerOre("brickCustom", "brickCustom");
         }
@@ -956,6 +962,7 @@ public enum Features {
             diamond_block.carverHelper.addVariation("tile.diamond.10.desc", 10, "diamond/terrain-diamond-fourornate");
             diamond_block.carverHelper.addVariation("tile.diamond.11.desc", 11, "diamond/terrain-diamond-zelda");
             diamond_block.carverHelper.addVariation("tile.diamond.12.desc", 12, "diamond/terrain-diamond-ornatelayer");
+            diamond_block.carverHelper.addVariation("tile.diamond.13.desc", 13, "diamond/modern");
             diamond_block.carverHelper.registerAll(diamond_block, "diamond_block");
             Carving.chisel.registerOre("diamond_block", "blockDiamond");
         }
@@ -1060,6 +1067,7 @@ public enum Features {
             emerald_block.carverHelper.addVariation("tile.emerald.9.desc", 9, "emerald/four");
             emerald_block.carverHelper.addVariation("tile.emerald.10.desc", 10, "emerald/fourornate");
             emerald_block.carverHelper.addVariation("tile.emerald.11.desc", 11, "emerald/ornate");
+            emerald_block.carverHelper.addVariation("tile.emerald.12.desc", 12, "emerald/modern");
             emerald_block.carverHelper.registerAll(emerald_block, "emerald_block");
             Carving.chisel.registerOre("emerald_block", "emerald");
         }
@@ -1550,6 +1558,7 @@ public enum Features {
             gold_block.carverHelper.addVariation("tile.gold.12.desc", 12, "gold/terrain-gold-space");
             gold_block.carverHelper.addVariation("tile.gold.13.desc", 13, "gold/terrain-gold-spaceblack");
             gold_block.carverHelper.addVariation("tile.gold.14.desc", 14, "gold/terrain-gold-simple");
+            gold_block.carverHelper.addVariation("tile.gold.15.desc", 15, "gold/modern");
 
             BlockCarvable gold2 = (BlockCarvable) new BlockBeaconBase(Material.iron).setStepSound(Block.soundTypeMetal)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
@@ -2178,6 +2187,7 @@ public enum Features {
             lapis_block.carverHelper.addVariation("tile.lapis.6.desc", 6, "lapis/a1-blocklapis-panel");
             lapis_block.carverHelper.addVariation("tile.lapis.7.desc", 7, "lapis/a1-blocklapis-smooth");
             lapis_block.carverHelper.addVariation("tile.lapis.8.desc", 8, "lapis/a1-blocklapis-ornatelayer");
+            lapis_block.carverHelper.addVariation("tile.lapis.9.desc", 9, "lapis/modern");
 
             lapis_block.carverHelper.registerAll(lapis_block, "lapis_block");
             Carving.chisel.registerOre("lapis_block", "lapis");
@@ -5011,6 +5021,92 @@ public enum Features {
                 new ItemStack(Items.water_bucket, 1),
                 'i',
                 new ItemStack(Blocks.dirt, 1));
+        }
+    },
+    ALBUMBLOCK {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable albumblock = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+                .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
+                .setHardness(5F)
+                .setResistance(10F);
+            albumblock.carverHelper.addVariation("tile.album.0.desc", 0, "album/pretty_odd_0");
+            albumblock.carverHelper.addVariation("tile.album.1.desc", 1, "album/pretty_odd_1");
+            albumblock.carverHelper.addVariation("tile.album.2.desc", 2, "album/laminated_denim");
+            albumblock.carverHelper.addVariation("tile.album.3.desc", 3, "album/man_bites_dog");
+            albumblock.carverHelper.addVariation("tile.album.4.desc", 4, "album/danger_days_0");
+            albumblock.carverHelper.addVariation("tile.album.5.desc", 5, "album/danger_days_1");
+            albumblock.carverHelper.addVariation("tile.album.6.desc", 6, "album/infinity_on_high");
+            albumblock.carverHelper.addVariation("tile.album.7.desc", 7, "album/from_under_the_cork_tree");
+            albumblock.carverHelper.addVariation("tile.album.8.desc", 8, "album/polygondwanaland");
+            albumblock.carverHelper.addVariation("tile.album.9.desc", 9, "album/chunky_shrapnel");
+            albumblock.carverHelper.addVariation("tile.album.10.desc", 10, "album/omnium_gatherium");
+            albumblock.carverHelper.addVariation("tile.album.11.desc", 11, "album/phantom_island");
+            albumblock.carverHelper.addVariation("tile.album.12.desc", 12, "album/reactor");
+            albumblock.carverHelper.addVariation("tile.album.13.desc", 13, "album/black_parade_0");
+            albumblock.carverHelper.addVariation("tile.album.14.desc", 14, "album/black_parade_1");
+            albumblock.carverHelper.addVariation("tile.album.15.desc", 15, "album/collide_with_the_sky");
+            albumblock.carverHelper.registerAll(albumblock, "albumblock");
+            Carving.chisel.registerOre("albumblock", "albumblock");
+
+            BlockCarvable albumblock2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+                .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
+                .setHardness(5F)
+                .setResistance(10F);
+            albumblock2.carverHelper.addVariation("tile.album.16.desc", 0, "album/cork_tree");
+            albumblock2.carverHelper.addVariation("tile.album.17.desc", 1, "album/folie_a_deux");
+            albumblock2.carverHelper.addVariation("tile.album.18.desc", 2, "album/a_fever_you_cant_sweat_out");
+
+            albumblock.carverHelper.registerAll(albumblock2, "albumblock2");
+            Carving.chisel.registerOre("albumblock2", "albumblock2");
+        }
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(albumblock, 8, 0),
+                "iii",
+                "ixi",
+                "iii",
+                'x',
+                new ItemStack(Blocks.wool, 1),
+                'i',
+                new ItemStack(Blocks.noteblock, 1));
+        }
+    },
+
+    BRUTALISM {
+        @Override
+        void addBlocks() {
+            BlockCarvable brutalism = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            brutalism.carverHelper.addVariation("tile.brutalism.0.desc", 0, "brutalism/brutalist_concrete");
+            brutalism.carverHelper.addVariation("tile.brutalism.1.desc", 1, "brutalism/brutalist_bricks");
+            brutalism.carverHelper.addVariation("tile.brutalism.2.desc", 2, "brutalism/ecobrutalist");
+            brutalism.carverHelper.addVariation("tile.brutalism.3.desc", 3, "brutalism/ecobrutalist_flowers");
+            brutalism.carverHelper.addVariation("tile.brutalism.4.desc", 4, "brutalism/faux_window");
+            brutalism.carverHelper.addVariation("tile.brutalism.5.desc", 5, "brutalism/heavily_weathered");
+            brutalism.carverHelper.addVariation("tile.brutalism.6.desc", 6, "brutalism/heavily_weathered_bricks");
+            brutalism.carverHelper.addVariation("tile.brutalism.7.desc", 7, "brutalism/reinforced");
+            brutalism.carverHelper.addVariation("tile.brutalism.8.desc", 8, "brutalism/rimmed_concrete");
+            brutalism.carverHelper.addVariation("tile.brutalism.9.desc", 9, "brutalism/weathered_concrete");
+
+            brutalism.carverHelper.registerAll(brutalism, "brutalism");
+        }
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(brutalism, 8, 0),
+                "iii",
+                "ixi",
+                "iii",
+                'x',
+                new ItemStack(hempcrete, 1),
+                'i',
+                new ItemStack(Blocks.stone, 1));
         }
     };
 

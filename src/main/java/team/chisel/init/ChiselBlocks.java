@@ -194,6 +194,10 @@ public final class ChiselBlocks {
     public static final BlockCarvable osmium = null;
     public static final BlockCarvable coral = null;
     public static final BlockCarvable mud = null;
+    public static final BlockCarvable albumblock = null;
+    public static final BlockCarvable albumblock2 = null;
+    public static final BlockCarvable brickCuston2 = null;
+    public static final BlockCarvable brutalism = null;
 
     private ChiselBlocks() {}
 }

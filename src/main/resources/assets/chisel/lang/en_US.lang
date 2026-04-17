@@ -1250,6 +1250,7 @@ tile.diamond.9.desc=Small Diamond Blocks
 tile.diamond.10.desc=Small Ornate Diamond Blocks
 tile.diamond.11.desc=Zelda Diamond Block
 tile.diamond.12.desc=Diamond Block with Ornate Layer
+tile.diamond.13.desc=Modern Diamond Block
 
 #Snakestone
 tile.chisel.snakestoneSand.name=Sand Snakestone
@@ -1364,6 +1365,7 @@ tile.gold.11.desc=Gold Block with Star Decoration
 tile.gold.12.desc=Golden Star in Purple Obsidian
 tile.gold.13.desc=Golden Star in Obsidian
 tile.gold.14.desc=Simple Gold Block
+tile.gold.15.desc=Modern Gold Block
 
 #Glowstone
 tile.chisel.glowstone.name=Glowstone
@@ -1393,6 +1395,7 @@ tile.lapis.5.desc=Lapis Tile
 tile.lapis.6.desc=Lapis Panel
 tile.lapis.7.desc=Smooth Lapis
 tile.lapis.8.desc=Lapis with Ornate Layer
+tile.lapis.9.desc=Modern Lapis
 
 #Emerald Blocks
 tile.chisel.emerald_block.name=Emerald Block
@@ -1407,6 +1410,7 @@ tile.emerald.8.desc=Emerald Bismuth
 tile.emerald.9.desc=Small Emerald Blocks
 tile.emerald.10.desc=Small Ornate Emerald Blocks
 tile.emerald.11.desc=Ornate Emerald Block
+tile.emerald.12.desc=Modern Emerald Block
 
 #Nether Brick
 tile.chisel.nether_brick.name=Nether Brick
@@ -2827,6 +2831,40 @@ tile.mud.3.desc=Brown Mud
 tile.mud.4.desc=Packed Mud
 tile.mud.5.desc=Rooted Mud
 tile.mud.6.desc=Mud Bricks
+
+tile.chisel.albumblock.name=Musical Block
+tile.chisel.albumblock2.name=Musical Block
+tile.album.0.desc=That Green Gentleman
+tile.album.1.desc=Pretty Odd
+tile.album.2.desc=Laminated Denim
+tile.album.3.desc=Dogmatica
+tile.album.4.desc=And the Sky Opened Up
+tile.album.5.desc=Route Guano
+tile.album.6.desc=A Spell Over the West
+tile.album.7.desc=I Built With Someone In Fall Out Boy And All I Got Was This Stupid Block Made About Me
+tile.album.8.desc=Crumbling Castle
+tile.album.9.desc=Evil Star
+tile.album.10.desc=Gaia
+tile.album.11.desc=Spacesick
+tile.album.12.desc=Reactor
+tile.album.13.desc=Resignation
+tile.album.14.desc=Dead!
+tile.album.15.desc=Having Too Much Fun
+tile.album.16.desc=The Cork Tree
+tile.album.17.desc=Cooperstown
+tile.album.18.desc=The Most Fun a Girl Can Have
+
+tile.chisel.brutalism.name=Brutalist Block
+tile.brutalism.0.desc=Plain Cement
+tile.brutalism.1.desc=Cement Bricks
+tile.brutalism.2.desc=Leafy Ecobrutalism
+tile.brutalism.3.desc=Flowering Ecobrutalism
+tile.brutalism.4.desc=Faux Window
+tile.brutalism.5.desc=Heavily Weathered Cement
+tile.brutalism.6.desc=Heavily Weathered Cement Bricks
+tile.brutalism.7.desc=Reinforced Cement
+tile.brutalism.8.desc=Rimmed Cement
+tile.brutalism.9.desc=Lightly Weathered Cement
 
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick
