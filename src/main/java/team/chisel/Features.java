@@ -5027,7 +5027,8 @@ public enum Features {
 
         @Override
         void addBlocks() {
-            BlockCarvable albumblock = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable albumblock = (BlockCarvable) new BlockCarvable(Material.wood)
+                .setStepSound(Block.soundTypeWood)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
@@ -5050,7 +5051,8 @@ public enum Features {
             albumblock.carverHelper.registerAll(albumblock, "albumblock");
             Carving.chisel.registerOre("albumblock", "albumblock");
 
-            BlockCarvable albumblock2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable albumblock2 = (BlockCarvable) new BlockCarvable(Material.wood)
+                .setStepSound(Block.soundTypeWood)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
@@ -5061,6 +5063,7 @@ public enum Features {
             albumblock.carverHelper.registerAll(albumblock2, "albumblock2");
             Carving.chisel.registerOre("albumblock2", "albumblock2");
         }
+
         @Override
         void addRecipes() {
             GameRegistry.addRecipe(
@@ -5076,6 +5079,7 @@ public enum Features {
     },
 
     BRUTALISM {
+
         @Override
         void addBlocks() {
             BlockCarvable brutalism = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
@@ -5096,6 +5100,7 @@ public enum Features {
 
             brutalism.carverHelper.registerAll(brutalism, "brutalism");
         }
+
         @Override
         void addRecipes() {
             GameRegistry.addRecipe(
@@ -5151,6 +5156,7 @@ public enum Features {
             road.carverHelper.registerAll(road2, "road2");
             Carving.chisel.registerOre("road2", "road2");
         }
+
         @Override
         void addRecipes() {
             GameRegistry.addRecipe(
