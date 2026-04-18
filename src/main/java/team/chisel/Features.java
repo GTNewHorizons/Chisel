@@ -5108,6 +5108,61 @@ public enum Features {
                 'i',
                 new ItemStack(Blocks.stone, 1));
         }
+    },
+    ROAD {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable road = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+                .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
+                .setHardness(5F)
+                .setResistance(10F);
+            road.carverHelper.addVariation("tile.road.0.desc", 0, "road/asphalt");
+            road.carverHelper.addVariation("tile.road.1.desc", 1, "road/crosswalk");
+            road.carverHelper.addVariation("tile.road.2.desc", 2, "road/dashed_white");
+            road.carverHelper.addVariation("tile.road.3.desc", 3, "road/dashed_yellow");
+            road.carverHelper.addVariation("tile.road.4.desc", 4, "road/dirt_road");
+            road.carverHelper.addVariation("tile.road.5.desc", 5, "road/diverging");
+            road.carverHelper.addVariation("tile.road.6.desc", 6, "road/dotted_white");
+            road.carverHelper.addVariation("tile.road.7.desc", 7, "road/dotted_yellow");
+            road.carverHelper.addVariation("tile.road.8.desc", 8, "road/half_line_east");
+            road.carverHelper.addVariation("tile.road.9.desc", 9, "road/half_line_north");
+            road.carverHelper.addVariation("tile.road.10.desc", 10, "road/half_line_south");
+            road.carverHelper.addVariation("tile.road.11.desc", 11, "road/half_line_west");
+            road.carverHelper.addVariation("tile.road.12.desc", 12, "road/left_lane");
+            road.carverHelper.addVariation("tile.road.13.desc", 13, "road/right_lane");
+            road.carverHelper.addVariation("tile.road.14.desc", 14, "road/lined_white");
+            road.carverHelper.addVariation("tile.road.15.desc", 15, "road/outline_white");
+            road.carverHelper.registerAll(road, "road");
+            Carving.chisel.registerOre("road", "road");
+
+            BlockCarvable road2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+                .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
+                .setHardness(5F)
+                .setResistance(10F);
+            road2.carverHelper.addVariation("tile.road.16.desc", 0, "road/passing_east");
+            road2.carverHelper.addVariation("tile.road.17.desc", 1, "road/passing_north");
+            road2.carverHelper.addVariation("tile.road.18.desc", 2, "road/passing_south");
+            road2.carverHelper.addVariation("tile.road.19.desc", 3, "road/passing_west");
+            road2.carverHelper.addVariation("tile.road.20.desc", 4, "road/reflecting");
+            road2.carverHelper.addVariation("tile.road.21.desc", 5, "road/solid_east");
+            road2.carverHelper.addVariation("tile.road.22.desc", 6, "road/solid_north");
+
+            road.carverHelper.registerAll(road2, "road2");
+            Carving.chisel.registerOre("road2", "road2");
+        }
+        @Override
+        void addRecipes() {
+            GameRegistry.addRecipe(
+                new ItemStack(road, 32, 0),
+                "iii",
+                "ixi",
+                "iii",
+                'x',
+                new ItemStack(Blocks.gravel, 1),
+                'i',
+                new ItemStack(hempcrete, 1));
+        }
     };
 
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",

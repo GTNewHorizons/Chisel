@@ -198,6 +198,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable albumblock2 = null;
     public static final BlockCarvable brickCuston2 = null;
     public static final BlockCarvable brutalism = null;
+    public static final BlockCarvable road = null;
 
     private ChiselBlocks() {}
 }
