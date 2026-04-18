@@ -1293,6 +1293,20 @@ tile.concrete.8.desc=Partly Weathered Concrete
 tile.concrete.9.desc=Partly Weathered Concrete Block
 tile.concrete.10.desc=Asphalt
 
+#Concrete Slabs
+tile.chisel.concrete_slab.name=Concrete Slab
+tile.concreteSlab.0.desc=Concrete Slab
+tile.concreteSlab.1.desc=Concrete Block Slab
+tile.concreteSlab.2.desc=Concrete Double Slab
+tile.concreteSlab.3.desc=Small Concrete Block Slab
+tile.concreteSlab.4.desc=Weathered Concrete Slab
+tile.concreteSlab.5.desc=Weathered Concrete Block Slab
+tile.concreteSlab.6.desc=Weathered Concrete Double Slab
+tile.concreteSlab.7.desc=Small Weathered Blocks Slab
+tile.concreteSlab.8.desc=Partly Weathered Concrete Slab
+tile.concreteSlab.9.desc=Partly Weathered Concrete Block Slab
+tile.concreteSlab.10.desc=Asphalt
+
 # Road Line
 tile.chisel.road_line.name=Road Lines
 tile.roadLine.0.desc=White

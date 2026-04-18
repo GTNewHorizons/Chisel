@@ -53,6 +53,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable sandstone = null;
     public static final BlockCarvable sandstone_scribbles = null;
     public static final BlockConcrete concrete = null;
+    public static final BlockCarvableSlab concrete_slab = null;
     public static final BlockRoadLine road_line = null;
     public static final BlockCarvable iron_block = null;
     public static final BlockCarvable gold_block = null;
