@@ -91,9 +91,9 @@ public enum TextureType {
 			TextureSubmap map = data.getLeft();
 			if (topConnected && botConnected)
 				return map.getSubIcon(0, 1);
-			if (topConnected && !botConnected)
+			if (topConnected)
 				return map.getSubIcon(1, 1);
-			if (!topConnected && botConnected)
+			if (botConnected)
 				return map.getSubIcon(1, 0);
 			return map.getSubIcon(0, 0);
 		}
@@ -101,7 +101,6 @@ public enum TextureType {
 		@Override
 		@SideOnly(Side.CLIENT)
 		protected RenderBlocks createRenderContext(RenderBlocks rendererOld, IBlockAccess world, Object cachedObject) {
-            TextureType.initStatics();
 			RenderBlocksColumn ret = theRenderBlocksColumn.get();
 			Pair<TextureSubmap, IIcon> data = (Pair<TextureSubmap, IIcon>) cachedObject;
 
@@ -206,7 +205,6 @@ public enum TextureType {
 		@Override
 		@SideOnly(Side.CLIENT)
 		protected RenderBlocks createRenderContext(RenderBlocks rendererOld, IBlockAccess world, Object cachedObject) {
-            TextureType.initStatics();
 			RenderBlocksCTM ret = theRenderBlocksCTM.get();
 			Triple<?, TextureSubmap, TextureSubmap> data = (Triple<?, TextureSubmap, TextureSubmap>) cachedObject;
 
@@ -331,9 +329,9 @@ public enum TextureType {
 	private static final CTM ctm = CTM.getInstance();
 	private static final Random rand = new Random();
 	@SideOnly(Side.CLIENT)
-	private static ThreadLocal<RenderBlocksCTM> theRenderBlocksCTM;
+	private static final ThreadLocal<RenderBlocksCTM> theRenderBlocksCTM = ThreadLocal.withInitial(RenderBlocksCTM::new);
 	@SideOnly(Side.CLIENT)
-	private static ThreadLocal<RenderBlocksColumn> theRenderBlocksColumn;
+	private static final ThreadLocal<RenderBlocksColumn> theRenderBlocksColumn = ThreadLocal.withInitial(RenderBlocksColumn::new);
 
 	private final String[] suffixes;
 	static {
@@ -343,19 +341,6 @@ public enum TextureType {
 	TextureType(String... suffixes) {
 		this.suffixes = suffixes.length == 0 ? new String[] { "" } : suffixes;
 	}
-
-    private static void initStatics() {
-        if (theRenderBlocksCTM == null) {
-            theRenderBlocksCTM = ThreadLocal.withInitial(RenderBlocksCTM::new);
-            theRenderBlocksColumn = ThreadLocal.withInitial(RenderBlocksColumn::new);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void clearStatics() {
-        if(theRenderBlocksCTM != null) theRenderBlocksCTM.remove();
-        if(theRenderBlocksColumn != null) theRenderBlocksColumn.remove();
-    }
 
     public ISubmapManager createManagerFor(ICarvingVariation variation, String texturePath) {
 		return new SubmapManagerDefault(this, variation, texturePath);
