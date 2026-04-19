@@ -78,9 +78,9 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
         }
     }
 
-    private class Submap extends TextureSubmap {
+    private static class Submap extends TextureSubmap {
 
-        private TextureSubmap[][] submap;
+        private final TextureSubmap[][] submap;
 
         public Submap(IIcon base, int wh, TextureSubmap[][] submap) {
             super(base, wh, wh);
@@ -99,20 +99,15 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
     }
 
     @SideOnly(Side.CLIENT)
-    private static ThreadLocal<RenderBlocksCombinedCTM> renderBlocksThreadLocal;
-
-    private static void initStatics() {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = new ThreadLocal<>();
-        }
-    }
+    private final ThreadLocal<RenderBlocksCombinedCTM> renderBlocksThreadLocal = ThreadLocal
+        .withInitial(RenderBlocksCombinedCTM::new);
 
     private TextureSubmap submap, smallSubmap;
-    private int size;
-    private String texturePath;
-    private int meta;
+    private final int size;
+    private final String texturePath;
+    private final int meta;
     private IIcon defaultIcon;
-    private TextureType rType;
+    private final TextureType rType;
 
     public SubmapManagerCombinedCTM(int meta, String texturePath, TextureType rType) {
         assert rType == TextureType.R16 || rType == TextureType.R9
@@ -124,10 +119,7 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
         this.texturePath = texturePath;
         this.size = Integer.parseInt(
             rType.name()
-                .substring(
-                    1,
-                    rType.name()
-                        .length())); // >.>
+                .substring(1)); // >.>
         this.rType = rType;
     }
 
@@ -139,12 +131,7 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        initStatics();
         RenderBlocksCombinedCTM rb = renderBlocksThreadLocal.get();
-        if (rb == null) {
-            rb = new RenderBlocksCombinedCTM();
-            renderBlocksThreadLocal.set(rb);
-        }
         rb.setRenderBoundsFromBlock(block);
         return rb;
     }

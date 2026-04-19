@@ -49,16 +49,11 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
     };
 
     @SideOnly(Side.CLIENT)
-    private static ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal;
+    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = ThreadLocal
+        .withInitial(RenderBlocksCTMFullbright::new);
 
-    private static void initStatics() {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksCTMFullbright::new);
-        }
-    }
-
-    private String color;
-    private MaterialType materialType;
+    private final String color;
+    private final MaterialType materialType;
     private TextureSubmap submap, submapSmall;
 
     public SubmapManagerSpecialMaterial(String color, MaterialType materialType) {
@@ -83,7 +78,6 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        initStatics();
         RenderBlocksCTMFullbright renderBlocksFullbright = renderBlocksThreadLocal.get();
         renderBlocksFullbright.setRenderBoundsFromBlock(block);
         renderBlocksFullbright.submap = submap;

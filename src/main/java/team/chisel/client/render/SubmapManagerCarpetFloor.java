@@ -14,17 +14,12 @@ import team.chisel.ctmlib.TextureSubmap;
 public class SubmapManagerCarpetFloor extends SubmapManagerBase {
 
     @SideOnly(Side.CLIENT)
-    private static ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal;
-
-    private static void initStatics() {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksCTM::new);
-        }
-    }
+    private static final ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal = ThreadLocal
+        .withInitial(RenderBlocksCTM::new);
 
     private TextureSubmap submap;
     private TextureSubmap submapSmall;
-    private String color;
+    private final String color;
 
     public SubmapManagerCarpetFloor(String color) {
         this.color = color;
@@ -51,7 +46,6 @@ public class SubmapManagerCarpetFloor extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        initStatics();
         RenderBlocksCTM rb = renderBlocksThreadLocal.get();
         rb.setRenderBoundsFromBlock(block);
         rb.submap = submap;
