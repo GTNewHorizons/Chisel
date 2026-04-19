@@ -90,7 +90,6 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
                 }
                 if (rb instanceof RenderBlocksCTM rbctm) {
                     rbctm.manager = rbctm.manager == null ? manager : rbctm.manager;
-                    rbctm.rendererOld = rbctm.rendererOld == null ? rendererOld : rbctm.rendererOld;
                 }
                 return rb;
             }

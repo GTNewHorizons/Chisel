@@ -57,25 +57,11 @@ public class SubmapManagerSlab implements ISubmapManager {
         return rb;
     }
 
-    private boolean hadOverride = false;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {}
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void preRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {
-        RenderBlocksCTM rbctm = (RenderBlocksCTM) renderer;
-        if (side.ordinal() < 2 && !rbctm.rendererOld.hasOverrideBlockTexture()) {
-            rbctm.rendererOld.setOverrideBlockTexture(sideTexture);
-            hadOverride = false;
-        } else {
-            hadOverride = true;
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void postRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {
-        if (!hadOverride) {
-            ((RenderBlocksCTM) renderer).rendererOld.clearOverrideBlockTexture();
-        }
-    }
+    public void postRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {}
 }

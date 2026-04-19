@@ -211,7 +211,6 @@ public enum TextureType {
 			ret.submap = data.getMiddle();
 			ret.submapSmall = data.getRight();
 
-			ret.rendererOld = rendererOld;
 			return ret;
 		}
 	},

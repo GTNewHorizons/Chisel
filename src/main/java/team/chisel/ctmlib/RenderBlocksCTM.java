@@ -235,7 +235,6 @@ public class RenderBlocksCTM extends RenderBlocks {
     protected float[] bluCache = new float[4];
     public TextureSubmap submap;
     public TextureSubmap submapSmall;
-    public RenderBlocks rendererOld;
     public ISubmapManager manager;
 
     protected int[][] lightmap = new int[3][3];
@@ -258,9 +257,6 @@ public class RenderBlocksCTM extends RenderBlocks {
 
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tessellator.addTranslation(x, y, z);
-        if (rendererOld != null && rendererOld.hasOverrideBlockTexture()) {
-            setOverrideBlockTexture(rendererOld.overrideBlockTexture);
-        }
         inWorld = true;
         boolean res = super.renderStandardBlock(block, x, y, z);
         inWorld = false;
