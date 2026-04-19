@@ -105,7 +105,6 @@ public enum TextureType {
 			RenderBlocksColumn ret = theRenderBlocksColumn.get();
 			Pair<TextureSubmap, IIcon> data = (Pair<TextureSubmap, IIcon>) cachedObject;
 
-			ret.blockAccess = world;
 			ret.renderMaxX = 1.0;
 			ret.renderMaxY = 1.0;
 			ret.renderMaxZ = 1.0;
@@ -210,7 +209,6 @@ public enum TextureType {
             TextureType.initStatics();
 			RenderBlocksCTM ret = theRenderBlocksCTM.get();
 			Triple<?, TextureSubmap, TextureSubmap> data = (Triple<?, TextureSubmap, TextureSubmap>) cachedObject;
-			ret.blockAccess = world;
 
 			ret.submap = data.getMiddle();
 			ret.submapSmall = data.getRight();
