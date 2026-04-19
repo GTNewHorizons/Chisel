@@ -19,6 +19,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.CTM;
@@ -327,10 +328,8 @@ public enum TextureType {
 	private static final TextureType[] VALUES;
 	private static final CTM ctm = CTM.getInstance();
 	private static final Random rand = new Random();
-	@SideOnly(Side.CLIENT)
-	private static final ThreadLocal<RenderBlocksCTM> theRenderBlocksCTM = ThreadLocal.withInitial(RenderBlocksCTM::new);
-	@SideOnly(Side.CLIENT)
-	private static final ThreadLocal<RenderBlocksColumn> theRenderBlocksColumn = ThreadLocal.withInitial(RenderBlocksColumn::new);
+	private static final ThreadLocal<RenderBlocksCTM> theRenderBlocksCTM = FMLLaunchHandler.side().isClient() ? ThreadLocal.withInitial(RenderBlocksCTM::new) : null;
+	private static final ThreadLocal<RenderBlocksColumn> theRenderBlocksColumn = FMLLaunchHandler.side().isClient() ? ThreadLocal.withInitial(RenderBlocksColumn::new) : null;
 
 	private final String[] suffixes;
 	static {

@@ -10,6 +10,7 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.Drawing;
@@ -74,9 +75,8 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
         }
     };
 
-    @SideOnly(Side.CLIENT)
-    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = ThreadLocal
-        .withInitial(RenderBlocksCTMFullbright::new);
+    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksCTMFullbright::new) : null;
 
     private final String color;
     private TextureSubmap submap, submapSmall;

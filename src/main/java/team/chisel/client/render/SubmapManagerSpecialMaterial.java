@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.RenderBlocksCTM;
@@ -48,9 +49,8 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
         }
     };
 
-    @SideOnly(Side.CLIENT)
-    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = ThreadLocal
-        .withInitial(RenderBlocksCTMFullbright::new);
+    private static final ThreadLocal<RenderBlocksCTMFullbright> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksCTMFullbright::new) : null;
 
     private final String color;
     private final MaterialType materialType;

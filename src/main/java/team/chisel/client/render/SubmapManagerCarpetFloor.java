@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.RenderBlocksCTM;
@@ -13,9 +14,8 @@ import team.chisel.ctmlib.TextureSubmap;
 
 public class SubmapManagerCarpetFloor extends SubmapManagerBase {
 
-    @SideOnly(Side.CLIENT)
-    private static final ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal = ThreadLocal
-        .withInitial(RenderBlocksCTM::new);
+    private static final ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksCTM::new) : null;
 
     private TextureSubmap submap;
     private TextureSubmap submapSmall;

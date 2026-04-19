@@ -14,6 +14,7 @@ import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.rendering.TextureType;
 import com.cricketcraft.chisel.api.rendering.TextureType.AbstractSubmapManager;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.RenderBlocksCTM;
@@ -98,9 +99,8 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    private final ThreadLocal<RenderBlocksCombinedCTM> renderBlocksThreadLocal = ThreadLocal
-        .withInitial(RenderBlocksCombinedCTM::new);
+    private final ThreadLocal<RenderBlocksCombinedCTM> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksCombinedCTM::new) : null;
 
     private TextureSubmap submap, smallSubmap;
     private final int size;
