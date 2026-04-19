@@ -102,15 +102,13 @@ public class RenderBlocksCTM extends RenderBlocks {
 		XZ_HALF_Y(0.5, 1, 0.5);
 		// @formatter:on
 
-        private double x, y, z;
+        private final double x, y, z;
 
-        private Vert(double x, double y, double z) {
+        Vert(double x, double y, double z) {
             this.x = x;
             this.y = y;
             this.z = z;
         }
-
-        private static double u, v, xDiff, yDiff, zDiff, uDiff, vDiff;
 
         void render(RenderBlocksCTM inst, ForgeDirection normal, int cacheID) {
             final Tessellator tessellator = Tessellator.instance;
@@ -120,12 +118,15 @@ public class RenderBlocksCTM extends RenderBlocks {
                 tessellator.setBrightness(inst.lightingCache[cacheID]);
             }
 
-            u = cacheID == 1 || cacheID == 2 ? inst.maxU : inst.minU;
-            v = cacheID < 2 ? inst.maxV : inst.minV;
+            double u = cacheID == 1 || cacheID == 2 ? inst.maxU : inst.minU;
+            double v = cacheID < 2 ? inst.maxV : inst.minV;
 
-            uDiff = inst.maxU - inst.minU;
-            vDiff = inst.maxV - inst.minV;
+            double uDiff = inst.maxU - inst.minU;
+            double vDiff = inst.maxV - inst.minV;
 
+            double xDiff;
+            double yDiff;
+            double zDiff;
             if (inst.renderMinX + inst.renderMinY + inst.renderMinZ != 0
                 || inst.renderMaxX + inst.renderMaxY + inst.renderMaxZ != 3) {
                 boolean uMin = u == inst.minU;
@@ -178,8 +179,8 @@ public class RenderBlocksCTM extends RenderBlocks {
 		YNEG_LB(ZERO, X_HALF, XZ_HALF, Z_HALF), YNEG_RB(X_HALF, X, Z_HALF_X, XZ_HALF), YNEG_RT(XZ_HALF, Z_HALF_X, XZ, X_HALF_Z), YNEG_LT(Z_HALF, XZ_HALF, X_HALF_Z, Z),
 		YPOS_LB(YZ, X_HALF_YZ, XZ_HALF_Y, Z_HALF_Y), YPOS_RB(X_HALF_YZ, XYZ, Z_HALF_XY, XZ_HALF_Y), YPOS_RT(XZ_HALF_Y, Z_HALF_XY, XY, X_HALF_Y), YPOS_LT(Z_HALF_Y, XZ_HALF_Y, X_HALF_Y, Y);
 		// @formatter:on
-        private Vert xmin, xmax, ymin, ymax;
-        private ForgeDirection normal;
+        private final Vert xmin, xmax, ymin, ymax;
+        private final ForgeDirection normal;
 
         SubSide(Vert xmin, Vert ymin, Vert ymax, Vert xmax) {
             this.xmin = xmin;
@@ -447,7 +448,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceXNeg(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 4);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 4);
 
             fillLightmap(brightnessBottomRight, brightnessTopRight, brightnessTopLeft, brightnessBottomLeft);
             fillColormap(colorRedBottomRight, colorRedTopRight, colorRedTopLeft, colorRedBottomLeft, redmap);
@@ -472,7 +473,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceXPos(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 5);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 5);
 
             fillLightmap(brightnessTopLeft, brightnessBottomLeft, brightnessBottomRight, brightnessTopRight);
             fillColormap(colorRedTopLeft, colorRedBottomLeft, colorRedBottomRight, colorRedTopRight, redmap);
@@ -497,7 +498,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceZNeg(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 2);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 2);
 
             fillLightmap(brightnessBottomRight, brightnessTopRight, brightnessTopLeft, brightnessBottomLeft);
             fillColormap(colorRedBottomRight, colorRedTopRight, colorRedTopLeft, colorRedBottomLeft, redmap);
@@ -522,7 +523,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceZPos(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 3);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 3);
 
             fillLightmap(brightnessBottomLeft, brightnessBottomRight, brightnessTopRight, brightnessTopLeft);
             fillColormap(colorRedBottomLeft, colorRedBottomRight, colorRedTopRight, colorRedTopLeft, redmap);
@@ -547,7 +548,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceYNeg(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 0);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 0);
 
             fillLightmap(brightnessBottomLeft, brightnessBottomRight, brightnessTopRight, brightnessTopLeft);
             fillColormap(colorRedBottomLeft, colorRedBottomRight, colorRedTopRight, colorRedTopLeft, redmap);
@@ -572,7 +573,7 @@ public class RenderBlocksCTM extends RenderBlocks {
         if (!inWorld || submap == null) {
             super.renderFaceYPos(block, 0, 0, 0, icon);
         } else {
-            int tex[] = ctm.getSubmapIndices(blockAccess, bx, by, bz, 1);
+            int[] tex = ctm.getSubmapIndices(blockAccess, bx, by, bz, 1);
 
             fillLightmap(brightnessTopRight, brightnessTopLeft, brightnessBottomLeft, brightnessBottomRight);
             fillColormap(colorRedTopRight, colorRedTopLeft, colorRedBottomLeft, colorRedBottomRight, redmap);

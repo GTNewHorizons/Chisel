@@ -337,12 +337,12 @@ public enum TextureType {
 	@SideOnly(Side.CLIENT)
 	private static ThreadLocal<RenderBlocksColumn> theRenderBlocksColumn;
 
-	private String[] suffixes;
+	private final String[] suffixes;
 	static {
 		VALUES = ArrayUtils.subarray(values(), 0, values().length - 1);
 	}
 
-	private TextureType(String... suffixes) {
+	TextureType(String... suffixes) {
 		this.suffixes = suffixes.length == 0 ? new String[] { "" } : suffixes;
 	}
 

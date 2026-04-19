@@ -78,8 +78,7 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
                         rendererOld.renderMaxY,
                         rendererOld.renderMaxZ);
                 }
-                if (rb instanceof RenderBlocksCTM) {
-                    RenderBlocksCTM rbctm = (RenderBlocksCTM) rb;
+                if (rb instanceof RenderBlocksCTM rbctm) {
                     rbctm.manager = rbctm.manager == null ? manager : rbctm.manager;
                     rbctm.rendererOld = rbctm.rendererOld == null ? rendererOld : rbctm.rendererOld;
                 }
