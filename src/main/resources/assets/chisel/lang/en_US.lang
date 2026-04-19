@@ -2891,6 +2891,15 @@ tile.road.19.desc=Passing Lane - West
 tile.road.20.desc=Double Yellow Lines With Reflectors
 tile.road.21.desc=Solid Yellow Line - East/West
 tile.road.22.desc=Solid Yellow Line - North/South
+tile.road.23.desc=Converging Lane Marking
+tile.road.24.desc=White Pained Asphalt
+tile.road.25.desc=Yellow Painted Asphalt
+tile.road.26.desc=Gravel Road
+tile.road.27.desc=Solid White Line - North/South
+tile.road.28.desc=Solid White Line - East/West
+tile.road.29.desc=Weathered Asphalt
+tile.road.30.desc=Weathering Asphalt
+tile.road.31.desc=Overgrown Dirt Road
 
 tile.chisel.amber.name=Block of Amber
 tile.chisel.bloodBrick.name=Bloodstone Brick

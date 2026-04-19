@@ -5138,8 +5138,6 @@ public enum Features {
             road.carverHelper.addVariation("tile.road.13.desc", 13, "road/right_lane");
             road.carverHelper.addVariation("tile.road.14.desc", 14, "road/lined_white");
             road.carverHelper.addVariation("tile.road.15.desc", 15, "road/outline_white");
-            road.carverHelper.registerAll(road, "road");
-            Carving.chisel.registerOre("road", "road");
 
             BlockCarvable road2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
@@ -5152,9 +5150,20 @@ public enum Features {
             road2.carverHelper.addVariation("tile.road.20.desc", 4, "road/reflecting");
             road2.carverHelper.addVariation("tile.road.21.desc", 5, "road/solid_east");
             road2.carverHelper.addVariation("tile.road.22.desc", 6, "road/solid_north");
+            road2.carverHelper.addVariation("tile.road.23.desc", 7, "road/converging");
+            road2.carverHelper.addVariation("tile.road.24.desc", 8, "road/full_white");
+            road2.carverHelper.addVariation("tile.road.25.desc", 9, "road/full_yellow");
+            road2.carverHelper.addVariation("tile.road.26.desc", 10, "road/gravel_road");
+            road2.carverHelper.addVariation("tile.road.27.desc", 11, "road/solid_white_east");
+            road2.carverHelper.addVariation("tile.road.28.desc", 12, "road/solid_white_north");
+            road2.carverHelper.addVariation("tile.road.29.desc", 13, "road/weathered_asphalt");
+            road2.carverHelper.addVariation("tile.road.30.desc", 14, "road/weathering_asphalt");
+            road2.carverHelper.addVariation("tile.road.31.desc", 15, "road/overgrown_road");
+            road2.carverHelper.registerBlock(road2, "road2");
+            road2.carverHelper.registerVariations("road");
 
-            road.carverHelper.registerAll(road2, "road2");
-            Carving.chisel.registerOre("road2", "road2");
+            road.carverHelper.registerAll(road, "road");
+            Carving.chisel.registerOre("road", "road");
         }
 
         @Override
