@@ -27,7 +27,8 @@ public class RendererEldritch implements ISimpleBlockRenderingHandler {
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
-    ThreadLocal<RenderBlocksEldritch> rendererThreadLocal = ThreadLocal.withInitial(RenderBlocksEldritch::new);
+    private static final ThreadLocal<RenderBlocksEldritch> rendererThreadLocal = ThreadLocal
+        .withInitial(RenderBlocksEldritch::new);
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
@@ -59,7 +60,11 @@ public class RendererEldritch implements ISimpleBlockRenderingHandler {
         renderer.renderMaxX = 1.0;
         renderer.renderMaxY = 1.0;
         renderer.renderMaxZ = 1.0;
-        renderer.renderStandardBlock(block, x, y, z);
+        try {
+            renderer.renderStandardBlock(block, x, y, z);
+        } finally {
+            renderer.blockAccess = null;
+        }
 
         return true;
         /*

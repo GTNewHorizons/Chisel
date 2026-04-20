@@ -16,11 +16,7 @@ import team.chisel.ctmlib.Drawing;
 @ThreadSafeISBRH(perThread = false)
 public class RendererStairs implements ISimpleBlockRenderingHandler {
 
-    public static int id;
-
-    public RendererStairs() {
-        id = RenderingRegistry.getNextAvailableRenderId();
-    }
+    public static final int id = RenderingRegistry.getNextAvailableRenderId();
 
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
@@ -34,8 +30,7 @@ public class RendererStairs implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block blck, int modelId,
         RenderBlocks renderer) {
-        if (blck == null || !(blck instanceof BlockCarvableStairs)) return false;
-        BlockCarvableStairs block = (BlockCarvableStairs) blck;
+        if (!(blck instanceof BlockCarvableStairs block)) return false;
 
         renderer.renderBlockStairs(block, x, y, z);
 
