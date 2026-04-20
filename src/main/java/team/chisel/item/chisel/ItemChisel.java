@@ -51,6 +51,7 @@ public class ItemChisel extends Item implements IChiselItem {
         super();
         this.type = type;
         setMaxStackSize(1);
+        setMaxDamage(Configurations.allowChiselDamage ? type.maxDamage : 0);
         setTextureName(
             Chisel.MOD_ID + ":chisel_"
                 + type.name()
@@ -67,12 +68,6 @@ public class ItemChisel extends Item implements IChiselItem {
                     + type.name()
                         .toLowerCase());
         }
-    }
-
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        if (Configurations.allowChiselDamage) return type.maxDamage;
-        return 0;
     }
 
     @Override
