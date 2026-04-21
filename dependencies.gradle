@@ -1,9 +1,9 @@
 // Add your dependencies here
 
 dependencies {
-    implementation("com.github.GTNewHorizons:CodeChickenCore:1.4.10:dev")
-    implementation("com.github.GTNewHorizons:NotEnoughItems:2.8.72-GTNH:dev")
-    implementation("com.github.GTNewHorizons:ForgeMultipart:1.7.2:dev")
+    implementation("com.github.GTNewHorizons:CodeChickenCore:1.4.12:dev")
+    implementation("com.github.GTNewHorizons:NotEnoughItems:2.8.84-GTNH:dev")
+    implementation("com.github.GTNewHorizons:ForgeMultipart:1.7.3:dev")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
@@ -17,7 +17,7 @@ dependencies {
         transitive = false
     }
 
-    compileOnly("com.github.GTNewHorizons:Angelica:1.0.0-beta68a:api") {
+    compileOnly("com.github.GTNewHorizons:Angelica:2.1.15:api") {
         transitive = false
     }
 }

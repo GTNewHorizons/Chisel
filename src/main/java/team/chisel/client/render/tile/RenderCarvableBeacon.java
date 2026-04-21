@@ -26,7 +26,7 @@ public class RenderCarvableBeacon extends TileEntityBeaconRenderer implements IS
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/beacon_beam.png");
 
-    private int renderId;
+    private final int renderId;
 
     public RenderCarvableBeacon() {
         this.renderId = RenderingRegistry.getNextAvailableRenderId();

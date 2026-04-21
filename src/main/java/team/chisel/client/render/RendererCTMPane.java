@@ -19,11 +19,7 @@ import team.chisel.ctmlib.Drawing;
 @ThreadSafeISBRH(perThread = false)
 public class RendererCTMPane implements ISimpleBlockRenderingHandler {
 
-    public static int id;
-
-    public RendererCTMPane() {
-        id = RenderingRegistry.getNextAvailableRenderId();
-    }
+    public static final int id = RenderingRegistry.getNextAvailableRenderId();
 
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
@@ -33,7 +29,7 @@ public class RendererCTMPane implements ISimpleBlockRenderingHandler {
         Drawing.drawBlock(block, meta, renderer);
     }
 
-    class PaneRenderer {
+    static class PaneRenderer {
 
         double i0u0;
         double i0uh;

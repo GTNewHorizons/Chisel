@@ -7,6 +7,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.ISubmapManager;
@@ -15,19 +16,13 @@ import team.chisel.ctmlib.TextureSubmap;
 
 public class SubmapManagerSlab implements ISubmapManager {
 
-    @SideOnly(Side.CLIENT)
-    private static ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal;
-
-    private static void initStatics() {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksCTM::new);
-        }
-    }
+    private static final ThreadLocal<RenderBlocksCTM> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksCTM::new) : null;
 
     private TextureSubmap submap;
     private TextureSubmap submapSmall;
     private IIcon sideTexture;
-    private String texture;
+    private final String texture;
 
     public SubmapManagerSlab(String texture) {
         this.texture = texture;
@@ -55,7 +50,6 @@ public class SubmapManagerSlab implements ISubmapManager {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        initStatics();
         RenderBlocksCTM rb = renderBlocksThreadLocal.get();
         rb.setRenderBoundsFromBlock(block);
         rb.submap = submap;
@@ -63,25 +57,11 @@ public class SubmapManagerSlab implements ISubmapManager {
         return rb;
     }
 
-    private boolean hadOverride = false;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {}
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void preRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {
-        RenderBlocksCTM rbctm = (RenderBlocksCTM) renderer;
-        if (side.ordinal() < 2 && !rbctm.rendererOld.hasOverrideBlockTexture()) {
-            rbctm.rendererOld.setOverrideBlockTexture(sideTexture);
-            hadOverride = false;
-        } else {
-            hadOverride = true;
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void postRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {
-        if (!hadOverride) {
-            ((RenderBlocksCTM) renderer).rendererOld.clearOverrideBlockTexture();
-        }
-    }
+    public void postRenderSide(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, ForgeDirection side) {}
 }

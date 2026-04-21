@@ -2,6 +2,7 @@ package team.chisel.ctmlib;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -27,29 +28,38 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-        RenderBlocks rb = getContext(
-            renderer,
-            block,
-            Minecraft.getMinecraft().theWorld,
-            ((ICTMBlock<?>) block).getManager(metadata),
-            metadata);
-        Drawing.drawBlock(block, metadata, rb);
-        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
-        rb.unlockBlockBounds();
+        final WorldClient world = Minecraft.getMinecraft().theWorld;
+        final RenderBlocks rb = getContext(renderer, block, world, ((ICTMBlock<?>) block).getManager(metadata));
+        boolean clean = false;
+        if (rb.blockAccess == null) {
+            rb.blockAccess = world;
+            clean = true;
+        }
+        try {
+            Drawing.drawBlock(block, metadata, rb);
+            GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+            rb.unlockBlockBounds();
+        } finally {
+            if (clean) rb.blockAccess = null;
+        }
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-        RenderBlocks rendererOld) {
+        RenderBlocks renderer) {
+        final int meta = world.getBlockMetadata(x, y, z);
+        final RenderBlocks rb = getContext(
+            renderer,
+            block,
+            world,
+            ((ICTMBlock<?>) block).getManager(world, x, y, z, meta));
+        boolean clean = false;
+        if (rb.blockAccess == null) {
+            rb.blockAccess = world;
+            clean = true;
+        }
         try {
-            int meta = world.getBlockMetadata(x, y, z);
-            RenderBlocks rb = getContext(
-                rendererOld,
-                block,
-                world,
-                ((ICTMBlock<?>) block).getManager(world, x, y, z, meta),
-                meta);
-            rb.renderAllFaces = rendererOld.renderAllFaces;
+            rb.renderAllFaces = renderer.renderAllFaces;
             boolean ret = rb.renderStandardBlock(block, x, y, z);
             rb.unlockBlockBounds();
             rb.renderAllFaces = false;
@@ -60,15 +70,15 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
             crashreportcategory.addCrashSection("Block name", GameRegistry.findUniqueIdentifierFor(block));
             crashreportcategory.addCrashSection("Block metadata", world.getBlockMetadata(x, y, z));
             throw new ReportedException(crashreport);
+        } finally {
+            if (clean) rb.blockAccess = null;
         }
     }
 
-    protected RenderBlocks getContext(RenderBlocks rendererOld, Block block, IBlockAccess world, ISubmapManager manager,
-        int meta) {
+    private RenderBlocks getContext(RenderBlocks rendererOld, Block block, IBlockAccess world, ISubmapManager manager) {
         if (!rendererOld.hasOverrideBlockTexture() && manager != null) {
             RenderBlocks rb = manager.createRenderContext(rendererOld, block, world);
             if (rb != null && rb != rendererOld) {
-                rb.blockAccess = world;
                 if (rendererOld.lockBlockBounds) {
                     rb.overrideBlockBounds(
                         rendererOld.renderMinX,
@@ -78,10 +88,8 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
                         rendererOld.renderMaxY,
                         rendererOld.renderMaxZ);
                 }
-                if (rb instanceof RenderBlocksCTM) {
-                    RenderBlocksCTM rbctm = (RenderBlocksCTM) rb;
+                if (rb instanceof RenderBlocksCTM rbctm) {
                     rbctm.manager = rbctm.manager == null ? manager : rbctm.manager;
-                    rbctm.rendererOld = rbctm.rendererOld == null ? rendererOld : rbctm.rendererOld;
                 }
                 return rb;
             }
