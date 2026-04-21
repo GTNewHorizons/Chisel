@@ -14,10 +14,10 @@ import team.chisel.ctmlib.ISubmapManager;
 
 public class VariationInfoBase implements IVariationInfo {
 
-    private ICarvingVariation variation;
-    private String unlocDesc;
-    private ISubmapManager manager;
-    private TextureType type;
+    private final ICarvingVariation variation;
+    private final String unlocDesc;
+    private final ISubmapManager manager;
+    private final TextureType type;
 
     public VariationInfoBase(ICarvingVariation variation, String unlocDesc, ISubmapManager manager) {
         this(variation, unlocDesc, manager, TextureType.CUSTOM);

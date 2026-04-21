@@ -4463,9 +4463,9 @@ public enum Features {
 
         @Override
         void addBlocks() {
-            BlockCarvable woolen_clay = (BlockCarvable) new BlockCarvable(Material.clay)
+            BlockCarvable woolen_clay = (BlockCarvable) new BlockCarvable(Material.rock)
                 .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
-                .setHardness(2F)
+                .setHardness(1.5F)
                 .setResistance(10F);
 
             for (int i = 0; i < 16; i++) woolen_clay.carverHelper.addVariation(
