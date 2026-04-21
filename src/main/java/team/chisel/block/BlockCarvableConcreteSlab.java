@@ -17,8 +17,17 @@ import team.chisel.config.Configurations;
 
 public class BlockCarvableConcreteSlab extends BlockCarvableSlab {
 
-    public BlockCarvableConcreteSlab(Block block) {
-        super((BlockCarvable) block);
+    public BlockCarvableConcreteSlab(BlockCarvable block) {
+        super(block);
+        top = new BlockCarvableConcreteSlab(this);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(new EventHandler());
+    }
+
+    // Constructor to get concrete top slabs to work
+    public BlockCarvableConcreteSlab(BlockCarvableSlab bottomBlock) {
+        super(bottomBlock);
         FMLCommonHandler.instance()
             .bus()
             .register(new EventHandler());
@@ -43,7 +52,19 @@ public class BlockCarvableConcreteSlab extends BlockCarvableSlab {
                     MathHelper.floor_double(player.posX),
                     MathHelper.floor_double(player.posY) - 2,
                     MathHelper.floor_double(player.posZ));
+
+                // Test class type
+//                if (below == BlockCarvableConcreteSlab.this) {
+//                    FMLLog.getLogger().info(player.worldObj.getBlock(
+//                        MathHelper.floor_double(player.posX) + 2,
+//                        MathHelper.floor_double(player.posY) - 2,
+//                        MathHelper.floor_double(player.posZ))
+//                    );
+//                }
+
                 if (below == BlockCarvableConcreteSlab.this) {
+                    //FMLLog.getLogger().info("Player at {}, Block below {} is at y={}",
+                    //    MathHelper.floor_double(player.posY), below, MathHelper.floor_double(player.posY) - 2);
                     manualInputCheck.updatePlayerMoveState();
                     if (manualInputCheck.moveForward != 0 || manualInputCheck.moveStrafe != 0) {
                         player.motionX *= Configurations.concreteVelocityMult + 0.05;
