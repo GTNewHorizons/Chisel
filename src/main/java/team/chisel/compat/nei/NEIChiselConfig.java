@@ -25,6 +25,7 @@ public class NEIChiselConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(GameRegistry.findBlock("chisel", "limestone_slab_top")));
         API.hideItem(new ItemStack(GameRegistry.findBlock("chisel", "marble_slab_top")));
         API.hideItem(new ItemStack(GameRegistry.findBlock("chisel", "marble_pillar_slab_top")));
+        API.hideItem(new ItemStack(GameRegistry.findBlock("chisel", "concrete_slab_top")));
 
         RecipeHandlerChisel handler = new RecipeHandlerChisel();
         API.registerRecipeHandler(handler);
