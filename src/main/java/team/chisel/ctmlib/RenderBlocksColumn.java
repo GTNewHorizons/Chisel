@@ -16,8 +16,8 @@ public class RenderBlocksColumn extends RenderBlocks {
     public IIcon iconTop;
     private boolean inWorld;
 
-    private IIcon sides[] = new IIcon[6];
-    private CTM ctm = CTM.getInstance();
+    private final IIcon[] sides = new IIcon[6];
+    private final CTM ctm = CTM.getInstance();
 
     public RenderBlocksColumn() {
         super();

@@ -11,6 +11,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.rendering.TextureType;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.ISubmapManager;
@@ -88,8 +89,8 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    private static ThreadLocal<RenderBlocksVoidstone> renderBlocksThreadLocal;
+    private static final ThreadLocal<RenderBlocksVoidstone> renderBlocksThreadLocal = FMLLaunchHandler.side()
+        .isClient() ? ThreadLocal.withInitial(RenderBlocksVoidstone::new) : null;
 
     private ISubmapManager overlay;
     private static TextureSubmap base;
@@ -123,10 +124,6 @@ public class SubmapManagerVoidstone extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
-        if (renderBlocksThreadLocal == null) {
-            renderBlocksThreadLocal = ThreadLocal.withInitial(RenderBlocksVoidstone::new);
-        }
-
         RenderBlocksVoidstone rb = renderBlocksThreadLocal.get();
         RenderBlocks ctx = overlay.createRenderContext(rendererOld, block, world);
         rb.setRenderBoundsFromBlock(block);

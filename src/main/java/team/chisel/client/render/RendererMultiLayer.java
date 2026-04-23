@@ -28,17 +28,11 @@ public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
 
     final static float bot = -0.001f;
     final static float top = 1.0f - bot;
-    public static int id;
-
-    public RendererMultiLayer() {
-        id = RenderingRegistry.getNextAvailableRenderId();
-    }
+    public static final int id = RenderingRegistry.getNextAvailableRenderId();
 
     @Override
     public void renderInventoryBlock(Block blck, int meta, int modelID, RenderBlocks renderer) {
-        if (blck == null || !(blck instanceof BlockMultiLayerBase)) return;
-
-        BlockMultiLayerBase block = (BlockMultiLayerBase) blck;
+        if (!(blck instanceof BlockMultiLayerBase block)) return;
 
         if (block.icon != null) {
             renderer.overrideBlockTexture = block.icon;
@@ -61,8 +55,7 @@ public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block blck, int modelId,
         RenderBlocks renderer) {
-        if (blck == null || !(blck instanceof BlockMultiLayerBase)) return false;
-        BlockMultiLayerBase block = (BlockMultiLayerBase) blck;
+        if (!(blck instanceof BlockMultiLayerBase block)) return false;
 
         if (MinecraftForgeClient.getRenderPass() == 0) {
             if (block.icon != null) {

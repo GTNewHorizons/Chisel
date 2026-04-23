@@ -11,14 +11,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import com.cricketcraft.chisel.api.IChiselItem;
 import com.cricketcraft.chisel.api.carving.ICarvingGroup;
 import com.cricketcraft.chisel.api.carving.ICarvingVariation;
 import com.cricketcraft.chisel.api.carving.IChiselMode;
-import com.cricketcraft.chisel.api.rendering.TextureType;
 import com.google.common.collect.Queues;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -33,11 +31,10 @@ public final class ChiselController {
 
     protected static class GuiOpen implements Runnable {
 
-        private EntityPlayer player;
-        private ItemStack stack;
+        private final EntityPlayer player;
+        private final ItemStack stack;
 
         public GuiOpen(EntityPlayer player, ItemStack stack) {
-            super();
             this.player = player;
             this.stack = stack;
         }
@@ -55,7 +52,7 @@ public final class ChiselController {
 
     public static final ChiselController INSTANCE = new ChiselController();
 
-    Queue<GuiOpen> openQueue = Queues.newArrayDeque();
+    final Queue<GuiOpen> openQueue = Queues.newArrayDeque();
 
     private ChiselController() {}
 
@@ -160,13 +157,6 @@ public final class ChiselController {
             if (open != null) {
                 open.run();
             }
-        }
-    }
-
-    @SubscribeEvent
-    public void onWorldUnload(WorldEvent.Unload event) {
-        if (event.world.isRemote) {
-            TextureType.clearStatics();
         }
     }
 
