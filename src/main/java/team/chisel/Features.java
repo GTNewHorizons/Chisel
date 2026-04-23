@@ -38,6 +38,7 @@ import team.chisel.block.BlockCarvableBeacon;
 import team.chisel.block.BlockCarvableBookshelf;
 import team.chisel.block.BlockCarvableCarpet;
 import team.chisel.block.BlockCarvableConcreteSlab;
+import team.chisel.block.BlockCarvableConcreteStairs;
 import team.chisel.block.BlockCarvableGlass;
 import team.chisel.block.BlockCarvableGlow;
 import team.chisel.block.BlockCarvableGlowie;
@@ -865,6 +866,30 @@ public enum Features {
             concrete_slab.carverHelper.registerAll(concrete_slab, "concrete_slab", ItemCarvableSlab.class);
             registerSlabTop(concrete_slab, concrete_slab.top);
             Carving.chisel.registerOre("concrete_slab", "concrete_slab");
+
+            CarvableStairsMaker makerConcreteStairs = new CarvableStairsMaker(concrete);
+
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.0.desc", 0, "concrete/default");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.1.desc", 1, "concrete/block");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.2.desc", 2, "concrete/doubleslab");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.3.desc", 3, "concrete/blocks");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.4.desc", 4, "concrete/weathered");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.5.desc", 5, "concrete/weathered-block");
+            makerConcreteStairs.carverHelper
+                .addVariation("tile.concreteStairs.6.desc", 6, "concrete/weathered-doubleslab");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.7.desc", 7, "concrete/weathered-blocks");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.8.desc", 8, "concrete/weathered-half");
+            makerConcreteStairs.carverHelper
+                .addVariation("tile.concreteStairs.9.desc", 9, "concrete/weathered-block-half");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.10.desc", 10, "concrete/asphalt");
+            makerConcreteStairs.create(new IStairsCreator() {
+
+                @Override
+                public BlockCarvableStairs create(Block block, int meta, CarvableHelper helper) {
+                    return new BlockCarvableConcreteStairs(block, meta, helper);
+                }
+            }, "concrete_stairs", concreteStairs);
+            Carving.chisel.registerOre("concrete_stairs", "concrete_stairs");
         }
 
         @Override

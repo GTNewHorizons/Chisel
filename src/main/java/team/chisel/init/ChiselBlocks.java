@@ -7,6 +7,8 @@ import team.chisel.Chisel;
 import team.chisel.block.BlockCarvable;
 import team.chisel.block.BlockCarvableBeacon;
 import team.chisel.block.BlockCarvableCarpet;
+import team.chisel.block.BlockCarvableConcreteSlab;
+import team.chisel.block.BlockCarvableConcreteStairs;
 import team.chisel.block.BlockCarvableGlass;
 import team.chisel.block.BlockCarvableGlowstone;
 import team.chisel.block.BlockCarvableIce;
@@ -53,7 +55,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable sandstone = null;
     public static final BlockCarvable sandstone_scribbles = null;
     public static final BlockConcrete concrete = null;
-    public static final BlockCarvableSlab concrete_slab = null;
+    public static final BlockCarvableConcreteSlab concrete_slab = null;
     public static final BlockRoadLine road_line = null;
     public static final BlockCarvable iron_block = null;
     public static final BlockCarvable gold_block = null;
@@ -148,6 +150,7 @@ public final class ChiselBlocks {
     public static BlockCarvableStairs[] limestoneStairs = new BlockCarvableStairs[8];
     public static BlockCarvableIceStairs[] iceStairs = new BlockCarvableIceStairs[8];
     public static BlockCarvablePackedIceStairs[] packediceStairs = new BlockCarvablePackedIceStairs[8];
+    public static BlockCarvableConcreteStairs[] concreteStairs = new BlockCarvableConcreteStairs[6];
 
     public static Block[] torches = new BlockCarvableTorch[16];
 
