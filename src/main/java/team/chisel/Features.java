@@ -37,6 +37,8 @@ import team.chisel.block.BlockCarvable;
 import team.chisel.block.BlockCarvableBeacon;
 import team.chisel.block.BlockCarvableBookshelf;
 import team.chisel.block.BlockCarvableCarpet;
+import team.chisel.block.BlockCarvableConcreteSlab;
+import team.chisel.block.BlockCarvableConcreteStairs;
 import team.chisel.block.BlockCarvableGlass;
 import team.chisel.block.BlockCarvableGlow;
 import team.chisel.block.BlockCarvableGlowie;
@@ -864,6 +866,50 @@ public enum Features {
             concrete.carverHelper.registerAll(concrete, "concrete");
             OreDictionary.registerOre("concrete", concrete);
             Carving.chisel.registerOre("concrete", "concrete");
+
+            BlockCarvableSlab concrete_slab = (BlockCarvableSlab) new BlockCarvableConcreteSlab(concrete)
+                .setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
+                .setHardness(0.5F);
+
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.0.desc", 0, "concrete/default");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.1.desc", 1, "concrete/block");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.2.desc", 2, "concrete/doubleslab");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.3.desc", 3, "concrete/blocks");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.4.desc", 4, "concrete/weathered");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.5.desc", 5, "concrete/weathered-block");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.6.desc", 6, "concrete/weathered-doubleslab");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.7.desc", 7, "concrete/weathered-blocks");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.8.desc", 8, "concrete/weathered-half");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.9.desc", 9, "concrete/weathered-block-half");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.10.desc", 10, "concrete/asphalt");
+            concrete_slab.carverHelper.registerAll(concrete_slab, "concrete_slab", ItemCarvableSlab.class);
+            registerSlabTop(concrete_slab, concrete_slab.top);
+            Carving.chisel.registerOre("concrete_slab", "concrete_slab");
+
+            CarvableStairsMaker makerConcreteStairs = new CarvableStairsMaker(concrete);
+
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.0.desc", 0, "concrete/default");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.1.desc", 1, "concrete/block");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.2.desc", 2, "concrete/doubleslab");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.3.desc", 3, "concrete/blocks");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.4.desc", 4, "concrete/weathered");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.5.desc", 5, "concrete/weathered-block");
+            makerConcreteStairs.carverHelper
+                .addVariation("tile.concreteStairs.6.desc", 6, "concrete/weathered-doubleslab");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.7.desc", 7, "concrete/weathered-blocks");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.8.desc", 8, "concrete/weathered-half");
+            makerConcreteStairs.carverHelper
+                .addVariation("tile.concreteStairs.9.desc", 9, "concrete/weathered-block-half");
+            makerConcreteStairs.carverHelper.addVariation("tile.concreteStairs.10.desc", 10, "concrete/asphalt");
+            makerConcreteStairs.create(new IStairsCreator() {
+
+                @Override
+                public BlockCarvableStairs create(Block block, int meta, CarvableHelper helper) {
+                    return new BlockCarvableConcreteStairs(block, meta, helper);
+                }
+            }, "concrete_stairs", concreteStairs);
+            Carving.chisel.registerOre("concrete_stairs", "concrete_stairs");
         }
 
         @Override
@@ -879,6 +925,12 @@ public enum Features {
 
             FurnaceRecipes.smelting()
                 .func_151393_a(concreteRecipeBlock, new ItemStack(concrete), 0.1F);
+
+            GameRegistry.addRecipe(
+                new ItemStack(concrete_slab, 6, 0),
+                "***",
+                '*',
+                new ItemStack(concrete, 1, OreDictionary.WILDCARD_VALUE));
         }
     },
 
