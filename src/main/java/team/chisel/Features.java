@@ -853,16 +853,16 @@ public enum Features {
                 .setHardness(0.5F);
 
             concrete_slab.carverHelper.addVariation("tile.concreteSlab.0.desc", 0, "concrete/default");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.1.desc", 1, "concreteslab/block");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.2.desc", 2, "concreteslab/doubleslab");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.3.desc", 3, "concreteslab/blocks");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.4.desc", 4, "concreteslab/weathered");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.5.desc", 5, "concreteslab/weathered-block");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.6.desc", 6, "concreteslab/weathered-doubleslab");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.7.desc", 7, "concreteslab/weathered-blocks");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.8.desc", 8, "concreteslab/weathered-half");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.9.desc", 9, "concreteslab/weathered-block-half");
-            concrete_slab.carverHelper.addVariation("tile.concreteSlab.10.desc", 10, "concreteslab/asphalt");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.1.desc", 1, "concrete/block");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.2.desc", 2, "concrete/doubleslab");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.3.desc", 3, "concrete/blocks");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.4.desc", 4, "concrete/weathered");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.5.desc", 5, "concrete/weathered-block");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.6.desc", 6, "concrete/weathered-doubleslab");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.7.desc", 7, "concrete/weathered-blocks");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.8.desc", 8, "concrete/weathered-half");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.9.desc", 9, "concrete/weathered-block-half");
+            concrete_slab.carverHelper.addVariation("tile.concreteSlab.10.desc", 10, "concrete/asphalt");
             concrete_slab.carverHelper.registerAll(concrete_slab, "concrete_slab", ItemCarvableSlab.class);
             registerSlabTop(concrete_slab, concrete_slab.top);
             Carving.chisel.registerOre("concrete_slab", "concrete_slab");
