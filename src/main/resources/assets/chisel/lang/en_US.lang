@@ -1278,7 +1278,8 @@ tile.glass.15.desc=Modern Iron Fence
 tile.chisel.glass2.name=Glass
 tile.glass2.0.desc=Asymmetrical Leaded Glass
 tile.glass2.1.desc=Modern Glass
-tile.glass2.2.desc=Glass (CTM)
+tile.glass2.2.desc=Horizontal Glass
+tile.glass2.3.desc=Vertical Glass
 
 #Sandstone
 tile.chisel.sandstone.name=Sandstone
@@ -2903,6 +2904,52 @@ tile.brutalism.6.desc=Heavily Weathered Cement Bricks
 tile.brutalism.7.desc=Reinforced Cement
 tile.brutalism.8.desc=Rimmed Cement
 tile.brutalism.9.desc=Lightly Weathered Cement
+
+tile.chisel.porcelain.name=Porcelain Block
+tile.porcelain.0.desc=Plain Porcelain
+tile.porcelain.1.desc=Cracked Porcelain
+tile.porcelain.2.desc=Kintsugi
+tile.porcelain.3.desc=Blue Porcelain Tiles
+tile.porcelain.4.desc=Red Porcelain Tiles
+tile.porcelain.5.desc=Blue Porcelain Fish
+tile.porcelain.6.desc=Blue Porcelain Flower
+tile.porcelain.7.desc=Red Porcelain Dragon
+tile.porcelain.9.desc=Red Porcelain Pillar
+tile.porcelain.10.desc=Red And Blue Porcelain Tiles
+tile.porcelain.11.desc=Kintsugi Tiles
+tile.porcelain.12.desc=Polished Porcelain
+tile.porcelain.13.desc=Faux Ivory
+
+tile.chisel.alabaster.name=Alabaster Block
+tile.alabaster.0.desc=Calcite-Rich
+tile.alabaster.1.desc=Chartreuse
+tile.alabaster.2.desc=Lavender
+tile.alabaster.3.desc=Lilac
+tile.alabaster.4.desc=Mauve
+tile.alabaster.5.desc=French Grey
+tile.alabaster.6.desc=Peach
+tile.alabaster.7.desc=Periwinkle
+tile.alabaster.8.desc=Sage Green
+tile.alabaster.9.desc=Sky Blue
+tile.alabaster.10.desc=Cream
+
+tile.chisel.prismarine.name=Prismarine
+tile.prismarine.0.desc=Prismarine Bricks
+tile.prismarine.1.desc=Cobbled Prismarine
+tile.prismarine.2.desc=Mossy Prismarine
+tile.prismarine.3.desc=Ornate Prismarine
+tile.prismarine.4.desc=Prismarine Pillar
+tile.prismarine.5.desc=Polished Prismarine
+tile.prismarine.6.desc=Prismarine Tiles
+tile.prismarine.7.desc=Dark Prismarine Bricks
+tile.prismarine.8.desc=Cobbled Dark Prismarine
+tile.prismarine.9.desc=Mossy Dark Prismarine
+tile.prismarine.10.desc=Ornate Dark Prismarine
+tile.prismarine.11.desc=Dark Prismarine Pillar
+tile.prismarine.12.desc=Polished Dark Prismarine
+tile.prismarine.13.desc=Dark Prismarine Prism
+tile.prismarine.14.desc=Dark Prismarine Tiles
+tile.prismarine.15.desc=Raw Dark Prismarine
 
 tile.chisel.road.name=Road Block
 tile.chisel.road2.name=Road Block
