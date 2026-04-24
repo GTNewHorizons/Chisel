@@ -965,6 +965,7 @@ tile.chisel.present.desc=A pretty present chest
 
 #Brick
 tile.chisel.brickCustom.name=Brick Block
+tile.chisel.brickCustom2.name=Brick Block
 tile.brickCustom.1.desc=Large Bricks
 tile.brickCustom.2.desc=Mortarless Bricks
 tile.brickCustom.3.desc=Varied Bricks
@@ -980,6 +981,8 @@ tile.brickCustom.12.desc=Black Bricks
 tile.brickCustom.13.desc=Sooty Bricks
 tile.brickCustom.14.desc=Mossy Bricks
 tile.brickCustom.15.desc=Neutral Bricks
+tile.brickCustom2.0.desc=Left-Bordered Bricks
+tile.brickCustom2.1.desc=Right-Bordered Bricks
 
 #Chisel 1
 
@@ -2889,9 +2892,9 @@ tile.album.12.desc=Reactor
 tile.album.13.desc=Resignation
 tile.album.14.desc=Dead!
 tile.album.15.desc=Having Too Much Fun
-tile.album.16.desc=The Cork Tree
-tile.album.17.desc=Cooperstown
-tile.album.18.desc=The Most Fun a Girl Can Have
+tile.album2.16.desc=The Cork Tree
+tile.album2.17.desc=Cooperstown
+tile.album2.18.desc=The Most Fun a Girl Can Have
 
 tile.chisel.brutalism.name=Brutalist Block
 tile.brutalism.0.desc=Plain Cement

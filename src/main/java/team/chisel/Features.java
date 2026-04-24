@@ -479,8 +479,10 @@ public enum Features {
             BlockCarvable brickCustom2 = (BlockCarvable) new BlockCarvable(Material.rock)
                 .setStepSound(Block.soundTypeStone)
                 .setCreativeTab(ChiselTabs.tabStoneChiselBlocks);
-            brickCustom.carverHelper.addVariation("tile.brickCustom.16.desc", 1, "brickCustom/left_bricks");
-            brickCustom.carverHelper.addVariation("tile.brickCustom.17.desc", 2, "brickCustom/right_bricks");
+            brickCustom2.carverHelper.addVariation("tile.brickCustom2.0.desc", 0, "brickCustom/left_bricks");
+            brickCustom2.carverHelper.addVariation("tile.brickCustom2.1.desc", 1, "brickCustom/right_bricks");
+            brickCustom2.carverHelper.registerBlock(brickCustom2, "brickCustom2");
+            brickCustom2.carverHelper.registerVariations("brickCustom");
 
             brickCustom.carverHelper.registerAll(brickCustom, "brickCustom");
             Carving.chisel.registerOre("brickCustom", "brickCustom");
@@ -5101,15 +5103,14 @@ public enum Features {
             albumblock.carverHelper.addVariation("tile.album.14.desc", 14, "album/black_parade_1");
             albumblock.carverHelper.addVariation("tile.album.15.desc", 15, "album/collide_with_the_sky");
 
-
             BlockCarvable albumblock2 = (BlockCarvable) new BlockCarvable(Material.wood)
                 .setStepSound(Block.soundTypeWood)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
-            albumblock2.carverHelper.addVariation("tile.album.16.desc", 0, "album/cork_tree");
-            albumblock2.carverHelper.addVariation("tile.album.17.desc", 1, "album/folie_a_deux");
-            albumblock2.carverHelper.addVariation("tile.album.18.desc", 2, "album/a_fever_you_cant_sweat_out");
+            albumblock2.carverHelper.addVariation("tile.album2.16.desc", 0, "album/cork_tree");
+            albumblock2.carverHelper.addVariation("tile.album2.17.desc", 1, "album/folie_a_deux");
+            albumblock2.carverHelper.addVariation("tile.album2.18.desc", 2, "album/a_fever_you_cant_sweat_out");
             albumblock2.carverHelper.registerBlock(albumblock2, "albumblock2");
             albumblock2.carverHelper.registerVariations("albumblock");
 
