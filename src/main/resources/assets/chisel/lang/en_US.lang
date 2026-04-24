@@ -1281,8 +1281,6 @@ tile.glass.15.desc=Modern Iron Fence
 tile.chisel.glass2.name=Glass
 tile.glass2.0.desc=Asymmetrical Leaded Glass
 tile.glass2.1.desc=Modern Glass
-tile.glass2.2.desc=Horizontal Glass
-tile.glass2.3.desc=Vertical Glass
 
 #Sandstone
 tile.chisel.sandstone.name=Sandstone
@@ -2935,24 +2933,6 @@ tile.alabaster.7.desc=Periwinkle
 tile.alabaster.8.desc=Sage Green
 tile.alabaster.9.desc=Sky Blue
 tile.alabaster.10.desc=Cream
-
-tile.chisel.prismarine.name=Prismarine
-tile.prismarine.0.desc=Prismarine Bricks
-tile.prismarine.1.desc=Cobbled Prismarine
-tile.prismarine.2.desc=Mossy Prismarine
-tile.prismarine.3.desc=Ornate Prismarine
-tile.prismarine.4.desc=Prismarine Pillar
-tile.prismarine.5.desc=Polished Prismarine
-tile.prismarine.6.desc=Prismarine Tiles
-tile.prismarine.7.desc=Dark Prismarine Bricks
-tile.prismarine.8.desc=Cobbled Dark Prismarine
-tile.prismarine.9.desc=Mossy Dark Prismarine
-tile.prismarine.10.desc=Ornate Dark Prismarine
-tile.prismarine.11.desc=Dark Prismarine Pillar
-tile.prismarine.12.desc=Polished Dark Prismarine
-tile.prismarine.13.desc=Dark Prismarine Prism
-tile.prismarine.14.desc=Dark Prismarine Tiles
-tile.prismarine.15.desc=Raw Dark Prismarine
 
 tile.chisel.road.name=Road Block
 tile.chisel.road2.name=Road Block

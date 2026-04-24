@@ -200,7 +200,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable mud = null;
     public static final BlockCarvable albumblock = null;
     public static final BlockCarvable albumblock2 = null;
-    public static final BlockCarvable brickCuston2 = null;
+    public static final BlockCarvable brickCustom2 = null;
     public static final BlockCarvable brutalism = null;
     public static final BlockCarvable road = null;
     public static final BlockCarvable porcelain = null;
