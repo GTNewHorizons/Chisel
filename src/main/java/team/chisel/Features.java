@@ -5101,7 +5101,6 @@ public enum Features {
             albumblock.carverHelper.addVariation("tile.album.14.desc", 14, "album/black_parade_1");
             albumblock.carverHelper.addVariation("tile.album.15.desc", 15, "album/collide_with_the_sky");
 
-
             BlockCarvable albumblock2 = (BlockCarvable) new BlockCarvable(Material.wood)
                 .setStepSound(Block.soundTypeWood)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
