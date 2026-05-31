@@ -5251,7 +5251,7 @@ public enum Features {
 
         @Override
         void addBlocks() {
-            BlockCarvable road = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable road = (BlockCarvable) new BlockConcrete().setStepSound(Block.soundTypeStone)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
@@ -5272,7 +5272,7 @@ public enum Features {
             road.carverHelper.addVariation("tile.road.14.desc", 14, "road/lined_white");
             road.carverHelper.addVariation("tile.road.15.desc", 15, "road/outline_white");
 
-            BlockCarvable road2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable road2 = (BlockCarvable) new BlockConcrete().setStepSound(Block.soundTypeStone)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
