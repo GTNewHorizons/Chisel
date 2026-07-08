@@ -1,5 +1,6 @@
 Contributing
 ============
+Before contributing, make sure you're familiar with the [GT:NH Contribution Guidelines](https://github.com/GTNewHorizons/.github/blob/master/CONTRIBUTING.md)
 ___
 Setting up a Development Environment
 ------------------------------------
