@@ -6,6 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.resources.FallbackResourceManager;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourcePack;
+import net.minecraft.client.resources.SimpleReloadableResourceManager;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -384,11 +388,25 @@ public enum TextureType {
 		return CUSTOM;
 	}
 
-	// This is ugly, but faster than class.getResource
 	private static boolean exists(String modid, String path, String postfix) {
 		ResourceLocation rl = new ResourceLocation(modid, "textures/blocks/" + path + postfix + ".png");
+
+        final IResourceManager resMan = Minecraft.getMinecraft().getResourceManager();
+        if (resMan instanceof SimpleReloadableResourceManager simple) {
+            FallbackResourceManager fallback = (FallbackResourceManager)simple.domainResourceManagers.get(rl.getResourceDomain());
+            if (fallback != null) {
+                for (Object obj : fallback.resourcePacks) {
+                    if (obj instanceof IResourcePack rp && rp.resourceExists(rl)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        // Fallback
 		try {
-			Minecraft.getMinecraft().getResourceManager().getAllResources(rl);
+            resMan.getAllResources(rl);
 			return true;
 		} catch (Throwable t) {
 			return false;
