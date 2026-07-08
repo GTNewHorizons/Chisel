@@ -88,6 +88,7 @@ public class BlockNameConversion {
         namingConversion.put("blockFft", "fantasyblock");
         namingConversion.put("blockCarpetFloor", "carpet");
         namingConversion.put("blockLaboratory", "laboratoryblock");
+        namingConversion.put("wroughtironblock", "castironblock");
     }
 
     public static Item findItem(String oldname) {
