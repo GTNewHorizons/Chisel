@@ -4812,33 +4812,25 @@ public enum Features {
             Carving.chisel.registerOre("platinumblock", "blockPlatinum");
         }
     },
-    WROUGHT_IRON {
+    CAST_IRON {
 
         @Override
         void addBlocks() {
-            BlockCarvable wrought_iron = (BlockCarvable) new BlockBeaconBase(Material.iron)
+            BlockCarvable cast_iron = (BlockCarvable) new BlockBeaconBase(Material.iron)
                 .setStepSound(Block.soundTypeMetal)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
-            wrought_iron.carverHelper
-                .addVariation("tile.newmetalOre.0.desc", 0, "metals/wrought_iron/wrought_iron_0", 0);
-            wrought_iron.carverHelper
-                .addVariation("tile.newmetalOre.1.desc", 1, "metals/wrought_iron/wrought_iron_1", 1);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.2.desc", 2, "metals/wrought_iron/wrought_iron_2", 2);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.3.desc", 3, "metals/wrought_iron/wrought_iron_3", 3);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.4.desc", 4, "metals/wrought_iron/wrought_iron_4", 4);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.5.desc", 5, "metals/wrought_iron/wrought_iron_5", 5);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.6.desc", 6, "metals/wrought_iron/wrought_iron_6", 6);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.7.desc", 7, "metals/wrought_iron/wrought_iron_7", 6);
-            wrought_iron.carverHelper.registerAll(wrought_iron, "wroughtironblock");
-            Carving.chisel.registerOre("wroughtironblock", "blockWroughtIron");
+            cast_iron.carverHelper.addVariation("tile.newmetalOre.0.desc", 0, "metals/cast_iron/cast_iron_0", 0);
+            cast_iron.carverHelper.addVariation("tile.newmetalOre.1.desc", 1, "metals/cast_iron/cast_iron_1", 1);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.2.desc", 2, "metals/cast_iron/cast_iron_2", 2);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.3.desc", 3, "metals/cast_iron/cast_iron_3", 3);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.4.desc", 4, "metals/cast_iron/cast_iron_4", 4);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.5.desc", 5, "metals/cast_iron/cast_iron_5", 5);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.6.desc", 6, "metals/cast_iron/cast_iron_6", 6);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.7.desc", 7, "metals/cast_iron/cast_iron_7", 6);
+            cast_iron.carverHelper.registerAll(cast_iron, "castironblock");
+            Carving.chisel.registerOre("castironblock", "blockCastIron");
         }
     },
     TITANIUM {
