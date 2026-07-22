@@ -14,7 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.client.ForgeHooksClient;
 
 import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
 
@@ -57,7 +57,7 @@ public class RendererMultiLayer implements ISimpleBlockRenderingHandler {
         RenderBlocks renderer) {
         if (!(blck instanceof BlockMultiLayerBase block)) return false;
 
-        if (MinecraftForgeClient.getRenderPass() == 0) {
+        if (ForgeHooksClient.getWorldRenderPass() == 0) {
             if (block.icon != null) {
                 renderer.overrideBlockTexture = block.icon;
                 renderer.renderStandardBlock(block, x, y, z);
