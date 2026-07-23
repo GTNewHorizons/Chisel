@@ -1017,6 +1017,8 @@ public enum Features {
             diamond_block.carverHelper.addVariation("tile.diamond.11.desc", 11, "diamond/terrain-diamond-zelda");
             diamond_block.carverHelper.addVariation("tile.diamond.12.desc", 12, "diamond/terrain-diamond-ornatelayer");
             diamond_block.carverHelper.addVariation("tile.diamond.13.desc", 13, "diamond/modern");
+            diamond_block.carverHelper.addVariation("tile.diamond.14.desc", 14, "diamond/diamond_ore_bricks");
+            diamond_block.carverHelper.addVariation("tile.diamond.15.desc", 15, "diamond/chiseled_diamond_ore_bricks");
             diamond_block.carverHelper.registerAll(diamond_block, "diamond_block");
             Carving.chisel.registerOre("diamond_block", "blockDiamond");
         }
@@ -1122,6 +1124,9 @@ public enum Features {
             emerald_block.carverHelper.addVariation("tile.emerald.10.desc", 10, "emerald/fourornate");
             emerald_block.carverHelper.addVariation("tile.emerald.11.desc", 11, "emerald/ornate");
             emerald_block.carverHelper.addVariation("tile.emerald.12.desc", 12, "emerald/modern");
+            emerald_block.carverHelper.addVariation("tile.emerald.13.desc", 13, "emerald/emerald_ore_bricks");
+            emerald_block.carverHelper.addVariation("tile.emerald.14.desc", 14, "emerald/cracked_emerald_ore_bricks");
+            emerald_block.carverHelper.addVariation("tile.emerald.15.desc", 15, "emerald/chiseled_emerald_ore_bricks");
             emerald_block.carverHelper.registerAll(emerald_block, "emerald_block");
             Carving.chisel.registerOre("emerald_block", "emerald");
         }
@@ -3520,6 +3525,9 @@ public enum Features {
                 .addVariation("tile.sandstone.16.desc", 0, "sandstone2/terrain-sandstone-brickflat", 19);
             sandstone2.carverHelper
                 .addVariation("tile.sandstone.17.desc", 1, "sandstone2/a0-sandstonepreview-smoothflat", 20);
+            sandstone2.carverHelper.addVariation("tile.sandstone.18.desc", 4, "sandstone2/gilded_sandstone");
+            sandstone2.carverHelper.addVariation("tile.sandstone.19.desc", 5, "sandstone2/gilded_sandstone_pillar");
+            sandstone2.carverHelper.addVariation("tile.sandstone.20.desc", 6, "sandstone2/chiseled_gilded_sandstone");
             sandstone2.carverHelper.registerBlock(sandstone2, "sandstone2");
             sandstone2.carverHelper.registerVariations("sandstone");
 
@@ -4600,6 +4608,16 @@ public enum Features {
             lantern.carverHelper.addVariation("tile.lantern.3.desc", 3, "lantern/soullantern");
             lantern.carverHelper.addVariation("tile.lantern.4.desc", 4, "lantern/cursedlantern");
             lantern.carverHelper.addVariation("tile.lantern.5.desc", 5, "lantern/endlantern");
+            lantern.carverHelper.addVariation("tile.lantern.6.desc", 6, "tuff/tuff_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.7.desc", 7, "calcite/calcite_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.8.desc", 8, "oracle/oracle_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.9.desc", 9, "dripstone/dripstone_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.10.desc", 10, "algal/algal_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.11.desc", 11, "abyssaline/abyssaline_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.12.desc", 12, "abyssaline/abyssaline_lamp_charged");
+            lantern.carverHelper.addVariation("tile.lantern.13.desc", 13, "hadaline/hadaline_lamp");
+            lantern.carverHelper.addVariation("tile.lantern.14.desc", 14, "hadaline/hadaline_lamp_charged");
+            lantern.carverHelper.addVariation("tile.lantern.14.desc", 13, "lantern/wither_lamp");
 
             lantern.carverHelper.registerAll(lantern, "lantern");
         }
@@ -5018,6 +5036,22 @@ public enum Features {
             coral.carverHelper.addVariation("tile.coral.13.desc", 13, "coral/horn_coral_bricks", 13);
             coral.carverHelper.addVariation("tile.coral.14.desc", 14, "coral/tube_coral_bricks", 14);
             coral.carverHelper.addVariation("tile.coral.15.desc", 15, "coral/dead_coral_bricks", 15);
+
+            BlockCarvable coral2 = (BlockCarvable) new BlockCarvable(Material.ground).setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabStoneChiselBlocks)
+                .setHardness(2F)
+                .setResistance(4F);
+            coral2.carverHelper.addVariation("tile.stones.1.desc", 1, "coral/coralstone_bricks");
+            coral2.carverHelper.addVariation("tile.stones.9.desc", 2, "coral/coralstone_ornate");
+            coral2.carverHelper.addVariation("tile.stones.3.desc", 3, "coral/coralstone_cobblestone");
+            coral2.carverHelper.addVariation("tile.stones.4.desc", 4, "coral/coralstone_mossy");
+            coral2.carverHelper.addVariation("tile.stones.5.desc", 5, "coral/coralstone_pillar");
+            coral2.carverHelper.addVariation("tile.stones.6.desc", 6, "coral/coralstone_polished");
+            coral2.carverHelper.addVariation("tile.stones.8.desc", 8, "coral/coralstone_tiles");
+
+            coral2.carverHelper.registerBlock(coral2, "coral2");
+            coral2.carverHelper.registerVariations("iron_block");
+
             coral.carverHelper.registerAll(coral, "coral");
             Carving.chisel.registerOre("coral", "blockCoral");
         }
@@ -5103,8 +5137,44 @@ public enum Features {
             albumblock2.carverHelper.addVariation("tile.album2.16.desc", 0, "album/cork_tree");
             albumblock2.carverHelper.addVariation("tile.album2.17.desc", 1, "album/folie_a_deux");
             albumblock2.carverHelper.addVariation("tile.album2.18.desc", 2, "album/a_fever_you_cant_sweat_out");
+            albumblock2.carverHelper.addVariation("tile.album2.19.desc", 3, "album/birdbrain");
+            albumblock2.carverHelper.addVariation("tile.album2.20.desc", 4, "album/fancy_that");
+            albumblock2.carverHelper.addVariation("tile.album2.21.desc", 5, "album/paper_mache_dream_balloon");
+            albumblock2.carverHelper.addVariation("tile.album2.22.desc", 6, "album/wallsocket");
+            albumblock2.carverHelper.addVariation("tile.album2.23.desc", 7, "album/shyga");
+            albumblock2.carverHelper.addVariation("tile.album2.24.desc", 8, "album/flawless");
+            albumblock2.carverHelper.addVariation("tile.album2.25.desc", 9, "album/katamari");
+            albumblock2.carverHelper.addVariation("tile.album2.26.desc", 10, "album/red_barn_radio");
+            albumblock2.carverHelper.addVariation("tile.album2.27.desc", 11, "album/ceres_and_calypso");
+            albumblock2.carverHelper.addVariation("tile.album2.28.desc", 12, "album/komm_susser_tod");
+            albumblock2.carverHelper.addVariation("tile.album2.29.desc", 13, "album/midwest_princess");
+            albumblock2.carverHelper.addVariation("tile.album2.30.desc", 14, "album/brat");
+            albumblock2.carverHelper.addVariation("tile.album2.31.desc", 15, "album/perfect_persona");
             albumblock2.carverHelper.registerBlock(albumblock2, "albumblock2");
             albumblock2.carverHelper.registerVariations("albumblock");
+
+            BlockCarvable albumblock3 = (BlockCarvable) new BlockCarvable(Material.wood)
+                .setStepSound(Block.soundTypeWood)
+                .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
+                .setHardness(5F)
+                .setResistance(10F);
+            albumblock3.carverHelper.addVariation("tile.album3.32.desc", 0, "album/float_along");
+            albumblock3.carverHelper.addVariation("tile.album3.33.desc", 1, "album/chromakopia");
+            albumblock3.carverHelper.addVariation("tile.album3.34.desc", 2, "album/danganronpa_v2");
+            albumblock3.carverHelper.addVariation("tile.album3.35.desc", 3, "album/danganronpa_v3");
+            albumblock3.carverHelper.addVariation("tile.album3.36.desc", 4, "album/bronco");
+            albumblock3.carverHelper.addVariation("tile.album3.37.desc", 5, "album/plastic_beach");
+            albumblock3.carverHelper.addVariation("tile.album3.38.desc", 6, "album/triple_baka");
+            albumblock3.carverHelper.addVariation("tile.album3.39.desc", 7, "album/cowboy_carter");
+            albumblock3.carverHelper.addVariation("tile.album3.40.desc", 8, "album/phantom_island_1");
+            albumblock3.carverHelper.addVariation("tile.album3.41.desc", 9, "album/alligator_bites");
+            albumblock3.carverHelper.addVariation("tile.album3.42.desc", 10, "album/chiseled_baka");
+            albumblock3.carverHelper.addVariation("tile.album3.43.desc", 11, "album/magnet");
+            albumblock3.carverHelper.addVariation("tile.album3.44.desc", 12, "album/digital_girl");
+            albumblock3.carverHelper.addVariation("tile.album3.45.desc", 13, "album/digital_girl_1");
+            albumblock3.carverHelper.addVariation("tile.album3.46.desc", 14, "album/to_hell_with_it");
+            albumblock3.carverHelper.registerBlock(albumblock3, "albumblock3");
+            albumblock3.carverHelper.registerVariations("albumblock");
 
             albumblock.carverHelper.registerAll(albumblock, "albumblock");
             Carving.chisel.registerOre("albumblock", "albumblock");
@@ -5236,6 +5306,776 @@ public enum Features {
                 new ItemStack(porcelain, 1),
                 'i',
                 new ItemStack(Blocks.sandstone, 1));
+        }
+    },
+
+    SULFUR {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable sulfur = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            sulfur.carverHelper.addVariation("tile.stones.0.desc", 0, "sulfur/sulfur_block");
+            sulfur.carverHelper.addVariation("tile.stones.1.desc", 1, "sulfur/sulfur_bricks");
+            sulfur.carverHelper.addVariation("tile.stones.2.desc", 2, "sulfur/sulfur_chiseled");
+            sulfur.carverHelper.addVariation("tile.stones.3.desc", 3, "sulfur/sulfur_cobblestone");
+            sulfur.carverHelper.addVariation("tile.stones.4.desc", 4, "sulfur/sulfur_mossy");
+            sulfur.carverHelper.addVariation("tile.stones.5.desc", 5, "sulfur/sulfur_pillar");
+            sulfur.carverHelper.addVariation("tile.stones.6.desc", 6, "sulfur/sulfur_polished");
+            sulfur.carverHelper.addVariation("tile.stones.7.desc", 7, "sulfur/sulfur_prism");
+            sulfur.carverHelper.addVariation("tile.stones.8.desc", 8, "sulfur/sulfur_tiles");
+            sulfur.carverHelper.addVariation("tile.sulfur.0.desc", 9, "sulfur/sulfur_potent");
+
+            sulfur.carverHelper.registerAll(sulfur, "sulfurBlock");
+        }
+    },
+
+    CINNABAR {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable cinnabar = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            cinnabar.carverHelper.addVariation("tile.stones.0.desc", 0, "cinnabar/cinnabar_block");
+            cinnabar.carverHelper.addVariation("tile.stones.1.desc", 1, "cinnabar/cinnabar_bricks");
+            cinnabar.carverHelper.addVariation("tile.stones.2.desc", 2, "cinnabar/cinnabar_chiseled");
+            cinnabar.carverHelper.addVariation("tile.stones.3.desc", 3, "cinnabar/cinnabar_cobblestone");
+            cinnabar.carverHelper.addVariation("tile.stones.4.desc", 4, "cinnabar/cinnabar_mossy");
+            cinnabar.carverHelper.addVariation("tile.stones.5.desc", 5, "cinnabar/cinnabar_pillar");
+            cinnabar.carverHelper.addVariation("tile.stones.6.desc", 6, "cinnabar/cinnabar_polished");
+            cinnabar.carverHelper.addVariation("tile.stones.7.desc", 7, "cinnabar/cinnabar_prism");
+            cinnabar.carverHelper.addVariation("tile.stones.8.desc", 8, "cinnabar/cinnabar_tiles");
+
+            cinnabar.carverHelper.registerAll(cinnabar, "cinnabarBlock");
+        }
+    },
+
+    TUFF {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable tuff = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            tuff.carverHelper.addVariation("tile.stones.3.desc", 0, "tuff/tuff_cobblestone");
+            tuff.carverHelper.addVariation("tile.stones.4.desc", 1, "tuff/tuff_mossy");
+            tuff.carverHelper.addVariation("tile.stones.5.desc", 2, "tuff/tuff_pillar");
+            tuff.carverHelper.addVariation("tile.stones.6.desc", 8, "tuff/tuff_polished");
+            tuff.carverHelper.addVariation("tile.stones.7.desc", 4, "tuff/tuff_prism");
+            tuff.carverHelper.addVariation("tile.tuff.0.desc", 5, "tuff/tuff_bricks");
+            tuff.carverHelper.addVariation("tile.tuff.1.desc", 6, "tuff/tuff_pillar_1");
+            tuff.carverHelper.addVariation("tile.tuff.2.desc", 7, "tuff/chiseled_tuff");
+
+            tuff.carverHelper.registerAll(tuff, "tuffBlock");
+        }
+    },
+
+    PRISMARINE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable prismarine = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            prismarine.carverHelper.addVariation("tile.stones.1.desc", 1, "prismarine/prismarine_bricks");
+            prismarine.carverHelper.addVariation("tile.stones.3.desc", 3, "prismarine/prismarine_cobblestone");
+            prismarine.carverHelper.addVariation("tile.stones.4.desc", 4, "prismarine/prismarine_mossy");
+            prismarine.carverHelper.addVariation("tile.stones.5.desc", 5, "prismarine/prismarine_pillar");
+            prismarine.carverHelper.addVariation("tile.stones.9.desc", 6, "prismarine/prismarine_ornate");
+            prismarine.carverHelper.addVariation("tile.stones.6.desc", 7, "prismarine/prismarine_polished");
+            prismarine.carverHelper.addVariation("tile.stones.8.desc", 9, "prismarine/prismarine_tiles");
+
+            prismarine.carverHelper.registerAll(prismarine, "prismarineBlock");
+        }
+    },
+
+    DRIPSTONE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable dripstone = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            dripstone.carverHelper.addVariation("tile.stones.0.desc", 0, "dripstone/dripstone_block");
+            dripstone.carverHelper.addVariation("tile.stones.1.desc", 1, "dripstone/dripstone_bricks");
+            dripstone.carverHelper.addVariation("tile.stones.9.desc", 2, "dripstone/dripstone_ornate");
+            dripstone.carverHelper.addVariation("tile.stones.3.desc", 3, "dripstone/dripstone_cobblestone");
+            dripstone.carverHelper.addVariation("tile.stones.4.desc", 4, "dripstone/dripstone_mossy");
+            dripstone.carverHelper.addVariation("tile.stones.5.desc", 5, "dripstone/dripstone_pillar");
+            dripstone.carverHelper.addVariation("tile.stones.6.desc", 6, "dripstone/dripstone_polished");
+            dripstone.carverHelper.addVariation("tile.stones.7.desc", 7, "dripstone/dripstone_prism");
+            dripstone.carverHelper.addVariation("tile.stones.8.desc", 8, "dripstone/dripstone_tiles");
+            dripstone.carverHelper.addVariation("tile.dripstone.0.desc", 9, "dripstone/chiseled_dripstone");
+            dripstone.carverHelper.addVariation("tile.dripstone.1.desc", 10, "dripstone/dripstone_pillar_1");
+
+            dripstone.carverHelper.registerAll(dripstone, "dripstoneBlock");
+        }
+    },
+
+    DARK_PRISMARINE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable darkprismarine = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            darkprismarine.carverHelper.addVariation("tile.stones.0.desc", 0, "darkprismarine/darkprismarine");
+            darkprismarine.carverHelper.addVariation("tile.stones.1.desc", 1, "darkprismarine/darkprismarine_bricks");
+            darkprismarine.carverHelper.addVariation("tile.stones.9.desc", 2, "darkprismarine/darkprismarine_ornate");
+            darkprismarine.carverHelper
+                .addVariation("tile.stones.3.desc", 3, "darkprismarine/darkprismarine_cobblestone");
+            darkprismarine.carverHelper.addVariation("tile.stones.4.desc", 4, "darkprismarine/darkprismarine_mossy");
+            darkprismarine.carverHelper.addVariation("tile.stones.5.desc", 5, "darkprismarine/darkprismarine_pillar");
+            darkprismarine.carverHelper.addVariation("tile.stones.6.desc", 6, "darkprismarine/darkprismarine_polished");
+            darkprismarine.carverHelper.addVariation("tile.stones.7.desc", 7, "darkprismarine/darkprismarine_prism");
+            darkprismarine.carverHelper.addVariation("tile.stones.8.desc", 8, "darkprismarine/darkprismarine_tiles");
+
+            darkprismarine.carverHelper.registerAll(darkprismarine, "darkprismarineBlock");
+        }
+    },
+
+    DEEPSLATE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable deepslate = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            deepslate.carverHelper.addVariation("tile.stones.5.desc", 0, "deepslate/deepslate_pillar");
+            deepslate.carverHelper.addVariation("tile.stones.7.desc", 1, "deepslate/deepslate_prism");
+            deepslate.carverHelper.addVariation("tile.stones.8.desc", 2, "deepslate/deepslate_tiles");
+            deepslate.carverHelper.addVariation("tile.stones.4.desc", 3, "deepslate/deepslate_mossy");
+
+            deepslate.carverHelper.registerAll(deepslate, "deepslateBlock");
+        }
+    },
+
+    BASALT {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable basalt = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            basalt.carverHelper.addVariation("tile.stones.0.desc", 0, "basalt/basalt");
+            basalt.carverHelper.addVariation("tile.stones.1.desc", 1, "basalt/basalt_bricks");
+            basalt.carverHelper.addVariation("tile.stones.9.desc", 2, "basalt/basalt_ornate");
+            basalt.carverHelper.addVariation("tile.stones.3.desc", 3, "basalt/basalt_cobblestone");
+            basalt.carverHelper.addVariation("tile.stones.4.desc", 4, "basalt/basalt_mossy");
+            basalt.carverHelper.addVariation("tile.stones.5.desc", 5, "basalt/basalt_pillar");
+            basalt.carverHelper.addVariation("tile.stones.6.desc", 6, "basalt/basalt_polished");
+            basalt.carverHelper.addVariation("tile.stones.7.desc", 7, "basalt/basalt_prism");
+            basalt.carverHelper.addVariation("tile.stones.8.desc", 8, "basalt/basalt_tiles");
+
+            basalt.carverHelper.registerAll(basalt, "basaltBlock");
+        }
+    },
+
+    RUBY {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable ruby = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            ruby.carverHelper.addVariation("tile.gems.0.desc", 0, "ruby/rubyBismuth");
+            ruby.carverHelper.addVariation("tile.gems.1.desc", 1, "ruby/rubyBordered");
+            ruby.carverHelper.addVariation("tile.gems.9.desc", 2, "ruby/rubyCell");
+            ruby.carverHelper.addVariation("tile.gems.3.desc", 3, "ruby/rubyFacet");
+            ruby.carverHelper.addVariation("tile.gems.4.desc", 4, "ruby/rubyOrnate");
+            ruby.carverHelper.addVariation("tile.gems.5.desc", 5, "ruby/rubyPanel");
+            ruby.carverHelper.addVariation("tile.gems.6.desc", 6, "ruby/rubyPolished");
+            ruby.carverHelper.addVariation("tile.gems.7.desc", 7, "ruby/rubyRaw");
+            ruby.carverHelper.addVariation("tile.gems.8.desc", 8, "ruby/rubySmooth");
+            ruby.carverHelper.addVariation("tile.gems.9.desc", 9, "ruby/rubySpiral");
+            ruby.carverHelper.addVariation("tile.gems.10.desc", 10, "ruby/rubyTiles");
+
+            ruby.carverHelper.registerAll(ruby, "rubyBlock");
+        }
+    },
+
+    SPINEL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable spinel = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            spinel.carverHelper.addVariation("tile.gems.0.desc", 0, "spinel/spinelBismuth");
+            spinel.carverHelper.addVariation("tile.gems.1.desc", 1, "spinel/spinelBordered");
+            spinel.carverHelper.addVariation("tile.gems.9.desc", 2, "spinel/spinelCell");
+            spinel.carverHelper.addVariation("tile.gems.3.desc", 3, "spinel/spinelFacet");
+            spinel.carverHelper.addVariation("tile.gems.4.desc", 4, "spinel/spinelOrnate");
+            spinel.carverHelper.addVariation("tile.gems.5.desc", 5, "spinel/spinelPanel");
+            spinel.carverHelper.addVariation("tile.gems.6.desc", 6, "spinel/spinelPolished");
+            spinel.carverHelper.addVariation("tile.gems.7.desc", 7, "spinel/spinelRaw");
+            spinel.carverHelper.addVariation("tile.gems.8.desc", 8, "spinel/spinelSmooth");
+            spinel.carverHelper.addVariation("tile.gems.9.desc", 9, "spinel/spinelSpiral");
+            spinel.carverHelper.addVariation("tile.gems.10.desc", 10, "spinel/spinelTiles");
+
+            spinel.carverHelper.registerAll(spinel, "spinelBlock");
+        }
+    },
+
+    RHODOCHROSITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable rhodochrosite = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            rhodochrosite.carverHelper.addVariation("tile.gems.0.desc", 0, "rhodochrosite/rhodochrositeBismuth");
+            rhodochrosite.carverHelper.addVariation("tile.gems.1.desc", 1, "rhodochrosite/rhodochrositeBordered");
+            rhodochrosite.carverHelper.addVariation("tile.gems.9.desc", 2, "rhodochrosite/rhodochrositeCell");
+            rhodochrosite.carverHelper.addVariation("tile.gems.3.desc", 3, "rhodochrosite/rhodochrositeFacet");
+            rhodochrosite.carverHelper.addVariation("tile.gems.4.desc", 4, "rhodochrosite/rhodochrositeOrnate");
+            rhodochrosite.carverHelper.addVariation("tile.gems.5.desc", 5, "rhodochrosite/rhodochrositePanel");
+            rhodochrosite.carverHelper.addVariation("tile.gems.6.desc", 6, "rhodochrosite/rhodochrositePolished");
+            rhodochrosite.carverHelper.addVariation("tile.gems.7.desc", 7, "rhodochrosite/rhodochrositeRaw");
+            rhodochrosite.carverHelper.addVariation("tile.gems.8.desc", 8, "rhodochrosite/rhodochrositeSmooth");
+            rhodochrosite.carverHelper.addVariation("tile.gems.9.desc", 9, "rhodochrosite/rhodochrositeSpiral");
+            rhodochrosite.carverHelper.addVariation("tile.gems.10.desc", 10, "rhodochrosite/rhodochrositeTiles");
+
+            rhodochrosite.carverHelper.registerAll(rhodochrosite, "rhodochrositeBlock");
+        }
+    },
+
+    OPAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable opal = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            opal.carverHelper.addVariation("tile.gems.0.desc", 0, "opal/opalBismuth");
+            opal.carverHelper.addVariation("tile.gems.1.desc", 1, "opal/opalBordered");
+            opal.carverHelper.addVariation("tile.gems.9.desc", 2, "opal/opalCell");
+            opal.carverHelper.addVariation("tile.gems.3.desc", 3, "opal/opalFacet");
+            opal.carverHelper.addVariation("tile.gems.4.desc", 4, "opal/opalOrnate");
+            opal.carverHelper.addVariation("tile.gems.5.desc", 5, "opal/opalPanel");
+            opal.carverHelper.addVariation("tile.gems.6.desc", 6, "opal/opalPolished");
+            opal.carverHelper.addVariation("tile.gems.7.desc", 7, "opal/opalRaw");
+            opal.carverHelper.addVariation("tile.gems.8.desc", 8, "opal/opalSmooth");
+            opal.carverHelper.addVariation("tile.gems.9.desc", 9, "opal/opalSpiral");
+            opal.carverHelper.addVariation("tile.gems.10.desc", 10, "opal/opalTiles");
+            opal.carverHelper.addVariation("tile.gems.1.desc", 12, "opal/opalBordered1");
+            opal.carverHelper.addVariation("tile.gems.4.desc", 13, "opal/opalOrnate1");
+            opal.carverHelper.addVariation("tile.gems.10.desc", 14, "opal/opalTiles1");
+
+            opal.carverHelper.registerAll(opal, "opalBlock");
+        }
+    },
+
+    ONYX {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable onyx = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            onyx.carverHelper.addVariation("tile.gems.0.desc", 0, "onyx/onyxBismuth");
+            onyx.carverHelper.addVariation("tile.gems.1.desc", 1, "onyx/onyxBordered");
+            onyx.carverHelper.addVariation("tile.gems.9.desc", 2, "onyx/onyxCell");
+            onyx.carverHelper.addVariation("tile.gems.3.desc", 3, "onyx/onyxFacet");
+            onyx.carverHelper.addVariation("tile.gems.4.desc", 4, "onyx/onyxOrnate");
+            onyx.carverHelper.addVariation("tile.gems.5.desc", 5, "onyx/onyxPanel");
+            onyx.carverHelper.addVariation("tile.gems.6.desc", 6, "onyx/onyxPolished");
+            onyx.carverHelper.addVariation("tile.gems.7.desc", 7, "onyx/onyxRaw");
+            onyx.carverHelper.addVariation("tile.gems.8.desc", 8, "onyx/onyxSmooth");
+            onyx.carverHelper.addVariation("tile.gems.9.desc", 9, "onyx/onyxSpiral");
+            onyx.carverHelper.addVariation("tile.gems.10.desc", 10, "onyx/onyxTiles");
+
+            onyx.carverHelper.registerAll(onyx, "onyxBlock");
+        }
+    },
+
+    NETHER_QUARTZ {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable netherquartz = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            netherquartz.carverHelper.addVariation("tile.gems.0.desc", 0, "netherquartz/netherquartzBismuth");
+            netherquartz.carverHelper.addVariation("tile.gems.1.desc", 1, "netherquartz/netherquartzBordered");
+            netherquartz.carverHelper.addVariation("tile.gems.9.desc", 2, "netherquartz/netherquartzCell");
+            netherquartz.carverHelper.addVariation("tile.gems.3.desc", 3, "netherquartz/netherquartzFacet");
+            netherquartz.carverHelper.addVariation("tile.gems.4.desc", 4, "netherquartz/netherquartzOrnate");
+            netherquartz.carverHelper.addVariation("tile.gems.5.desc", 5, "netherquartz/netherquartzPanel");
+            netherquartz.carverHelper.addVariation("tile.gems.6.desc", 6, "netherquartz/netherquartzPolished");
+            netherquartz.carverHelper.addVariation("tile.gems.7.desc", 7, "netherquartz/netherquartzRaw");
+            netherquartz.carverHelper.addVariation("tile.gems.8.desc", 8, "netherquartz/netherquartzSmooth");
+            netherquartz.carverHelper.addVariation("tile.gems.9.desc", 9, "netherquartz/netherquartzSpiral");
+            netherquartz.carverHelper.addVariation("tile.gems.10.desc", 10, "netherquartz/netherquartzTiles");
+
+            netherquartz.carverHelper.registerAll(netherquartz, "netherquartzBlock");
+        }
+    },
+
+    LABRADORITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable labradorite = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            labradorite.carverHelper.addVariation("tile.gems.0.desc", 0, "labradorite/labradoriteBismuth");
+            labradorite.carverHelper.addVariation("tile.gems.1.desc", 1, "labradorite/labradoriteBordered");
+            labradorite.carverHelper.addVariation("tile.gems.9.desc", 2, "labradorite/labradoriteCell");
+            labradorite.carverHelper.addVariation("tile.gems.3.desc", 3, "labradorite/labradoriteFacet");
+            labradorite.carverHelper.addVariation("tile.gems.4.desc", 4, "labradorite/labradoriteOrnate");
+            labradorite.carverHelper.addVariation("tile.gems.5.desc", 5, "labradorite/labradoritePanel");
+            labradorite.carverHelper.addVariation("tile.gems.6.desc", 6, "labradorite/labradoritePolished");
+            labradorite.carverHelper.addVariation("tile.gems.7.desc", 7, "labradorite/labradoriteRaw");
+            labradorite.carverHelper.addVariation("tile.gems.8.desc", 8, "labradorite/labradoriteSmooth");
+            labradorite.carverHelper.addVariation("tile.gems.9.desc", 9, "labradorite/labradoriteSpiral");
+            labradorite.carverHelper.addVariation("tile.gems.10.desc", 10, "labradorite/labradoriteTiles");
+
+            labradorite.carverHelper.registerAll(labradorite, "labradoriteBlock");
+        }
+    },
+
+    JADE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable jade = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            jade.carverHelper.addVariation("tile.gems.0.desc", 0, "jade/jadeBismuth");
+            jade.carverHelper.addVariation("tile.gems.1.desc", 1, "jade/jadeBordered");
+            jade.carverHelper.addVariation("tile.gems.9.desc", 2, "jade/jadeCell");
+            jade.carverHelper.addVariation("tile.gems.3.desc", 3, "jade/jadeFacet");
+            jade.carverHelper.addVariation("tile.gems.4.desc", 4, "jade/jadeOrnate");
+            jade.carverHelper.addVariation("tile.gems.5.desc", 5, "jade/jadePanel");
+            jade.carverHelper.addVariation("tile.gems.6.desc", 6, "jade/jadePolished");
+            jade.carverHelper.addVariation("tile.gems.7.desc", 7, "jade/jadeRaw");
+            jade.carverHelper.addVariation("tile.gems.8.desc", 8, "jade/jadeSmooth");
+            jade.carverHelper.addVariation("tile.gems.9.desc", 9, "jade/jadeSpiral");
+            jade.carverHelper.addVariation("tile.gems.10.desc", 10, "jade/jadeTiles");
+
+            jade.carverHelper.registerAll(jade, "jadeBlock");
+        }
+    },
+
+    FLUORITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable fluorite = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            fluorite.carverHelper.addVariation("tile.gems.0.desc", 0, "fluorite/fluoriteBismuth");
+            fluorite.carverHelper.addVariation("tile.gems.1.desc", 1, "fluorite/fluoriteBordered");
+            fluorite.carverHelper.addVariation("tile.gems.9.desc", 2, "fluorite/fluoriteCell");
+            fluorite.carverHelper.addVariation("tile.gems.3.desc", 3, "fluorite/fluoriteFacet");
+            fluorite.carverHelper.addVariation("tile.gems.4.desc", 4, "fluorite/fluoriteOrnate");
+            fluorite.carverHelper.addVariation("tile.gems.5.desc", 5, "fluorite/fluoritePanel");
+            fluorite.carverHelper.addVariation("tile.gems.6.desc", 6, "fluorite/fluoritePolished");
+            fluorite.carverHelper.addVariation("tile.gems.7.desc", 7, "fluorite/fluoriteRaw");
+            fluorite.carverHelper.addVariation("tile.gems.8.desc", 8, "fluorite/fluoriteSmooth");
+            fluorite.carverHelper.addVariation("tile.gems.9.desc", 9, "fluorite/fluoriteSpiral");
+            fluorite.carverHelper.addVariation("tile.gems.10.desc", 10, "fluorite/fluoriteTiles");
+
+            fluorite.carverHelper.registerAll(fluorite, "fluoriteBlock");
+        }
+    },
+
+    CHAROITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable charoite = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            charoite.carverHelper.addVariation("tile.gems.0.desc", 0, "charoite/charoiteBismuth");
+            charoite.carverHelper.addVariation("tile.gems.1.desc", 1, "charoite/charoiteBordered");
+            charoite.carverHelper.addVariation("tile.gems.9.desc", 2, "charoite/charoiteCell");
+            charoite.carverHelper.addVariation("tile.gems.3.desc", 3, "charoite/charoiteFacet");
+            charoite.carverHelper.addVariation("tile.gems.4.desc", 4, "charoite/charoiteOrnate");
+            charoite.carverHelper.addVariation("tile.gems.5.desc", 5, "charoite/charoitePanel");
+            charoite.carverHelper.addVariation("tile.gems.6.desc", 6, "charoite/charoitePolished");
+            charoite.carverHelper.addVariation("tile.gems.7.desc", 7, "charoite/charoiteRaw");
+            charoite.carverHelper.addVariation("tile.gems.8.desc", 8, "charoite/charoiteSmooth");
+            charoite.carverHelper.addVariation("tile.gems.9.desc", 9, "charoite/charoiteSpiral");
+            charoite.carverHelper.addVariation("tile.gems.10.desc", 10, "charoite/charoiteTiles");
+
+            charoite.carverHelper.registerAll(charoite, "charoiteBlock");
+        }
+    },
+
+    TOPAZ {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable topaz = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+
+            topaz.carverHelper.addVariation("tile.gems.0.desc", 0, "topaz/topazBismuth");
+            topaz.carverHelper.addVariation("tile.gems.1.desc", 1, "topaz/topazBordered");
+            topaz.carverHelper.addVariation("tile.gems.9.desc", 2, "topaz/topazCell");
+            topaz.carverHelper.addVariation("tile.gems.3.desc", 3, "topaz/topazFacet");
+            topaz.carverHelper.addVariation("tile.gems.4.desc", 4, "topaz/topazOrnate");
+            topaz.carverHelper.addVariation("tile.gems.5.desc", 5, "topaz/topazPanel");
+            topaz.carverHelper.addVariation("tile.gems.6.desc", 6, "topaz/topazPolished");
+            topaz.carverHelper.addVariation("tile.gems.7.desc", 7, "topaz/topazRaw");
+            topaz.carverHelper.addVariation("tile.gems.8.desc", 8, "topaz/topazSmooth");
+            topaz.carverHelper.addVariation("tile.gems.9.desc", 9, "topaz/topazSpiral");
+            topaz.carverHelper.addVariation("tile.gems.10.desc", 10, "topaz/topazTiles");
+
+            topaz.carverHelper.registerAll(topaz, "topazBlock");
+        }
+    }, // Architect's Palette
+
+    BONE_BLOCK {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable bone_block = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            bone_block.carverHelper.addVariation("tile.bone_block.0.desc", 0, "bone/bone_block");
+            bone_block.carverHelper.addVariation("tile.bone_block.1.desc", 1, "bone/bone_bricks");
+            bone_block.carverHelper.addVariation("tile.bone_block.2.desc", 2, "bone/bone_pillar");
+            bone_block.carverHelper.addVariation("tile.bone_block.3.desc", 3, "bone/skull");
+            bone_block.carverHelper.addVariation("tile.bone_block.4.desc", 4, "bone/withered_bone_block");
+            bone_block.carverHelper.addVariation("tile.bone_block.5.desc", 5, "bone/withered_bone_bricks");
+            bone_block.carverHelper.addVariation("tile.bone_block.6.desc", 6, "bone/withered_bone_pillar");
+            bone_block.carverHelper.addVariation("tile.bone_block.7.desc", 7, "bone/withered_skull");
+            bone_block.carverHelper.addVariation("tile.bone_block.8.desc", 8, "bone/withered_skull_lit");
+            bone_block.carverHelper.addVariation("tile.bone_block.9.desc", 9, "bone/modern_bone");
+
+            bone_block.carverHelper.registerAll(bone_block, "boneBlock");
+        }
+    },
+
+    CALCITE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable calcite = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            calcite.carverHelper.addVariation("tile.calcite.0.desc", 0, "calcite/calcite_bricks");
+            calcite.carverHelper.addVariation("tile.calcite.1.desc", 1, "calcite/calcite_pillar");
+            calcite.carverHelper.addVariation("tile.calcite.2.desc", 2, "calcite/chiseled_calcite");
+
+            calcite.carverHelper.registerAll(calcite, "calciteBlock");
+        }
+    },
+
+    FLINT {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable flint = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            flint.carverHelper.addVariation("tile.flint.0.desc", 0, "flint/flint_block");
+            flint.carverHelper.addVariation("tile.flint.1.desc", 1, "flint/chiseled_flint_block");
+            flint.carverHelper.addVariation("tile.flint.2.desc", 2, "flint/flint_pillar");
+            flint.carverHelper.addVariation("tile.flint.3.desc", 3, "flint/flint_tiles");
+            flint.carverHelper.addVariation("tile.flint.4.desc", 4, "flint/smooth_flint_block");
+
+            flint.carverHelper.registerAll(flint, "flintBlock");
+        }
+    },
+
+    SUNSTONE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable sunstone = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            sunstone.carverHelper.addVariation("tile.sunstone.0.desc", 0, "sunstone/sunmetal_block");
+            sunstone.carverHelper.addVariation("tile.sunstone.1.desc", 1, "sunstone/sunmetal_pillar");
+            sunstone.carverHelper.addVariation("tile.sunstone.2.desc", 2, "sunstone/chiseled_sunmetal_block");
+            sunstone.carverHelper.addVariation("tile.sunstone.3.desc", 3, "sunstone/sunstone");
+            sunstone.carverHelper.addVariation("tile.sunstone.4.desc", 4, "sunstone/sunstone_bright");
+            sunstone.carverHelper.addVariation("tile.sunstone.5.desc", 5, "sunstone/sunstone_dim");
+
+            sunstone.carverHelper.registerAll(sunstone, "sunstoneBlock");
+        }
+    },
+
+    MOONSTONE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable moonstone = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            moonstone.carverHelper.addVariation("tile.moonstone.0.desc", 0, "moonstone/moonstone");
+            moonstone.carverHelper.addVariation("tile.moonstone.1.desc", 1, "moonstone/moonstone_dim");
+            moonstone.carverHelper.addVariation("tile.moonstone.2.desc", 2, "moonstone/moonstone_bright");
+            moonstone.carverHelper.addVariation("tile.moonstone.3.desc", 3, "moonstone/moonshale");
+            moonstone.carverHelper.addVariation("tile.moonstone.4.desc", 4, "moonstone/moonshale_bricks");
+            moonstone.carverHelper.addVariation("tile.moonstone.5.desc", 5, "moonstone/cracked_moonshale_bricks");
+            moonstone.carverHelper.addVariation("tile.moonstone.6.desc", 6, "moonstone/moonshale_flagstone");
+            moonstone.carverHelper.addVariation("tile.moonstone.7.desc", 7, "moonstone/chiseled_moonshale");
+            moonstone.carverHelper.addVariation("tile.moonstone.8.desc", 8, "moonstone/bordered_moonshale");
+            moonstone.carverHelper.addVariation("tile.moonstone.9.desc", 9, "moonstone/craterstone");
+            moonstone.carverHelper.addVariation("tile.moonstone.10.desc", 10, "moonstone/nebulite");
+            moonstone.carverHelper.addVariation("tile.moonstone.11.desc", 11, "moonstone/polished_nebulite");
+
+            moonstone.carverHelper.registerAll(moonstone, "moonstoneBlock");
+        }
+    },
+
+    ENTWINE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable entwine = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            entwine.carverHelper.addVariation("tile.entwine.0.desc", 0, "entwine/ender_pearl_block");
+            entwine.carverHelper.addVariation("tile.entwine.1.desc", 1, "entwine/entwine_block");
+            entwine.carverHelper.addVariation("tile.entwine.2.desc", 2, "entwine/chiseled_entwine");
+            entwine.carverHelper.addVariation("tile.entwine.3.desc", 3, "entwine/entwine_pillar");
+
+            entwine.carverHelper.registerAll(entwine, "entwineBlock");
+        }
+    },
+
+    ORACLE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable oracle = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            oracle.carverHelper.addVariation("tile.oracle.0.desc", 0, "oracle/oracle_block");
+            oracle.carverHelper.addVariation("tile.oracle.1.desc", 1, "oracle/framed_oracle_block");
+            oracle.carverHelper.addVariation("tile.oracle.2.desc", 2, "oracle/oracle_bricks");
+            oracle.carverHelper.addVariation("tile.oracle.3.desc", 3, "oracle/dark_oracle_bricks");
+            oracle.carverHelper.addVariation("tile.oracle.4.desc", 4, "oracle/oracle_pillar");
+            oracle.carverHelper.addVariation("tile.oracle.5.desc", 5, "oracle/oracle_tiles");
+
+            oracle.carverHelper.registerAll(oracle, "oracleBlock");
+        }
+    },
+
+    ALGAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable algal = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            algal.carverHelper.addVariation("tile.algal.0.desc", 0, "algal/algal_bricks");
+            algal.carverHelper.addVariation("tile.algal.1.desc", 1, "algal/chiseled_algal_bricks");
+            algal.carverHelper.addVariation("tile.algal.2.desc", 2, "algal/cracked_algal_bricks");
+            algal.carverHelper.addVariation("tile.algal.3.desc", 3, "algal/overgrown_algal_bricks");
+
+            algal.carverHelper.registerAll(algal, "algalBlock");
+        }
+    },
+
+    CEREBRAL {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable cerebral = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            cerebral.carverHelper.addVariation("tile.cerebral.0.desc", 0, "cerebral/cerebral_block");
+            cerebral.carverHelper.addVariation("tile.cerebral.1.desc", 1, "cerebral/cerebral_tiles");
+            cerebral.carverHelper.addVariation("tile.cerebral.2.desc", 2, "cerebral/cerebral_tiles_1");
+            cerebral.carverHelper.addVariation("tile.cerebral.3.desc", 3, "cerebral/cerebral_tiles_2");
+            cerebral.carverHelper.addVariation("tile.cerebral.4.desc", 4, "cerebral/cerebral_pillar");
+
+            cerebral.carverHelper.registerAll(cerebral, "cerebralBlock");
+        }
+    },
+
+    NETHER_BRASS {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable nether_brass = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            nether_brass.carverHelper.addVariation("tile.nether_brass.0.desc", 0, "nether_brass/nether_brass_block");
+            nether_brass.carverHelper.addVariation("tile.nether_brass.1.desc", 1, "nether_brass/cut_nether_brass");
+            nether_brass.carverHelper.addVariation("tile.nether_brass.2.desc", 2, "nether_brass/nether_brass_pillar");
+            nether_brass.carverHelper.addVariation("tile.nether_brass.3.desc", 3, "nether_brass/nether_brass_slab");
+            nether_brass.carverHelper.addVariation("tile.nether_brass.4.desc", 4, "nether_brass/smooth_nether_brass");
+
+            nether_brass.carverHelper.registerAll(nether_brass, "nether_brassBlock");
+        }
+    },
+
+    ESOTERRACK {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable esoterrack = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            esoterrack.carverHelper.addVariation("tile.esoterrack.0.desc", 0, "esoterrack/esoterrack");
+            esoterrack.carverHelper.addVariation("tile.esoterrack.1.desc", 1, "esoterrack/esoterrack_bricks");
+            esoterrack.carverHelper.addVariation("tile.esoterrack.2.desc", 2, "esoterrack/esoterrack_pillar");
+            esoterrack.carverHelper.addVariation("tile.esoterrack.3.desc", 3, "esoterrack/esoterrack_new");
+
+            esoterrack.carverHelper.registerAll(esoterrack, "esoterrackBlock");
+        }
+    },
+
+    WARDSTONE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable wardstone = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            wardstone.carverHelper.addVariation("tile.wardstone.0.desc", 0, "wardstone/wardstone");
+            wardstone.carverHelper.addVariation("tile.wardstone.1.desc", 1, "wardstone/wardstone_bricks");
+            wardstone.carverHelper.addVariation("tile.wardstone.2.desc", 2, "wardstone/wardstone_pillar");
+            wardstone.carverHelper.addVariation("tile.wardstone.3.desc", 3, "wardstone/wardstone_slab");
+            wardstone.carverHelper.addVariation("tile.wardstone.4.desc", 4, "wardstone/chiseled_wardstone");
+            wardstone.carverHelper.addVariation("tile.wardstone.5.desc", 5, "wardstone/wardstone_circle");
+
+            wardstone.carverHelper.registerAll(wardstone, "wardstoneBlock");
+        }
+    },
+
+    OLIVESTONE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable olivestone = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            olivestone.carverHelper.addVariation("tile.olivestone.0.desc", 0, "olivestone/chiseled_olivestone");
+            olivestone.carverHelper.addVariation("tile.olivestone.1.desc", 1, "olivestone/cracked_olivestone_bricks");
+            olivestone.carverHelper.addVariation("tile.olivestone.2.desc", 2, "olivestone/cracked_olivestone_tiles");
+            olivestone.carverHelper.addVariation("tile.olivestone.3.desc", 3, "olivestone/illuminated_olivestone");
+            olivestone.carverHelper.addVariation("tile.olivestone.4.desc", 4, "olivestone/olivestone_bricks");
+            olivestone.carverHelper.addVariation("tile.olivestone.5.desc", 5, "olivestone/olivestone_pillar");
+            olivestone.carverHelper.addVariation("tile.olivestone.6.desc", 6, "olivestone/olivestone_tiles");
+            olivestone.carverHelper.addVariation("tile.olivestone.7.desc", 7, "olivestone/warped_chiseled_olivestone");
+
+            olivestone.carverHelper.registerAll(olivestone, "olivestoneBlock");
+        }
+    },
+
+    VISCERA {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable viscera = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            viscera.carverHelper.addVariation("tile.viscera.0.desc", 0, "viscera/entrails");
+            viscera.carverHelper.addVariation("tile.viscera.1.desc", 1, "viscera/rotten_flesh_block");
+            viscera.carverHelper.addVariation("tile.viscera.2.desc", 2, "viscera/salmon_log");
+            viscera.carverHelper.addVariation("tile.viscera.3.desc", 3, "viscera/cod_log");
+
+            viscera.carverHelper.registerAll(viscera, "visceraBlock");
+        }
+    },
+
+    ABYSSALINE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable abyssaline = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            abyssaline.carverHelper.addVariation("tile.abyssaline.0.desc", 0, "abyssaline/abyssaline_bricks");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.1.desc", 1, "abyssaline/abyssaline_bricks_charged");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.2.desc", 2, "abyssaline/abyssaline_pillar");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.3.desc", 3, "abyssaline/abyssaline_pillar_charged");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.4.desc", 4, "abyssaline/abyssaline");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.5.desc", 5, "abyssaline/abyssaline_charged");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.6.desc", 6, "abyssaline/abyssaline_tiles");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.7.desc", 7, "abyssaline/abyssaline_tiles_charged");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.8.desc", 8, "abyssaline/abyssaline_plating");
+            abyssaline.carverHelper.addVariation("tile.abyssaline.9.desc", 9, "abyssaline/abyssaline_plating_charged");
+            abyssaline.carverHelper
+                .addVariation("tile.abyssaline.10.desc", 10, "abyssaline/chiseled_abyssaline_bricks");
+
+            abyssaline.carverHelper.registerAll(abyssaline, "abyssalineBlock");
+        }
+    },
+
+    HADALINE {
+
+        @Override
+        void addBlocks() {
+            BlockCarvable hadaline = (BlockCarvable) new BlockCarvable().setStepSound(Block.soundTypeStone)
+                .setCreativeTab(ChiselTabs.tabOtherChiselBlocks)
+                .setHardness(1F)
+                .setResistance(1F);
+            hadaline.carverHelper.addVariation("tile.hadaline.0.desc", 0, "hadaline/hadaline_bricks");
+            hadaline.carverHelper.addVariation("tile.hadaline.1.desc", 1, "hadaline/hadaline_bricks_charged");
+            hadaline.carverHelper.addVariation("tile.hadaline.2.desc", 2, "hadaline/hadaline_pillar");
+            hadaline.carverHelper.addVariation("tile.hadaline.3.desc", 3, "hadaline/hadaline_pillar_charged");
+            hadaline.carverHelper.addVariation("tile.hadaline.4.desc", 4, "hadaline/hadaline");
+            hadaline.carverHelper.addVariation("tile.hadaline.5.desc", 5, "hadaline/hadaline_charged");
+            hadaline.carverHelper.addVariation("tile.hadaline.6.desc", 6, "hadaline/hadaline_tiles");
+            hadaline.carverHelper.addVariation("tile.hadaline.7.desc", 7, "hadaline/hadaline_tiles_charged");
+            hadaline.carverHelper.addVariation("tile.hadaline.8.desc", 8, "hadaline/hadaline_plating");
+            hadaline.carverHelper.addVariation("tile.hadaline.9.desc", 9, "hadaline/hadaline_plating_charged");
+            hadaline.carverHelper.addVariation("tile.hadaline.10.desc", 10, "hadaline/chiseled_hadaline_bricks");
+
+            hadaline.carverHelper.registerAll(hadaline, "hadalineBlock");
         }
     },
 
