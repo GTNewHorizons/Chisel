@@ -52,9 +52,9 @@ public class RendererLayeredGlow implements ISimpleBlockRenderingHandler {
     }
 
     private static void setFullbrightColor(RenderBlocks renderer, int color) {
-        final float r = (float) (color >> 16 & 255) / 255.0F;
-        final float g = (float) (color >> 8 & 255) / 255.0F;
-        final float b = (float) (color & 255) / 255.0F;
+        final float r = (color >> 16 & 255) / 255.0F;
+        final float g = (color >> 8 & 255) / 255.0F;
+        final float b = (color & 255) / 255.0F;
         renderer.enableAO = true;
         renderer.colorRedTopLeft = renderer.colorRedBottomLeft = renderer.colorRedBottomRight = renderer.colorRedTopRight = r;
         renderer.colorGreenTopLeft = renderer.colorGreenBottomLeft = renderer.colorGreenBottomRight = renderer.colorGreenTopRight = g;
