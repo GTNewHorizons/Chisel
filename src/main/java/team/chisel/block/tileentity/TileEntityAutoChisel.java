@@ -38,6 +38,7 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         REVERSION;
 
         public static final Upgrade[] VALUES = values();
+
         public String getUnlocalizedName() {
             if (Features.AUTO_CHISEL_UPGRADES.enabled()) {
                 return "item.upgrade_" + this.name()
