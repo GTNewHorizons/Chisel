@@ -26,12 +26,12 @@ public class ItemUpgrade extends BaseItem {
     @Override
     public IIcon getIconFromDamage(int meta) {
         // using modulo throughout to prevent AIOB
-        return this.icons[meta % Upgrade.values().length];
+        return this.icons[meta % Upgrade.VALUES.length];
     }
 
     @Override
     public void registerIcons(IIconRegister reg) {
-        Upgrade[] upgrades = Upgrade.values();
+        Upgrade[] upgrades = Upgrade.VALUES;
         for (int i = 0; i < upgrades.length; i++) {
             this.icons[i] = reg.registerIcon(
                 Chisel.MOD_ID + ":upgrade_"
@@ -43,14 +43,14 @@ public class ItemUpgrade extends BaseItem {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i < Upgrade.values().length; i++) {
+        for (int i = 0; i < Upgrade.VALUES.length; i++) {
             list.add(new ItemStack(item, 1, i));
         }
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        Upgrade[] upgrades = Upgrade.values();
+        Upgrade[] upgrades = Upgrade.VALUES;
         return upgrades[stack.getItemDamage() % upgrades.length].getUnlocalizedName();
     }
 }

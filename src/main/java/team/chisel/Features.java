@@ -5305,6 +5305,7 @@ public enum Features {
         }
     };
 
+    public static final Features[] VALUES = values();
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
         "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta",
         "dyeOrange", "dyeWhite" };
@@ -5320,7 +5321,7 @@ public enum Features {
     private static void loadBlocks() {
         Chisel.logger.info("Loading blocks...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 f.addBlocks();
                 ++num;
@@ -5337,7 +5338,7 @@ public enum Features {
     private static void loadItems() {
         Chisel.logger.info("Loading items...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 f.addItems();
                 ++num;
@@ -5351,7 +5352,7 @@ public enum Features {
     private static void loadRecipes() {
         Chisel.logger.info("Loading recipes...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 if (f.needsMetaRecipes()) {
                     for (int i = 0; i < 16; i++) {
@@ -5387,7 +5388,7 @@ public enum Features {
     }
 
     public static boolean oneModdedFeatureLoaded() {
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.hasRequiredMod()) {
                 return true;
             }
