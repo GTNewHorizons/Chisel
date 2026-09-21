@@ -3,6 +3,7 @@ package team.chisel.client.render;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -89,12 +90,9 @@ public class SubmapManagerCombinedCTM extends SubmapManagerBase {
         }
 
         @Override
-        public void texturesStitched() {
+        public void registerSubIcons(TextureMap textureMap) {
             for (int i = 0; i < icons.length; i++) {
-                for (int j = 0; j < icons[i].length; j++) {
-                    icons[i][j] = submap[i][j];
-                    submap[i][j].texturesStitched();
-                }
+                System.arraycopy(submap[i], 0, icons[i], 0, icons[i].length);
             }
         }
     }

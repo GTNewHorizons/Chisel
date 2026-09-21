@@ -1,8 +1,22 @@
 package team.chisel.ctmlib;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
+import javax.imageio.ImageIO;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -14,10 +28,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lombok.experimental.Delegate;
+import team.chisel.Chisel;
 
 /**
- * This class is used to split up a large IIcon into smaller "submapped" icons used for CTM and other texture
- * manipulation.
+ * Splits a texture sheet into independently stitched sub-icons used for CTM and other texture manipulation.
  */
 public class TextureSubmap implements IIcon, ISubmap {
 
@@ -34,13 +48,17 @@ public class TextureSubmap implements IIcon, ISubmap {
     protected IIcon[][] icons;
 
     /**
-     * Construct a new submap. A submap is not required to be square, but it is required to be rectangular.
+     * Construct a new square submap.
      *
      * @param baseIcon The IIcon to submap.
      * @param width    The width of the map, in icons.
-     * @param height   The height of the map, in icons.
+     * @param height   The height of the map, in icons. Must equal {@code width}.
      */
     public TextureSubmap(IIcon baseIcon, int width, int height) {
+        if (width != height) {
+            throw new IllegalArgumentException("TextureSubmap must be square: " + width + "x" + height);
+        }
+
         this.baseIcon = baseIcon;
         this.width = width;
         this.height = height;
@@ -93,93 +111,219 @@ public class TextureSubmap implements IIcon, ISubmap {
     /* ==== Internal Stitching Logic ==== */
 
     /**
-     * For internal use only, this is used to create the virtual "subicons" used in the map.
+     * Registers each submap cell as an independent atlas sprite so filtered sampling cannot bleed into adjacent
+     * cells of the source texture sheet.
      */
     @SubscribeEvent
-    public final void TexturesStitched(TextureStitchEvent.Post event) {
+    public final void onTextureStitchPre(TextureStitchEvent.Pre event) {
+        TextureSubmapSprite.clearSourceCache();
         for (TextureSubmap ts : submaps) {
-            ts.texturesStitched();
+            ts.registerSubIcons(event.map);
         }
     }
 
-    public void texturesStitched() {
+    @SubscribeEvent
+    public final void onTextureStitchPost(TextureStitchEvent.Post event) {
+        TextureSubmapSprite.clearSourceCache();
+    }
+
+    /**
+     * Register the real sprites backing this submap.
+     */
+    public void registerSubIcons(TextureMap textureMap) {
+        if (baseIcon == null || width <= 0 || height <= 0) {
+            return;
+        }
+
+        // Texture maps rebuild their registered icon list on reload. Ignore stale TextureSubmap instances left over
+        // from an earlier stitch (and submaps belonging to a different atlas).
+        if (textureMap.getTextureExtry(baseIcon.getIconName()) != baseIcon) {
+            return;
+        }
+
+        int textureType = textureMap.getTextureType();
+        if (textureType != 0 && textureType != 1) {
+            return;
+        }
+
+        ResourceLocation sourceIcon = new ResourceLocation(baseIcon.getIconName());
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                icons[x][y] = new TextureVirtual(getBaseIcon(), width, height, x, y);
+                String name = getSubIconName(sourceIcon, width, height, x, y);
+                TextureAtlasSprite registered = textureMap.getTextureExtry(name);
+
+                if (!(registered instanceof TextureSubmapSprite)) {
+                    TextureSubmapSprite sprite = new TextureSubmapSprite(
+                        name,
+                        sourceIcon,
+                        textureType,
+                        width,
+                        height,
+                        x,
+                        y);
+                    if (textureMap.setTextureEntry(name, sprite)) {
+                        registered = sprite;
+                    } else {
+                        registered = textureMap.getTextureExtry(name);
+                    }
+                }
+
+                if (registered instanceof TextureSubmapSprite) {
+                    icons[x][y] = registered;
+                }
             }
         }
     }
 
-    private class TextureVirtual implements IIcon {
+    private static String getSubIconName(ResourceLocation source, int width, int height, int x, int y) {
+        return source.getResourceDomain() + ":__chisel_submap/"
+            + width
+            + "x"
+            + height
+            + "/"
+            + x
+            + "_"
+            + y
+            + "/"
+            + source.getResourcePath();
+    }
 
-        private int width, height;
-        private float umin, umax, vmin, vmax;
-        private IIcon parentIcon;
+    @SideOnly(Side.CLIENT)
+    private static class TextureSubmapSprite extends TextureAtlasSprite {
 
-        private TextureVirtual(IIcon parent, int w, int h, int x, int y) {
-            parentIcon = parent;
+        private static final Map<ResourceLocation, SourceData> sourceCache = new ConcurrentHashMap<>();
 
-            umin = parentIcon.getInterpolatedU(16.0 * (x) / w);
-            umax = parentIcon.getInterpolatedU(16.0 * (x + 1) / w);
-            vmin = parentIcon.getInterpolatedV(16.0 * (y) / h);
-            vmax = parentIcon.getInterpolatedV(16.0 * (y + 1) / h);
+        private final ResourceLocation sourceIcon;
+        private final int textureType;
+        private final int columns;
+        private final int rows;
+        private final int cellX;
+        private final int cellY;
 
-            width = parentIcon.getIconWidth();
-            height = parentIcon.getIconHeight();
+        private TextureSubmapSprite(String name, ResourceLocation sourceIcon, int textureType, int columns, int rows,
+            int cellX, int cellY) {
+            super(name);
+            this.sourceIcon = sourceIcon;
+            this.textureType = textureType;
+            this.columns = columns;
+            this.rows = rows;
+            this.cellX = cellX;
+            this.cellY = cellY;
         }
 
         @Override
-        @SideOnly(Side.CLIENT)
-        public float getMinU() {
-            return umin;
+        public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
+            return true;
         }
 
         @Override
-        @SideOnly(Side.CLIENT)
-        public float getMaxU() {
-            return umax;
+        public boolean load(IResourceManager manager, ResourceLocation location) {
+            ResourceLocation source = getSourceResource();
+
+            try {
+                SourceData sourceData = getSourceData(manager, source);
+                BufferedImage subImage = extractSubImage(sourceData.image, sourceData.animation != null);
+
+                // The source animation metadata can be reused: frame indices and timings stay the same,
+                // only the pixels of each frame are cropped to this submap cell.
+                BufferedImage[] images = new BufferedImage[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1];
+                images[0] = subImage;
+                loadSprite(images, sourceData.animation, false);
+                return false;
+            } catch (IOException | RuntimeException e) {
+                Chisel.logger.warn("Unable to create submap sprite {} from {}", getIconName(), source, e);
+                return true;
+            }
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getInterpolatedU(double d0) {
-            return (float) (umin + (umax - umin) * d0 / 16.0);
+        private static SourceData getSourceData(IResourceManager manager, ResourceLocation source) throws IOException {
+            SourceData sourceData = sourceCache.get(source);
+            if (sourceData != null) {
+                return sourceData;
+            }
+
+            IResource resource = manager.getResource(source);
+            BufferedImage image;
+            try (InputStream stream = resource.getInputStream()) {
+                image = ImageIO.read(stream);
+            }
+
+            if (image == null) {
+                throw new IOException("ImageIO could not decode " + source);
+            }
+
+            AnimationMetadataSection animation = (AnimationMetadataSection) resource.getMetadata("animation");
+            sourceData = new SourceData(image, animation);
+
+            SourceData cached = sourceCache.putIfAbsent(source, sourceData);
+            return cached == null ? sourceData : cached;
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMinV() {
-            return vmin;
+        private static void clearSourceCache() {
+            sourceCache.clear();
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMaxV() {
-            return vmax;
+        private ResourceLocation getSourceResource() {
+            String path;
+            if (textureType == 0) {
+                path = "textures/blocks/";
+            } else if (textureType == 1) {
+                path = "textures/items/";
+            } else {
+                throw new IllegalStateException("Unsupported texture map type " + textureType);
+            }
+            return new ResourceLocation(sourceIcon.getResourceDomain(), path + sourceIcon.getResourcePath() + ".png");
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getInterpolatedV(double d0) {
-            return (float) (vmin + (vmax - vmin) * d0 / 16.0);
+        private BufferedImage extractSubImage(BufferedImage source, boolean animated) {
+            int frameSize = source.getWidth();
+            int sourceHeight = source.getHeight();
+
+            if (frameSize % columns != 0 || frameSize % rows != 0) {
+                throw new IllegalArgumentException(
+                    "Texture size " + frameSize + " is not divisible by submap " + columns + "x" + rows);
+            }
+
+            if (animated) {
+                if (sourceHeight % frameSize != 0) {
+                    throw new IllegalArgumentException(
+                        "Animated texture height " + sourceHeight + " is not divisible by frame size " + frameSize);
+                }
+            } else if (sourceHeight != frameSize) {
+                throw new IllegalArgumentException(
+                    "Non-animated texture is not square: " + frameSize + "x" + sourceHeight);
+            }
+
+            int cellWidth = frameSize / columns;
+            int cellHeight = frameSize / rows;
+            if (cellWidth != cellHeight) {
+                throw new IllegalArgumentException(
+                    "Submap cell is not square: " + cellWidth + "x" + cellHeight + " (" + columns + "x" + rows + ")");
+            }
+
+            int frameCount = animated ? sourceHeight / frameSize : 1;
+            BufferedImage result = new BufferedImage(cellWidth, cellHeight * frameCount, BufferedImage.TYPE_INT_ARGB);
+            int[] pixels = new int[cellWidth * cellHeight];
+
+            for (int frame = 0; frame < frameCount; frame++) {
+                int sourceX = cellX * cellWidth;
+                int sourceY = frame * frameSize + cellY * cellHeight;
+                source.getRGB(sourceX, sourceY, cellWidth, cellHeight, pixels, 0, cellWidth);
+                result.setRGB(0, frame * cellHeight, cellWidth, cellHeight, pixels, 0, cellWidth);
+            }
+
+            return result;
         }
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public String getIconName() {
-            return parentIcon.getIconName();
-        }
+        private static class SourceData {
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public int getIconWidth() {
-            return width;
-        }
+            private final BufferedImage image;
+            private final AnimationMetadataSection animation;
 
-        @Override
-        @SideOnly(Side.CLIENT)
-        public int getIconHeight() {
-            return height;
+            private SourceData(BufferedImage image, AnimationMetadataSection animation) {
+                this.image = image;
+                this.animation = animation;
+            }
         }
     }
 }
