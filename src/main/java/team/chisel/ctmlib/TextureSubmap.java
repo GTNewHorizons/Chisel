@@ -3,6 +3,7 @@ package team.chisel.ctmlib;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,14 +16,16 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
+import net.minecraft.client.resources.data.TextureMetadataSection;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.google.common.collect.Lists;
+import com.github.bsideup.jabel.Desugar;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -35,17 +38,13 @@ import team.chisel.Chisel;
  */
 public class TextureSubmap implements IIcon, ISubmap {
 
-    private static List<TextureSubmap> submaps = Lists.newArrayList();
-    private static TextureSubmap dummy = new TextureSubmap(null, 0, 0);
-    static {
-        MinecraftForge.EVENT_BUS.register(dummy);
-    }
+    private static final List<TextureSubmap> submaps = new ArrayList<>();
 
-    private int width, height;
     @Delegate
-    private IIcon baseIcon;
-
-    protected IIcon[][] icons;
+    private final IIcon baseIcon;
+    private final int width;
+    private final int height;
+    protected final IIcon[][] icons;
 
     /**
      * Construct a new square submap.
@@ -110,23 +109,26 @@ public class TextureSubmap implements IIcon, ISubmap {
 
     /* ==== Internal Stitching Logic ==== */
 
-    /**
-     * Registers each submap cell as an independent atlas sprite so filtered sampling cannot bleed into adjacent
-     * cells of the source texture sheet.
-     */
-    @SubscribeEvent
-    public final void onTextureStitchPre(TextureStitchEvent.Pre event) {
-        if (event.map.getTextureType() != 0) return;
-        TextureSubmapSprite.clearSourceCache();
-        for (TextureSubmap ts : submaps) {
-            ts.registerSubIcons(event.map);
-        }
-        submaps.clear();
+    static {
+        MinecraftForge.EVENT_BUS.register(new StitchHandler());
     }
 
-    @SubscribeEvent
-    public final void onTextureStitchPost(TextureStitchEvent.Post event) {
-        TextureSubmapSprite.clearSourceCache();
+    private static final class StitchHandler {
+
+        @SubscribeEvent
+        public void onTextureStitchPre(TextureStitchEvent.Pre event) {
+            if (event.map.getTextureType() != 0) return;
+            TextureSubmapSprite.clearSourceCache();
+            for (TextureSubmap submap : submaps) {
+                submap.registerSubIcons(event.map);
+            }
+            submaps.clear();
+        }
+
+        @SubscribeEvent
+        public void onTextureStitchPost(TextureStitchEvent.Post event) {
+            TextureSubmapSprite.clearSourceCache();
+        }
     }
 
     /**
@@ -142,19 +144,11 @@ public class TextureSubmap implements IIcon, ISubmap {
             for (int y = 0; y < height; y++) {
                 String name = getSubIconName(sourceIcon, width, height, x, y);
                 TextureAtlasSprite registered = textureMap.getTextureExtry(name);
-
-                if (!(registered instanceof TextureSubmapSprite)) {
-                    TextureSubmapSprite sprite = new TextureSubmapSprite(name, sourceIcon, width, height, x, y);
-                    if (textureMap.setTextureEntry(name, sprite)) {
-                        registered = sprite;
-                    } else {
-                        registered = textureMap.getTextureExtry(name);
-                    }
+                if (registered == null) {
+                    registered = new TextureSubmapSprite(name, sourceIcon, width, height, x, y);
+                    textureMap.setTextureEntry(name, registered);
                 }
-
-                if (registered instanceof TextureSubmapSprite) {
-                    icons[x][y] = registered;
-                }
+                icons[x][y] = registered;
             }
         }
     }
@@ -173,20 +167,24 @@ public class TextureSubmap implements IIcon, ISubmap {
     }
 
     @SideOnly(Side.CLIENT)
-    private static class TextureSubmapSprite extends TextureAtlasSprite {
+    private static final class TextureSubmapSprite extends TextureAtlasSprite {
 
-        private static final Map<ResourceLocation, SourceData> sourceCache = new ConcurrentHashMap<>();
+        @Desugar
+        private record SourceTexture(BufferedImage[] images, AnimationMetadataSection animation) {}
 
-        private final ResourceLocation sourceIcon;
+        private static final Map<ResourceLocation, SourceTexture> sourceCache = new ConcurrentHashMap<>();
+
+        private final ResourceLocation sourceLocation;
         private final int columns;
         private final int rows;
         private final int cellX;
         private final int cellY;
 
-        private TextureSubmapSprite(String name, ResourceLocation sourceIcon, int columns, int rows, int cellX,
+        private TextureSubmapSprite(String name, ResourceLocation sourceLocation, int columns, int rows, int cellX,
             int cellY) {
+
             super(name);
-            this.sourceIcon = sourceIcon;
+            this.sourceLocation = sourceLocation;
             this.columns = columns;
             this.rows = rows;
             this.cellX = cellX;
@@ -200,55 +198,97 @@ public class TextureSubmap implements IIcon, ISubmap {
 
         @Override
         public boolean load(IResourceManager manager, ResourceLocation location) {
-            ResourceLocation source = getSourceResource();
-
             try {
-                SourceData sourceData = getSourceData(manager, source);
-                BufferedImage subImage = extractSubImage(sourceData.image, sourceData.animation != null);
+                int mipmapLevels = Minecraft.getMinecraft().gameSettings.mipmapLevels;
+                boolean useAnisotropicFiltering = Minecraft.getMinecraft().gameSettings.anisotropicFiltering > 1;
 
-                // The source animation metadata can be reused: frame indices and timings stay the same,
-                // only the pixels of each frame are cropped to this submap cell.
-                BufferedImage[] images = new BufferedImage[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1];
-                images[0] = subImage;
-                loadSprite(images, sourceData.animation, false);
+                SourceTexture sourceTexture = getSourceTexture(manager, sourceLocation, mipmapLevels);
+                BufferedImage[] images = new BufferedImage[sourceTexture.images().length];
+                boolean animated = sourceTexture.animation() != null;
+
+                for (int level = 0; level < images.length; level++) {
+                    BufferedImage sourceImage = sourceTexture.images()[level];
+                    if (sourceImage == null) continue;
+                    // A mip level can be too small to split into the submap grid
+                    if (sourceImage.getWidth() < columns) continue;
+                    images[level] = extractSubImage(sourceImage, animated);
+                }
+
+                loadSprite(images, sourceTexture.animation(), useAnisotropicFiltering);
                 return false;
             } catch (IOException | RuntimeException e) {
-                Chisel.logger.warn("Unable to create submap sprite {} from {}", getIconName(), source, e);
+                Chisel.logger.warn("Unable to create submap sprite {} from {}", getIconName(), sourceLocation, e);
                 return true;
             }
         }
 
-        private static SourceData getSourceData(IResourceManager manager, ResourceLocation source) throws IOException {
-            SourceData sourceData = sourceCache.get(source);
-            if (sourceData != null) {
-                return sourceData;
+        private static SourceTexture getSourceTexture(IResourceManager manager, ResourceLocation sourceLocation,
+            int mipmapLevels) throws IOException {
+
+            SourceTexture cached = sourceCache.get(sourceLocation);
+            if (cached != null) {
+                return cached;
             }
 
-            IResource resource = manager.getResource(source);
+            ResourceLocation location = getSourceResource(sourceLocation, 0);
+            IResource resource = manager.getResource(location);
+
+            BufferedImage[] images = new BufferedImage[mipmapLevels + 1];
+            images[0] = readImage(resource, location);
+
+            TextureMetadataSection textureMetadata = (TextureMetadataSection) resource.getMetadata("texture");
+            if (textureMetadata != null && !textureMetadata.getListMipmaps()
+                .isEmpty()) {
+
+                int width = images[0].getWidth();
+                int height = images[0].getHeight();
+
+                if (MathHelper.roundUpToPowerOfTwo(width) != width
+                    || MathHelper.roundUpToPowerOfTwo(height) != height) {
+                    throw new RuntimeException("Unable to load extra miplevels, source texture is not power of two");
+                }
+
+                for (int mipLevel : textureMetadata.getListMipmaps()) {
+                    if (mipLevel <= 0 || mipLevel >= images.length || images[mipLevel] != null) {
+                        continue;
+                    }
+
+                    ResourceLocation mipLocation = getSourceResource(sourceLocation, mipLevel);
+                    try {
+                        images[mipLevel] = readImage(manager.getResource(mipLocation), mipLocation);
+                    } catch (IOException e) {
+                        Chisel.logger.warn("Unable to load mip level {} from {}", mipLevel, mipLocation, e);
+                    }
+                }
+            }
+
+            AnimationMetadataSection animation = (AnimationMetadataSection) resource.getMetadata("animation");
+            SourceTexture sourceTexture = new SourceTexture(images, animation);
+
+            SourceTexture existing = sourceCache.putIfAbsent(sourceLocation, sourceTexture);
+            return existing != null ? existing : sourceTexture;
+        }
+
+        private static BufferedImage readImage(IResource resource, ResourceLocation location) throws IOException {
             BufferedImage image;
             try (InputStream stream = resource.getInputStream()) {
                 image = ImageIO.read(stream);
             }
-
             if (image == null) {
-                throw new IOException("ImageIO could not decode " + source);
+                throw new IOException("ImageIO could not decode " + location);
             }
-
-            AnimationMetadataSection animation = (AnimationMetadataSection) resource.getMetadata("animation");
-            sourceData = new SourceData(image, animation);
-
-            SourceData cached = sourceCache.putIfAbsent(source, sourceData);
-            return cached == null ? sourceData : cached;
+            return image;
         }
 
         private static void clearSourceCache() {
             sourceCache.clear();
         }
 
-        private ResourceLocation getSourceResource() {
-            return new ResourceLocation(
-                sourceIcon.getResourceDomain(),
-                "textures/blocks/" + sourceIcon.getResourcePath() + ".png");
+        private static ResourceLocation getSourceResource(ResourceLocation sourceLocation, int mipLevel) {
+            String domain = sourceLocation.getResourceDomain();
+            String path = sourceLocation.getResourcePath();
+            if (mipLevel == 0) return new ResourceLocation(domain, "textures/blocks/" + path + ".png");
+            return new ResourceLocation(domain, "textures/blocks/mipmaps/" + path + "." + mipLevel + ".png");
         }
 
         private BufferedImage extractSubImage(BufferedImage source, boolean animated) {
@@ -272,12 +312,8 @@ public class TextureSubmap implements IIcon, ISubmap {
 
             int cellWidth = frameSize / columns;
             int cellHeight = frameSize / rows;
-            if (cellWidth != cellHeight) {
-                throw new IllegalArgumentException(
-                    "Submap cell is not square: " + cellWidth + "x" + cellHeight + " (" + columns + "x" + rows + ")");
-            }
-
             int frameCount = animated ? sourceHeight / frameSize : 1;
+
             BufferedImage result = new BufferedImage(cellWidth, cellHeight * frameCount, BufferedImage.TYPE_INT_ARGB);
             int[] pixels = new int[cellWidth * cellHeight];
 
@@ -289,17 +325,6 @@ public class TextureSubmap implements IIcon, ISubmap {
             }
 
             return result;
-        }
-
-        private static class SourceData {
-
-            private final BufferedImage image;
-            private final AnimationMetadataSection animation;
-
-            private SourceData(BufferedImage image, AnimationMetadataSection animation) {
-                this.image = image;
-                this.animation = animation;
-            }
         }
     }
 }
