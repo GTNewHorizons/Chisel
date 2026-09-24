@@ -116,10 +116,12 @@ public class TextureSubmap implements IIcon, ISubmap {
      */
     @SubscribeEvent
     public final void onTextureStitchPre(TextureStitchEvent.Pre event) {
+        if (event.map.getTextureType() != 0) return;
         TextureSubmapSprite.clearSourceCache();
         for (TextureSubmap ts : submaps) {
             ts.registerSubIcons(event.map);
         }
+        submaps.clear();
     }
 
     @SubscribeEvent
@@ -135,17 +137,6 @@ public class TextureSubmap implements IIcon, ISubmap {
             return;
         }
 
-        // Texture maps rebuild their registered icon list on reload. Ignore stale TextureSubmap instances left over
-        // from an earlier stitch (and submaps belonging to a different atlas).
-        if (textureMap.getTextureExtry(baseIcon.getIconName()) != baseIcon) {
-            return;
-        }
-
-        int textureType = textureMap.getTextureType();
-        if (textureType != 0 && textureType != 1) {
-            return;
-        }
-
         ResourceLocation sourceIcon = new ResourceLocation(baseIcon.getIconName());
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -153,14 +144,7 @@ public class TextureSubmap implements IIcon, ISubmap {
                 TextureAtlasSprite registered = textureMap.getTextureExtry(name);
 
                 if (!(registered instanceof TextureSubmapSprite)) {
-                    TextureSubmapSprite sprite = new TextureSubmapSprite(
-                        name,
-                        sourceIcon,
-                        textureType,
-                        width,
-                        height,
-                        x,
-                        y);
+                    TextureSubmapSprite sprite = new TextureSubmapSprite(name, sourceIcon, width, height, x, y);
                     if (textureMap.setTextureEntry(name, sprite)) {
                         registered = sprite;
                     } else {
@@ -194,17 +178,15 @@ public class TextureSubmap implements IIcon, ISubmap {
         private static final Map<ResourceLocation, SourceData> sourceCache = new ConcurrentHashMap<>();
 
         private final ResourceLocation sourceIcon;
-        private final int textureType;
         private final int columns;
         private final int rows;
         private final int cellX;
         private final int cellY;
 
-        private TextureSubmapSprite(String name, ResourceLocation sourceIcon, int textureType, int columns, int rows,
-            int cellX, int cellY) {
+        private TextureSubmapSprite(String name, ResourceLocation sourceIcon, int columns, int rows, int cellX,
+            int cellY) {
             super(name);
             this.sourceIcon = sourceIcon;
-            this.textureType = textureType;
             this.columns = columns;
             this.rows = rows;
             this.cellX = cellX;
@@ -264,15 +246,9 @@ public class TextureSubmap implements IIcon, ISubmap {
         }
 
         private ResourceLocation getSourceResource() {
-            String path;
-            if (textureType == 0) {
-                path = "textures/blocks/";
-            } else if (textureType == 1) {
-                path = "textures/items/";
-            } else {
-                throw new IllegalStateException("Unsupported texture map type " + textureType);
-            }
-            return new ResourceLocation(sourceIcon.getResourceDomain(), path + sourceIcon.getResourcePath() + ".png");
+            return new ResourceLocation(
+                sourceIcon.getResourceDomain(),
+                "textures/blocks/" + sourceIcon.getResourcePath() + ".png");
         }
 
         private BufferedImage extractSubImage(BufferedImage source, boolean animated) {
