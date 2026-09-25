@@ -1,46 +1,44 @@
 package team.chisel.ctmlib;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.google.common.collect.Lists;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import lombok.experimental.Delegate;
 
 /**
- * This class is used to split up a large IIcon into smaller "submapped" icons used for CTM and other texture
- * manipulation.
+ * Splits a texture sheet into independently stitched sub-icons used for CTM and other texture manipulation.
  */
 public class TextureSubmap implements IIcon, ISubmap {
 
-    private static List<TextureSubmap> submaps = Lists.newArrayList();
-    private static TextureSubmap dummy = new TextureSubmap(null, 0, 0);
-    static {
-        MinecraftForge.EVENT_BUS.register(dummy);
-    }
+    private static final List<TextureSubmap> submaps = new ArrayList<>();
 
-    private int width, height;
     @Delegate
-    private IIcon baseIcon;
-
-    protected IIcon[][] icons;
+    private final IIcon baseIcon;
+    private final int width;
+    private final int height;
+    protected final IIcon[][] icons;
 
     /**
-     * Construct a new submap. A submap is not required to be square, but it is required to be rectangular.
+     * Construct a new square submap.
      *
      * @param baseIcon The IIcon to submap.
      * @param width    The width of the map, in icons.
-     * @param height   The height of the map, in icons.
+     * @param height   The height of the map, in icons. Must equal {@code width}.
      */
     public TextureSubmap(IIcon baseIcon, int width, int height) {
+        if (width != height) {
+            throw new IllegalArgumentException("TextureSubmap must be square: " + width + "x" + height);
+        }
+
         this.baseIcon = baseIcon;
         this.width = width;
         this.height = height;
@@ -92,94 +90,43 @@ public class TextureSubmap implements IIcon, ISubmap {
 
     /* ==== Internal Stitching Logic ==== */
 
-    /**
-     * For internal use only, this is used to create the virtual "subicons" used in the map.
-     */
-    @SubscribeEvent
-    public final void TexturesStitched(TextureStitchEvent.Post event) {
-        for (TextureSubmap ts : submaps) {
-            ts.texturesStitched();
+    static {
+        MinecraftForge.EVENT_BUS.register(new StitchHandler());
+    }
+
+    public static final class StitchHandler {
+
+        @SubscribeEvent
+        public void onTextureStitchPre(TextureStitchEvent.Pre event) {
+            if (event.map.getTextureType() != 0) return;
+            TextureSubmapResource.beginTextureStitch();
+            for (TextureSubmap submap : submaps) {
+                submap.registerSubIcons(event.map);
+            }
+            submaps.clear();
+        }
+
+        @SubscribeEvent
+        public void onTextureStitchPost(TextureStitchEvent.Post event) {
+            if (event.map.getTextureType() != 0) return;
+            TextureSubmapResource.endTextureStitch();
         }
     }
 
-    public void texturesStitched() {
+    /**
+     * Register the real sprites backing this submap.
+     */
+    public void registerSubIcons(TextureMap textureMap) {
+        if (baseIcon == null || width <= 0 || height <= 0) {
+            return;
+        }
+
+        ResourceLocation sourceLocation = new ResourceLocation(baseIcon.getIconName());
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                icons[x][y] = new TextureVirtual(getBaseIcon(), width, height, x, y);
+                String name = TextureSubmapResource.getSubIconName(sourceLocation, width, height, x, y);
+                icons[x][y] = textureMap.registerIcon(name);
             }
-        }
-    }
-
-    private class TextureVirtual implements IIcon {
-
-        private int width, height;
-        private float umin, umax, vmin, vmax;
-        private IIcon parentIcon;
-
-        private TextureVirtual(IIcon parent, int w, int h, int x, int y) {
-            parentIcon = parent;
-
-            umin = parentIcon.getInterpolatedU(16.0 * (x) / w);
-            umax = parentIcon.getInterpolatedU(16.0 * (x + 1) / w);
-            vmin = parentIcon.getInterpolatedV(16.0 * (y) / h);
-            vmax = parentIcon.getInterpolatedV(16.0 * (y + 1) / h);
-
-            width = parentIcon.getIconWidth();
-            height = parentIcon.getIconHeight();
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMinU() {
-            return umin;
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMaxU() {
-            return umax;
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getInterpolatedU(double d0) {
-            return (float) (umin + (umax - umin) * d0 / 16.0);
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMinV() {
-            return vmin;
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getMaxV() {
-            return vmax;
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public float getInterpolatedV(double d0) {
-            return (float) (vmin + (vmax - vmin) * d0 / 16.0);
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public String getIconName() {
-            return parentIcon.getIconName();
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public int getIconWidth() {
-            return width;
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public int getIconHeight() {
-            return height;
         }
     }
 }
