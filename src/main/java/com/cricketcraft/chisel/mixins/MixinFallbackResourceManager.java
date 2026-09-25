@@ -40,7 +40,7 @@ public abstract class MixinFallbackResourceManager {
         if (submap == null) return;
 
         IResource source = getResource(submap.source());
-        cir.setReturnValue(TextureSubmapResource.create(location, source, submap));
+        cir.setReturnValue(new TextureSubmapResource(source, submap, true));
     }
 
     @Inject(method = "getAllResources", at = @At("HEAD"), cancellable = true)
@@ -54,7 +54,7 @@ public abstract class MixinFallbackResourceManager {
         List<IResource> resources = new ArrayList<>(sources.size());
 
         for (IResource source : sources) {
-            resources.add(TextureSubmapResource.create(location, source, submap));
+            resources.add(new TextureSubmapResource(source, submap, false));
         }
 
         cir.setReturnValue(resources);

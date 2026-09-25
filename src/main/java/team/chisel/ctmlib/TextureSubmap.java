@@ -99,10 +99,17 @@ public class TextureSubmap implements IIcon, ISubmap {
         @SubscribeEvent
         public void onTextureStitchPre(TextureStitchEvent.Pre event) {
             if (event.map.getTextureType() != 0) return;
+            TextureSubmapResource.beginTextureStitch();
             for (TextureSubmap submap : submaps) {
                 submap.registerSubIcons(event.map);
             }
             submaps.clear();
+        }
+
+        @SubscribeEvent
+        public void onTextureStitchPost(TextureStitchEvent.Post event) {
+            if (event.map.getTextureType() != 0) return;
+            TextureSubmapResource.endTextureStitch();
         }
     }
 
