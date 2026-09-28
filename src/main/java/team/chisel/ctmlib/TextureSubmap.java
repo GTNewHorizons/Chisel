@@ -1,6 +1,7 @@
 package team.chisel.ctmlib;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -19,7 +20,7 @@ import lombok.experimental.Delegate;
  */
 public class TextureSubmap implements IIcon, ISubmap {
 
-    private static final List<TextureSubmap> submaps = new ArrayList<>();
+    private static final List<TextureSubmap> submaps = Collections.synchronizedList(new ArrayList<>(128));
 
     @Delegate
     private final IIcon baseIcon;
