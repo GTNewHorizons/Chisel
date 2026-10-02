@@ -34,6 +34,11 @@ public class BlockCarvableGlowstone extends BlockCarvable {
     }
 
     @Override
+    public int getDamageValue(World world, int x, int y, int z) {
+        return world.getBlockMetadata(x, y, z);
+    }
+
+    @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
         Block glowstone = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
