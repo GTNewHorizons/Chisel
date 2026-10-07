@@ -58,6 +58,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.cricketcraft.chisel.api.IConnectionAccess;
+
 import lombok.Getter;
 
 public class RenderBlocksCTM extends RenderBlocks {
@@ -120,6 +122,20 @@ public class RenderBlocksCTM extends RenderBlocks {
 
             double u = cacheID == 1 || cacheID == 2 ? inst.maxU : inst.minU;
             double v = cacheID < 2 ? inst.maxV : inst.minV;
+
+            if (inst.renderPart) {
+                // only the part inside the bounds, showing the texture where it lies in the block
+                double px = Math.min(Math.max(x, inst.renderMinX), inst.renderMaxX);
+                double py = Math.min(Math.max(y, inst.renderMinY), inst.renderMaxY);
+                double pz = Math.min(Math.max(z, inst.renderMinZ), inst.renderMaxZ);
+                double uMoved = Math.abs(normal.offsetX != 0 ? pz - z : px - x);
+                double vMoved = Math.abs(normal.offsetY != 0 ? pz - z : py - y);
+                // a sub-side is half a block wide
+                u += (u == inst.minU ? 2 : -2) * (inst.maxU - inst.minU) * uMoved;
+                v += (v == inst.minV ? 2 : -2) * (inst.maxV - inst.minV) * vMoved;
+                tessellator.addVertexWithUV(px, py, pz, u, v);
+                return;
+            }
 
             double uDiff = inst.maxU - inst.minU;
             double vDiff = inst.maxV - inst.minV;
@@ -247,6 +263,12 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Getter
     protected boolean inWorld = false;
 
+    /**
+     * Whether the render bounds are a part of the block, which shows its part of the block's texture instead of the
+     * whole texture squeezed in. Set when rendering in an {@link IConnectionAccess}.
+     */
+    protected boolean renderPart = false;
+
     @Override
     public boolean renderStandardBlock(Block block, int x, int y, int z) {
         bx = x;
@@ -258,7 +280,9 @@ public class RenderBlocksCTM extends RenderBlocks {
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tessellator.addTranslation(x, y, z);
         inWorld = true;
+        renderPart = CTMLib.chiselLoaded() && blockAccess instanceof IConnectionAccess;
         boolean res = super.renderStandardBlock(block, x, y, z);
+        renderPart = false;
         inWorld = false;
         tessellator.addTranslation(-x, -y, -z);
 

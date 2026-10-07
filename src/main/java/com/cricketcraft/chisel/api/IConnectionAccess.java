@@ -7,7 +7,9 @@ import net.minecraft.world.IBlockAccess;
  * To be implemented on an {@link IBlockAccess} that renders blocks which are only part of a block space, so it can
  * decide connected textures itself instead of reporting the blocks around it.
  * <p>
- * Connected textures ask this for every location they check, while rendering in this world.
+ * Connected textures ask this for every location they check, while rendering in this world. Render bounds smaller than
+ * the block are then a part of the block: they show the matching part of the block's connected texture, instead of the
+ * whole texture squeezed into the bounds.
  */
 public interface IConnectionAccess {
 
