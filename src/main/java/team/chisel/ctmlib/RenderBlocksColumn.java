@@ -23,9 +23,8 @@ public class RenderBlocksColumn extends RenderBlocks {
         super();
     }
 
-    boolean connected(IBlockAccess world, int x, int y, int z, Block block, int meta) {
-        Block inWorld = ctm.getBlockOrFacade(world, x, y, z, -1);
-        return inWorld != null && inWorld.equals(block) && ctm.getBlockOrFacadeMetadata(world, x, y, z, -1) == meta;
+    boolean connected(IBlockAccess world, int x, int y, int z, int fromX, int fromY, int fromZ, Block block, int meta) {
+        return ctm.matches(world, x, y, z, -1, fromX, fromY, fromZ, block, meta);
     }
 
     @Override
@@ -33,8 +32,8 @@ public class RenderBlocksColumn extends RenderBlocks {
         int metadata = blockAccess.getBlockMetadata(x, y, z);
         inWorld = true;
 
-        boolean yp = connected(blockAccess, x, y + 1, z, block, metadata);
-        boolean yn = connected(blockAccess, x, y - 1, z, block, metadata);
+        boolean yp = connected(blockAccess, x, y + 1, z, x, y, z, block, metadata);
+        boolean yn = connected(blockAccess, x, y - 1, z, x, y, z, block, metadata);
 
         if (yp || yn) {
             sides[0] = iconTop;
@@ -46,13 +45,13 @@ public class RenderBlocksColumn extends RenderBlocks {
 
             sides[3] = sides[4] = sides[5] = sides[2];
         } else {
-            boolean xp = connected(blockAccess, x + 1, y, z, block, metadata);
-            boolean xn = connected(blockAccess, x - 1, y, z, block, metadata);
+            boolean xp = connected(blockAccess, x + 1, y, z, x, y, z, block, metadata);
+            boolean xn = connected(blockAccess, x - 1, y, z, x, y, z, block, metadata);
 
-            if (xp && (connected(blockAccess, x + 1, y + 1, z, block, metadata)
-                || connected(blockAccess, x + 1, y - 1, z, block, metadata))) xp = false;
-            if (xn && (connected(blockAccess, x - 1, y + 1, z, block, metadata)
-                || connected(blockAccess, x - 1, y - 1, z, block, metadata))) xn = false;
+            if (xp && (connected(blockAccess, x + 1, y + 1, z, x, y, z, block, metadata)
+                || connected(blockAccess, x + 1, y - 1, z, x, y, z, block, metadata))) xp = false;
+            if (xn && (connected(blockAccess, x - 1, y + 1, z, x, y, z, block, metadata)
+                || connected(blockAccess, x - 1, y - 1, z, x, y, z, block, metadata))) xn = false;
 
             if (xp || xn) {
                 uvRotateEast = 2;
@@ -76,17 +75,17 @@ public class RenderBlocksColumn extends RenderBlocks {
                 }
                 sides[2] = sides[3] = sides[1];
             } else {
-                boolean zp = connected(blockAccess, x, y, z + 1, block, metadata);
-                boolean zn = connected(blockAccess, x, y, z - 1, block, metadata);
+                boolean zp = connected(blockAccess, x, y, z + 1, x, y, z, block, metadata);
+                boolean zn = connected(blockAccess, x, y, z - 1, x, y, z, block, metadata);
 
-                if (zp && (connected(blockAccess, x, y + 1, z + 1, block, metadata)
-                    || connected(blockAccess, x, y - 1, z + 1, block, metadata))) zp = false;
-                if (zp && (connected(blockAccess, x + 1, y, z + 1, block, metadata)
-                    || connected(blockAccess, x - 1, y, z + 1, block, metadata))) zp = false;
-                if (zn && (connected(blockAccess, x, y + 1, z - 1, block, metadata)
-                    || connected(blockAccess, x, y - 1, z - 1, block, metadata))) zn = false;
-                if (zn && (connected(blockAccess, x + 1, y, z - 1, block, metadata)
-                    || connected(blockAccess, x - 1, y, z - 1, block, metadata))) zn = false;
+                if (zp && (connected(blockAccess, x, y + 1, z + 1, x, y, z, block, metadata)
+                    || connected(blockAccess, x, y - 1, z + 1, x, y, z, block, metadata))) zp = false;
+                if (zp && (connected(blockAccess, x + 1, y, z + 1, x, y, z, block, metadata)
+                    || connected(blockAccess, x - 1, y, z + 1, x, y, z, block, metadata))) zp = false;
+                if (zn && (connected(blockAccess, x, y + 1, z - 1, x, y, z, block, metadata)
+                    || connected(blockAccess, x, y - 1, z - 1, x, y, z, block, metadata))) zn = false;
+                if (zn && (connected(blockAccess, x + 1, y, z - 1, x, y, z, block, metadata)
+                    || connected(blockAccess, x - 1, y, z - 1, x, y, z, block, metadata))) zn = false;
 
                 if (zp || zn) {
                     uvRotateSouth = 1;

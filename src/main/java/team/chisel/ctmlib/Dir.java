@@ -61,12 +61,15 @@ public enum Dir {
     public boolean isConnected(CTM inst, IBlockAccess world, int x, int y, int z, int sideIdx, Block block, int meta) {
         ForgeDirection side = getOrientation(sideIdx);
         ForgeDirection[] dirs = getNormalizedDirs(side);
+        int fromX = x;
+        int fromY = y;
+        int fromZ = z;
         for (ForgeDirection dir : dirs) {
             x += dir.offsetX;
             y += dir.offsetY;
             z += dir.offsetZ;
         }
-        return inst.isConnected(world, x, y, z, side, block, meta);
+        return inst.isConnected(world, x, y, z, side, fromX, fromY, fromZ, block, meta);
     }
 
     private ForgeDirection[] getNormalizedDirs(ForgeDirection normal) {
