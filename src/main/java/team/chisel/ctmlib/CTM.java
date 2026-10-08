@@ -221,36 +221,46 @@ public class CTM {
      * @return True if the given block can connect to the given location on the given side.
      */
     public boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection dir, Block block, int meta) {
-
         if (CTMLib.chiselLoaded() && connectionBlocked(world, x, y, z, dir.ordinal())) {
             return false;
         }
 
+        if (!matches(world, x, y, z, dir.ordinal(), block, meta)) {
+            return false;
+        }
+
+        if (disableObscuredFaceCheck.or(disableObscuredFaceCheckConfig)) {
+            return true;
+        }
+
+        // check that we aren't already connected outwards from this side
         int x2 = x + dir.offsetX;
         int y2 = y + dir.offsetY;
         int z2 = z + dir.offsetZ;
+        return !matches(world, x2, y2, z2, dir.ordinal(), block, meta);
+    }
 
-        boolean disableObscured = disableObscuredFaceCheck.or(disableObscuredFaceCheckConfig);
-
-        Block con = getBlockOrFacade(world, x, y, z, dir.ordinal());
-        Block obscuring = disableObscured ? null : getBlockOrFacade(world, x2, y2, z2, dir.ordinal());
+    /**
+     * Whether the given location shows the given block and metadata, directly or inside an {@link IFacade} block.
+     *
+     * @param world
+     * @param x     The x coordinate of the block to check <i>against</i>. This is not the position of your block.
+     * @param y     The y coordinate of the block to check <i>against</i>. This is not the position of your block.
+     * @param z     The z coordinate of the block to check <i>against</i>. This is not the position of your block.
+     * @param side  The side being rendered. -1 for unknown.
+     * @param block The block to check against.
+     * @param meta  The metadata to check against.
+     * @return True if the given location shows the given block and metadata.
+     */
+    public boolean matches(IBlockAccess world, int x, int y, int z, int side, Block block, int meta) {
+        Block con = getBlockOrFacade(world, x, y, z, side);
 
         // no block or a bad API user
         if (con == null) {
             return false;
         }
 
-        boolean ret = con.equals(block) && getBlockOrFacadeMetadata(world, x, y, z, dir.ordinal()) == meta;
-
-        // no block obscuring this face
-        if (obscuring == null) {
-            return ret;
-        }
-
-        // check that we aren't already connected outwards from this side
-        ret &= !(obscuring.equals(block) && getBlockOrFacadeMetadata(world, x2, y2, z2, dir.ordinal()) == meta);
-
-        return ret;
+        return con.equals(block) && getBlockOrFacadeMetadata(world, x, y, z, side) == meta;
     }
 
     private boolean connectionBlocked(IBlockAccess world, int x, int y, int z, int side) {

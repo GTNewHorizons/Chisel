@@ -24,8 +24,7 @@ public class RenderBlocksColumn extends RenderBlocks {
     }
 
     boolean connected(IBlockAccess world, int x, int y, int z, Block block, int meta) {
-        Block inWorld = ctm.getBlockOrFacade(world, x, y, z, -1);
-        return inWorld != null && inWorld.equals(block) && ctm.getBlockOrFacadeMetadata(world, x, y, z, -1) == meta;
+        return ctm.matches(world, x, y, z, -1, block, meta);
     }
 
     @Override
