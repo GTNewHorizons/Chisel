@@ -19,8 +19,8 @@ import team.chisel.ctmlib.TextureSubmapResource;
 /**
  * Provides generated resources for independently stitched CTM submap sprites.
  * <p>
- * For example, a request for chisel:textures/blocks/__chisel_submap/4x4/2_1/foo.png is resolved from
- * chisel:textures/blocks/foo.png and cropped to the requested cell. This lets Minecraft and other mods treat each
+ * For example, a request for chisel:textures/blocks/__chisel_submap/2x2/1_0/foo.png is resolved from
+ * chisel:textures/blocks/foo.png and cropped to its top-right tile. This lets Minecraft and other mods treat each
  * submap sprite like an ordinary texture resource.
  */
 @Mixin(FallbackResourceManager.class)
@@ -54,6 +54,7 @@ public abstract class MixinFallbackResourceManager {
         List<IResource> resources = new ArrayList<>(sources.size());
 
         for (IResource source : sources) {
+            // Different resource packs may provide different images for the same location, so we can't cache them
             resources.add(new TextureSubmapResource(source, submap, false));
         }
 

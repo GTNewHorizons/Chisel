@@ -6,9 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Nullable;
 import javax.imageio.IIOImage;
@@ -35,7 +35,7 @@ public final class TextureSubmapResource implements IResource {
     private record SubmapCacheKey(ResourceLocation source, int columns, int rows) {}
 
     @Nullable
-    private static HashMap<SubmapCacheKey, byte[][]> imageCache;
+    private static volatile ConcurrentHashMap<SubmapCacheKey, byte[][]> imageCache;
 
     private static final String PREFIX = "__chisel_submap/";
 
@@ -103,7 +103,7 @@ public final class TextureSubmapResource implements IResource {
     }
 
     public static void beginTextureStitch() {
-        imageCache = new HashMap<>();
+        imageCache = new ConcurrentHashMap<>();
     }
 
     public static void endTextureStitch() {
@@ -124,15 +124,19 @@ public final class TextureSubmapResource implements IResource {
     }
 
     private byte[] getCachedImageData(IResource resource, SubmapLocation submap) throws IOException {
-        if (!cacheable || imageCache == null) {
+        ConcurrentHashMap<SubmapCacheKey, byte[][]> cache = imageCache;
+        if (!cacheable || cache == null) {
             return generateCell(resource, submap);
         }
 
         SubmapCacheKey key = new SubmapCacheKey(submap.source(), submap.columns(), submap.rows());
-        byte[][] cells = imageCache.get(key);
+        byte[][] cells = cache.get(key);
         if (cells == null) {
             cells = generateSubmap(resource, submap);
-            imageCache.put(key, cells);
+            byte[][] existing = cache.putIfAbsent(key, cells);
+            if (existing != null) {
+                cells = existing;
+            }
         }
 
         return cells[submap.cellX() * submap.rows() + submap.cellY()];
@@ -176,7 +180,7 @@ public final class TextureSubmapResource implements IResource {
 
         ImageWriteParam param = writer.getDefaultWriteParam();
         if (param.canWriteCompressed()) {
-            // disable compression so we don't spend time on compressing and decompressing to just get the image bytes
+            // Disable compression to avoid wasting time compressing images that will immediately be decoded again
             param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
             param.setCompressionQuality(1.0f);
         }

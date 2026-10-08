@@ -16,7 +16,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import lombok.experimental.Delegate;
 
 /**
- * Splits a texture sheet into independently stitched sub-icons used for CTM and other texture manipulation.
+ * Represents a grid of individually accessible texture regions.
  */
 public class TextureSubmap implements IIcon, ISubmap {
 
@@ -29,17 +29,11 @@ public class TextureSubmap implements IIcon, ISubmap {
     protected final IIcon[][] icons;
 
     /**
-     * Construct a new square submap.
-     *
      * @param baseIcon The IIcon to submap.
      * @param width    The width of the map, in icons.
-     * @param height   The height of the map, in icons. Must equal {@code width}.
+     * @param height   The height of the map, in icons.
      */
     public TextureSubmap(IIcon baseIcon, int width, int height) {
-        if (width != height) {
-            throw new IllegalArgumentException("TextureSubmap must be square: " + width + "x" + height);
-        }
-
         this.baseIcon = baseIcon;
         this.width = width;
         this.height = height;
@@ -47,9 +41,6 @@ public class TextureSubmap implements IIcon, ISubmap {
         submaps.add(this);
     }
 
-    /**
-     * The large "base" icon used for the submap.
-     */
     public IIcon getBaseIcon() {
         return baseIcon;
     }
@@ -114,20 +105,138 @@ public class TextureSubmap implements IIcon, ISubmap {
         }
     }
 
-    /**
-     * Register the real sprites backing this submap.
-     */
     public void registerSubIcons(TextureMap textureMap) {
+        registerSpriteGrid(textureMap, width, height);
+    }
+
+    /**
+     * Splits the texture into a grid of atlas sprites and assigns sub-icons to them.
+     * <p>
+     * The number of sub-icons is determined by the submap's width and height,
+     * while spriteColumns and spriteRows determine how many separate atlas sprites
+     * are used. Each sprite can contain one or more sub-icons.
+     * <p>
+     * For example, a 4x4 submap backed by a 2x2 sprite grid uses four atlas sprites,
+     * each containing a 2x2 group of sub-icons.
+     */
+    protected final void registerSpriteGrid(TextureMap textureMap, int spriteColumns, int spriteRows) {
         if (baseIcon == null || width <= 0 || height <= 0) {
             return;
         }
+        if (spriteColumns <= 0 || spriteRows <= 0 || width % spriteColumns != 0 || height % spriteRows != 0) {
+            throw new IllegalArgumentException(
+                "Logical submap " + width
+                    + "x"
+                    + height
+                    + " cannot be backed by sprite grid "
+                    + spriteColumns
+                    + "x"
+                    + spriteRows);
+        }
 
         ResourceLocation sourceLocation = new ResourceLocation(baseIcon.getIconName());
+        IIcon[][] sprites = new IIcon[spriteColumns][spriteRows];
+
+        for (int spriteX = 0; spriteX < spriteColumns; spriteX++) {
+            for (int spriteY = 0; spriteY < spriteRows; spriteY++) {
+                sprites[spriteX][spriteY] = getBackingSprite(
+                    textureMap,
+                    sourceLocation,
+                    spriteColumns,
+                    spriteRows,
+                    spriteX,
+                    spriteY);
+            }
+        }
+
+        int cellsPerSpriteX = width / spriteColumns;
+        int cellsPerSpriteY = height / spriteRows;
+        boolean wholeSprite = cellsPerSpriteX == 1 && cellsPerSpriteY == 1;
+
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                String name = TextureSubmapResource.getSubIconName(sourceLocation, width, height, x, y);
-                icons[x][y] = textureMap.registerIcon(name);
+                IIcon sprite = sprites[x / cellsPerSpriteX][y / cellsPerSpriteY];
+                icons[x][y] = wholeSprite ? sprite
+                    : new TextureRegion(
+                        sprite,
+                        cellsPerSpriteX,
+                        cellsPerSpriteY,
+                        x % cellsPerSpriteX,
+                        y % cellsPerSpriteY);
             }
+        }
+    }
+
+    private IIcon getBackingSprite(TextureMap textureMap, ResourceLocation sourceLocation, int columns, int rows, int x,
+        int y) {
+
+        if (columns == 1 && rows == 1) {
+            return baseIcon;
+        }
+
+        String name = TextureSubmapResource.getSubIconName(sourceLocation, columns, rows, x, y);
+        return textureMap.registerIcon(name);
+    }
+
+    private static final class TextureRegion implements IIcon {
+
+        private final IIcon parent;
+        private final int columns;
+        private final int rows;
+        private final int x;
+        private final int y;
+
+        private TextureRegion(IIcon parent, int columns, int rows, int x, int y) {
+            this.parent = parent;
+            this.columns = columns;
+            this.rows = rows;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public float getMinU() {
+            return getInterpolatedU(0);
+        }
+
+        @Override
+        public float getMaxU() {
+            return getInterpolatedU(16);
+        }
+
+        @Override
+        public float getInterpolatedU(double u) {
+            return parent.getInterpolatedU((16.0 * x + u) / columns);
+        }
+
+        @Override
+        public float getMinV() {
+            return getInterpolatedV(0);
+        }
+
+        @Override
+        public float getMaxV() {
+            return getInterpolatedV(16);
+        }
+
+        @Override
+        public float getInterpolatedV(double v) {
+            return parent.getInterpolatedV((16.0 * y + v) / rows);
+        }
+
+        @Override
+        public String getIconName() {
+            return parent.getIconName();
+        }
+
+        @Override
+        public int getIconWidth() {
+            return parent.getIconWidth() / columns;
+        }
+
+        @Override
+        public int getIconHeight() {
+            return parent.getIconHeight() / rows;
         }
     }
 }

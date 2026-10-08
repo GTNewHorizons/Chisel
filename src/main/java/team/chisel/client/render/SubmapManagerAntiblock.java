@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.Drawing;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.ctmlib.TextureSubmapCTM;
 import team.chisel.init.ChiselBlocks;
 
 public class SubmapManagerAntiblock extends SubmapManagerBase {
@@ -93,8 +94,8 @@ public class SubmapManagerAntiblock extends SubmapManagerBase {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(String modName, Block block, IIconRegister register) {
-        submap = new TextureSubmap(register.registerIcon(modName + ":antiblock/" + color + "-antiBlock-ctm"), 4, 4);
-        submapSmall = new TextureSubmap(register.registerIcon(modName + ":antiblock/" + color + "-antiBlock"), 2, 2);
+        submap = new TextureSubmapCTM(register.registerIcon(modName + ":antiblock/" + color + "-antiBlock-ctm"), 4);
+        submapSmall = new TextureSubmapCTM(register.registerIcon(modName + ":antiblock/" + color + "-antiBlock"), 2);
     }
 
     @Override

@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.ctmlib.TextureSubmapCTM;
 
 public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
 
@@ -71,8 +72,8 @@ public class SubmapManagerSpecialMaterial extends SubmapManagerBase {
     public void registerIcons(String modName, Block block, IIconRegister register) {
         String materialName = materialType.name()
             .toLowerCase();
-        submap = new TextureSubmap(register.registerIcon(modName + ":" + materialName + "/" + color + "-ctm"), 4, 4);
-        submapSmall = new TextureSubmap(register.registerIcon(modName + ":" + materialName + "/" + color), 2, 2);
+        submap = new TextureSubmapCTM(register.registerIcon(modName + ":" + materialName + "/" + color + "-ctm"), 4);
+        submapSmall = new TextureSubmapCTM(register.registerIcon(modName + ":" + materialName + "/" + color), 2);
     }
 
     @Override
