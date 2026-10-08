@@ -48,8 +48,8 @@ public class SubmapManagerCTM implements ISubmapManager {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(String modName, Block block, IIconRegister register) {
-        submap = new TextureSubmap(register.registerIcon(modName + ":" + textureName + "-ctm"), 4, 4);
-        submapSmall = new TextureSubmap(register.registerIcon(modName + ":" + textureName), 2, 2);
+        submap = new TextureSubmapCTM(register.registerIcon(modName + ":" + textureName + "-ctm"), 4);
+        submapSmall = new TextureSubmapCTM(register.registerIcon(modName + ":" + textureName), 2);
     }
 
     @Override
