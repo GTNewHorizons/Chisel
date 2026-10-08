@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.cricketcraft.chisel.api.IConnectable;
+import com.cricketcraft.chisel.api.IConnectionAccess;
 import com.cricketcraft.chisel.api.IFacade;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
@@ -191,24 +192,30 @@ public class CTM {
     }
 
     /**
-     * A simple check for if the given block can connect to the given direction on the given side.
+     * A check for if the block being rendered can connect to the given location on the given side. Passes the block
+     * being rendered on to {@link IFacade} blocks, so they can decide per neighbour.
      *
      * @param world
      * @param x     The x coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param y     The y coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param z     The z coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param side  The side of the block to check for connection status. This is <i>not</i> the direction to check in.
-     * @param block The block to check against for connection.
-     * @param meta  The metadata to check against for connection.
+     * @param fromX The x coordinate of your block, the block being rendered.
+     * @param fromY The y coordinate of your block, the block being rendered.
+     * @param fromZ The z coordinate of your block, the block being rendered.
+     * @param block The block being rendered.
+     * @param meta  The metadata of the block being rendered.
      * @return True if the given block can connect to the given location on the given side.
      */
-    public boolean isConnected(IBlockAccess world, int x, int y, int z, int side, Block block, int meta) {
+    public boolean isConnected(IBlockAccess world, int x, int y, int z, int side, int fromX, int fromY, int fromZ,
+        Block block, int meta) {
         ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[side];
-        return isConnected(world, x, y, z, dir, block, meta);
+        return isConnected(world, x, y, z, dir, fromX, fromY, fromZ, block, meta);
     }
 
     /**
-     * A simple check for if the given block can connect to the given direction on the given side.
+     * A check for if the block being rendered can connect to the given location on the given side. Passes the block
+     * being rendered on to {@link IFacade} blocks, so they can decide per neighbour.
      *
      * @param world
      * @param x     The x coordinate of the block to check <i>against</i>. This is not the position of your block.
@@ -216,16 +223,20 @@ public class CTM {
      * @param z     The z coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param dir   The {@link ForgeDirection side} of the block to check for connection status. This is <i>not</i> the
      *              direction to check in.
-     * @param block The block to check against for connection.
-     * @param meta  The metadata to check against for connection.
+     * @param fromX The x coordinate of your block, the block being rendered.
+     * @param fromY The y coordinate of your block, the block being rendered.
+     * @param fromZ The z coordinate of your block, the block being rendered.
+     * @param block The block being rendered.
+     * @param meta  The metadata of the block being rendered.
      * @return True if the given block can connect to the given location on the given side.
      */
-    public boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection dir, Block block, int meta) {
+    public boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection dir, int fromX, int fromY,
+        int fromZ, Block block, int meta) {
         if (CTMLib.chiselLoaded() && connectionBlocked(world, x, y, z, dir.ordinal())) {
             return false;
         }
 
-        if (!matches(world, x, y, z, dir.ordinal(), block, meta)) {
+        if (!matches(world, x, y, z, dir.ordinal(), fromX, fromY, fromZ, block, meta)) {
             return false;
         }
 
@@ -237,30 +248,47 @@ public class CTM {
         int x2 = x + dir.offsetX;
         int y2 = y + dir.offsetY;
         int z2 = z + dir.offsetZ;
-        return !matches(world, x2, y2, z2, dir.ordinal(), block, meta);
+        return !matches(world, x2, y2, z2, dir.ordinal(), fromX, fromY, fromZ, block, meta);
     }
 
     /**
-     * Whether the given location shows the given block and metadata, directly or inside an {@link IFacade} block.
+     * Whether the given location shows the block being rendered, as seen from the block being rendered. Asks the world
+     * if it is an {@link IConnectionAccess}, otherwise compares the block or {@link IFacade} at that location.
      *
      * @param world
      * @param x     The x coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param y     The y coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param z     The z coordinate of the block to check <i>against</i>. This is not the position of your block.
      * @param side  The side being rendered. -1 for unknown.
-     * @param block The block to check against.
-     * @param meta  The metadata to check against.
+     * @param fromX The x coordinate of your block, the block being rendered.
+     * @param fromY The y coordinate of your block, the block being rendered.
+     * @param fromZ The z coordinate of your block, the block being rendered.
+     * @param block The block being rendered.
+     * @param meta  The metadata of the block being rendered.
      * @return True if the given location shows the given block and metadata.
      */
-    public boolean matches(IBlockAccess world, int x, int y, int z, int side, Block block, int meta) {
-        Block con = getBlockOrFacade(world, x, y, z, side);
+    public boolean matches(IBlockAccess world, int x, int y, int z, int side, int fromX, int fromY, int fromZ,
+        Block block, int meta) {
+        if (CTMLib.chiselLoaded()) {
+            return matchesAccess(world, x, y, z, side, fromX, fromY, fromZ, block, meta);
+        }
+        return block.equals(world.getBlock(x, y, z)) && world.getBlockMetadata(x, y, z) == meta;
+    }
+
+    private boolean matchesAccess(IBlockAccess world, int x, int y, int z, int side, int fromX, int fromY, int fromZ,
+        Block block, int meta) {
+        if (world instanceof IConnectionAccess) {
+            return ((IConnectionAccess) world).matches(x, y, z, side, fromX, fromY, fromZ, block, meta);
+        }
+        Block blk = world.getBlock(x, y, z);
+        Block con = getFacade(blk, world, x, y, z, side, fromX, fromY, fromZ, block, meta);
 
         // no block or a bad API user
         if (con == null) {
             return false;
         }
 
-        return con.equals(block) && getBlockOrFacadeMetadata(world, x, y, z, side) == meta;
+        return con.equals(block) && getFacadeMeta(blk, world, x, y, z, side, fromX, fromY, fromZ, block, meta) == meta;
     }
 
     private boolean connectionBlocked(IBlockAccess world, int x, int y, int z, int side) {
@@ -317,6 +345,22 @@ public class CTM {
     private Block getFacade(Block blk, IBlockAccess world, int x, int y, int z, int side) {
         if (blk instanceof IFacade) {
             blk = ((IFacade) blk).getFacade(world, x, y, z, side);
+        }
+        return blk;
+    }
+
+    private int getFacadeMeta(Block blk, IBlockAccess world, int x, int y, int z, int side, int fromX, int fromY,
+        int fromZ, Block fromBlock, int fromMeta) {
+        if (blk instanceof IFacade) {
+            return ((IFacade) blk).getFacadeMetadata(world, x, y, z, side, fromX, fromY, fromZ, fromBlock, fromMeta);
+        }
+        return world.getBlockMetadata(x, y, z);
+    }
+
+    private Block getFacade(Block blk, IBlockAccess world, int x, int y, int z, int side, int fromX, int fromY,
+        int fromZ, Block fromBlock, int fromMeta) {
+        if (blk instanceof IFacade) {
+            blk = ((IFacade) blk).getFacade(world, x, y, z, side, fromX, fromY, fromZ, fromBlock, fromMeta);
         }
         return blk;
     }
