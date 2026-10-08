@@ -23,8 +23,7 @@ public class RenderBlocksColumn extends RenderBlocks {
         super();
     }
 
-    boolean connected(IBlockAccess world, int x, int y, int z, int fromX, int fromY, int fromZ, Block block,
-        int meta) {
+    boolean connected(IBlockAccess world, int x, int y, int z, int fromX, int fromY, int fromZ, Block block, int meta) {
         return ctm.matches(world, x, y, z, -1, fromX, fromY, fromZ, block, meta);
     }
 
