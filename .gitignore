@@ -25,7 +25,6 @@ whitelist.json
 *.iml
 *.ipr
 *.iws
-src/main/resources/mixins.*.json
 *.bat
 layout.json
 .DS_Store
