@@ -137,6 +137,10 @@ public final class TextureSubmapResource implements IResource {
             if (existing != null) {
                 cells = existing;
             }
+        } else {
+            // generateCell and generateSubmap automatically close the stream, but we also need to close it on cache hit
+            resource.getInputStream()
+                .close();
         }
 
         return cells[submap.cellX() * submap.rows() + submap.cellY()];
