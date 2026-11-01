@@ -72,7 +72,7 @@ public class ItemChisel extends Item implements IChiselItem {
 
     @Override
     public boolean isDamageable() {
-        return Configurations.allowChiselDamage;
+        return Configurations.allowChiselDamage && type.maxDamage > 0;
     }
 
     @Override
@@ -150,7 +150,7 @@ public class ItemChisel extends Item implements IChiselItem {
 
     @Override
     public boolean onChisel(World world, ItemStack chisel, ICarvingVariation target) {
-        return Configurations.allowChiselDamage;
+        return Configurations.allowChiselDamage && type.maxDamage > 0;
     }
 
     @Override
