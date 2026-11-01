@@ -675,7 +675,7 @@ public enum Features {
                         'x',
                         "stickWood",
                         'Y',
-                        "netherStar"));
+                        Items.nether_star));
             } else {
                 GameRegistry.addRecipe(
                     new ShapedOreRecipe(
@@ -707,13 +707,12 @@ public enum Features {
                 GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                         new ItemStack(ChiselItems.netherStarChisel),
-                        " YY",
-                        " YY",
-                        "x  ",
-                        'x',
+                        " Y",
+                        "X ",
+                        'X',
                         "stickWood",
                         'Y',
-                        "netherStar"));
+                        Items.nether_star));
             }
         }
     },

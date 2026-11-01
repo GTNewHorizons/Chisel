@@ -183,28 +183,28 @@ public class Configurations {
             "ironChiselMaxDamage",
             category,
             500,
-            1,
+            0,
             Short.MAX_VALUE,
             "The max damage of the standard iron chisel.");
         diamondChiselMaxDamage = config.getInt(
             "diamondChiselMaxDamage",
             category,
             5000,
-            1,
+            0,
             Short.MAX_VALUE,
             "The max damage of the diamond chisel.");
         obsidianChiselMaxDamage = config.getInt(
             "obsidianChiselMaxDamage",
             category,
             2500,
-            1,
+            0,
             Short.MAX_VALUE,
             "The max damage of the obsidian chisel.");
         netherStarChiselMaxDamage = config.getInt(
             "netherStarChiselMaxDamage",
             category,
             32767,
-            1,
+            0,
             Short.MAX_VALUE,
             "The max damage of the nether star chisel.");
         ironChiselCanLeftClick = config
