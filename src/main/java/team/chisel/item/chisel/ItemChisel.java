@@ -170,7 +170,7 @@ public class ItemChisel extends Item implements IChiselItem {
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (!world.isRemote && canOpenGui(world, player, itemStack)) {
-            ChiselController.INSTANCE.openQueue.add(new ChiselController.GuiOpen(player, itemStack));
+            ChiselController.INSTANCE.queueOpenGui(player, itemStack);
         }
         return itemStack;
     }
