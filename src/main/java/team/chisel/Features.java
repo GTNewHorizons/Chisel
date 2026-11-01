@@ -712,7 +712,7 @@ public enum Features {
                         'X',
                         "stickWood",
                         'Y',
-                        "nether_star"));
+                        Items.nether_star));
             }
         }
     },
