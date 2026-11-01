@@ -675,7 +675,7 @@ public enum Features {
                         'x',
                         "stickWood",
                         'Y',
-                        "nether_star"));
+                        Items.nether_star));
             } else {
                 GameRegistry.addRecipe(
                     new ShapedOreRecipe(
