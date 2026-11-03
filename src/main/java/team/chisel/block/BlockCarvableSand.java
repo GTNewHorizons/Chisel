@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -19,6 +20,7 @@ import com.cricketcraft.chisel.api.rendering.ClientUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.Chisel;
+import team.chisel.config.Configurations;
 
 public class BlockCarvableSand extends BlockSand implements ICarvable {
 
@@ -81,6 +83,11 @@ public class BlockCarvableSand extends BlockSand implements ICarvable {
     @Override
     public IVariationInfo getManager(int meta) {
         return carverHelper.getVariation(meta);
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return Configurations.canMobsSpawnOnTheChiselBlocks;
     }
 
     public static class SoundType extends Block.SoundType {

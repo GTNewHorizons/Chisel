@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.client.ForgeHooksClient;
 
 import team.chisel.client.render.RendererMultiLayer;
 
@@ -43,7 +42,6 @@ public abstract class BlockMultiLayerBase extends Block {
 
     @Override
     public boolean canRenderInPass(int pass) {
-        ForgeHooksClient.setRenderPass(pass);
         return pass == 1 || pass == 0;
     }
 

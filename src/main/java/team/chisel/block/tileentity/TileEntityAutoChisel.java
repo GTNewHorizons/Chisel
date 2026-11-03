@@ -37,6 +37,8 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         STACK,
         REVERSION;
 
+        public static final Upgrade[] VALUES = values();
+
         public String getUnlocalizedName() {
             if (Features.AUTO_CHISEL_UPGRADES.enabled()) {
                 return "item.upgrade_" + this.name()
@@ -380,7 +382,7 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
                 return itemStack.getItem() instanceof IChiselItem;
             default:
                 return Features.AUTO_CHISEL_UPGRADES.enabled() && itemStack.getItem() == ChiselItems.upgrade
-                    && Upgrade.values()[slot - MIN_UPGRADE].ordinal() == itemStack.getItemDamage();
+                    && Upgrade.VALUES[slot - MIN_UPGRADE].ordinal() == itemStack.getItemDamage();
         }
     }
 
@@ -465,7 +467,7 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
             String unloc = name == null ? null : String.format(base, name);
             return StatCollector.translateToLocal(unloc);
         } else {
-            return Upgrade.values()[slotNumber - MIN_UPGRADE].getLocalizedName();
+            return Upgrade.VALUES[slotNumber - MIN_UPGRADE].getLocalizedName();
         }
     }
 

@@ -303,7 +303,7 @@ public class Configurations {
         }
 
         /* features */
-        for (Features feature : Features.values()) {
+        for (Features feature : Features.VALUES) {
             features.put(
                 featureName(feature),
                 config.get("features", featureName(feature), true)

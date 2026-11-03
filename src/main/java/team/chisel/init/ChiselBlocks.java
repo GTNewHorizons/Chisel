@@ -189,7 +189,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable invar = null;
     public static final BlockCarvable nickel = null;
     public static final BlockCarvable platinum = null;
-    public static final BlockCarvable wrought_iron = null;
+    public static final BlockCarvable cast_iron = null;
     public static final BlockCarvable stainless_steel = null;
     public static final BlockCarvable titanium = null;
     public static final BlockCarvable tungstensteel = null;
@@ -204,7 +204,7 @@ public final class ChiselBlocks {
     public static final BlockCarvable albumblock3 = null;
     public static final BlockCarvable brickCustom2 = null;
     public static final BlockCarvable brutalism = null;
-    public static final BlockCarvable road = null;
+    public static final BlockConcrete road = null;
     public static final BlockCarvable porcelain = null;
     public static final BlockCarvable alabaster = null;
 

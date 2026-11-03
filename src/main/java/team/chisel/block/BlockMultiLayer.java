@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -13,6 +14,8 @@ import net.minecraft.world.IBlockAccess;
 import com.cricketcraft.chisel.api.ICarvable;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
+
+import team.chisel.config.Configurations;
 
 public class BlockMultiLayer extends BlockMultiLayerBase implements ICarvable {
 
@@ -61,5 +64,10 @@ public class BlockMultiLayer extends BlockMultiLayerBase implements ICarvable {
     @Override
     public IVariationInfo getManager(int meta) {
         return carverHelper.getVariation(meta);
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return Configurations.canMobsSpawnOnTheChiselBlocks;
     }
 }

@@ -40,11 +40,26 @@ public class RendererLayeredGlow implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         final Tessellator tessellator = Tessellator.instance;
-        tessellator.setColorOpaque_I(Configurations.configColors[world.getBlockMetadata(x, y, z)]);
+        final boolean prevEnableAO = renderer.enableAO;
+        final int tint = Configurations.configColors[world.getBlockMetadata(x, y, z)];
+        tessellator.setColorOpaque_I(tint);
         tessellator.setBrightness(0xF000F0);
+        setFullbrightColor(renderer, tint);
         Drawing.renderAllFaces(renderer, block, x, y, z, ((BlockCarvableGlow) block).getGlowTexture());
+        renderer.enableAO = prevEnableAO;
         renderer.renderStandardBlock(block, x, y, z);
         return true;
+    }
+
+    private static void setFullbrightColor(RenderBlocks renderer, int color) {
+        final float r = (color >> 16 & 255) / 255.0F;
+        final float g = (color >> 8 & 255) / 255.0F;
+        final float b = (color & 255) / 255.0F;
+        renderer.enableAO = true;
+        renderer.colorRedTopLeft = renderer.colorRedBottomLeft = renderer.colorRedBottomRight = renderer.colorRedTopRight = r;
+        renderer.colorGreenTopLeft = renderer.colorGreenBottomLeft = renderer.colorGreenBottomRight = renderer.colorGreenTopRight = g;
+        renderer.colorBlueTopLeft = renderer.colorBlueBottomLeft = renderer.colorBlueBottomRight = renderer.colorBlueTopRight = b;
+        renderer.brightnessTopLeft = renderer.brightnessBottomLeft = renderer.brightnessTopRight = renderer.brightnessBottomRight = 0xF000F0;
     }
 
     @Override

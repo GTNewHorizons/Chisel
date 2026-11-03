@@ -4830,33 +4830,25 @@ public enum Features {
             Carving.chisel.registerOre("platinumblock", "blockPlatinum");
         }
     },
-    WROUGHT_IRON {
+    CAST_IRON {
 
         @Override
         void addBlocks() {
-            BlockCarvable wrought_iron = (BlockCarvable) new BlockBeaconBase(Material.iron)
+            BlockCarvable cast_iron = (BlockCarvable) new BlockBeaconBase(Material.iron)
                 .setStepSound(Block.soundTypeMetal)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
-            wrought_iron.carverHelper
-                .addVariation("tile.newmetalOre.0.desc", 0, "metals/wrought_iron/wrought_iron_0", 0);
-            wrought_iron.carverHelper
-                .addVariation("tile.newmetalOre.1.desc", 1, "metals/wrought_iron/wrought_iron_1", 1);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.2.desc", 2, "metals/wrought_iron/wrought_iron_2", 2);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.3.desc", 3, "metals/wrought_iron/wrought_iron_3", 3);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.4.desc", 4, "metals/wrought_iron/wrought_iron_4", 4);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.5.desc", 5, "metals/wrought_iron/wrought_iron_5", 5);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.6.desc", 6, "metals/wrought_iron/wrought_iron_6", 6);
-            wrought_iron.carverHelper
-                .addVariation("tile.newetalOre.7.desc", 7, "metals/wrought_iron/wrought_iron_7", 6);
-            wrought_iron.carverHelper.registerAll(wrought_iron, "wroughtironblock");
-            Carving.chisel.registerOre("wroughtironblock", "blockWroughtIron");
+            cast_iron.carverHelper.addVariation("tile.newmetalOre.0.desc", 0, "metals/cast_iron/cast_iron_0", 0);
+            cast_iron.carverHelper.addVariation("tile.newmetalOre.1.desc", 1, "metals/cast_iron/cast_iron_1", 1);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.2.desc", 2, "metals/cast_iron/cast_iron_2", 2);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.3.desc", 3, "metals/cast_iron/cast_iron_3", 3);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.4.desc", 4, "metals/cast_iron/cast_iron_4", 4);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.5.desc", 5, "metals/cast_iron/cast_iron_5", 5);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.6.desc", 6, "metals/cast_iron/cast_iron_6", 6);
+            cast_iron.carverHelper.addVariation("tile.newetalOre.7.desc", 7, "metals/cast_iron/cast_iron_7", 6);
+            cast_iron.carverHelper.registerAll(cast_iron, "castironblock");
+            Carving.chisel.registerOre("castironblock", "blockCastIron");
         }
     },
     TITANIUM {
@@ -6091,7 +6083,7 @@ public enum Features {
 
         @Override
         void addBlocks() {
-            BlockCarvable road = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable road = (BlockCarvable) new BlockConcrete().setStepSound(Block.soundTypeStone)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
@@ -6112,7 +6104,7 @@ public enum Features {
             road.carverHelper.addVariation("tile.road.14.desc", 14, "road/lined_white");
             road.carverHelper.addVariation("tile.road.15.desc", 15, "road/outline_white");
 
-            BlockCarvable road2 = (BlockCarvable) new BlockCarvable(Material.wood).setStepSound(Block.soundTypeWood)
+            BlockCarvable road2 = (BlockCarvable) new BlockConcrete().setStepSound(Block.soundTypeStone)
                 .setCreativeTab(ChiselTabs.tabModdedChiselBlocks)
                 .setHardness(5F)
                 .setResistance(10F);
@@ -6153,6 +6145,7 @@ public enum Features {
         }
     };
 
+    public static final Features[] VALUES = values();
     private static final String[] dyeOres = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
         "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta",
         "dyeOrange", "dyeWhite" };
@@ -6168,7 +6161,7 @@ public enum Features {
     private static void loadBlocks() {
         Chisel.logger.info("Loading blocks...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 f.addBlocks();
                 ++num;
@@ -6185,7 +6178,7 @@ public enum Features {
     private static void loadItems() {
         Chisel.logger.info("Loading items...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 f.addItems();
                 ++num;
@@ -6199,7 +6192,7 @@ public enum Features {
     private static void loadRecipes() {
         Chisel.logger.info("Loading recipes...");
         int num = 0;
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.enabled()) {
                 if (f.needsMetaRecipes()) {
                     for (int i = 0; i < 16; i++) {
@@ -6235,7 +6228,7 @@ public enum Features {
     }
 
     public static boolean oneModdedFeatureLoaded() {
-        for (Features f : values()) {
+        for (Features f : VALUES) {
             if (f.hasRequiredMod()) {
                 return true;
             }
