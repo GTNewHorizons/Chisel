@@ -48,10 +48,10 @@ public class RenderBlocksColumn extends RenderBlocks {
             boolean xp = connected(blockAccess, x + 1, y, z, x, y, z, block, metadata);
             boolean xn = connected(blockAccess, x - 1, y, z, x, y, z, block, metadata);
 
-            if (xp && (connected(blockAccess, x + 1, y + 1, z, x, y, z, block, metadata)
-                || connected(blockAccess, x + 1, y - 1, z, x, y, z, block, metadata))) xp = false;
-            if (xn && (connected(blockAccess, x - 1, y + 1, z, x, y, z, block, metadata)
-                || connected(blockAccess, x - 1, y - 1, z, x, y, z, block, metadata))) xn = false;
+            if (xp && (connected(blockAccess, x + 1, y + 1, z, x + 1, y, z, block, metadata)
+                || connected(blockAccess, x + 1, y - 1, z, x + 1, y, z, block, metadata))) xp = false;
+            if (xn && (connected(blockAccess, x - 1, y + 1, z, x - 1, y, z, block, metadata)
+                || connected(blockAccess, x - 1, y - 1, z, x - 1, y, z, block, metadata))) xn = false;
 
             if (xp || xn) {
                 uvRotateEast = 2;
@@ -78,14 +78,14 @@ public class RenderBlocksColumn extends RenderBlocks {
                 boolean zp = connected(blockAccess, x, y, z + 1, x, y, z, block, metadata);
                 boolean zn = connected(blockAccess, x, y, z - 1, x, y, z, block, metadata);
 
-                if (zp && (connected(blockAccess, x, y + 1, z + 1, x, y, z, block, metadata)
-                    || connected(blockAccess, x, y - 1, z + 1, x, y, z, block, metadata))) zp = false;
-                if (zp && (connected(blockAccess, x + 1, y, z + 1, x, y, z, block, metadata)
-                    || connected(blockAccess, x - 1, y, z + 1, x, y, z, block, metadata))) zp = false;
-                if (zn && (connected(blockAccess, x, y + 1, z - 1, x, y, z, block, metadata)
-                    || connected(blockAccess, x, y - 1, z - 1, x, y, z, block, metadata))) zn = false;
-                if (zn && (connected(blockAccess, x + 1, y, z - 1, x, y, z, block, metadata)
-                    || connected(blockAccess, x - 1, y, z - 1, x, y, z, block, metadata))) zn = false;
+                if (zp && (connected(blockAccess, x, y + 1, z + 1, x, y, z + 1, block, metadata)
+                    || connected(blockAccess, x, y - 1, z + 1, x, y, z + 1, block, metadata))) zp = false;
+                if (zp && (connected(blockAccess, x + 1, y, z + 1, x, y, z + 1, block, metadata)
+                    || connected(blockAccess, x - 1, y, z + 1, x, y, z + 1, block, metadata))) zp = false;
+                if (zn && (connected(blockAccess, x, y + 1, z - 1, x, y, z - 1, block, metadata)
+                    || connected(blockAccess, x, y - 1, z - 1, x, y, z - 1, block, metadata))) zn = false;
+                if (zn && (connected(blockAccess, x + 1, y, z - 1, x, y, z - 1, block, metadata)
+                    || connected(blockAccess, x - 1, y, z - 1, x, y, z - 1, block, metadata))) zn = false;
 
                 if (zp || zn) {
                     uvRotateSouth = 1;
