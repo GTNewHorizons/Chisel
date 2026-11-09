@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.ISubmapManager;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.ctmlib.TextureSubmapCTM;
 
 public class SubmapManagerSlab implements ISubmapManager {
 
@@ -42,8 +43,8 @@ public class SubmapManagerSlab implements ISubmapManager {
     @SideOnly(Side.CLIENT)
     public void registerIcons(String modName, Block block, IIconRegister register) {
         String path = modName + ":" + texture;
-        submap = new TextureSubmap(register.registerIcon(path + "-ctm"), 4, 4);
-        submapSmall = new TextureSubmap(register.registerIcon(path), 2, 2);
+        submap = new TextureSubmapCTM(register.registerIcon(path + "-ctm"), 4);
+        submapSmall = new TextureSubmapCTM(register.registerIcon(path), 2);
         sideTexture = register.registerIcon(path + "-side");
     }
 

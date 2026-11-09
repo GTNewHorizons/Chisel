@@ -31,6 +31,7 @@ import team.chisel.ctmlib.ISubmapManager;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.RenderBlocksColumn;
 import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.ctmlib.TextureSubmapCTM;
 
 /**
  * Handles all default {@link ISubmapManager} behavior
@@ -197,8 +198,8 @@ public enum TextureType {
 			IIcon baseIcon = register.registerIcon(modName + ":" + texturePath);
 			return Triple.of(
 					baseIcon,
-					new TextureSubmap(register.registerIcon(modName + ":" + texturePath + "-ctm"), 4, 4),
-					new TextureSubmap(baseIcon, 2, 2)
+					new TextureSubmapCTM(register.registerIcon(modName + ":" + texturePath + "-ctm"), 4),
+					new TextureSubmapCTM(baseIcon, 2)
 			);
 		}
 
