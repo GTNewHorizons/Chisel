@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -160,66 +161,83 @@ public class RenderAutoChisel extends TileEntitySpecialRenderer implements ISimp
     }
 
     private static final Random rand = new Random();
+    private final EntityItem entityItem = new EntityItem(null, 0, 0, 0, new ItemStack(Items.apple));
 
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float scale) {
 
         // Render Blocks
-        TileEntityAutoChisel autoChisel = (TileEntityAutoChisel) tile;
-        EntityItem item = autoChisel.getItemForRendering(TileEntityAutoChisel.TARGET);
+        try {
+            this.entityItem.setWorld(tile.getWorldObj());
+            TileEntityAutoChisel autoChisel = (TileEntityAutoChisel) tile;
+            EntityItem item = this.getItemForRendering(autoChisel, TileEntityAutoChisel.TARGET);
 
-        rand.setSeed(tile.xCoord + tile.yCoord + tile.zCoord);
-        rand.nextBoolean();
+            rand.setSeed(tile.xCoord + tile.yCoord + tile.zCoord);
+            rand.nextBoolean();
 
-        float max = 0.35f;
+            float max = 0.35f;
 
-        if (!Minecraft.getMinecraft()
-            .isGamePaused()) {
-            autoChisel.xRot += (rand.nextFloat() * max) - (max / 2);
-            autoChisel.yRot += (rand.nextFloat() * max) - (max / 2);
-            autoChisel.zRot += (rand.nextFloat() * max) - (max / 2);
-        }
+            if (!Minecraft.getMinecraft()
+                .isGamePaused()) {
+                autoChisel.xRot += (rand.nextFloat() * max) - (max / 2);
+                autoChisel.yRot += (rand.nextFloat() * max) - (max / 2);
+                autoChisel.zRot += (rand.nextFloat() * max) - (max / 2);
+            }
 
-        if (item != null) {
-            glPushMatrix();
-            glPushAttrib(GL_ALL_ATTRIB_BITS);
-            glTranslated(x + 0.5, y + 1.5, z + 0.5);
-            glRotatef(autoChisel.xRot, 1, 0, 0);
-            glRotatef(autoChisel.yRot, 0, 1, 0);
-            glRotatef(autoChisel.zRot, 0, 0, 1);
-            glEnable(GL_BLEND);
-            glDepthMask(false);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-            renderItem.doRender(item, 0, 0, 0, 0, 0);
-            glPopMatrix();
-            glPopAttrib();
-        }
+            if (item != null) {
+                glPushMatrix();
+                glPushAttrib(GL_ALL_ATTRIB_BITS);
+                glTranslated(x + 0.5, y + 1.5, z + 0.5);
+                glRotatef(autoChisel.xRot, 1, 0, 0);
+                glRotatef(autoChisel.yRot, 0, 1, 0);
+                glRotatef(autoChisel.zRot, 0, 0, 1);
+                glEnable(GL_BLEND);
+                glDepthMask(false);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+                renderItem.doRender(item, 0, 0, 0, 0, 0);
+                glPopMatrix();
+                glPopAttrib();
+            }
 
-        item = autoChisel.getItemForRendering(TileEntityAutoChisel.BASE);
-        if (item != null) {
-            glPushMatrix();
-            glTranslated(x + 0.35, y + 0.934, z + 0.5);
-            item.getEntityItem().stackSize = autoChisel.getLastBase() == null ? 1 : autoChisel.getLastBase().stackSize;
-            renderItem.doRender(item, 0, 0, 0, 0, 0);
-            glPopMatrix();
-        }
+            item = this.getItemForRendering(autoChisel, TileEntityAutoChisel.BASE);
+            if (item != null) {
+                glPushMatrix();
+                glTranslated(x + 0.35, y + 0.934, z + 0.5);
+                item.getEntityItem().stackSize = autoChisel.getLastBase() == null ? 1
+                    : autoChisel.getLastBase().stackSize;
+                renderItem.doRender(item, 0, 0, 0, 0, 0);
+                glPopMatrix();
+            }
 
-        GameSettings settings = Minecraft.getMinecraft().gameSettings;
-        item = autoChisel.getItemForRendering(TileEntityAutoChisel.CHISEL);
-        if (item != null) {
-            glPushMatrix();
-            glTranslated(x + 0.7, y + 1.01, z + 0.5);
-            float rot = autoChisel.chiselRot == 0 ? 0
-                : autoChisel.chiseling ? autoChisel.chiselRot + (TileEntityAutoChisel.rotAmnt * scale)
-                    : autoChisel.chiselRot - (TileEntityAutoChisel.rotAmnt * scale);
-            glRotatef(rot, 0, 0, 1);
-            glTranslated(-0.12, 0, 0);
-            glScalef(0.9f, 0.9f, 0.9f);
-            boolean was = settings.fancyGraphics;
-            settings.fancyGraphics = true;
-            renderItem.doRender(item, 0, 0, 0, 0, 0);
-            settings.fancyGraphics = was;
-            glPopMatrix();
+            GameSettings settings = Minecraft.getMinecraft().gameSettings;
+            item = this.getItemForRendering(autoChisel, TileEntityAutoChisel.CHISEL);
+            if (item != null) {
+                glPushMatrix();
+                glTranslated(x + 0.7, y + 1.01, z + 0.5);
+                float rot = autoChisel.chiselRot == 0 ? 0
+                    : autoChisel.chiseling ? autoChisel.chiselRot + (TileEntityAutoChisel.rotAmnt * scale)
+                        : autoChisel.chiselRot - (TileEntityAutoChisel.rotAmnt * scale);
+                glRotatef(rot, 0, 0, 1);
+                glTranslated(-0.12, 0, 0);
+                glScalef(0.9f, 0.9f, 0.9f);
+                boolean was = settings.fancyGraphics;
+                settings.fancyGraphics = true;
+                renderItem.doRender(item, 0, 0, 0, 0, 0);
+                settings.fancyGraphics = was;
+                glPopMatrix();
+            }
+        } finally {
+            this.entityItem.setWorld(null);
         }
     }
+
+    private EntityItem getItemForRendering(TileEntityAutoChisel autoChisel, int slot) {
+        final ItemStack stack = autoChisel.getItemForRendering(slot);
+        if (stack != null) {
+            this.entityItem.setEntityItemStack(stack);
+            return this.entityItem;
+        }
+        return null;
+    }
+
 }

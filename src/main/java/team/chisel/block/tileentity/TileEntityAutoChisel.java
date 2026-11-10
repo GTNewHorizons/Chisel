@@ -2,7 +2,6 @@ package team.chisel.block.tileentity;
 
 import java.util.List;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -64,7 +63,6 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
     private int progress = 0;
 
-    private static EntityItem ghostItem;
     boolean equal = false;
     private ItemStack[] inventory = new ItemStack[8];
     private String name = "autoChisel";
@@ -407,27 +405,15 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
     }
 
     @SideOnly(Side.CLIENT)
-    public EntityItem getItemForRendering(int slot) {
-        if (ghostItem == null) {
-            ghostItem = new EntityItem(worldObj);
-            ghostItem.hoverStart = 0.0F;
-        }
-
+    public ItemStack getItemForRendering(int slot) {
         if (slot == BASE && lastBase != null) {
-            ghostItem.setEntityItemStack(lastBase.copy());
-            return ghostItem;
+            return lastBase.copy();
         } else if (slot == TARGET) {
-            ItemStack target = getTarget();
-            if (target != null) {
-                ghostItem.setEntityItemStack(target);
-                return ghostItem;
-            }
-            return null;
+            return getTarget();
         } else if (inventory[slot] == null) {
             return null;
         } else {
-            ghostItem.setEntityItemStack(inventory[slot].copy());
-            return ghostItem;
+            return inventory[slot].copy();
         }
     }
 
