@@ -90,8 +90,8 @@ public enum TextureType {
 				return data.getRight();
 
 			Block block = world.getBlock(x, y, z);
-			boolean topConnected = ctm.isConnected(world, x, y + 1, z, side, block, meta);
-			boolean botConnected = ctm.isConnected(world, x, y - 1, z, side, block, meta);
+			boolean topConnected = ctm.isConnected(world, x, y + 1, z, side, x, y, z, block, meta);
+			boolean botConnected = ctm.isConnected(world, x, y - 1, z, side, x, y, z, block, meta);
 
 			TextureSubmap map = data.getLeft();
 			if (topConnected && botConnected)
@@ -142,11 +142,11 @@ public enum TextureType {
 			boolean reverse = side == 3 || side == 4;
 
 			if (side < 4) {
-				p = ctm.isConnected(world, x - 1, y, z, side, block, meta);
-				n = ctm.isConnected(world, x + 1, y, z, side, block, meta);
+				p = ctm.isConnected(world, x - 1, y, z, side, x, y, z, block, meta);
+				n = ctm.isConnected(world, x + 1, y, z, side, x, y, z, block, meta);
 			} else {
-				p = ctm.isConnected(world, x, y, z - 1, side, block, meta);
-				n = ctm.isConnected(world, x, y, z + 1, side, block, meta);
+				p = ctm.isConnected(world, x, y, z - 1, side, x, y, z, block, meta);
+				n = ctm.isConnected(world, x, y, z + 1, side, x, y, z, block, meta);
 			}
 
 			TextureSubmap map = data.getLeft();
