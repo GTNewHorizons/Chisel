@@ -58,6 +58,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.cricketcraft.chisel.api.IConnectionAccess;
+
 import lombok.Getter;
 
 public class RenderBlocksCTM extends RenderBlocks {
@@ -110,8 +112,13 @@ public class RenderBlocksCTM extends RenderBlocks {
             this.z = z;
         }
 
-        void render(RenderBlocksCTM inst, ForgeDirection normal, int cacheID) {
+        double get(int axis) {
+            return axis == 0 ? x : axis == 1 ? y : z;
+        }
+
+        void render(RenderBlocksCTM inst, SubSide side, int cacheID) {
             final Tessellator tessellator = Tessellator.instance;
+            final ForgeDirection normal = side.normal;
 
             if (inst.enableAO) {
                 tessellator.setColorOpaque_F(inst.redCache[cacheID], inst.grnCache[cacheID], inst.bluCache[cacheID]);
@@ -120,6 +127,26 @@ public class RenderBlocksCTM extends RenderBlocks {
 
             double u = cacheID == 1 || cacheID == 2 ? inst.maxU : inst.minU;
             double v = cacheID < 2 ? inst.maxV : inst.minV;
+
+            if (inst.renderPart) {
+                // only the part inside the bounds, showing the texture where it lies in the block
+                double px = Math.min(Math.max(x, inst.renderMinX), inst.renderMaxX);
+                double py = Math.min(Math.max(y, inst.renderMinY), inst.renderMaxY);
+                double pz = Math.min(Math.max(z, inst.renderMinZ), inst.renderMaxZ);
+                double uMoved = Math.abs(normal.offsetX != 0 ? pz - z : px - x);
+                double vMoved = Math.abs(normal.offsetY != 0 ? pz - z : py - y);
+                // a sub-side is half a block wide
+                u += (u == inst.minU ? 2 : -2) * (inst.maxU - inst.minU) * uMoved;
+                v += (v == inst.minV ? 2 : -2) * (inst.maxV - inst.minV) * vMoved;
+                if (inst.enableAO) {
+                    // the caches hold the light at the sub-side's corners, the vertex moved, so take the light there
+                    double lightX = inst.boundsFraction(side.lightAxisX, px, py, pz);
+                    double lightY = inst.boundsFraction(side.lightAxisY, px, py, pz);
+                    inst.mixLight(side.lightRisingX ? lightX : 1 - lightX, side.lightRisingY ? lightY : 1 - lightY);
+                }
+                tessellator.addVertexWithUV(px, py, pz, u, v);
+                return;
+            }
 
             double uDiff = inst.maxU - inst.minU;
             double vDiff = inst.maxV - inst.minV;
@@ -181,6 +208,9 @@ public class RenderBlocksCTM extends RenderBlocks {
 		// @formatter:on
         private final Vert xmin, xmax, ymin, ymax;
         private final ForgeDirection normal;
+        /** The block axes the light maps' x and y run along, and whether they run towards 1. */
+        private final int lightAxisX, lightAxisY;
+        private final boolean lightRisingX, lightRisingY;
 
         SubSide(Vert xmin, Vert ymin, Vert ymax, Vert xmax) {
             this.xmin = xmin;
@@ -188,6 +218,15 @@ public class RenderBlocksCTM extends RenderBlocks {
             this.ymax = ymax;
             this.xmax = xmax;
             this.normal = calcNormal();
+            // the caches step along the light maps' x from xmin to ymin, and along their y from xmin to xmax
+            this.lightAxisX = axis(xmin, ymin);
+            this.lightAxisY = axis(xmin, xmax);
+            this.lightRisingX = ymin.get(lightAxisX) > xmin.get(lightAxisX);
+            this.lightRisingY = xmax.get(lightAxisY) > xmin.get(lightAxisY);
+        }
+
+        private static int axis(Vert from, Vert to) {
+            return from.x != to.x ? 0 : from.y != to.y ? 1 : 2;
         }
 
         private ForgeDirection calcNormal() {
@@ -205,10 +244,10 @@ public class RenderBlocksCTM extends RenderBlocks {
         }
 
         void render(RenderBlocksCTM inst) {
-            xmin.render(inst, normal, 0);
-            ymin.render(inst, normal, 1);
-            ymax.render(inst, normal, 2);
-            xmax.render(inst, normal, 3);
+            xmin.render(inst, this, 0);
+            ymin.render(inst, this, 1);
+            ymax.render(inst, this, 2);
+            xmax.render(inst, this, 3);
         }
     }
 
@@ -247,6 +286,12 @@ public class RenderBlocksCTM extends RenderBlocks {
     @Getter
     protected boolean inWorld = false;
 
+    /**
+     * Whether the render bounds are a part of the block, which shows its part of the block's texture instead of the
+     * whole texture squeezed in. Set when rendering in an {@link IConnectionAccess}.
+     */
+    protected boolean renderPart = false;
+
     @Override
     public boolean renderStandardBlock(Block block, int x, int y, int z) {
         bx = x;
@@ -258,7 +303,9 @@ public class RenderBlocksCTM extends RenderBlocks {
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tessellator.addTranslation(x, y, z);
         inWorld = true;
+        renderPart = CTMLib.chiselLoaded() && blockAccess instanceof IConnectionAccess;
         boolean res = super.renderStandardBlock(block, x, y, z);
+        renderPart = false;
         inWorld = false;
         tessellator.addTranslation(-x, -y, -z);
 
@@ -354,6 +401,39 @@ public class RenderBlocksCTM extends RenderBlocks {
             | ((greenBitChannel / lightVals.length) & 0xF000)
             | ((blueBitChannel / lightVals.length) & 0xF0000)
             | ((sunlightBitChannel / lightVals.length) & 0xF00000);
+    }
+
+    /**
+     * @return where the point lies between the render bounds along the axis, from 0 at their min to 1 at their max
+     */
+    protected double boundsFraction(int axis, double x, double y, double z) {
+        double min = axis == 0 ? renderMinX : axis == 1 ? renderMinY : renderMinZ;
+        double max = axis == 0 ? renderMaxX : axis == 1 ? renderMaxY : renderMaxZ;
+        double pos = axis == 0 ? x : axis == 1 ? y : z;
+        return max > min ? (pos - min) / (max - min) : 0;
+    }
+
+    /**
+     * Sets the color and brightness at a point of the face, mixed from the corners of the light maps, which are the
+     * corners of the render bounds. The point is given in the maps' x and y, from 0 to 1.
+     */
+    protected void mixLight(double x, double y) {
+        double w00 = (1 - x) * (1 - y);
+        double w20 = x * (1 - y);
+        double w22 = x * y;
+        double w02 = (1 - x) * y;
+        final Tessellator tessellator = Tessellator.instance;
+        tessellator.setColorOpaque_F(
+            mixColor(redmap, w00, w20, w22, w02),
+            mixColor(grnmap, w00, w20, w22, w02),
+            mixColor(blumap, w00, w20, w22, w02));
+        // vanilla mixes the corners of partial bounds the same way
+        tessellator.setBrightness(
+            mixAoBrightness(lightmap[0][0], lightmap[2][0], lightmap[2][2], lightmap[0][2], w00, w20, w22, w02));
+    }
+
+    private static float mixColor(float[][] map, double w00, double w20, double w22, double w02) {
+        return (float) (map[0][0] * w00 + map[2][0] * w20 + map[2][2] * w22 + map[0][2] * w02);
     }
 
     protected void side(Block block, SubSide side, int iconIndex) {
