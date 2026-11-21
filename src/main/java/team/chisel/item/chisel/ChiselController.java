@@ -160,4 +160,8 @@ public final class ChiselController {
         }
     }
 
+    public void queueOpenGui(EntityPlayer player, ItemStack stack) {
+        openQueue.add(new GuiOpen(player, stack));
+    }
+
 }
