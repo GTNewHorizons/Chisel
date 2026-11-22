@@ -1,25 +1,27 @@
 package team.chisel.compat.fmp;
 
 import net.minecraft.block.Block;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.cricketcraft.chisel.api.carving.IVariationInfo;
 import com.google.common.collect.Lists;
 
+import codechicken.lib.data.MCDataInput;
 import codechicken.lib.vec.BlockCoord;
 import codechicken.microblock.MicroMaterialRegistry;
 import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.MultiPartRegistry.IPartConverter;
-import codechicken.multipart.MultiPartRegistry.IPartFactory;
+import codechicken.multipart.MultiPartRegistry.IPartFactory2;
 import codechicken.multipart.TMultiPart;
 import team.chisel.client.render.FullBrightMicroMaterial;
 import team.chisel.init.ChiselBlocks;
 
-public class FMPCompat implements IPartFactory, IPartConverter {
+public class FMPCompat implements IPartFactory2, IPartConverter {
 
     public void init() {
         MultiPartRegistry.registerConverter(this);
-        MultiPartRegistry.registerParts(this, new String[] { "chisel_torch" });
+        MultiPartRegistry.registerPartFactory(this, "chisel_torch");
     }
 
     @Override
@@ -39,7 +41,21 @@ public class FMPCompat implements IPartFactory, IPartConverter {
     }
 
     @Override
-    public TMultiPart createPart(String type, boolean client) {
+    public TMultiPart createPart(String type, NBTTagCompound nbt) {
+        return newPart(type);
+    }
+
+    @Override
+    public TMultiPart createPart(String type, MCDataInput packet) {
+        return newPart(type);
+    }
+
+    @Override
+    public TMultiPart createPartForClientPreview(String type, NBTTagCompound nbt) {
+        return newPart(type);
+    }
+
+    private static TMultiPart newPart(String type) {
         if (type.equals("chisel_torch")) {
             return new PartChiselTorch();
         }
