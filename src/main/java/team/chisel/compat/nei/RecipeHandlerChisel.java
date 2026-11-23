@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.opengl.GL11;
@@ -76,7 +77,7 @@ public class RecipeHandlerChisel extends TemplateRecipeHandler {
 
     @Override
     public String getRecipeName() {
-        return "Chisel";
+        return StatCollector.translateToLocal("chisel.nei.title");
     }
 
     @Override
