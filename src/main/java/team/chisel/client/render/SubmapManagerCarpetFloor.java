@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import team.chisel.ctmlib.RenderBlocksCTM;
 import team.chisel.ctmlib.TextureSubmap;
+import team.chisel.ctmlib.TextureSubmapCTM;
 
 public class SubmapManagerCarpetFloor extends SubmapManagerBase {
 
@@ -39,8 +40,8 @@ public class SubmapManagerCarpetFloor extends SubmapManagerBase {
     @SideOnly(Side.CLIENT)
     public void registerIcons(String modName, Block block, IIconRegister register) {
         String path = modName + ":carpet/" + color;
-        submap = new TextureSubmap(register.registerIcon(path + "-ctm"), 4, 4);
-        submapSmall = new TextureSubmap(register.registerIcon(path), 2, 2);
+        submap = new TextureSubmapCTM(register.registerIcon(path + "-ctm"), 4);
+        submapSmall = new TextureSubmapCTM(register.registerIcon(path), 2);
     }
 
     @Override
