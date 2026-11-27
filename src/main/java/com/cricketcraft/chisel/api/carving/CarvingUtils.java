@@ -4,8 +4,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import com.google.common.collect.Lists;
 
@@ -67,6 +71,57 @@ public class CarvingUtils {
      */
     public static ICarvingGroup getDefaultGroupFor(String name) {
         return new SimpleCarvingGroup(name);
+    }
+
+    /**
+     * Attempts to chisel the {@link ItemStack} from {@code input} into the {@code target} {@link ItemStack}.
+     * If it can be chiseled, the input's stack size and NBT data will be copied over
+     * to the newly created {@link ItemStack}.
+     *
+     * @param input  The original {@link ItemStack} to be chiseled. Can't be {@code null}.
+     * @param target The desired {@link ItemStack} chiseling target. Stack size and NBT data are ignored.
+     *               Can't be {@code null}.
+     *
+     * @return A copy of the {@code target} {@link ItemStack} with the input's stack count and NBT data,
+     *         if this is a valid chiseling operation. Will return {@code null} if it's not possible to chisel
+     *         {@code input} into {@code target}.
+     */
+    public static @Nullable ItemStack tryChiselingInto(@Nonnull ItemStack input, @Nonnull ItemStack target) {
+        ICarvingRegistry registry = getChiselRegistry();
+        if (registry == null) {
+            return null;
+        }
+
+        ItemStack chiselTarget = null;
+
+        List<ItemStack> chiselGroup = registry.getItemsForChiseling(input);
+        if (chiselGroup != null) {
+            for (ItemStack variation : chiselGroup) {
+                if (target.getItemDamage() == variation.getItemDamage() && target.getItem() == variation.getItem()) {
+                    // We use the target from the carving group, rather than what was passed in via the method's args,
+                    // to skip copying any NBT data the original target might contain.
+                    chiselTarget = variation;
+                    break;
+                }
+            }
+        }
+
+        if (chiselTarget == null) {
+            return null;
+        }
+
+        ItemStack result = chiselTarget.copy();
+        result.stackSize = input.stackSize;
+
+        if (input.hasTagCompound()) {
+            // Copy NBT from input to target to both avoid dupes and prevent loss of stored information
+            // (such as when chiseling drawers with items inside)
+            NBTTagCompound nbt = (NBTTagCompound) input.getTagCompound()
+                .copy();
+            result.setTagCompound(nbt);
+        }
+
+        return result;
     }
 
     public static class SimpleCarvingVariation implements ICarvingVariation {
