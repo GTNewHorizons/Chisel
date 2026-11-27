@@ -92,34 +92,42 @@ public class CarvingUtils {
             return null;
         }
 
-        ItemStack chiselTarget = null;
-
         List<ItemStack> chiselGroup = registry.getItemsForChiseling(input);
         if (chiselGroup != null) {
             for (ItemStack variation : chiselGroup) {
                 if (target.getItemDamage() == variation.getItemDamage() && target.getItem() == variation.getItem()) {
-                    // We use the target from the carving group, rather than what was passed in via the method's args,
-                    // to skip copying any NBT data the original target might contain.
-                    chiselTarget = variation;
-                    break;
+                    return applyInputToChiselTarget(input, variation);
                 }
             }
         }
 
-        if (chiselTarget == null) {
-            return null;
+        return null;
+    }
+
+    /**
+     * Creates an {@link ItemStack} copy of {@code target} with the stack size and NBT data from {@code input}.
+     * Used as a step in a chisel craft. This method does not validate whether the chisel craft from
+     * {@code input} to {@code target} does actually exist.
+     * <p>
+     * In general, you should prefer using the method {@link tryChiselingInto}, as it safeguards against
+     * invalid chisel operations. This method is kept as an option in situations where the craft has already been
+     * confirmed as valid, and we can skip the expensive operation of creating a list of chisel
+     * variants to simply validate it again.
+     *
+     * @param input  The {@link ItemStack} provider for the stack size and NBT data. Can't be {@code null}.
+     * @param target The {@link ItemStack} template that serves as the base for the result. Can't be {@code null}.
+     */
+    public static @Nonnull ItemStack applyInputToChiselTarget(@Nonnull ItemStack input, @Nonnull ItemStack target) {
+        ItemStack result = new ItemStack(target.getItem(), input.stackSize, target.getItemDamage());
+
+        // Copy NBT from input to target to both avoid dupes and prevent loss of stored information
+        // (such as when chiseling drawers with items inside)
+        NBTTagCompound inputNBT = input.getTagCompound();
+        if (inputNBT != null) {
+            inputNBT = (NBTTagCompound) inputNBT.copy();
         }
 
-        ItemStack result = chiselTarget.copy();
-        result.stackSize = input.stackSize;
-
-        if (input.hasTagCompound()) {
-            // Copy NBT from input to target to both avoid dupes and prevent loss of stored information
-            // (such as when chiseling drawers with items inside)
-            NBTTagCompound nbt = (NBTTagCompound) input.getTagCompound()
-                .copy();
-            result.setTagCompound(nbt);
-        }
+        result.setTagCompound(inputNBT);
 
         return result;
     }
