@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 
 import com.cricketcraft.chisel.api.IChiselItem;
@@ -40,30 +41,32 @@ public class SlotChiselSelection extends Slot {
 
     @Override
     public void onPickupFromSlot(EntityPlayer player, ItemStack itemstack) {
+        ItemStack chiselInput = selInventory.inventory[InventoryChiselSelection.normalSlots];
         ItemStack heldStack = player.inventory.getItemStack();
-        ItemStack crafted = selInventory.inventory[InventoryChiselSelection.normalSlots];
 
+        // Was chiseled by clicking 1-9 or Q, chisel only one item from the stack
         if (heldStack == null) {
             selInventory.decrStackSize(InventoryChiselSelection.normalSlots, 1);
-        } else {
-            putStack(itemstack.copy());
+            if (selInventory.inventory[InventoryChiselSelection.normalSlots] != null) {
+                NBTTagCompound stackNBT = itemstack.getTagCompound();
+                if (stackNBT != null) {
+                    // Deep copy the resulting stack's NBT to prevent it from sharing
+                    // the same NBT object reference with the unchiseled ItemStack
+                    itemstack.setTagCompound((NBTTagCompound) stackNBT.copy());
+                }
+            }
+        }
 
-            player.inventory.setItemStack(null);
-
-            if (selInventory.inventory[InventoryChiselSelection.normalSlots] == null) return;
-
-            player.inventory.setItemStack(
-                new ItemStack(
-                    itemstack.getItem(),
-                    selInventory.inventory[InventoryChiselSelection.normalSlots].stackSize,
-                    itemstack.getItemDamage()));
+        // Was clicked normally (or shift-clicked), chisel the entire stack
+        else {
+            heldStack.stackSize = chiselInput.stackSize;
             selInventory.setInventorySlotContents(InventoryChiselSelection.normalSlots, null);
         }
 
         selInventory.updateItems();
 
         if (((IChiselItem) container.chisel.getItem())
-            .onChisel(player.worldObj, container.chisel, General.getVariation(crafted))) {
+            .onChisel(player.worldObj, container.chisel, General.getVariation(chiselInput))) {
             container.chisel.damageItem(1, player);
             if (container.chisel.stackSize <= 0) {
                 player.setCurrentItemOrArmor(0, null);
@@ -71,7 +74,7 @@ public class SlotChiselSelection extends Slot {
         }
 
         if (player.worldObj.isRemote) {
-            String sound = Carving.chisel.getVariationSound(crafted.getItem(), crafted.getItemDamage());
+            String sound = Carving.chisel.getVariationSound(chiselInput.getItem(), chiselInput.getItemDamage());
             GeneralClient.playChiselSound(
                 player.worldObj,
                 MathHelper.floor_double(player.posX),
@@ -79,7 +82,7 @@ public class SlotChiselSelection extends Slot {
                 MathHelper.floor_double(player.posZ),
                 sound);
         } else {
-            container.playerInventory.player.addStat(Statistics.blocksChiseled, crafted.stackSize);
+            container.playerInventory.player.addStat(Statistics.blocksChiseled, itemstack.stackSize);
         }
     }
 }

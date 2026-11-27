@@ -15,6 +15,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 import com.cricketcraft.chisel.api.IChiselItem;
+import com.cricketcraft.chisel.api.carving.CarvingUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -81,6 +82,11 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
     private ItemStack lastBase;
 
+    // Crafting caches to avoid creating a new ItemStack result each tick
+    private ItemStack baseCache = null;
+    private ItemStack targetCache = null;
+    private ItemStack resultCache;
+
     @Override
     public boolean canUpdate() {
         return true;
@@ -126,68 +132,90 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
     @Override
     public void updateEntity() {
-
-        ItemStack base = inventory[BASE], target = getTarget(), output = inventory[OUTPUT];
-
-        if (!worldObj.isRemote && hasChisel() && base != null && target != null) {
-            if (canBeMadeFrom(base, target)) {
-                if (progress >= (hasUpgrade(Upgrade.SPEED) ? FAST_SPEED : SLOW_SPEED)) {
-
-                    // reset progress
-                    progress = 0;
-
-                    // the max possible for this craft
-                    int canBeMade = target.getMaxStackSize();
-
-                    // if there are items in the output, they count towards the max we can make
-                    if (output != null) {
-                        canBeMade -= output.stackSize;
-                    }
-
-                    // can't make more than we have
-                    canBeMade = Math.min(base.stackSize, canBeMade);
-
-                    // if we can't make any, forget it
-                    if (canBeMade <= 0) {
-                        return;
-                    }
-
-                    // result will always be a copy of the target
-                    ItemStack chiseled = target.copy();
-
-                    // if we have the stack upgrade, boost the stack size to the max possible, otherwise just one
-                    chiseled.stackSize = hasUpgrade(Upgrade.STACK) ? canBeMade : 1;
-
-                    if (canChisel(chiseled)) {
-                        // if our output is empty, just use the current result
-                        if (output == null) {
-                            setInventorySlotContents(OUTPUT, chiseled);
-                        } else {
-                            // otherwise just add our result to the existing stack
-                            inventory[OUTPUT].stackSize += chiseled.stackSize;
-                            slotChanged(OUTPUT);
-                        }
-
-                        chiselItem(chiseled.stackSize, target);
-
-                        // remove what we made from the stack
-                        base.stackSize -= chiseled.stackSize;
-                        if (base.stackSize <= 0) {
-                            setInventorySlotContents(BASE, null); // clear out 0 size itemstacks
-                        }
-                    }
-                } else if (worldObj.getTotalWorldTime() % 10 == 0) {
-                    progress++;
-                }
-            }
-        } else if (worldObj.isRemote) {
+        // Client-side visuals
+        if (worldObj.isRemote) {
             if (chiseling) {
                 chiselRot += rotAmnt;
                 if (chiselRot >= maxRot) {
+                    // Play Chisel SFX
                     chiselItem(0, getTarget());
                 }
             } else {
                 chiselRot = Math.max(chiselRot - rotAmnt, 0);
+            }
+            return;
+        }
+
+        // Server-side crafting
+        ItemStack base = inventory[BASE];
+        ItemStack target = getTarget();
+        if (base == null || target == null || !hasChisel()) {
+            baseCache = targetCache = resultCache = null;
+            return;
+        }
+
+        // Something has changed about the recipe, regenerate caches
+        if (resultCache == null || baseCache != base || targetCache != target) {
+            // Unfiltered chisel result. Actual crafting might fail or be of a lower stack size than this.
+            resultCache = CarvingUtils.tryChiselingInto(base, target);
+            if (resultCache == null) {
+                // Not a valid chisel recipe
+                baseCache = targetCache = null;
+                return;
+            }
+
+            baseCache = base;
+            targetCache = target;
+        }
+
+        if (progress < (hasUpgrade(Upgrade.SPEED) ? FAST_SPEED : SLOW_SPEED)) {
+            if (worldObj.getTotalWorldTime() % 10 == 0) {
+                progress++;
+            }
+
+            // Update progress and return
+            return;
+        }
+
+        // Crafting finished
+        progress = 0;
+
+        // Use the template's stack size as the max possible for this craft
+        int canBeMade = target.getMaxStackSize();
+
+        // If there are items in the output, they count towards the max we can make
+        ItemStack output = inventory[OUTPUT];
+        if (output != null) {
+            canBeMade -= output.stackSize;
+        }
+
+        // Can't make more than we have
+        canBeMade = Math.min(base.stackSize, canBeMade);
+
+        // If we can't make any, forget it
+        if (canBeMade <= 0) {
+            return;
+        }
+
+        // If we have the stack upgrade, boost the stack size to the max possible, otherwise just one
+        resultCache.stackSize = hasUpgrade(Upgrade.STACK) ? canBeMade : 1;
+
+        if (canChisel(resultCache)) {
+            // Use (and possibly break) the chisel
+            chiselItem(resultCache.stackSize, target);
+
+            // Remove what we made from the input stack and add it to the output stack
+            base.stackSize -= resultCache.stackSize;
+            if (base.stackSize <= 0) {
+                setInventorySlotContents(BASE, null);
+                baseCache = null;
+            }
+
+            if (output == null) {
+                setInventorySlotContents(OUTPUT, resultCache.copy());
+            } else {
+                inventory[OUTPUT].stackSize += resultCache.stackSize;
+                slotChanged(OUTPUT);
             }
         }
     }
@@ -200,17 +228,6 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         } else {
             return inventory[TARGET];
         }
-    }
-
-    // lets make sure the user isn't trying to make something from a block that doesn't have this as a valid target
-    private boolean canBeMadeFrom(ItemStack from, ItemStack to) {
-        List<ItemStack> results = Carving.chisel.getItemsForChiseling(from);
-        for (ItemStack s : results) {
-            if (s.getItem() == to.getItem() && s.getItemDamage() == to.getItemDamage()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private boolean canChisel(ItemStack toMerge) {

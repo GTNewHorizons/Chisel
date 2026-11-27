@@ -4,8 +4,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import com.google.common.collect.Lists;
 
@@ -67,6 +71,65 @@ public class CarvingUtils {
      */
     public static ICarvingGroup getDefaultGroupFor(String name) {
         return new SimpleCarvingGroup(name);
+    }
+
+    /**
+     * Attempts to chisel the {@link ItemStack} from {@code input} into the {@code target} {@link ItemStack}.
+     * If it can be chiseled, the input's stack size and NBT data will be copied over
+     * to the newly created {@link ItemStack}.
+     *
+     * @param input  The original {@link ItemStack} to be chiseled. Can't be {@code null}.
+     * @param target The desired {@link ItemStack} chiseling target. Stack size and NBT data are ignored.
+     *               Can't be {@code null}.
+     *
+     * @return A copy of the {@code target} {@link ItemStack} with the input's stack count and NBT data,
+     *         if this is a valid chiseling operation. Will return {@code null} if it's not possible to chisel
+     *         {@code input} into {@code target}.
+     */
+    public static @Nullable ItemStack tryChiselingInto(@Nonnull ItemStack input, @Nonnull ItemStack target) {
+        ICarvingRegistry registry = getChiselRegistry();
+        if (registry == null) {
+            return null;
+        }
+
+        List<ItemStack> chiselGroup = registry.getItemsForChiseling(input);
+        if (chiselGroup != null) {
+            for (ItemStack variation : chiselGroup) {
+                if (target.getItemDamage() == variation.getItemDamage() && target.getItem() == variation.getItem()) {
+                    return applyInputToChiselTarget(input, variation);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Creates an {@link ItemStack} copy of {@code target} with the stack size and NBT data from {@code input}.
+     * Used as a step in a chisel craft. This method does not validate whether the chisel craft from
+     * {@code input} to {@code target} does actually exist.
+     * <p>
+     * In general, you should prefer using the method {@link tryChiselingInto}, as it safeguards against
+     * invalid chisel operations. This method is kept as an option in situations where the craft has already been
+     * confirmed as valid, and we can skip the expensive operation of creating a list of chisel
+     * variants to simply validate it again.
+     *
+     * @param input  The {@link ItemStack} provider for the stack size and NBT data. Can't be {@code null}.
+     * @param target The {@link ItemStack} template that serves as the base for the result. Can't be {@code null}.
+     */
+    public static @Nonnull ItemStack applyInputToChiselTarget(@Nonnull ItemStack input, @Nonnull ItemStack target) {
+        ItemStack result = new ItemStack(target.getItem(), input.stackSize, target.getItemDamage());
+
+        // Copy NBT from input to target to both avoid dupes and prevent loss of stored information
+        // (such as when chiseling drawers with items inside)
+        NBTTagCompound inputNBT = input.getTagCompound();
+        if (inputNBT != null) {
+            inputNBT = (NBTTagCompound) inputNBT.copy();
+        }
+
+        result.setTagCompound(inputNBT);
+
+        return result;
     }
 
     public static class SimpleCarvingVariation implements ICarvingVariation {

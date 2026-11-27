@@ -146,7 +146,16 @@ public class InventoryChiselSelection implements IInventory {
                     list.get(activeVariations + currentScroll)
                         .getItem()))
                 != null) {
-                inventory[activeVariations] = list.get(activeVariations + currentScroll);
+                ItemStack variationTemplate = list.get(activeVariations + currentScroll);
+
+                // Preserve the original's NBT tags
+                if (chiseledItem.hasTagCompound()) {
+                    variationTemplate = variationTemplate.copy();
+                    // We can defer the deep copy the NBT object until the player actually chisels the item
+                    variationTemplate.setTagCompound(chiseledItem.getTagCompound());
+                }
+
+                inventory[activeVariations] = variationTemplate;
                 activeVariations++;
             }
         }
