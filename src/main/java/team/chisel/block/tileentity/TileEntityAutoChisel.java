@@ -82,6 +82,11 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
 
     private ItemStack lastBase;
 
+    // Crafting caches to avoid creating a new ItemStack result each tick
+    private ItemStack baseCache = null;
+    private ItemStack targetCache = null;
+    private ItemStack resultCache;
+
     @Override
     public boolean canUpdate() {
         return true;
@@ -145,14 +150,22 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         ItemStack base = inventory[BASE];
         ItemStack target = getTarget();
         if (base == null || target == null || !hasChisel()) {
+            baseCache = targetCache = resultCache = null;
             return;
         }
 
-        // Unfiltered chisel result. Actual crafting might fail or be of a lower stack size than this.
-        ItemStack chiseled = CarvingUtils.tryChiselingInto(base, target);
-        if (chiseled == null) {
-            // Not a valid chisel recipe
-            return;
+        // Something has changed about the recipe, regenerate caches
+        if (resultCache == null || baseCache != base || targetCache != target) {
+            // Unfiltered chisel result. Actual crafting might fail or be of a lower stack size than this.
+            resultCache = CarvingUtils.tryChiselingInto(base, target);
+            if (resultCache == null) {
+                // Not a valid chisel recipe
+                baseCache = targetCache = null;
+                return;
+            }
+
+            baseCache = base;
+            targetCache = target;
         }
 
         if (progress < (hasUpgrade(Upgrade.SPEED) ? FAST_SPEED : SLOW_SPEED)) {
@@ -185,23 +198,23 @@ public class TileEntityAutoChisel extends TileEntity implements ISidedInventory 
         }
 
         // If we have the stack upgrade, boost the stack size to the max possible, otherwise just one
-        chiseled.stackSize = hasUpgrade(Upgrade.STACK) ? canBeMade : 1;
+        resultCache.stackSize = hasUpgrade(Upgrade.STACK) ? canBeMade : 1;
 
-        if (canChisel(chiseled)) {
-
+        if (canChisel(resultCache)) {
             // Use (and possibly break) the chisel
-            chiselItem(chiseled.stackSize, target);
+            chiselItem(resultCache.stackSize, target);
 
             // Remove what we made from the input stack and add it to the output stack
-            base.stackSize -= chiseled.stackSize;
+            base.stackSize -= resultCache.stackSize;
             if (base.stackSize <= 0) {
                 setInventorySlotContents(BASE, null);
+                baseCache = null;
             }
 
             if (output == null) {
-                setInventorySlotContents(OUTPUT, chiseled);
+                setInventorySlotContents(OUTPUT, resultCache.copy());
             } else {
-                inventory[OUTPUT].stackSize += chiseled.stackSize;
+                inventory[OUTPUT].stackSize += resultCache.stackSize;
                 slotChanged(OUTPUT);
             }
         }
